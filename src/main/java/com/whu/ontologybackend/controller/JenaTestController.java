@@ -22,6 +22,7 @@ public class JenaTestController {
         String cybersecurityURI = "http://somewhere/cybersecurity";
         String givenName = "Tim Berners";
         String familyName = "Lee";
+        String testPush = "git push test";
         String fullName = givenName + " " + familyName;
 
         // create an empty model
