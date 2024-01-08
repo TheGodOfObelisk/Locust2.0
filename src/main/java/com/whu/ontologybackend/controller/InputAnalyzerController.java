@@ -43,4 +43,9 @@ public class InputAnalyzerController {
     public String integrateJSON(){
         return "json";
     }
+
+    @RequestMapping("postOntology")
+    public String integrateOntology(){
+        return "ontology";
+    } // process existing ontologies
 }
