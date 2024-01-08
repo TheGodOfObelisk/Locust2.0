@@ -1,2 +1,36 @@
-package com.whu.ontologybackend.common.structured;public class OntMultiwayTreeNode {
+package com.whu.ontologybackend.common.structured;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class OntMultiwayTreeNode {
+    private OntTreeNode data;
+
+    private List<OntMultiwayTreeNode> childList;
+
+    public OntMultiwayTreeNode(OntTreeNode data) {
+        this.data = data;
+        this.childList = new ArrayList<OntMultiwayTreeNode>();
+    }
+
+    public OntMultiwayTreeNode(OntTreeNode data, List<OntMultiwayTreeNode> childList) {
+        this.data = data;
+        this.childList = childList;
+    }
+
+    public OntTreeNode getData() {
+        return data;
+    }
+
+    public void setData(OntTreeNode data) {
+        this.data = data;
+    }
+
+    public List<OntMultiwayTreeNode> getChildList() {
+        return childList;
+    }
+
+    public void setChildList(List<OntMultiwayTreeNode> childList) {
+        this.childList = childList;
+    }
 }
