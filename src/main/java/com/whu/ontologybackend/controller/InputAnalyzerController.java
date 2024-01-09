@@ -3,6 +3,7 @@ package com.whu.ontologybackend.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -48,4 +49,18 @@ public class InputAnalyzerController {
     public String integrateOntology(){
         return "ontology";
     } // process existing ontologies
+
+    @RequestMapping("uploadFile")
+    public String handleFileUpload(@RequestParam("file")MultipartFile file){
+        if(!file.isEmpty()){
+            try{
+                byte[] bytes = file.getBytes();
+                return "redirect:/success";
+            } catch (Exception e){
+                return "redirect:/error";
+            }
+        } else {
+            return "redirect:/error";
+        }
+    }
 }
