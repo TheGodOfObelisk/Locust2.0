@@ -14,10 +14,11 @@ import org.apache.jena.rdf.model.Resource;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
 
-public class OntMultiwayTree {
+public class OntMultiwayTree implements Serializable {
     private OntMultiwayTreeNode root;
 
     private String rootConcept = "thing"; // at level 1
