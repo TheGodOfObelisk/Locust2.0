@@ -1,4 +1,4 @@
-package com.whu.ontologybackend.service.serviceImpl;
+package com.whu.ontologybackend.service.impl;
 
 import com.whu.ontologybackend.service.InputAnalyzeService;
 import org.springframework.stereotype.Service;
