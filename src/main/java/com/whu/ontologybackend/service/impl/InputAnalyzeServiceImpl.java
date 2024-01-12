@@ -1,6 +1,7 @@
 package com.whu.ontologybackend.service.impl;
 
-import com.whu.ontologybackend.common.GlobalVariables;
+
+import com.whu.ontologybackend.common.utils.Methods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
 import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
@@ -15,6 +16,8 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     @Override
     public String analyzeExistingOntologies(File ontologyFile){
 //        System.out.println(GlobalVariables.ontMultiwayForest.size());
+//        Methods.ontologyForestSerialization();
+//        Methods.ontologyForestDeserialization();
         try{
             InputStream inputStream = new FileInputStream(ontologyFile);
             OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
