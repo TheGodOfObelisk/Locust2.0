@@ -1,6 +1,8 @@
 package com.whu.ontologybackend.common.structured;
 
-public class OntTreeNode {
+import java.io.Serializable;
+
+public class OntTreeNode implements Serializable {
     private NodeData nodeData; // core value
     private String nodeId;
 
@@ -39,17 +41,17 @@ public class OntTreeNode {
         this.parentId = parentId;
     }
 
-    public double similarityMetric(OntTreeNode ontTreeNode){
-        double metric = 0;
+//    public double similarityMetric(OntTreeNode ontTreeNode){
+//        double metric = 0;
+//
+//        return metric;
+//    }
 
-        return metric;
-    }
-
-    public void mergeNode(OntTreeNode targetNode){
-        // 1. check properties and copy different properties
-        // 2. delete the target node (call delete node by node Id method, how?)
-        // 3. preserve the new node
-
-        return ;
-    }
+//    public void mergeNode(OntTreeNode targetNode){
+//        // 1. check properties and copy different properties
+//        // 2. delete the target node (call delete node by node Id method, how?)
+//        // 3. preserve the new node
+//
+//        return ;
+//    }
 }

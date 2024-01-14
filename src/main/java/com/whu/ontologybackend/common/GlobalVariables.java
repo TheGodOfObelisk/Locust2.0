@@ -8,5 +8,5 @@ import java.util.List;
 
 @Component
 public class GlobalVariables {
-    public static final List<OntMultiwayTree> ontMultiwayForest = new ArrayList<>();
+    public static List<OntMultiwayTree> ontMultiwayForest = new ArrayList<>();
 }

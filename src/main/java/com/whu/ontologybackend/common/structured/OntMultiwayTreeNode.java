@@ -1,9 +1,10 @@
 package com.whu.ontologybackend.common.structured;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OntMultiwayTreeNode {
+public class OntMultiwayTreeNode implements Serializable {
     private OntTreeNode data;
 
     private List<OntMultiwayTreeNode> childList;
