@@ -20,6 +20,11 @@ import java.util.*;
 
 public class OntMultiwayTree implements Serializable {
     private OntMultiwayTreeNode root;
+    // modular ontology identifiers
+    // module name should be set during initialization or update process
+    private String moduleName = "default module";
+
+    private String moduleId = "default id";
 
     private String rootConcept = "thing"; // at level 1
 
