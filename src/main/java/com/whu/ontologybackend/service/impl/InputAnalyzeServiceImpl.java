@@ -3,6 +3,8 @@ package com.whu.ontologybackend.service.impl;
 
 import com.whu.ontologybackend.common.utils.Methods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.util.iterator.ExtendedIterator;
 import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -20,8 +22,15 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 //        Methods.ontologyForestDeserialization();
         try{
             InputStream inputStream = new FileInputStream(ontologyFile);
-            OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+            OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
             m.read(inputStream, "utf-8"); // second parameter "base"
+//            OntClass upperOntClass = m.getOntClass();
+//            OntClass anonClass = m.createClass();
+            ExtendedIterator<OntClass> ontClassExtendedIterator = m.listClasses();
+            while(ontClassExtendedIterator.hasNext()){
+                OntClass presentOntClass = ontClassExtendedIterator.next();
+                System.out.println(presentOntClass.getLocalName());
+            }
             return "open ontology: " + m.getBaseModel().toString();
         } catch (IOException e){
             e.printStackTrace();

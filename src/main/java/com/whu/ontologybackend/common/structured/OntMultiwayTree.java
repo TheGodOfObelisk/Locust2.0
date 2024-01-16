@@ -30,6 +30,7 @@ public class OntMultiwayTree implements Serializable {
 
     private String rootNodeID = "root"; // at level 0
 
+    // URI string for OWL DL
     private String ourURI = "http://www.w3.org/TR/owl-features/#term_OWLDL";
     private String SOURCE = "http://www.whu.edu/cybersecurity/ontology";
     private String NS = SOURCE + "#";
