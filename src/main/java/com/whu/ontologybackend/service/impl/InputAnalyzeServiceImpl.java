@@ -4,6 +4,7 @@ package com.whu.ontologybackend.service.impl;
 import com.whu.ontologybackend.common.utils.Methods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntProperty;
 import org.apache.jena.util.iterator.ExtendedIterator;
 import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
@@ -29,7 +30,22 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             ExtendedIterator<OntClass> ontClassExtendedIterator = m.listClasses();
             while(ontClassExtendedIterator.hasNext()){
                 OntClass presentOntClass = ontClassExtendedIterator.next();
-                System.out.println(presentOntClass.getLocalName());
+                System.out.println("Class name: " + presentOntClass.getLocalName());
+                if(presentOntClass.getSuperClass() != null){
+                    System.out.println("SuperClass name: " + presentOntClass.getSuperClass().getLocalName());
+                } else {
+                    System.out.println("This class has no super class.");
+                }
+                if(presentOntClass.getSubClass() != null){
+                    System.out.println("SubClass name: " + presentOntClass.getSubClass().getLocalName());
+                } else {
+                    System.out.println("This class has no sub class.");
+                }
+                ExtendedIterator<OntProperty> ontPropertyExtendedIterator = presentOntClass.listDeclaredProperties(true);
+                while(ontPropertyExtendedIterator.hasNext()){
+                    OntProperty presentOntProperty = ontPropertyExtendedIterator.next();
+                    System.out.println("Properties: " + presentOntProperty.getLocalName());
+                }
             }
             return "open ontology: " + m.getBaseModel().toString();
         } catch (IOException e){
