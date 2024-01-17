@@ -27,30 +27,15 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             m.read(inputStream, "utf-8"); // second parameter "base"
 //            OntClass upperOntClass = m.getOntClass();
 //            OntClass anonClass = m.createClass();
-            ExtendedIterator<OntClass> ontClassExtendedIterator = m.listClasses();
-            while(ontClassExtendedIterator.hasNext()){
-                OntClass presentOntClass = ontClassExtendedIterator.next();
-                System.out.println("Class name: " + presentOntClass.getLocalName());
-                if(presentOntClass.getSuperClass() != null){
-                    System.out.println("SuperClass name: " + presentOntClass.getSuperClass().getLocalName());
-                } else {
-                    System.out.println("This class has no super class.");
-                }
-                if(presentOntClass.getSubClass() != null){
-                    System.out.println("SubClass name: " + presentOntClass.getSubClass().getLocalName());
-                } else {
-                    System.out.println("This class has no sub class.");
-                }
-                ExtendedIterator<OntProperty> ontPropertyExtendedIterator = presentOntClass.listDeclaredProperties(true);
-                while(ontPropertyExtendedIterator.hasNext()){
-                    OntProperty presentOntProperty = ontPropertyExtendedIterator.next();
-                    System.out.println("Properties: " + presentOntProperty.getLocalName());
-                }
-            }
+            Methods.outputOntInfo(m);
+
+//            Methods.ontMetadataProperties(m);
             return "open ontology: " + m.getBaseModel().toString();
         } catch (IOException e){
             e.printStackTrace();
         }
         return "In the serviceImpl class.";
     }
+
+
 }

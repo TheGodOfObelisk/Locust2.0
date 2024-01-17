@@ -2,11 +2,15 @@ package com.whu.ontologybackend.common.utils;
 
 import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
+import org.apache.jena.ontology.*;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.util.iterator.ExtendedIterator;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Iterator;
 import java.util.List;
 
 public class Methods {
@@ -31,5 +35,72 @@ public class Methods {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void outputOntInfo(OntModel m) {
+        ExtendedIterator<OntClass> ontClassExtendedIterator = m.listClasses();
+//            ExtendedIterator<OntClass> ontClassExtendedIterator = m.listHierarchyRootClasses();
+        // close iterators manually if it doesn't iterator until hasNext() returns false
+        while(ontClassExtendedIterator.hasNext()){
+            OntClass presentOntClass = ontClassExtendedIterator.next();
+
+            System.out.println("Class name: " + presentOntClass.getLocalName());
+            if(presentOntClass.getSuperClass() != null){
+                System.out.println("SuperClass name: " + presentOntClass.getSuperClass().getLocalName());
+            } else {
+                System.out.println("This class has no super class.");
+            }
+            if(presentOntClass.getSubClass() != null){
+                System.out.println("SubClass name: " + presentOntClass.getSubClass().getLocalName());
+            } else {
+                System.out.println("This class has no sub class.");
+            }
+            ExtendedIterator<OntProperty> ontPropertyExtendedIterator = presentOntClass.listDeclaredProperties(true);
+            while(ontPropertyExtendedIterator.hasNext()){
+                OntProperty presentOntProperty = ontPropertyExtendedIterator.next();
+                System.out.println("Properties: " + presentOntProperty.getLocalName());
+                System.out.println("Property Type: " + propertyType(presentOntProperty));
+            }
+        }
+    }
+
+    public static String propertyType(OntProperty ontProperty){
+        String propertyType = "";
+        if(ontProperty.isDatatypeProperty()){
+            propertyType += "Data Property.";
+        } else if (ontProperty.isObjectProperty()) {
+            propertyType += "Object Property.";
+        } else if (ontProperty.isFunctionalProperty()) {
+            propertyType += "Functional Property.";
+        } else if (ontProperty.isSymmetricProperty()){
+            propertyType += "Symmetric Property.";
+        } else if (ontProperty.isInverseFunctionalProperty()){
+            propertyType += "Inverse Functional Property.";
+        } else if (ontProperty.isTransitiveProperty()){
+            propertyType += "Transitive Property.";
+        } else if (ontProperty.isAnnotationProperty()) {
+            propertyType += "Annotation Property.";
+        }
+        return propertyType;
+    }
+
+    public static void ontMetadataProperties(OntModel m){
+        String base = "http://idea.rpi.edu/malont";
+        Ontology ont = m.getOntology(base);
+
+        // list the ontology imports
+        for(String imp : ont.getOntModel().listImportedOntologyURIs()){
+            System.out.println("Ontology " + base + " imports " + imp);
+        }
+    }
+
+    public static void listOntologyResources(OntModel m){
+        OntModel mBase = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, m.getBaseModel());
+
+        for(Iterator i = mBase.listOntologies(); i.hasNext();){
+            Ontology ont = (Ontology) i.next();
+            // m's base model has ont as an import ...
+            // processing ...
+        }
     }
 }
