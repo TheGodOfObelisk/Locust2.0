@@ -8,6 +8,6 @@ public class OntologyForestPreDestroy {
 
     @PreDestroy
     public void exportOntologyForestBeforeExit(){
-        Methods.ontologyForestSerialization();
+        OntologyOperationMethods.ontologyForestSerialization();
     }
 }

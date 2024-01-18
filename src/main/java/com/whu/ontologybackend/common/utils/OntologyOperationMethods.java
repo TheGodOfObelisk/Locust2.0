@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.List;
 
-public class Methods {
+public class OntologyOperationMethods {
     public static void ontologyForestSerialization(){
         // serialization test
         try{
@@ -102,5 +102,44 @@ public class Methods {
             // m's base model has ont as an import ...
             // processing ...
         }
+    }
+
+    // module name and module id are user inputs
+    public static void integrateExistingOntology(OntModel m, String moduleName, String moduleId){
+        OntMultiwayTree targetTree = new OntMultiwayTree();
+        // case 1: first initialization and import an existing ontology
+        // case 2: not first initialization and import an existing ontology
+        // case 3: not first initialization and this existing ontology has been imported before
+        // operation 1: initialize and set the only one multi-way tree's attributes
+        // operation 2: add a new multi-way tree to the forest
+        // operation 3: update the corresponding multi-way tree that was created before
+        if(GlobalVariables.ontMultiwayForest.size() == 1 && GlobalVariables.ontMultiwayForest.get(0).getModuleName().equals("default module")){
+            // initialize it.
+            targetTree = GlobalVariables.ontMultiwayForest.get(0);
+            targetTree.setModuleName(moduleName);
+            targetTree.setModuleId(moduleId);
+            targetTree.setImportedOntology(true);
+        } else if(GlobalVariables.ontMultiwayForest.size() == 1 && !GlobalVariables.ontMultiwayForest.get(0).getModuleName().equals("default Module")){
+            // add targetTree to the global forest
+            targetTree.setModuleName(moduleName);
+            targetTree.setModuleId(moduleId);
+            targetTree.setImportedOntology(true);
+        } else if(GlobalVariables.ontMultiwayForest.size() > 1){
+            for(OntMultiwayTree tmpTree : GlobalVariables.ontMultiwayForest){
+                if(tmpTree.getModuleId().equals(moduleId) && tmpTree.getModuleName().equals(moduleName)){
+                    targetTree = tmpTree;
+                    break;
+                }
+            }
+            // recheck
+            if(!targetTree.getModuleName().equals(moduleName) || !targetTree.getModuleId().equals(moduleId)){
+                targetTree.setModuleName(moduleName);
+                targetTree.setModuleId(moduleId);
+                targetTree.setImportedOntology(true);
+            }
+        }
+
+        // further update operations should be implemented in OntMultiwayTree's methods
+        targetTree.updateByExistingOntology(m);
     }
 }

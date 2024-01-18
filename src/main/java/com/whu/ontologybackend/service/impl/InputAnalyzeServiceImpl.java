@@ -1,11 +1,8 @@
 package com.whu.ontologybackend.service.impl;
 
 
-import com.whu.ontologybackend.common.utils.Methods;
+import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
-import org.apache.jena.ontology.OntClass;
-import org.apache.jena.ontology.OntProperty;
-import org.apache.jena.util.iterator.ExtendedIterator;
 import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -27,7 +24,9 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             m.read(inputStream, "utf-8"); // second parameter "base"
 //            OntClass upperOntClass = m.getOntClass();
 //            OntClass anonClass = m.createClass();
-            Methods.outputOntInfo(m);
+            OntologyOperationMethods.outputOntInfo(m);
+            // the 2nd and 3rd parameters are user inputs
+            OntologyOperationMethods.integrateExistingOntology(m, "Malware Ontology", "0000001");
 
 //            Methods.ontMetadataProperties(m);
             return "open ontology: " + m.getBaseModel().toString();

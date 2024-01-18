@@ -11,6 +11,7 @@ import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.util.iterator.ExtendedIterator;
 
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.*;
 
 public class OntMultiwayTree implements Serializable {
     private OntMultiwayTreeNode root;
+
     // modular ontology identifiers
     // module name should be set during initialization or update process
     private String moduleName = "default module";
@@ -29,6 +31,8 @@ public class OntMultiwayTree implements Serializable {
     private String rootConcept = "thing"; // at level 1
 
     private String rootNodeID = "root"; // at level 0
+
+    private boolean isImportedOntology = false;
 
     // URI string for OWL DL
     private String ourURI = "http://www.w3.org/TR/owl-features/#term_OWLDL";
@@ -46,6 +50,70 @@ public class OntMultiwayTree implements Serializable {
 
     public void setConceptMap(Map<String, Map<String, String>> conceptMap) {
         this.conceptMap = conceptMap;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
+    public String getModuleId() {
+        return moduleId;
+    }
+
+    public void setModuleId(String moduleId) {
+        this.moduleId = moduleId;
+    }
+
+    public String getRootConcept() {
+        return rootConcept;
+    }
+
+    public void setRootConcept(String rootConcept) {
+        this.rootConcept = rootConcept;
+    }
+
+    public String getRootNodeID() {
+        return rootNodeID;
+    }
+
+    public void setRootNodeID(String rootNodeID) {
+        this.rootNodeID = rootNodeID;
+    }
+
+    public boolean isImportedOntology() {
+        return isImportedOntology;
+    }
+
+    public void setImportedOntology(boolean importedOntology) {
+        isImportedOntology = importedOntology;
+    }
+
+    public String getOurURI() {
+        return ourURI;
+    }
+
+    public void setOurURI(String ourURI) {
+        this.ourURI = ourURI;
+    }
+
+    public String getSOURCE() {
+        return SOURCE;
+    }
+
+    public void setSOURCE(String SOURCE) {
+        this.SOURCE = SOURCE;
+    }
+
+    public String getNS() {
+        return NS;
+    }
+
+    public void setNS(String NS) {
+        this.NS = NS;
     }
 
     public OntMultiwayTree() {
@@ -179,6 +247,19 @@ public class OntMultiwayTree implements Serializable {
         return false;
     }
 
+    public void updateByExistingOntology(OntModel m){
+        // integrate elements into the target tree
+        // 1, classes; 2, data properties; 3, object properties
+        // Step 1: process classes in the first hierarchy
+        ExtendedIterator<OntClass> ontClassExtendedIterator = m.listHierarchyRootClasses();
+        // Step 2: complement all the subclasses
+
+        // Step 3: process data properties
+
+        // Step 4: process object properties
+        // reconsider altering data structure
+
+    }
 
     public void ontologyEnrichment(Map<String, Set<String>> resConceptsWithContext){
         System.out.println("enrich ontology multi-way tree from unstructured data source");

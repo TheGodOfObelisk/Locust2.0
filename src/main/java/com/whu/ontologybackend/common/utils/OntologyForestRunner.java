@@ -17,7 +17,7 @@ public class OntologyForestRunner implements ApplicationRunner {
         // initialize ontology forest
         // Step 1: deserialize from disk
         // TODO: implementation of deserialize from a "*.out" file
-        List<OntMultiwayTree> tmpForest = Methods.ontologyForestDeserialization();
+        List<OntMultiwayTree> tmpForest = OntologyOperationMethods.ontologyForestDeserialization();
         if(tmpForest != null && tmpForest.size() > 0){
             GlobalVariables.ontMultiwayForest = tmpForest;
             return;
