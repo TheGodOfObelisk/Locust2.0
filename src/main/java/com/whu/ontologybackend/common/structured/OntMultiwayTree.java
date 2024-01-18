@@ -1,6 +1,7 @@
 package com.whu.ontologybackend.common.structured;
 
 
+import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.jena.base.Sys;
@@ -16,6 +17,9 @@ import org.apache.jena.util.iterator.ExtendedIterator;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 
@@ -196,8 +200,11 @@ public class OntMultiwayTree implements Serializable {
         // combine "com.whu.ontology" to "thing"
         ArrayList<String> combinedClassPath = new ArrayList<String>();
         combinedClassPath.add(0, rootConcept);
-        for(int i = 3, j = 1; i < classPath.length; i++, j++){
-            combinedClassPath.add(j, classPath[i]);
+//        for(int i = 3, j = 1; i < classPath.length; i++, j++){
+//            combinedClassPath.add(j, classPath[i]);
+//        }
+        for(int i = 0; i < classPath.length; i++){
+            combinedClassPath.add(classPath[i]);
         }
 
         if(checkIsExist(combinedClassPath)){ // test
@@ -213,7 +220,148 @@ public class OntMultiwayTree implements Serializable {
     }
 
     public void updateTree(ArrayList<String> combinedClassPath){
-        // deleted
+        // TODO:
+        // utilize addChild() method
+        // initialize new node and insert it into the ontology multi-way tree
+        OntMultiwayTreeNode tmpOntMultiwayTreeNode = this.getRoot();
+        if(tmpOntMultiwayTreeNode.getChildList().size() == 0){
+            // has not been initialized or error
+            // generate UUID of thing node, only once
+            OntTreeNode thingOntTreeNode = new OntTreeNode(UUID.randomUUID().toString(), rootNodeID);
+            NodeData thingNodeData = new NodeData();
+            thingNodeData.setConcept("thing"); // actually, depth=1, the level under root
+            thingOntTreeNode.setNodeData(thingNodeData);
+            OntMultiwayTreeNode thingOntMultiwayTreeNode = new OntMultiwayTreeNode(thingOntTreeNode);
+            List<OntMultiwayTreeNode> initChildList = new ArrayList<OntMultiwayTreeNode>();
+            initChildList.add(thingOntMultiwayTreeNode);
+            tmpOntMultiwayTreeNode.setChildList(initChildList);
+//            this.addChild(tmpOntMultiwayTreeNode, thingOntTreeNode);
+            // add child failed! please check
+            System.out.println(this.toString());
+        } else if(tmpOntMultiwayTreeNode.getChildList().size() > 1){
+            System.out.println("ERROR: duplicated \"thing\" node.");
+        }
+        tmpOntMultiwayTreeNode = tmpOntMultiwayTreeNode.getChildList().get(0);
+        // depth 0: root
+        // depth 1: thing equals combinedClassPath[0]
+        // depth 2: combinedClassPath[1]
+        int depth = 1;
+        // obtain ID of the "thing" concept
+        String parentID = tmpOntMultiwayTreeNode.getData().getNodeId();
+        for(int i = 0; i < combinedClassPath.size(); i++){
+            if(combinedClassPath.get(i).equals("thing")){
+                // already handled it
+                continue;
+            }
+            if(i == (combinedClassPath.size() - 1)){
+                // reach the leaf concept/jargon
+                // last cycle of the for loop, handle multiple attributes besides the "concept" field
+                String currentNodeID = UUID.randomUUID().toString();
+                OntTreeNode curOntTreeNode = new OntTreeNode(currentNodeID, parentID);
+//                parentID = curOntTreeNode.getNodeId();
+                NodeData curNodeData = new NodeData();
+                // set multiple attributes of the concept, use reflection
+                // **start**
+                String classFullPath = OntologyOperationMethods.obtainFullClassPath(combinedClassPath);
+                // TODO: DELETE JAVA REFLECTION OPERATIONS
+                /*
+                Class cl;
+                try{
+                    cl = Class.forName(classFullPath);
+                    // Fields to dataProperties
+                    Field[] fields = cl.getDeclaredFields();
+                    for(Field f: fields){
+                        Class type = f.getType();
+                        String name = f.getName();
+                        String modifiers = Modifier.toString(f.getModifiers());
+                        Map<String, Object> map = new HashMap<>();
+                        map.put(name, type.getName());
+                        map.put("modifier", modifiers);
+                        curNodeData.getDataProperties().add(map);
+                        // in what circumstances...
+                    }
+                    // Methods to objectProperties
+                    Method[] methods = cl.getDeclaredMethods();
+                    for(Method m: methods){
+                        Class retType = m.getReturnType();
+                        String name = m.getName();
+                        String modifiers = Modifier.toString(m.getModifiers());
+                        Class[] parameterTypeClasses = m.getParameterTypes();
+                        // object property should connect two objects
+                        // in one circumstance: this.concept is the source object
+                        // and retTpye concept is the target object (retType is a Class, other than basic data type)
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("name", name); // name of the objectProperty
+                        map.put("modifier", modifiers);
+                        map.put("targetType", retType); // assume retType is the target type
+                        List<String> parameterTypes = new ArrayList<>();
+                        for(Class c: parameterTypeClasses){
+                            parameterTypes.add(c.getName());
+                        }
+                        map.put("parameterTypes", parameterTypes);
+                        curNodeData.getObjectProperties().add(map);
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                */
+                curNodeData.setConcept(combinedClassPath.get(i));
+                if(conceptMap.containsKey(curNodeData.getConcept())){
+//                    conceptMap.get(curNodeData.getConcept()).add(classFullPath);
+                    // the concept already exists, there should be more than one class full path
+
+                    if(!conceptMap.get(curNodeData.getConcept()).keySet().contains(currentNodeID)){
+                        conceptMap.get(curNodeData.getConcept()).put(currentNodeID, classFullPath);
+                    }
+                } else{
+                    List<String> tmpList = new ArrayList<>();
+                    tmpList.add(classFullPath);
+                    Map<String, String> tmpMap = new HashMap<>();
+                    tmpMap.put(currentNodeID, classFullPath);
+                    conceptMap.put(curNodeData.getConcept(), tmpMap);
+//                    conceptMap.put(curNodeData.getConcept(), tmpList);
+                }
+                // ***end***
+                curOntTreeNode.setNodeData(curNodeData);
+                OntMultiwayTreeNode curOntMultiwayTreeNode = new OntMultiwayTreeNode(curOntTreeNode);
+                tmpOntMultiwayTreeNode.getChildList().add(curOntMultiwayTreeNode);
+
+
+                System.out.println(combinedClassPath.get(i));
+
+                break;
+            }
+            // process potential duplications
+            boolean duplicated = false;
+            if(tmpOntMultiwayTreeNode.getChildList().size() != 0){
+                for(OntMultiwayTreeNode tmp : tmpOntMultiwayTreeNode.getChildList()){
+                    if(tmp.getData().getNodeData().getConcept().equals(combinedClassPath.get(i))) {
+                        System.out.println("duplicated!");
+                        tmpOntMultiwayTreeNode = tmp;
+                        parentID = tmp.getData().getNodeId(); // update
+                        duplicated = true;
+                        break;
+                    }
+                }
+                // duplicated
+                if(duplicated){
+                    continue;
+                }
+            }
+            // process the directories
+            OntTreeNode curOntTreeNode = new OntTreeNode(UUID.randomUUID().toString(), parentID);
+            // update parentID
+            parentID = curOntTreeNode.getNodeId();
+            NodeData curNodeData = new NodeData();
+            curNodeData.setConcept(combinedClassPath.get(i));
+            curOntTreeNode.setNodeData(curNodeData);
+            OntMultiwayTreeNode curOntMultiwayTreeNode = new OntMultiwayTreeNode(curOntTreeNode);
+            tmpOntMultiwayTreeNode.getChildList().add(curOntMultiwayTreeNode);
+            tmpOntMultiwayTreeNode = curOntMultiwayTreeNode;
+
+            // check whether the directories actually exist
+            // !!!
+        }
     }
 
     public boolean checkIsExist(ArrayList<String> combinedClassPath){
@@ -247,11 +395,17 @@ public class OntMultiwayTree implements Serializable {
         return false;
     }
 
-    public void updateByExistingOntology(OntModel m){
+    public void updateByExistingOntology(OntModel m) throws ReflectiveOperationException, IOException {
         // integrate elements into the target tree
         // 1, classes; 2, data properties; 3, object properties
         // Step 1: process classes in the first hierarchy
         ExtendedIterator<OntClass> ontClassExtendedIterator = m.listHierarchyRootClasses();
+        while(ontClassExtendedIterator.hasNext()){
+            OntClass presentOntClass = ontClassExtendedIterator.next();
+            String presentClassName = presentOntClass.getLocalName();
+//            String fullClassName = "thing." + presentClassName;
+            updateTree(presentClassName);
+        }
         // Step 2: complement all the subclasses
 
         // Step 3: process data properties

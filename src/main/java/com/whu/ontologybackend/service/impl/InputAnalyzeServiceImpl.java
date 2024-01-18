@@ -32,6 +32,8 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             return "open ontology: " + m.getBaseModel().toString();
         } catch (IOException e){
             e.printStackTrace();
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException(e);
         }
         return "In the serviceImpl class.";
     }

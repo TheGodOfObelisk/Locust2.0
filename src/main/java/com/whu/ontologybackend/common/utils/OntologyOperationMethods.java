@@ -6,10 +6,8 @@ import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.iterator.ExtendedIterator;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -105,7 +103,7 @@ public class OntologyOperationMethods {
     }
 
     // module name and module id are user inputs
-    public static void integrateExistingOntology(OntModel m, String moduleName, String moduleId){
+    public static void integrateExistingOntology(OntModel m, String moduleName, String moduleId) throws ReflectiveOperationException, IOException {
         OntMultiwayTree targetTree = new OntMultiwayTree();
         // case 1: first initialization and import an existing ontology
         // case 2: not first initialization and import an existing ontology
@@ -141,5 +139,46 @@ public class OntologyOperationMethods {
 
         // further update operations should be implemented in OntMultiwayTree's methods
         targetTree.updateByExistingOntology(m);
+        // rewrite targetTree to the forest
+        boolean rewrtten = false;
+        for(int i = 0; i < GlobalVariables.ontMultiwayForest.size(); i++){
+            if(GlobalVariables.ontMultiwayForest.get(i).getModuleName().equals(targetTree.getModuleName()) && GlobalVariables.ontMultiwayForest.get(i).getModuleId().equals(targetTree.getModuleId())){
+                GlobalVariables.ontMultiwayForest.set(i, targetTree);
+                rewrtten = true;
+                break;
+            }
+        }
+        if(!rewrtten){
+            GlobalVariables.ontMultiwayForest.add(targetTree);
+        }
+        return;
+    }
+
+    // drop Java class parser
+//    public static String obtainFullClassPath(ArrayList<String> combinedClassPath){
+//        if(combinedClassPath.size() == 0){
+//            return "";
+//        } else if(combinedClassPath.size() == 1 && combinedClassPath.get(0).equals("thing")){
+//            return "com.whu.ontology";
+//        }
+//        String fullClassPath = new String("com.whu.ontology");
+//        for(int i = 1; i < combinedClassPath.size(); i++){
+//            fullClassPath += ("." + combinedClassPath.get(i));
+//        }
+//        return fullClassPath;
+//    }
+
+    public static String obtainFullClassPath(ArrayList<String> combinedClassPath){
+        if(combinedClassPath.size() == 0){
+            return "";
+        }
+//        else if(combinedClassPath.size() == 1 && combinedClassPath.get(0).equals("thing")){
+//            return "com.whu.ontology";
+//        }
+        String fullClassPath = new String("thing");
+        for(int i = 1; i < combinedClassPath.size(); i++){
+            fullClassPath += ("." + combinedClassPath.get(i));
+        }
+        return fullClassPath;
     }
 }
