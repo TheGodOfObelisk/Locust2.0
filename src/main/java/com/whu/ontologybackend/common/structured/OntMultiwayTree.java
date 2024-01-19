@@ -404,7 +404,11 @@ public class OntMultiwayTree implements Serializable {
             OntClass presentOntClass = ontClassExtendedIterator.next();
             String presentClassName = presentOntClass.getLocalName();
 //            String fullClassName = "thing." + presentClassName;
+            // update the node itself and then update its subClasses
             updateTree(presentClassName);
+            if(presentOntClass.getSubClass() != null){
+                updateSubClasses2Tree(presentOntClass);
+            }
         }
         // Step 2: complement all the subclasses
 
@@ -413,6 +417,15 @@ public class OntMultiwayTree implements Serializable {
         // Step 4: process object properties
         // reconsider altering data structure
 
+    }
+
+    private void updateSubClasses2Tree(OntClass presentOntClass) throws ReflectiveOperationException, IOException {
+        updateTree(presentOntClass.getLocalName());
+        ExtendedIterator<OntClass> subClassesIterator = presentOntClass.listSubClasses(true);
+        while(subClassesIterator.hasNext()){
+            OntClass subOntClass = subClassesIterator.next();
+            updateSubClasses2Tree(subOntClass);
+        }
     }
 
     public void ontologyEnrichment(Map<String, Set<String>> resConceptsWithContext){
