@@ -407,7 +407,7 @@ public class OntMultiwayTree implements Serializable {
             // update the node itself and then update its subClasses
             updateTree(presentClassName);
             if(presentOntClass.getSubClass() != null){
-                updateSubClasses2Tree(presentOntClass);
+                updateSubClasses2Tree(presentOntClass, "");
             }
         }
         // Step 2: complement all the subclasses
@@ -419,12 +419,17 @@ public class OntMultiwayTree implements Serializable {
 
     }
 
-    private void updateSubClasses2Tree(OntClass presentOntClass) throws ReflectiveOperationException, IOException {
-        updateTree(presentOntClass.getLocalName());
+    private void updateSubClasses2Tree(OntClass presentOntClass, String classFullName) throws ReflectiveOperationException, IOException {
+        if(classFullName.equals("")){
+            updateTree(presentOntClass.getLocalName());
+        } else {
+            classFullName = classFullName + "." + presentOntClass.getLocalName();
+            updateTree(classFullName);
+        }
         ExtendedIterator<OntClass> subClassesIterator = presentOntClass.listSubClasses(true);
         while(subClassesIterator.hasNext()){
             OntClass subOntClass = subClassesIterator.next();
-            updateSubClasses2Tree(subOntClass);
+            updateSubClasses2Tree(subOntClass, classFullName);
         }
     }
 
