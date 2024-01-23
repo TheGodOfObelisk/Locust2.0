@@ -5,10 +5,7 @@ import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.jena.base.Sys;
-import org.apache.jena.ontology.DatatypeProperty;
-import org.apache.jena.ontology.OntClass;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
@@ -399,6 +396,9 @@ public class OntMultiwayTree implements Serializable {
         // integrate elements into the target tree
         // 1, classes; 2, data properties; 3, object properties
         // Step 1: process classes in the first hierarchy
+        // Step 2: complement all the subclasses
+        // Step 3: process data properties
+        // Step 4: process object properties
         ExtendedIterator<OntClass> ontClassExtendedIterator = m.listHierarchyRootClasses();
         while(ontClassExtendedIterator.hasNext()){
             OntClass presentOntClass = ontClassExtendedIterator.next();
@@ -410,13 +410,10 @@ public class OntMultiwayTree implements Serializable {
                 updateSubClasses2Tree(presentOntClass, presentClassName);
             } else {
                 updateTree(presentClassName);
+                updateProperties2Tree(presentOntClass, presentClassName);
             }
         }
-        // Step 2: complement all the subclasses
 
-        // Step 3: process data properties
-
-        // Step 4: process object properties
         // reconsider altering data structure
 
     }
@@ -435,6 +432,25 @@ public class OntMultiwayTree implements Serializable {
             OntClass subOntClass = subClassesIterator.next();
 //            classFullName = classFullName + "." + subOntClass.getLocalName();
             updateSubClasses2Tree(subOntClass, classFullName + "." + subOntClass.getLocalName());
+        }
+    }
+
+    private void updateProperties2Tree(OntClass presentOntClass, String classFullName){
+        ExtendedIterator<OntProperty> ontPropertyExtendedIterator = presentOntClass.listDeclaredProperties(true);
+        while(ontPropertyExtendedIterator.hasNext()){
+            OntProperty presentOntProperty = ontPropertyExtendedIterator.next();
+            String propertyName = presentOntProperty.getLocalName();
+            if(presentOntProperty.isDatatypeProperty()){
+                // data type property
+                // 1: extract data type and data name, add to the tree
+                // 2: fill in the relationship between properties (handle it later, traverse the whole tree again)
+
+            } else if(presentOntProperty.isObjectProperty()){
+                // object property
+                // 1: extract the domain and range of the object property
+                // 2: relationship between object properties
+
+            } // ...  four other properties
         }
     }
 
