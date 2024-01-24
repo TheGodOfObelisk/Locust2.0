@@ -1,6 +1,7 @@
 package com.whu.ontologybackend.common.structured;
 
 
+import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -436,6 +437,17 @@ public class OntMultiwayTree implements Serializable {
     }
 
     private void updateProperties2Tree(OntClass presentOntClass, String classFullName){
+        OntTreeNode ontTreeNode = null;
+        for(int i = 0; i < GlobalVariables.ontMultiwayForest.size(); i++){
+            ontTreeNode = traverseTreeByConcept(GlobalVariables.ontMultiwayForest.get(i).getRoot(), presentOntClass.getLocalName());
+            if(ontTreeNode != null){
+                break;
+            }
+        }
+        if(ontTreeNode == null){
+            System.out.println("Error: Fail to fetch node of concept: " + presentOntClass.getLocalName() + ", thus fail to update data or object properties");
+            return;
+        }
         ExtendedIterator<OntProperty> ontPropertyExtendedIterator = presentOntClass.listDeclaredProperties(true);
         while(ontPropertyExtendedIterator.hasNext()){
             OntProperty presentOntProperty = ontPropertyExtendedIterator.next();
@@ -444,8 +456,26 @@ public class OntMultiwayTree implements Serializable {
                 // data type property
                 // 1: extract data type and data name, add to the tree
                 // 2: fill in the relationship between properties (handle it later, traverse the whole tree again)
+                String dataPropertyRange = presentOntProperty.getRange().getLocalName();
+                System.out.println("propertyName: " + propertyName);
+                System.out.println("dataPropertyRange: " + dataPropertyRange);
+                // here, data Property Range equals data type, such as string
+                Map<String, Object> tmpDataProperty = new HashMap<>();
+                tmpDataProperty.put(propertyName, dataPropertyRange); // should map it to data type
+                boolean hasProperty = false;
+                for(Map<String, Object> map : ontTreeNode.getNodeData().getDataProperties()){
+                    if(map.containsKey(propertyName)){
+                        hasProperty = true;
+                        break;
+                    }
+                }
+                if(!hasProperty){
+                    ontTreeNode.getNodeData().getDataProperties().add(tmpDataProperty);
+                    // can it affect the corresponding node? I hope so.
+                }
 
-            } else if(presentOntProperty.isObjectProperty()){
+            }
+            if(presentOntProperty.isObjectProperty()){
                 // object property
                 // 1: extract the domain and range of the object property
                 // 2: relationship between object properties
