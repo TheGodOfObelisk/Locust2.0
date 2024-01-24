@@ -471,7 +471,6 @@ public class OntMultiwayTree implements Serializable {
                 }
                 if(!hasProperty){
                     ontTreeNode.getNodeData().getDataProperties().add(tmpDataProperty);
-                    // can it affect the corresponding node? I hope so.
                 }
 
             }
@@ -482,6 +481,42 @@ public class OntMultiwayTree implements Serializable {
 
             } // ...  four other properties
         }
+//        OntTreeNode testNode = null;
+//        for(int i = 0; i < GlobalVariables.ontMultiwayForest.size(); i++){
+//            testNode = traverseTreeByConcept(GlobalVariables.ontMultiwayForest.get(i).getRoot(), presentOntClass.getLocalName());
+//            if(testNode != null){
+//                traverseTreeByNodeIdV2(GlobalVariables.ontMultiwayForest.get(i).getRoot(), testNode.getNodeId()).getData().setNodeData(ontTreeNode.getNodeData());
+//                break;
+//            }
+//        }
+        for(int i = 0; i < GlobalVariables.ontMultiwayForest.size(); i ++){
+            updateSpecificOntTreeNode(GlobalVariables.ontMultiwayForest.get(i).getRoot(), ontTreeNode);
+        }
+    }
+
+    public void updateSpecificOntTreeNode(OntMultiwayTreeNode ontMultiwayTreeNode, OntTreeNode ontTreeNode){
+        String nodeID = ontTreeNode.getNodeId();
+        if(ontMultiwayTreeNode == null){
+            return ;
+        }
+
+        if(ontMultiwayTreeNode.getData().getNodeId().equals(nodeID)){
+            ontMultiwayTreeNode.setData(ontTreeNode);
+            return;
+        }
+
+        for(OntMultiwayTreeNode index : ontMultiwayTreeNode.getChildList()){
+            if(index.getData().getNodeId().equals(nodeID)){
+                index.setData(ontTreeNode);
+            }
+            if(index.getChildList() != null && index.getChildList().size() > 0){
+//                if(traverseTreeByNodeId(index, nodeID) != null)
+//                return traverseTreeByNodeId(index, nodeID) == null ?
+                updateSpecificOntTreeNode(index, ontTreeNode);
+            }
+        }
+        // no item matches
+        return;
     }
 
     public void ontologyEnrichment(Map<String, Set<String>> resConceptsWithContext){
