@@ -479,6 +479,32 @@ public class OntMultiwayTree implements Serializable {
                 // 1: extract the domain and range of the object property
                 // 2: relationship between object properties
 
+                String objectPropertyDomain = null;
+                String objectPropertyRange = null;
+                if(null != presentOntProperty.getDomain()){
+                    objectPropertyDomain = presentOntProperty.getDomain().getLocalName();
+                }
+                if(null != presentOntProperty.getRange()){
+                    objectPropertyRange = presentOntProperty.getRange().getLocalName();
+                }
+
+                Map<String, Object> tmpObjectProperty = new HashMap<>();
+                Map<String, String> tmpDomainRangeMap = new HashMap<>();
+                if(objectPropertyDomain != null && objectPropertyRange != null){
+                    tmpDomainRangeMap.put(objectPropertyDomain, objectPropertyRange);
+                }
+                // if either domain or range is null, ignore domain or range
+                tmpObjectProperty.put(propertyName, tmpDomainRangeMap);
+                boolean hasProperty = false;
+                for(Map<String, Object> map : ontTreeNode.getNodeData().getObjectProperties()){
+                    if(map.containsKey(propertyName)){
+                        hasProperty = true;
+                        break;
+                    }
+                }
+                if(!hasProperty){
+                    ontTreeNode.getNodeData().getObjectProperties().add(tmpObjectProperty);
+                }
             } // ...  four other properties
         }
 //        OntTreeNode testNode = null;
