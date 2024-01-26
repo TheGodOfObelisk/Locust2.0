@@ -9,6 +9,7 @@ import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.util.iterator.ExtendedIterator;
 
@@ -45,6 +46,15 @@ public class OntMultiwayTree implements Serializable {
     // Map<concept, Map<nodeId, classFullPath>>
     private Map<String, Map<String, String>> conceptMap = new HashMap<>();
 
+    private Set<OntProperty> objectProperties = new HashSet<>();
+
+    public Set<OntProperty> getObjectProperties() {
+        return objectProperties;
+    }
+
+    public void setObjectProperties(Set<OntProperty> objectProperties) {
+        this.objectProperties = objectProperties;
+    }
 
     public Map<String, Map<String, String>> getConceptMap() {
         return conceptMap;
@@ -478,33 +488,34 @@ public class OntMultiwayTree implements Serializable {
                 // object property
                 // 1: extract the domain and range of the object property
                 // 2: relationship between object properties
-
-                String objectPropertyDomain = null;
-                String objectPropertyRange = null;
-                if(null != presentOntProperty.getDomain()){
-                    objectPropertyDomain = presentOntProperty.getDomain().getLocalName();
-                }
-                if(null != presentOntProperty.getRange()){
-                    objectPropertyRange = presentOntProperty.getRange().getLocalName();
-                }
-
-                Map<String, Object> tmpObjectProperty = new HashMap<>();
-                Map<String, String> tmpDomainRangeMap = new HashMap<>();
-                if(objectPropertyDomain != null && objectPropertyRange != null){
-                    tmpDomainRangeMap.put(objectPropertyDomain, objectPropertyRange);
-                }
+                // new strategy: add it to the OntMultiwayTree itself
+                objectProperties.add(presentOntProperty);
+//                String objectPropertyDomain = null;
+//                String objectPropertyRange = null;
+//                if(null != presentOntProperty.getDomain()){
+//                    objectPropertyDomain = presentOntProperty.getDomain().getLocalName();
+//                }
+//                if(null != presentOntProperty.getRange()){
+//                    objectPropertyRange = presentOntProperty.getRange().getLocalName();
+//                }
+//
+//                Map<String, Object> tmpObjectProperty = new HashMap<>();
+//                Map<String, String> tmpDomainRangeMap = new HashMap<>();
+//                if(objectPropertyDomain != null && objectPropertyRange != null){
+//                    tmpDomainRangeMap.put(objectPropertyDomain, objectPropertyRange);
+//                }
                 // if either domain or range is null, ignore domain or range
-                tmpObjectProperty.put(propertyName, tmpDomainRangeMap);
-                boolean hasProperty = false;
-                for(Map<String, Object> map : ontTreeNode.getNodeData().getObjectProperties()){
-                    if(map.containsKey(propertyName)){
-                        hasProperty = true;
-                        break;
-                    }
-                }
-                if(!hasProperty){
-                    ontTreeNode.getNodeData().getObjectProperties().add(tmpObjectProperty);
-                }
+//                tmpObjectProperty.put(propertyName, tmpDomainRangeMap);
+//                boolean hasProperty = false;
+//                for(Map<String, Object> map : ontTreeNode.getNodeData().getObjectProperties()){
+//                    if(map.containsKey(propertyName)){
+//                        hasProperty = true;
+//                        break;
+//                    }
+//                }
+//                if(!hasProperty){
+//                    ontTreeNode.getNodeData().getObjectProperties().add(tmpObjectProperty);
+//                }
             } // ...  four other properties
         }
 //        OntTreeNode testNode = null;
@@ -729,7 +740,7 @@ public class OntMultiwayTree implements Serializable {
             String nodeId = ontMultiwayTreeNode.getData().getNodeId();
             String concept = ontMultiwayTreeNode.getData().getNodeData().getConcept();
             List<Map<String, Object>> dpList = ontMultiwayTreeNode.getData().getNodeData().getDataProperties();
-            List<Map<String, Object>> opList = ontMultiwayTreeNode.getData().getNodeData().getObjectProperties();
+//            List<Map<String, Object>> opList = ontMultiwayTreeNode.getData().getNodeData().getObjectProperties();
             Map<String, Object> axioms = ontMultiwayTreeNode.getData().getNodeData().getAxioms();
             // first, process nodeId and concept
 
@@ -759,16 +770,16 @@ public class OntMultiwayTree implements Serializable {
                     }
                 }
             }
-            if(opList.size() != 0){
-                for(Map<String, Object> op : opList){
-                    Set<String> keySet = op.keySet();
-                    for(String key : keySet){
-                        DatatypeProperty keyProperty = model.createDatatypeProperty(NS + key);
-                        // let alone domain and range
-                        tmpClass.addProperty(keyProperty, op.get(key).toString());
-                    }
-                }
-            }
+//            if(opList.size() != 0){
+//                for(Map<String, Object> op : opList){
+//                    Set<String> keySet = op.keySet();
+//                    for(String key : keySet){
+//                        DatatypeProperty keyProperty = model.createDatatypeProperty(NS + key);
+//                        // let alone domain and range
+//                        tmpClass.addProperty(keyProperty, op.get(key).toString());
+//                    }
+//                }
+//            }
             if(axioms != null){
                 Set<String> keySet = axioms.keySet();
                 for(String key : keySet){
@@ -784,7 +795,7 @@ public class OntMultiwayTree implements Serializable {
             if(ontMultiwayTreeNode.getData().getNodeData() != null){
                 concept = ontMultiwayTreeNode.getData().getNodeData().getConcept();
                 List<Map<String, Object>> dpList = ontMultiwayTreeNode.getData().getNodeData().getDataProperties();
-                List<Map<String, Object>> opList = ontMultiwayTreeNode.getData().getNodeData().getObjectProperties();
+//                List<Map<String, Object>> opList = ontMultiwayTreeNode.getData().getNodeData().getObjectProperties();
                 Map<String, Object> axioms = ontMultiwayTreeNode.getData().getNodeData().getAxioms();
                 // first, process nodeId and concept
 
@@ -814,16 +825,16 @@ public class OntMultiwayTree implements Serializable {
                         }
                     }
                 }
-                if(opList.size() != 0){
-                    for(Map<String, Object> op : opList){
-                        Set<String> keySet = op.keySet();
-                        for(String key : keySet){
-                            DatatypeProperty keyProperty = model.createDatatypeProperty(NS + key);
-                            // let alone domain and range
-                            tmpClass.addProperty(keyProperty, (String) op.get(key));
-                        }
-                    }
-                }
+//                if(opList.size() != 0){
+//                    for(Map<String, Object> op : opList){
+//                        Set<String> keySet = op.keySet();
+//                        for(String key : keySet){
+//                            DatatypeProperty keyProperty = model.createDatatypeProperty(NS + key);
+//                            // let alone domain and range
+//                            tmpClass.addProperty(keyProperty, (String) op.get(key));
+//                        }
+//                    }
+//                }
                 if(axioms != null){
                     Set<String> keySet = axioms.keySet();
                     for(String key : keySet){

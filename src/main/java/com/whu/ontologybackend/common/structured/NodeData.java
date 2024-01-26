@@ -12,21 +12,18 @@ public class NodeData implements Serializable {
     private String concept;
     private List<Map<String, Object>> dataProperties;
 
-    private List<Map<String, Object>> objectProperties;
 
     private Map<String, Object> axioms; // unknown
 
     public NodeData() {
         concept = "";
         dataProperties = new ArrayList<>();
-        objectProperties = new ArrayList<>();
         axioms = new HashMap<>();
     }
 
-    public NodeData(String concept, List<Map<String, Object>> dataProperties, List<Map<String, Object>> objectProperties, Map<String, Object> axioms) {
+    public NodeData(String concept, List<Map<String, Object>> dataProperties, Map<String, Object> axioms) {
         this.concept = concept;
         this.dataProperties = dataProperties;
-        this.objectProperties = objectProperties;
         this.axioms = axioms;
     }
     public String getConcept() {
@@ -46,13 +43,6 @@ public class NodeData implements Serializable {
         this.dataProperties = dataProperties;
     }
 
-    public List<Map<String, Object>> getObjectProperties() {
-        return objectProperties;
-    }
-
-    public void setObjectProperties(List<Map<String, Object>> objectProperties) {
-        this.objectProperties = objectProperties;
-    }
 
     public Map<String, Object> getAxioms() {
         return axioms;
