@@ -410,6 +410,7 @@ public class OntMultiwayTree implements Serializable {
         // Step 2: complement all the subclasses
         // Step 3: process data properties
         // Step 4: process object properties
+        // Step 5: other attributes
         ExtendedIterator<OntClass> ontClassExtendedIterator = m.listHierarchyRootClasses();
         while(ontClassExtendedIterator.hasNext()){
             OntClass presentOntClass = ontClassExtendedIterator.next();
@@ -421,8 +422,8 @@ public class OntMultiwayTree implements Serializable {
                 updateSubClasses2Tree(presentOntClass, presentClassName);
             } else {
                 updateTree(presentClassName);
-                updateProperties2Tree(presentOntClass, presentClassName);
             }
+            updateProperties2Tree(presentOntClass, presentClassName);
         }
 
         // reconsider altering data structure
@@ -482,7 +483,6 @@ public class OntMultiwayTree implements Serializable {
                 if(!hasProperty){
                     ontTreeNode.getNodeData().getDataProperties().add(tmpDataProperty);
                 }
-
             }
             if(presentOntProperty.isObjectProperty()){
                 // object property
