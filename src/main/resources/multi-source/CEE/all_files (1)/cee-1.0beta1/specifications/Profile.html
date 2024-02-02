@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="CEE description" />
+        <meta name="keywords" content="CEE Keywords" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>CEE &mdash; 1.0-beta1 CEE Profile Specification</title>
+        <link href="assets/css/cee-styles.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/doc-styles.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div id="Main" class="right_bodycopy">
+            <h1>CEE Profile Specification<span class="version">1.0-beta1</span></h1>
+            
+<ol id="toc">
+<li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#cee-profile-specification">CEE Profile Specification</a>    <ol>
+<li><a href="#parent-profile-reference">Parent Profile Reference</a></li>
+      <li><a href="#canonical-uri">Canonical URI</a></li>
+      <li><a href="#field-dictionary">Field Dictionary</a></li>
+      <li><a href="#event-categorization">Event Taxonomy</a></li>
+    </ol>
+</li>
+  <li>
+<a href="#cee-core-profile">CEE Core Profile</a>    <ol>
+<li><a href="#core-profile-versioning">Versioning</a></li>
+      <li><a href="#core-field-dictionary">Core Field Dictionary</a></li>
+      <li><a href="#core-taxonomy">Core Taxonomy</a></li>
+    </ol>
+</li>
+  <li>
+<a href="#cee-profiles-in-xml-schema">CEE Profiles in XML Schema</a>    <ol>
+<li><a href="#structure">Structure</a></li>
+      <li><a href="#validation">Validation</a></li>
+    </ol>
+</li>
+  <li>
+<a href="#appendix-1-cee-profile-template">Appendix 1: CEE Profile Template</a>    <ol>
+<li><a href="#introduction-1">Introduction</a></li>
+      <li><a href="#field-dictionary-2">Field Dictionary</a></li>
+      <li><a href="#taxonomy-1">Taxonomy</a></li>
+    </ol>
+</li>
+</ol><h2 id="introduction">1 Introduction</h2>
+
+<p>The CEE Profile Specification allows communities of interest, product vendors, and regulatory bodies to publish a shared vocabulary used for event logging. This shared vocabulary (a CEE Profile) can then be adopted to produce, consume, and analyze CEE event records while being assured of a consistent vocabulary.</p>
+
+<h2 id="cee-profile-specification">2 CEE Profile Specification</h2>
+
+<p>The CEE Profile Specification defines the method for describing a class of event. Each CEE Profile includes:</p>
+
+<ol>
+<li>A reference to a parent profile</li>
+  <li>A canonical URI used to identify it</li>
+  <li>A <a href="#field-dictionary">field dictionary</a> that standardizes the field names and data types</li>
+  <li>A <a href="#event-categorization">taxonomy</a> that standardizes the categorizations</li>
+</ol><p>Because CEE supports both <a href="CLS.html#xml-encoding">XML</a> and <a href="CLS.html#json-encoding">JSON</a> CLS syntaxes CEE Profile does not require an encoding format at this time. As such the default form for a profile document is simply a text document conforming to the <a href="#cee-profile-requirements">requirements</a> below and following the template in [Appendix 1][]. However, if organizations wish to validate events against a profile or accept a machine-readable profile they may adopt the XML CLS Encoding and the associated <a href="#profile-xml">CEE Profile XSD format</a> to do so. Future versions of CEE may publish an open source profile validator for the JSON syntax, but for this version it's recommended that users who need validation use the XML formats.</p>
+
+<p>The ability to describe events in a common format means that individual communities of interest can develop a shared set of fields, data types, values, and categorizations for events related to that community. CEE itself provides a <a href="http://cee.mitre.org/1.0/core-profile/latest">Core CEE Profile</a> with a field dictionary and taxonomy suited to reporting events across many application types (operating system, web application, network appliance, etc). All other CEE Profiles MUST either directly or indirectly extend the Core CEE Profile to ensure compatibility with CEE.</p>
+
+<p><strong>CEE Profile Requirements</strong></p>
+
+<ol>
+<li>CEE Profiles (except the CEE Core Profile) SHALL inherit from the CEE Core Profile, including all fields, taxonomy facets, and data types.</li>
+  <li>CEE Profiles MAY define 0-n additional fields and values</li>
+  <li>CEE Profiles MAY define 0-n additional taxonomy facets</li>
+  <li>CEE Profiles SHALL NOT define additional data types. Data types can be suggested in a profile but SHALL NOT be normative of events implementing this profile</li>
+  <li>CEE Profiles MUST specify a single canonical URI for references for each profile type (human-readable, XML Schema).</li>
+  <li>The canonical URI SHOULD be a resolveable URL to the profile itself.</li>
+</ol><h3 id="parent-profile-reference">2.1 Parent Profile Reference</h3>
+
+<p>Profiles that include an explicit reference to a parent profile inherit the field dictionary, taxonomy, and event classes of that parent profile. Profiles that do not include an explicit reference to a parent profile SHALL have an implicit reference to the latest version of the CEE Core Profile and therefore inherit its field dictionary and taxonomy.</p>
+
+<h3 id="canonical-uri">2.2 Canonical URI</h3>
+
+<p>A profile's canonical URI is the mechanism used to identify it both in other CEE Profiles and in CEE events themselves. As such, once a profile is published and has a defined URI that URI SHOULD NOT be changed unless the profile itself changes. If the profile does change, either due to versioning or some other reason, the URI SHOULD change. An best practice to ensure URI consistency and change control is to include a version number in the profile URI, such as ```http://example.com/cee-profile/1.1".</p>
+
+<p>If a profile is published both as a text profile and as an XSD profile, the URI MUST be identical if and only if the two versions are semantically identical. If this is the case and resolveable URLs are being used as the profile URI, the URL SHOULD resolve to the text profile (which may then reference the XSD profile).</p>
+
+<h3 id="field-dictionary">2.3 Field Dictionary</h3>
+
+<p>The field dictionary is a list of fields and data types that may be used to describe events. Each field in the dictionary consists of a field identifier, a field type, and whether that field is optional or required.</p>
+
+<h4 id="field-identifiers">2.3.1 Field Identifiers</h4>
+
+<p>Field identifiers are case insensitive and hierarchically structured as a combination of zero or more context <em>objects</em> and the identifying field <em>name</em>. The field identifier (i.e., both the <em>object</em> and <em>name</em> components) must only consist of lowercase ASCII alphanumeric and <code>_</code> (underline) characters: <code>[0-9a-z_]+</code>.</p>
+
+<p>Field name that have a context object SHOULD be represented as separated with a dot (.) when displayed outside of one of the supported [CLS Encodings][CLS]. This is known as the <strong>inline field syntax</strong>. For example, the <code>ipv4</code> field in the <code>src</code> object can be represented as <code>src.ipv4</code>. This pattern follows many common programming languages, including Java, C++, and Javascript.</p>
+
+<h4 id="field-type">2.3.2 Field Type</h4>
+
+<p>In addition to a field identifier, each field in the field dictionary MUST specify a data type that specifies how values for the field are represented. If there are no type restrictions, the <em>string</em> type should be used. The field type MUST be a reference to a valid CEE Data Type, data types outside of this list MUST NOT be used. Valid data types are:</p>
+
+<ol>
+<li>
+<strong>string</strong>: A sequence of zero or more UTF-8 encoded Unicode characters</li>
+  <li>
+<strong>bool</strong>: A boolean value of <code>true</code> or <code>false</code>
+</li>
+  <li>
+<strong>number</strong>: An integer or floating point numerical value. Number values can be positive or negative and may use scientific notation.</li>
+  <li>
+<strong>null</strong>: An empty or <code>null</code> value.</li>
+  <li>
+<strong>datetime</strong>: Datetime values represent timestamps and allow for full specification of the time down to the millisecond and include timezone UTC offsets. If no timezone information is provided, it MUST be assumed that the datetime is given in UTC. The preferred representation format is the <em>datetime</em> format defined in <a href="http://www.w3.org/TR/NOTE-datetime">ISO8601</a>.</li>
+  <li>
+<strong>ipv4</strong>: IPv4 values are used to represent IPv4 network addresses. The preferred format is to use dotted-decimal string representation: <code>10.10.0.2</code>, <code>128.0.0.1</code>
+</li>
+  <li>
+<strong>ipv6</strong>: IPv6 values represent IPv6 network addresses. The preferred format of IPv6 addresses is the standard hex-colon notation and all of the approved abbreviation formats (e.g., <code>::</code>).</li>
+  <li>
+<strong>object</strong>: Object values consist of additional structured data represented as a sequence of name-value pairs.</li>
+</ol><h3 id="event-categorization">2.4 Event Taxonomy</h3>
+
+<p>The event taxonomy is used to classify an event across zero or more facets (categories). This categorization is used to understand what the <em>type</em> of an event is, while fields in the field dictionary are used to specify specific data points about an event. In contrast to the field dictionary, when an event may have many values for a single field, an event may only have one value for each field in the event taxonomy.</p>
+
+<p>Event facets are very similar to fields in the field dictionary with the following restrictions:</p>
+
+<ul>
+<li>Event facet identifiers SHALL be valid <a href="#field-identifiers">Field Identifiers</a>.</li>
+  <li>Event facets SHALL be an enumerated restriction on the data type <em>string</em>.</li>
+  <li>Event facet definitions MUST specify at least one possible value.</li>
+</ul><p>Profiles MAY add additional facets for event categorization but MUST NOT add additional values to existing facets that were defined in the inherited profile(s).</p>
+
+<h2 id="cee-core-profile">3 CEE Core Profile</h2>
+
+<p>The CEE Core Profile is a CEE Profile that provides a field dictionary and taxonomy suited to reporting common event types as well as providing a base for other profiles to build off of with common fields and taxonomy categories.</p>
+
+<p>The current CEE Core Profile is available at <a href="http://cee.mitre.org/1.0/core-profile/latest">cee.mitre.org</a>.</p>
+
+<h3 id="core-profile-versioning">3.1 Versioning</h3>
+
+<p>The Core Profile is published and versioned separately from the CEE specification. The versioning policy of the CEE Core Profile is:</p>
+
+<ol>
+<li>The set of data types published in the CEE Core Profile SHALL NOT change unless the CEE Specification itself is versioned</li>
+  <li>The set of required fields and data types SHALL NOT change unless the CEE Specification itself is versioned</li>
+  <li>Optional fields and their data types SHALL NOT be changed unless the CEE Specification itself is versioned</li>
+  <li>Additional, optional, fields MAY be added without requiring a new version of the CEE Specification</li>
+  <li>Categories in the <a href="#event-categorization">CEE Taxonomy</a> SHALL NOT be removed unless the CEE Specification itself is versioned</li>
+  <li>Additional categories in the <a href="#event-categorization">CEE Taxonomy</a> MAY be added without requiring a new version of the CEE Specification</li>
+  <li>Additional taxonomy facets in the <a href="#event-categorization">CEE Taxonomy</a> MAY be added without requiring a new version of the CEE Specification</li>
+</ol><p>Together, this versioning policy means that CEE Profiles are ALWAYS backwards-compatible to the versioned released alongside the latest version of the CEE Specification itself.</p>
+
+<h4 id="deprecation">3.1.1 Deprecation</h4>
+
+<p>When a field, taxonomy value, taxonomy category, or event class must be removed from the Core Profile it will go through a deprecation phase per the CEE Versioning Policy <a href="Profile.html#deprecation">deprecation rules</a>.</p>
+
+<h3 id="core-field-dictionary">3.2 Core Field Dictionary</h3>
+
+<p>The CEE Field Dictionary is a list of fields and values that CEE provides for use across the event reporting community. Conceptually, it contains a core set of required fields (which can be thought of as an event header) that MUST be present in all CEE event records and a set of optional fields that MAY be used for any event reporting. The Field Dictionary is a constantly evolving document and as such is versioned separately from the core CEE Specification (which includes the CLS and CLT specifications).</p>
+
+<p>In order to ensure that fields are useful across many products and to truly standardize event reporting, all fields in the field dictionary and facets in the taxonomy must conform to the following requirements:</p>
+
+<ol>
+<li>Fields MUST meet the naming and nesting specifications listed above.</li>
+  <li>Fields MUST NOT be specific to a certain vendor or product. Different applications from different vendors that perform the same function should use the same fields in the dictionary to report information, so fields specific to an application or vendor should be generalized. Even if only one vendor or application reports that information the field name will be generalized to allow for future entrants to use the field.</li>
+  <li>Fields MUST be common enough to warrant inclusion. Fields that are not common or general-purpose will not be included.</li>
+</ol><p>The Core CEE Profile specifies three header fields that are required in all CEE Events:</p>
+
+<div class="table"><table id="table-1">
+<thead><tr>
+<th>Field Name</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr class="odd">
+<td>host</td>
+      <td>Hostname of the event source</td>
+    </tr>
+<tr class="even">
+<td>pname</td>
+      <td>Process name of the process that generated the event</td>
+    </tr>
+<tr class="odd">
+<td>time</td>
+      <td>The start time of the event</td>
+    </tr>
+</tbody>
+</table></div><p>These header fields SHALL NOT change unless the CEE Specification itself changes.</p>
+
+<p>An un-encoded example of a CEE Header would be:</p>
+
+<pre><code>host: hosta.example.com
+pname: sys
+time: 2012-04-15T07:39:21.5438-05:00
+</code></pre>
+
+<p>The minimally-valid CEE event is simply the three header fields as shown above. Any producer creating a CEE Event MUST include the above fields, with exactly value, in the record.</p>
+
+<p>In addition to the header fields, the Core Profile defines a list of additional fields that MAY be used in all CEE events. These fields SHALL be used when conveying information that matches the definition. Or put more simply, fields from the Core Profile MUST be used rather than redefining these fields in a custom profile or using a custom name when creating an event record. For example, in reporting a hostname the <code>host</code> field in the Core Profile must be used, rather than creating a new field in a profile called <code>hostname</code>.</p>
+
+<p>Fields in the CEE Dictionary are developed by the CEE Community with final approval given by the CEE Board. Suggestions may be submitted to the <a href="http://cee.mitre.org/community/discussiongroup.html">cee-discussion-list</a>; please include the field name, data type, description, and a justification for why the field should be included in the dictionary for each field being suggested. Additionally, please make sure the above requirements are met before suggesting a field.</p>
+
+<p>The official CEE Field Dictionary is located in the CEE Core Profile at: <a href="http://cee.mitre.org/core-profile/1.0-beta1#field-dictionary">Core Profile Field Dictionary</a>.</p>
+
+<h3 id="core-taxonomy">3.3 Core Taxonomy</h3>
+
+<p>The Core Taxonomy is a set of facets (categories) that are valid for <a href="#event-categorization">Event Classification</a> and, for each facet, the possible tag values that may be used. The categories and allowed tag values are developed by the CEE Community with final approval given by the CEE Board. Suggestions may be submitted to the <a href="http://cee.mitre.org/community/discussiongroup.html">cee-discussion-list</a>; please include a use case justification for each change.</p>
+
+<p>The official CEE Taxonomy is located in the CEE Core Profile at: <a href="http://cee.mitre.org/core-profile/1.0-beta1#taxonomy">Core Profile Taxonomy</a>.</p>
+
+<h2 id="cee-profiles-in-xml-schema">4 CEE Profiles in XML Schema</h2>
+
+<p>Although CEE Profiles are language agnostic and may be used easily in JSON, XML provides additional validation capabilities through XML Schema that may be used to validate events against an extended profile. This section describes how to represent a CEE profile using a subset of XML Schema.</p>
+
+<h3 id="structure">4.1 Structure</h3>
+
+<p>CEE Profiles represented in XML Schema MUST conform to the <a href="http://www.w3.org/XML/Schema">XML Schema Specification</a>. Additionally, they may not define any structures other than as explained below to define the field dictionary and taxonomy.</p>
+
+<p>Note that, in addition to the restrictions below, all CEE Profiles in XSD MUST comply with the general profile requirements for field identifier naming, field types, and the taxonomy as described in the relevant specifications.</p>
+
+<p>The namespace for CEE Profile fields and taxonomy facets is <code>http://cee.mitre.org/1.0/profile</code>. This MUST be used as the namespace and targetNamespace for the schema. Types are referenced through the CEE namespace, <code>http://cee.mitre.org/1.0</code>.</p>
+
+<h4 id="inheriting">4.1.1 Inheriting</h4>
+
+<p>To inherit from another profile, use an <code>include</code> element with the reference to that profile's schema. One and only one include is allowed, it must reference either the CEE Core Schema or some other extended schema. This will include the field dictionary and taxonomy from the extended schema.</p>
+
+<p>The direct or indirect reference to CEE Core Profile will, by extension, include the core CEE schema.</p>
+
+<h4 id="field-dictionary-1">4.1.2 Field Dictionary</h4>
+
+<p>The field dictionary is described using the <code>element</code> element of XML Schema. The general structure for fields that do NOT have a context object is:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>  <span style="color:#070">&lt;xs:element</span> <span style="color:#b48">name</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">###FIELD IDENTIFIER###</span><span style="color:#710">"</span></span> <span style="color:#b48">type</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">###FIELD TYPE###</span><span style="color:#710">"</span></span> <span style="color:#070">/&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<p>The field identifier is included exactly as it would be in a general CEE Profile.</p>
+
+<p>The field type is imported from the CEE namespace is taken from the following mapping:</p>
+
+<div class="table"><table id="table-2"><tbody>
+<tr class="odd">
+<td>CEE Profile Type</td>
+      <td>CEE Profile XSD Type</td>
+    </tr>
+<tr class="even">
+<td>boolean</td>
+      <td>BoolField</td>
+    </tr>
+<tr class="odd">
+<td>number</td>
+      <td>NumberField</td>
+    </tr>
+<tr class="even">
+<td>null</td>
+      <td>NullField</td>
+    </tr>
+<tr class="odd">
+<td>string</td>
+      <td>StringField</td>
+    </tr>
+<tr class="even">
+<td>datetime</td>
+      <td>DatetimeField</td>
+    </tr>
+<tr class="odd">
+<td>ip4v</td>
+      <td>IPv4Field</td>
+    </tr>
+<tr class="even">
+<td>ip6v</td>
+      <td>IPv6Field</td>
+    </tr>
+<tr class="odd">
+<td>object</td>
+      <td>N/A</td>
+    </tr>
+</tbody></table></div><p>The field description, which is optional, may be placed inside a standard XML Schema annotation/documentation block.</p>
+
+<h5 id="fields-with-context-object">Fields with context object</h5>
+
+<p>All fields with the same context object are represented under an element for that object. The context object itself uses the following format:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>  <span style="color:#070">&lt;xs:element</span> <span style="color:#b48">name</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">###CONTEXT OBJECT IDENTIFIER###</span><span style="color:#710">"</span></span> <span style="color:#b48">block</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">#all</span><span style="color:#710">"</span></span> <span style="color:#b48">final</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">#all</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span style="color:#070">&lt;xs:complexType&gt;</span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>      <span style="color:#070">&lt;xs:complexContent&gt;</span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span style="color:#070">&lt;xs:extension</span> <span style="color:#b48">base</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ObjectField</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>          <span style="color:#070">&lt;xs:sequence</span> <span style="color:#b48">maxOccurs</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">unbounded</span><span style="color:#710">"</span></span> <span style="color:#b48">minOccurs</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">1</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            ...
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>          <span style="color:#070">&lt;/xs:sequence&gt;</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span style="color:#070">&lt;/xs:extension&gt;</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>      <span style="color:#070">&lt;/xs:complexContent&gt;</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    <span style="color:#070">&lt;/xs:complexType&gt;</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  <span style="color:#070">&lt;/xs:element&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<p>The name of the context object is placed in the <code>name</code> field of the element descriptor. Fields for the context object are listed, as above, inside the <code>sequence</code> element. Standard XML Schema annotation/documentation elements may be used to describe the context object.</p>
+
+<h4 id="taxonomy">4.1.3 Taxonomy</h4>
+
+<p>To create an additional category in which to categorize events, use the following template:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>  <span style="color:#070">&lt;xs:element</span> <span style="color:#b48">name</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">###CATEGORY IDENTIFIER###</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span style="color:#070">&lt;xs:simpleType&gt;</span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>      <span style="color:#070">&lt;xs:union&gt;</span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span style="color:#070">&lt;xs:simpleType&gt;</span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>          <span style="color:#070">&lt;xs:restriction</span> <span style="color:#b48">base</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">cee:tag_ext</span><span style="color:#710">"</span></span> <span style="color:#070">/&gt;</span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>          <span style="color:#070">&lt;xs:restriction</span> <span style="color:#b48">base</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">cee:tag</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            <span style="color:#070">&lt;xs:enumeration</span> <span style="color:#b48">value</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">###CATEGORY VALUE###</span><span style="color:#710">"</span></span> <span style="color:#070">/&gt;</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>          <span style="color:#070">&lt;/xs:restriction&gt;</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span style="color:#070">&lt;/xs:simpleType&gt;</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>      <span style="color:#070">&lt;/xs:union&gt;</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span style="color:#070">&lt;/xs:simpleType&gt;</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>  <span style="color:#070">&lt;/xs:element&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<p>The category identifier is placed in the <code>element</code>'s <code>name</code> attribute while each value is placed in an <code>enumeration</code> element within the second restriction.</p>
+
+<h3 id="validation">4.2 Validation</h3>
+
+<p>Validation against a profile is accomplished simply by validating either a single event (root element: <code>event</code>) or an event list (root element: <code>cee</code>) against the profile.</p>
+
+<h2 id="appendix-1-cee-profile-template">5 Appendix 1: CEE Profile Template</h2>
+
+<p>The template below provides a starting point to publish CEE Profiles.</p>
+
+<h3 id="introduction-1">5.1 Introduction</h3>
+
+<p>Information about the purpose and audience of the schema should go here. If the parent profile is not the CEE Core Profile, the name and URI of the parent profile should be included here as well.</p>
+
+<p>It would also be helpful to list the canonical URI of this profile and, if applicable, the location of the profile XSD.</p>
+
+<h3 id="field-dictionary-2">5.2 Field Dictionary</h3>
+
+<div class="table"><table id="table-3">
+<thead><tr>
+<th>Object</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr class="odd">
+<td>Context object</td>
+      <td>Name of property</td>
+      <td>Type of property</td>
+      <td>Description of property</td>
+    </tr></tbody>
+</table></div><h3 id="taxonomy-1">5.3 Taxonomy</h3>
+
+<h4 id="categorization-1">5.3.1 Categorization 1</h4>
+
+<p>Explain here what you would use this categorization for. If this is an extension of a categorization from the inherited profile the name should match exactly. Below, the list of values possible for this categorization should be listed along with when they should be used and what they mean.</p>
+
+<dl>
+<dt>Value 1</dt>
+  <dd>Explanation of value 1</dd>
+</dl>
+            <p class="lastupdated">Page Last Updated: August 01, 2012</p>
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,221 @@
+body {  color: #000; background-color: #fff; font-family: Verdana, Helvetica, sans-serif; font-size: .9em; }
+a img { border: 0; }
+p.intro { padding: 4px  12px  4px  4px; line-height: 130%;   font-size: 1em}
+#Main p.backtotop { font-size:.9em; text-align: right; padding-top: 5px; padding-bottom: 5px; }
+.dash { border-bottom: 1px dashed #bababa;  padding: 0 0 15px 0;  margin: 0 0 15px 0;}
+hr { height: 1px; width: 100%; border: none 0; border-top: 1px dashed #bababa;  }
+p.lastupdated { font-size: .9em; border-top: 1px dashed #bababa; padding-top: 5px; margin-top: 30px; }
+.emphasis { font-weight:bold; }
+h2, h3, h4 { color: #d03600; margin-bottom: -10px; font-weight: normal;}
+h2 a, h3 a, h4 a {color: #d03600; text-decoration: none;}
+h2 a:hover, h3 a:hover, h4 a:hover {text-decoration: underline;}
+#Main h5 { color: #d03600; }
+.pagetoc { text-align: center; padding: 8px ;}
+a { color: #232323;}
+a.visited { color: #585858;}
+a.hover { text-decoration: underline;}
+li.plain {  list-style: none;}
+#Content li { margin: .5em auto; }
+#Main dl { margin-left: 1.5em; }
+#Main dt { font-weight: bold; font-size: 1em; color: #d03600; margin-top: .5em; }
+#Main dd { margin-left: 1.5em; font-size: 1em; margin-bottom: 1em; }
+.red { color: #d03600; }
+
+#LeftNav { float: left; margin: 0; width: 130px; left: 10px; padding: 0.5em; }
+#LeftNav a { display: block; margin: 0 0.5em; text-decoration: none; color: #585858; }
+#LeftNav a:hover { text-decoration: underline; }
+#LeftNav p.head { font-weight: bold; margin: 1em 0 .5em 0; font-size: .85em; }
+#LeftNav p.head a { color: #000; }
+#LeftNav p.text { margin: 0 0 .5em 0; font-size: .75em; line-height: 110%; }
+
+#Main { margin-left: 150px; margin-right: 200px; min-width: 57%; padding-left: 10px; } /* was min-width: 55%, was min-width: 30em */
+
+#TopArea table { width: 98%; border-collapse: collapse; }
+#TopArea table table { width: 100%; border-collapse: collapse; }
+#TopArea td table th { width: 25%; font-size: .77em; }
+#TopArea td.top {  background-color: #000000; color: #ffffff; text-align: center; }
+#TopArea td.gold {  background-color: #d09900; }
+#TopArea td.links { font-size: .77em; font-weight: bold; }
+#TopArea a {  color: #ffffff; text-decoration: none;}
+#TopArea a.visited {  color: #ffffff; text-decoration: none;}
+#TopArea a.hover { color: #ff99ff;  text-decoration: underline;}
+
+#Content {  padding: 0px 2px 2px 2px; width: 98%; min-width: 850px; }
+
+/* #FrontImage table{ width: 98%; border: 1px solid #d09900; }
+#FrontImage p.captionHeader { padding: 5px 0 0 0; margin:  3px 0 0 0; font-weight: bold; font-size: .85em} 
+#FrontImage p.captionText { padding: 0; margin: 0;  font-size: .8em;  line-height: 80%; } 
+
+#FeedbackBox { background-color: #d8d7ce; text-align: left; padding: .5em; margin-bottom: 1em; }
+#FeedbackBox p { padding: 4px; margin: 4px; font-size: .83em}
+#FeedbackBox h5 { padding: 4px; margin: 4px; font-size: 1.3em; color: #9f2d20}
+#FeedbackBox p strong { font-weight: bold; color: #9f2d20} */
+
+/* added by Deb J on 3-31-2008 for gray round-corner boxes */
+/* table.grayRoundCornerBox { background-color: #fbfaeb; border-collapse: collapse; margin: auto 6% 1em 6%; } */
+table.grayRoundCornerBox { background-color: #fff; border-collapse: collapse; margin: 1em auto 1em auto; }
+.grayRoundCornerBox td { background-color: #d8d7ce; }
+.grayRoundCornerBox td.topleft { width: 9px; height: 8px; background: #fff url(/images/round_top_left.gif) top left no-repeat; }
+.grayRoundCornerBox td.topright { width: 9px; height: 8px; background: #fff url(/images/round_top_right.gif) top right no-repeat; }
+.grayRoundCornerBox td.bottomleft { width: 9px; height: 8px; background: #fff url(/images/round_bottom_left.gif) bottom left no-repeat; }
+.grayRoundCornerBox td.bottomright { width: 9px; height: 8px; background: #fff url(/images/round_bottom_right.gif) bottom right no-repeat; }
+.grayRoundCornerBox td.boxtext { padding: .5em 2em 1em 2em; }
+.grayRoundCornerBox h5 { font-size: 1.3em; color: #9f2d20; }
+.grayRoundCornerBox p { font-size: .9em; }
+
+
+#Footer p { font-size: .75em; line-height: 110%; margin: 0 0 6px 0; padding: 0 0 4px 0; }
+#Footer table { border-top: 1px solid #d09900; } /* was #4f6c90 */
+
+/* appears on index.html only
+table.SimilarBox { width: 160px; margin-bottom: 20px; }
+#RightContents .SimilarBox td { border: 0; }
+#RightContents .SimilarBox td.top { background: url(/images/similar-box-top.gif) bottom no-repeat; border: 0; }
+#RightContents .SimilarBox td.body { background: #d4c598 url(/images/similar-box-vert.gif) repeat-x; border-left: 1px solid #d09900; border-right: 1px solid #d09900; padding: 0; }
+#RightContents .SimilarBox td.bottom { background: url(/images/similar-box-bottom.gif) bottom no-repeat; border: 0; }
+.SimilarBox p.head { font-size: 1em; font-weight: bold; text-align: center; padding: 0 0 4px 0 ; margin: 0 0 4px 0; }
+.SimilarBox a { color: #585858; text-decoration: underline; }
+#SimilarList { border-left: 1px dashed #647468; padding: 0 2px 0 4px; margin: 0 2px 0 8px; text-align: left; }
+#SimilarList p { padding: 0 0 4px 4px; margin: 0 0 4px 4px; font-size: .85em; line-height: 105%; }
+ */
+
+#NewsPage p.newshead { padding: 4px 0 0 0;  margin: .5em 0 0 0; font-weight: bold;}
+#NewsPage h3 { padding: 0 0 .5em 0; margin: 30px 0 -5px 0; color: #d03600; font-size: 1em; text-align: center; border-bottom: 1px solid #cbc4ad; }
+#NewsPage p { padding: 0 0 0 .7em; margin: 0 0 .5em 0; line-height: 130%; }
+
+
+#RightContents { float: right; width: 175px; margin: 0; padding: 1em; }
+#RightContents table { border-collapse: collapse; }
+#RightContents td {  padding: 4px; border: 1px solid  #706c60 ; background-color:#e0dbd2; }
+#RightContents th { background-color:#706c60; color:#fff; font-size: .85em; text-align: left; padding: 4px; line-height: 120%;  border: 1px solid #8e6c00; }
+#RightContents p { font-size: .75em;  padding: 0px 0 4px 0; margin: 0px 0 4px 0; line-height: 110%; }
+#RightContents p.more { text-align: right; padding: 4px 0 0 0; margin: 4px 0 0 0; }
+#RightContents h6 { color:#706c60; padding: 0 0 2px 0; margin: 0 0 2px 0; line-height: 90%; font-size: .9em; }
+#RightContents th a { color:#ffffff; text-decoration: none; }
+#RightContents td a { color:#706c60; text-decoration: none; }
+#RightContents th a:hover, #RightContents td a:hover { text-decoration: underline; }
+#RightContents p.indentedtext { margin-left: 1.3em; }
+#RightContents ul { margin-top: 0; margin-left: 1.2em; margin-bottom: .5em; padding-left: 0;}
+#RightContents li { color: #707070; font-size: .75em; margin: 0; }
+
+table.Calendar { border-collapse: collapse; font-size: .85em; border-bottom: 1px solid #ccc; padding: .3em; }
+.Calendar caption { font-weight: bold; font-size: 1.2em; padding-bottom: .5em; }
+.Calendar th { border-collapse: collapse; border-top: 1px solid #cbc4ad; padding: .2em; background: #e0dbd2; }
+.Calendar td { border-collapse: collapse; border-top: 1px solid #ccc; padding: .3em; vertical-align: top; }
+.CalDate { white-space: nowrap; }
+.bottonRow { border-bottom: 1px solid #cbc4ad; padding: .3em; }
+.Calendar td.calheading { font-weight: bold; padding-left: .5em; text-align: left; } /* may be able to remove calheading if no other pages use it */
+
+#WorkingGroup p.wgorg { padding: .4em 0 0 2em; margin: .4em  0 0 0; font-weight: bold;}
+#WorkingGroup p.wgname { padding: 0 0 0 2em; margin: 0 0 0 0; }
+
+/* STYLES FOR TOP-RIGHT ROUND-CORNER BOX ON HOME PAGE */
+#BoxContainer { width: 160px; margin-bottom: 1em; }
+.boxhead {
+  background: url(/images/similar-box-top.gif) no-repeat top left;
+  height: 13px;
+}
+.boxbody {
+  background: url(/images/similar-box-vert.gif) repeat-x top left;
+  border-left: 1px solid #d09900; border-right: 1px solid #d09900;
+  margin: 0;
+  padding: 0 0 0 11px;
+}
+.boxbody h3 {
+  margin: 0;
+  padding-bottom: .6em;
+  font-size: .9em;
+  line-height: 1em;
+  color: #706c60;
+}
+#RightContents .boxbody p {
+  font-size: .75em; margin: 0 auto; border-left: 1px dashed #647468; padding: 0 0 .7em 1em; }
+}
+#RightContents a { text-decoration: none; }
+#RightContents a:hover, #RightContents  a:hover { text-decoration: underline; }
+.boxbottom  {
+  background: url(/images/similar-box-bottom.gif) no-repeat bottom left;
+  height: 10px;
+}
+
+/* STYLES FOR GRAY ROUND-CORNER BOXES ON HOME AND INTERIOR PAGES */
+#GrayBoxContainer  { margin-top: .8em; }
+.graybox {
+  background: url(/images/boxbody-r.gif) no-repeat bottom right;
+}
+.grayboxhead {
+  background: url(/images/boxhead-r.gif) no-repeat top right;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+#GrayBoxContainer .grayboxhead h3 {
+  background: url(/images/boxhead-l.gif) no-repeat top left;
+  margin: 0;
+  padding: 16px 10px 0 10px;
+  font-size: 1em;
+  line-height: 1em;
+}
+.grayboxbody {
+  background: url(/images/boxbody-l.gif) no-repeat bottom left;
+  margin: 0;
+  padding: 5px 20px 10px 20px;
+}
+#GrayBoxContainer .grayboxbody p {
+  margin: 5px auto;
+}
+/*--FrontPage--*/
+.Gradient { background: #fff url(/images/layout/gradient.jpg) repeat-x bottom left; }
+ul.line { list-style-type: none; padding-left:15px; border-left:2px dotted #91a68d; margin: 0 1em 0 1em;}
+.item li {list-style-image:url(/images/triangle.gif); font-size: .9em; }
+.check li {list-style-image:url(/images/check.gif); }
+
+/*--Round-corner boxes on home page--*/
+table.roundbox { width: 100%; border-collapse: collapse; }
+.roundbox td { vertical-align: top; }
+.roundbox p { font-size: .85em; line-height: 140%; padding: 3px 0px; }
+.roundbox li { font-size: .85em; line-height: 140%; }
+
+/*div#Gradient #Box { background-color:#fbfaeb; background-image: url(/images/layout/gradient.jpg); background-repeat: repeat-x repeat-y;}*/
+.yesprint { display: none; }
+#IntroText { padding-bottom:25px; }
+#IntroText table { font-weight:bold; font-size:120%; padding-left:0px}
+#IntroText.roundbox { width: 100%; font-weight:bold; font-size:120%; }
+#IntroText.roundbox th { color:#706c60; }
+#IntroText.roundbox td.line { padding-left:25px; margin:0px 0px 4px 5px; }
+#IntroText th { font-weight:bold; text-align:center; padding-bottom:10px; color: #66003f; }
+#IntroText td { width:50%; font-size:.85em; text-align:left }
+#IntroText .item li {list-style-image:url(/images/triangle.gif);}
+#Main .item li a {font-weight:bold;text-decoration:none;}
+#Main .item li a:hover { text-decoration: underline; }
+#Box td.line div{ padding-left:15px; border-left:2px dotted #91a68d; color:#64746B; font-size:.85em }
+
+#FocusOn { padding:5px 8px 5px 8px; }
+#FocusOn h4 { font-size: 1em; margin-bottom: 0; }
+#FocusOn p { padding-top:5px; padding-bottom:5px; margin:0px; }
+
+/* STYLES FOR REPOSITORY AND ARCHIVE SECTIONS */
+table.repository { width: 100%; border-collapse: collapse; border: 1px solid #000; margin-bottom: 2em; }
+.repository caption { font-weight: bold; text-align: left; padding-bottom: .5em; }
+.repository th { vertical-align: top; text-align: center; border: 1px solid #000; padding: .5em; background: #eee; }
+.repository td { vertical-align: top; text-align: center; border: 1px solid #000; padding: .5em; }
+.repository td.left { text-align: left; }
+.repository td.gray, .repository span.gray { color: #aaa; }
+/* STYLES FOR REPOSITORY HOME PAGE ONLY */
+table.rephome { width: 80%; border-spacing: 10px; margin-bottom: 2em; margin-left: 10%; margin-right: 10%; }
+.rephome td { border: 1px solid #aaa; vertical-align: top; text-align: center; width: 50%; padding: .5em; }
+.rephome td a { color: #d03600; font-size: 1em; }
+.rephome td p { font-size: .8em; margin: .5em auto 0 auto; }
+
+/* STYLES FOR TABLE ON /ceelanguage/event.html */
+table.left { width: 50%; float: right; background: #fff; border: 1px solid #d03600;margin-left: 10px; }
+.left th.head  { color: #fff; background: #d03600; text-align: center; }
+.left th { vertical-align: top; text-align: left; padding-left: .3em; }
+.left td { font-size: .8em; padding: .3em; }
+
+/*--BreadCrumbs added by Deb J on 12-19-2011 --*/
+#BreadCrumbs { font-size: 70%; text-transform: uppercase; color: #999999; font-weight: bold; padding: 3px 10px 3px 0px; letter-spacing: 1px; word-spacing: 2px; margin-bottom: 1em; }
+#BreadCrumbs a { text-decoration: none; color: #999999; font-weight: bold; margin: 0px; padding: 0px; letter-spacing: 1px; word-spacing: 2px; }
+#BreadCrumbs a:hover { color: #660033; text-decoration:underline; }
+/*--/BreadCrumbs--*/
+

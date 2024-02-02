@@ -1,0 +1,98 @@
+taxonomy category (category only),category value (value only),definition
+action,,,"The primary type of action that was undertaken as part of the event. The status or result of the action should be detailed in the status field."
+,access,Access Event,"A file, user account, network share, or other object has been accessed. If more is known regarding the access, use a more precise action such as read, write, or execute."
+,alert,Alert Event
+,allocate,Memory/Space Allocation Event
+,allow,Allow/Permit Event
+,audit,Audit Event
+,backup,Backup Event
+,bind,Bind Event
+,block,Block Event
+,clean,Clean/Scrub Infected Object Event
+,close,Close Event
+,compress,Compress Event
+,connect,
+,copy,Copy Event,"An object was duplicated or copied. Commonly copied objects include files, partitions, and database tables."
+,create,Create Event,"An object was created. Commonly created objects include files, accounts, and roles. If the object is a stream or session, then the action [open] must be used."
+,decode,
+,decompress,Decompress Event
+,decrypt,
+,depress,
+,detect,Detect Event,"Finding evidence of something as it is occurring, usually through the use of sensors or triggers. For example, an attack or exploit can be detected as it is occurring, or evidence of the event can be found through later searches."
+,disconnect,
+,download,
+,encode,
+,encrypt,
+,execute,Execute Event,"An object (usually a file or memory) was run or executed."
+,filter,
+,find,Find Event,"An object was found, usually as a result of a search or scan, such as an anti-virus product found malware or an IDS found suspicious packets."
+,free,Free Event,"The deallocation or freeing of memory"
+,get,
+,initialize,Initialize Event,"Initialize memory or set a buffer or variable to their initial values."
+,initiate,Initiate Event,"Initiate an external connection, stream, or other object, usually as part of a hand-shake or other initialization process"
+,install,
+,lock,
+,login,Login Event,"A user or other entity gains access to a system through a successful authentication or login attempt"
+,logout,Logout Event,"An entity that has already gained access to a system or application (through a login action), ends their user account session. Another session can be established to the user account only through another successful logon action."
+,modify,
+,move,Move Event,"An object was moved. Usually 'move' describes the moving of a file between directories. A 'move' may be implemented as a sequence of [copy] and [remove] actions."
+,open,
+,quarantine,
+,read,
+,release,
+,remove,
+,replicate,
+,resume,
+,save,
+,scan,
+,search,Search Event,"An actor (user or application) searched or queried for something. For 'search' actions, the object should contain the query of what was sought."
+,start,Start Event,"A service, task, scan, or related object activity has begun."
+,stop,Stop Event,"A service, task, scan, or related activity was been stopped, usually by another process or user, or due to an error condition."
+,suspend,
+,uninstall,
+,unlock,
+,update,
+,upgrade,Upgrade Event,"A type of [update] that upgrades an entire application, usually involving substantial changes and a change in major version numbers. For example, installing the Microsoft Windows XP Service Pack 2 (SP2) would upgrade a base Windows XP installation."
+,upload,
+,violate,Violate Event,"The infringement or breaking of a policy, rule, or other guideline."
+,write,Write Event,"An object (usually a file or memory location) was written to."
+domain,,,"The environment or domain of the event. Typical event domains include network (net), operating system (os), and application (app)."
+,app,Application-level Event
+,device,Device-level Event
+,net,Network-based Event,"The event is occurs within or is associated with the network"
+,os,Operating System Event
+object,,,"The type of object that is targeted or otherwise affected by the event"
+,account,User Account
+,app,Application
+,bios,System BIOS
+,driver,Device Driver
+,email,E-mail
+,event,Audit or Event Record
+,file,File
+,flow,Network Flow
+,connection,Network Connection
+,memory,
+,packet,Network Packet
+,process,Process
+,rule,"Firewall, IDS, Malware, or similar Rule"
+,session,User Session
+,system,System
+,thread,Processing Thread
+,vuln,Vulnerability
+service,,,"The service the event involves. The service field value provides context to the event action or more precision to the event domain."
+,audit,Audit Service
+,auth,Authentication Service
+,authorize,Authorization Service
+,backup,Backup Service
+,db,Database Service
+,email,E-mail Service,"Event involves an e-mail server or service"
+,fw,Firewall Service
+,web,Web Service,"The event involve a web service, such as an HTTP server"
+status,,,"The end result or status of the event action identified by the action field."
+,cancel,Event Canceled,"The event action was canceled"
+,error,Event Errored,"The event action terminated with an error"
+,failure,Event Failed,"The event failed due to some unmet condition, such as an incorrect password"
+,ongoing,Event Ongoing,"The event has started and has yet to complete. Another event should be sent to notify when the event completed and the final status"
+,success,Event Success,"The event completed successfully. For example, a successful user authentication event would be an instance where the authentication activity was successfully completed and the user was fully authenticated."
+,unknown,Event Status Unknown,"The result state of an event occurrence was unknown. It was not known to the observer of the event whether or not the event successfully completed."
+subject,,,"The type of object that initiated or started the event action identified by the action field."

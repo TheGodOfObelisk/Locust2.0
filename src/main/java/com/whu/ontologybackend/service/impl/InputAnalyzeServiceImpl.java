@@ -38,5 +38,11 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         return "In the serviceImpl class.";
     }
 
+    @Override
+    public String analyzeExistingExcel(File excelFile) {
+
+        return "In the serviceImpl class. Analyzing excels.";
+    }
+
 
 }

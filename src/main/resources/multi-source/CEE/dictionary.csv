@@ -1,0 +1,59 @@
+#Object,Field,Type,Description
+,host,STRING,Hostname of the event source
+,pname,STRING,Process name that generated the event
+,time,DATETIME,Event Start Time
+,app,OBJECT,Application
+,appname,STRING,Name of the application that generated the event
+,auid,STRING,Source User login authentication ID (login id)
+,cmd,STRING,Command
+,dst,OBJECT,Network destination
+,egid,STRING,Source user group effective ID (egid)
+,eid,STRING,Source user effective ID (euid)
+,file,OBJECT,File information
+,ipv4,IPv4,IPv4 address of the event source
+,ipv6,IPv6,IPv6 address of the event source
+,msg,STRING,The event message
+,msgid,STRING,The event message identifier
+,pid,STRING,Process ID that generated the event
+,pri,STRING,Event priority (ERROR|WARN|DEBUG|CRIT)
+,proc,OBJECT,Process
+,sev,NUMBER,Event severity
+,src,OBJECT,Network source
+,subsys,STRING,Application subsystem responsible for generating the event
+,syslog,OBJECT,Syslog compatibility
+,tid,NUMBER,Numeric thread ID associated with the process generating the event
+,uid,STRING,Source user account ID (uid)
+,user,OBJECT,User account
+,username,STRING,Source user name
+,vend,STRING,Vendor of the event source application
+,ver,STRING,Application version of the event source application
+app,name,STRING,Application name
+app,vend,STRING,Application vendor
+app,ver,STRING,Application version
+dst,host,STRING,Network destination hostname
+dst,ipv4,IPv4,Network destination IPv4 address
+dst,ipv6,IPv6,Network destination IPv6 address
+dst,port,NUMBER,Network destination port
+file,hashmd5,STRING,File MD5 Hashsum
+file,line,NUMBER,File line number
+file,mode,STRING,File mode flags
+file,name,STRING,File name
+file,path,STRING,File system path
+file,perm,STRING,File permissions
+file,size,NUMBER,File size in octets
+proc,id,STRING,Process ID (pid)
+proc,name,STRING,Process name
+proc,tid,NUMBER,Thread identifier of the process
+src,host,STRING,Network source hostname
+src,ipv4,IPv4,Network source IPv4 address
+src,ipv6,IPv6,Network source IPv6 address
+src,port,NUMBER,Network source port
+syslog,fac,NUMBER,Syslog facility value
+syslog,pri,NUMBER,Syslog priority value
+syslog,tag,STRING,Syslog Tag value
+syslog,ver,NUMBER,Syslog Protocol version (0=legacy/RFC3164; 1=RFC5424)
+user,domain,STRING,User account domain (NT Domain)
+user,gid,STRING,Group ID (gid)
+user,group,STRING,Group name
+user,id,STRING,User account ID (uid)
+user,name,STRING,User account name

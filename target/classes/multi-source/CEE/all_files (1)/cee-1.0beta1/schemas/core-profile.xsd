@@ -1,0 +1,883 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://cee.mitre.org/1.0/profile/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:meta="http://cee.mitre.org/meta/" xmlns:cee="http://cee.mitre.org/1.0/" targetNamespace="http://cee.mitre.org/1.0/profile/" elementFormDefault="qualified">
+  <xs:import namespace="http://cee.mitre.org/1.0/" schemaLocation="cee.xsd"/>
+  <!-- Field Dictionary -->
+  <xs:element name="host" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Hostname of the event source</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="pname" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Process name that generated the event</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="time" type="cee:DatetimeField">
+    <xs:annotation>
+      <xs:documentation>Event Start Time</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element block="#all" final="#all" name="app">
+    <xs:annotation>
+      <xs:documentation>Application</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cee:ObjectField">
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="name" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Application name</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="vend" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Application vendor</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ver" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Application version</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="appname" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Name of the application that generated the event</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="auid" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Source User login authentication ID (login id)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cmd" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Command</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element block="#all" final="#all" name="dst">
+    <xs:annotation>
+      <xs:documentation>Network destination</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cee:ObjectField">
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="host" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Network destination hostname</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ipv4" type="cee:IPv4Field">
+              <xs:annotation>
+                <xs:documentation>Network destination IPv4 address</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ipv6" type="cee:IPv6Field">
+              <xs:annotation>
+                <xs:documentation>Network destination IPv6 address</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="port" type="cee:NumberField">
+              <xs:annotation>
+                <xs:documentation>Network destination port</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="egid" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Source user group effective ID (egid)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="eid" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Source user effective ID (euid)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element block="#all" final="#all" name="file">
+    <xs:annotation>
+      <xs:documentation>File information</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cee:ObjectField">
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="hashmd5" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>File MD5 Hashsum</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="line" type="cee:NumberField">
+              <xs:annotation>
+                <xs:documentation>File line number</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="mode" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>File mode flags</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="name" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>File name</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="path" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>File system path</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="perm" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>File permissions</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="size" type="cee:NumberField">
+              <xs:annotation>
+                <xs:documentation>File size in octets</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ipv4" type="cee:IPv4Field">
+    <xs:annotation>
+      <xs:documentation>IPv4 address of the event source</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ipv6" type="cee:IPv6Field">
+    <xs:annotation>
+      <xs:documentation>IPv6 address of the event source</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="msg" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>The event message</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="msgid" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>The event message identifier</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="pid" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Process ID that generated the event</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="pri" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Event priority (ERROR|WARN|DEBUG|CRIT)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element block="#all" final="#all" name="proc">
+    <xs:annotation>
+      <xs:documentation>Process</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cee:ObjectField">
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="id" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Process ID (pid)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="name" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Process name</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="tid" type="cee:NumberField">
+              <xs:annotation>
+                <xs:documentation>Thread identifier of the process</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sev" type="cee:NumberField">
+    <xs:annotation>
+      <xs:documentation>Event severity</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element block="#all" final="#all" name="src">
+    <xs:annotation>
+      <xs:documentation>Network source</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cee:ObjectField">
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="host" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Network source hostname</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ipv4" type="cee:IPv4Field">
+              <xs:annotation>
+                <xs:documentation>Network source IPv4 address</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ipv6" type="cee:IPv6Field">
+              <xs:annotation>
+                <xs:documentation>Network source IPv6 address</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="port" type="cee:NumberField">
+              <xs:annotation>
+                <xs:documentation>Network source port</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="subsys" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Application subsystem responsible for generating the event</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element block="#all" final="#all" name="syslog">
+    <xs:annotation>
+      <xs:documentation>Syslog compatibility</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cee:ObjectField">
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="fac" type="cee:NumberField">
+              <xs:annotation>
+                <xs:documentation>Syslog facility value</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="pri" type="cee:NumberField">
+              <xs:annotation>
+                <xs:documentation>Syslog priority value</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="tag" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Syslog Tag value</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ver" type="cee:NumberField">
+              <xs:annotation>
+                <xs:documentation>Syslog Protocol version (0=legacy/RFC3164; 1=RFC5424)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tid" type="cee:NumberField">
+    <xs:annotation>
+      <xs:documentation>Numeric thread ID associated with the process generating the event</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="uid" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Source user account ID (uid)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element block="#all" final="#all" name="user">
+    <xs:annotation>
+      <xs:documentation>User account</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cee:ObjectField">
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="domain" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>User account domain (NT Domain)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="gid" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Group ID (gid)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="group" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>Group name</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="id" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>User account ID (uid)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="name" type="cee:StringField">
+              <xs:annotation>
+                <xs:documentation>User account name</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="username" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Source user name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="vend" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Vendor of the event source application</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ver" type="cee:StringField">
+    <xs:annotation>
+      <xs:documentation>Application version of the event source application</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <!-- Taxonomy -->
+  <xs:element name="action">
+    <xs:annotation>
+      <xs:appinfo>
+        <meta:description>The primary type of action that was undertaken as part of the event. The status or result of the action should be detailed in the status field.</meta:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag_ext"/>
+        </xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag">
+            <xs:enumeration value="access">
+              <xs:annotation>
+                <xs:documentation>Access Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>A file, user account, network share, or other object has been accessed. If more is known regarding the access, use a more precise action such as read, write, or execute.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="alert">
+              <xs:annotation>
+                <xs:documentation>Alert Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="allocate">
+              <xs:annotation>
+                <xs:documentation>Memory/Space Allocation Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="allow">
+              <xs:annotation>
+                <xs:documentation>Allow/Permit Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="audit">
+              <xs:annotation>
+                <xs:documentation>Audit Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="backup">
+              <xs:annotation>
+                <xs:documentation>Backup Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="bind">
+              <xs:annotation>
+                <xs:documentation>Bind Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="block">
+              <xs:annotation>
+                <xs:documentation>Block Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="clean">
+              <xs:annotation>
+                <xs:documentation>Clean/Scrub Infected Object Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="close">
+              <xs:annotation>
+                <xs:documentation>Close Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="compress">
+              <xs:annotation>
+                <xs:documentation>Compress Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="connect"/>
+            <xs:enumeration value="copy">
+              <xs:annotation>
+                <xs:documentation>Copy Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>An object was duplicated or copied. Commonly copied objects include files, partitions, and database tables.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="create">
+              <xs:annotation>
+                <xs:documentation>Create Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>An object was created. Commonly created objects include files, accounts, and roles. If the object is a stream or session, then the action [open] must be used.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="decode"/>
+            <xs:enumeration value="decompress">
+              <xs:annotation>
+                <xs:documentation>Decompress Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="decrypt"/>
+            <xs:enumeration value="depress"/>
+            <xs:enumeration value="detect">
+              <xs:annotation>
+                <xs:documentation>Detect Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>Finding evidence of something as it is occurring, usually through the use of sensors or triggers. For example, an attack or exploit can be detected as it is occurring, or evidence of the event can be found through later searches.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="disconnect"/>
+            <xs:enumeration value="download"/>
+            <xs:enumeration value="encode"/>
+            <xs:enumeration value="encrypt"/>
+            <xs:enumeration value="execute">
+              <xs:annotation>
+                <xs:documentation>Execute Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>An object (usually a file or memory) was run or executed.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="filter"/>
+            <xs:enumeration value="find">
+              <xs:annotation>
+                <xs:documentation>Find Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>An object was found, usually as a result of a search or scan, such as an anti-virus product found malware or an IDS found suspicious packets.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="free">
+              <xs:annotation>
+                <xs:documentation>Free Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The deallocation or freeing of memory</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="get"/>
+            <xs:enumeration value="initialize">
+              <xs:annotation>
+                <xs:documentation>Initialize Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>Initialize memory or set a buffer or variable to their initial values.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="initiate">
+              <xs:annotation>
+                <xs:documentation>Initiate Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>Initiate an external connection, stream, or other object, usually as part of a hand-shake or other initialization process</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="install"/>
+            <xs:enumeration value="lock"/>
+            <xs:enumeration value="login">
+              <xs:annotation>
+                <xs:documentation>Login Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>A user or other entity gains access to a system through a successful authentication or login attempt</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="logout">
+              <xs:annotation>
+                <xs:documentation>Logout Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>An entity that has already gained access to a system or application (through a login action), ends their user account session. Another session can be established to the user account only through another successful logon action.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="modify"/>
+            <xs:enumeration value="move">
+              <xs:annotation>
+                <xs:documentation>Move Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>An object was moved. Usually 'move' describes the moving of a file between directories. A 'move' may be implemented as a sequence of [copy] and [remove] actions.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="open"/>
+            <xs:enumeration value="quarantine"/>
+            <xs:enumeration value="read"/>
+            <xs:enumeration value="release"/>
+            <xs:enumeration value="remove"/>
+            <xs:enumeration value="replicate"/>
+            <xs:enumeration value="resume"/>
+            <xs:enumeration value="save"/>
+            <xs:enumeration value="scan"/>
+            <xs:enumeration value="search">
+              <xs:annotation>
+                <xs:documentation>Search Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>An actor (user or application) searched or queried for something. For 'search' actions, the object should contain the query of what was sought.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="start">
+              <xs:annotation>
+                <xs:documentation>Start Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>A service, task, scan, or related object activity has begun.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="stop">
+              <xs:annotation>
+                <xs:documentation>Stop Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>A service, task, scan, or related activity was been stopped, usually by another process or user, or due to an error condition.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="suspend"/>
+            <xs:enumeration value="uninstall"/>
+            <xs:enumeration value="unlock"/>
+            <xs:enumeration value="update"/>
+            <xs:enumeration value="upgrade">
+              <xs:annotation>
+                <xs:documentation>Upgrade Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>A type of [update] that upgrades an entire application, usually involving substantial changes and a change in major version numbers. For example, installing the Microsoft Windows XP Service Pack 2 (SP2) would upgrade a base Windows XP installation.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="upload"/>
+            <xs:enumeration value="violate">
+              <xs:annotation>
+                <xs:documentation>Violate Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The infringement or breaking of a policy, rule, or other guideline.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="write">
+              <xs:annotation>
+                <xs:documentation>Write Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>An object (usually a file or memory location) was written to.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="domain">
+    <xs:annotation>
+      <xs:appinfo>
+        <meta:description>The environment or domain of the event. Typical event domains include network (net), operating system (os), and application (app).</meta:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag_ext"/>
+        </xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag">
+            <xs:enumeration value="app">
+              <xs:annotation>
+                <xs:documentation>Application-level Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="device">
+              <xs:annotation>
+                <xs:documentation>Device-level Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="net">
+              <xs:annotation>
+                <xs:documentation>Network-based Event</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The event is occurs within or is associated with the network</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="os">
+              <xs:annotation>
+                <xs:documentation>Operating System Event</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="object">
+    <xs:annotation>
+      <xs:appinfo>
+        <meta:description>The type of object that is targeted or otherwise affected by the event</meta:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag_ext"/>
+        </xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag">
+            <xs:enumeration value="account">
+              <xs:annotation>
+                <xs:documentation>User Account</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="app">
+              <xs:annotation>
+                <xs:documentation>Application</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="bios">
+              <xs:annotation>
+                <xs:documentation>System BIOS</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="driver">
+              <xs:annotation>
+                <xs:documentation>Device Driver</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="email">
+              <xs:annotation>
+                <xs:documentation>E-mail</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="event">
+              <xs:annotation>
+                <xs:documentation>Audit or Event Record</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="file">
+              <xs:annotation>
+                <xs:documentation>File</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="flow">
+              <xs:annotation>
+                <xs:documentation>Network Flow</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="connection">
+              <xs:annotation>
+                <xs:documentation>Network Connection</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="memory"/>
+            <xs:enumeration value="packet">
+              <xs:annotation>
+                <xs:documentation>Network Packet</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="process">
+              <xs:annotation>
+                <xs:documentation>Process</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="rule">
+              <xs:annotation>
+                <xs:documentation>Firewall, IDS, Malware, or similar Rule</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="session">
+              <xs:annotation>
+                <xs:documentation>User Session</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="system">
+              <xs:annotation>
+                <xs:documentation>System</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="thread">
+              <xs:annotation>
+                <xs:documentation>Processing Thread</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="vuln">
+              <xs:annotation>
+                <xs:documentation>Vulnerability</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="service">
+    <xs:annotation>
+      <xs:appinfo>
+        <meta:description>The service the event involves. The service field value provides context to the event action or more precision to the event domain.</meta:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag_ext"/>
+        </xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag">
+            <xs:enumeration value="audit">
+              <xs:annotation>
+                <xs:documentation>Audit Service</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="auth">
+              <xs:annotation>
+                <xs:documentation>Authentication Service</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="authorize">
+              <xs:annotation>
+                <xs:documentation>Authorization Service</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="backup">
+              <xs:annotation>
+                <xs:documentation>Backup Service</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="db">
+              <xs:annotation>
+                <xs:documentation>Database Service</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="email">
+              <xs:annotation>
+                <xs:documentation>E-mail Service</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>Event involves an e-mail server or service</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="fw">
+              <xs:annotation>
+                <xs:documentation>Firewall Service</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="web">
+              <xs:annotation>
+                <xs:documentation>Web Service</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The event involve a web service, such as an HTTP server</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="status">
+    <xs:annotation>
+      <xs:appinfo>
+        <meta:description>The end result or status of the event action identified by the action field.</meta:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag_ext"/>
+        </xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag">
+            <xs:enumeration value="cancel">
+              <xs:annotation>
+                <xs:documentation>Event Canceled</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The event action was canceled</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="error">
+              <xs:annotation>
+                <xs:documentation>Event Errored</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The event action terminated with an error</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="failure">
+              <xs:annotation>
+                <xs:documentation>Event Failed</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The event failed due to some unmet condition, such as an incorrect password</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ongoing">
+              <xs:annotation>
+                <xs:documentation>Event Ongoing</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The event has started and has yet to complete. Another event should be sent to notify when the event completed and the final status</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="success">
+              <xs:annotation>
+                <xs:documentation>Event Success</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The event completed successfully. For example, a successful user authentication event would be an instance where the authentication activity was successfully completed and the user was fully authenticated.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="unknown">
+              <xs:annotation>
+                <xs:documentation>Event Status Unknown</xs:documentation>
+                <xs:appinfo>
+                  <meta:description>The result state of an event occurrence was unknown. It was not known to the observer of the event whether or not the event successfully completed.</meta:description>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:enumeration>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="subject">
+    <xs:annotation>
+      <xs:appinfo>
+        <meta:description>The type of object that initiated or started the event action identified by the action field.</meta:description>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag_ext"/>
+        </xs:simpleType>
+        <xs:simpleType>
+          <xs:restriction base="cee:tag"/>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>

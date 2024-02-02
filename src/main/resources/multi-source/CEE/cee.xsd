@@ -1,0 +1,182 @@
+<xs:schema elementFormDefault="qualified" targetNamespace="http://cee.mitre.org/1.0/" xmlns="http://cee.mitre.org/1.0/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:profile="http://cee.mitre.org/1.0/profile/"
+	>
+	<xs:import namespace="http://cee.mitre.org/1.0/profile/" schemaLocation="core-profile.xsd"></xs:import>
+<!--	<xs:import namespace="http://cee.mitre.org/1.0/profile/" schemaLocation="D:\documents\drafts\open-source\Ontology-Generator-Tony\src\main\resources\CyberDataSources\CEE\core-profile.xsd"></xs:import>-->
+	<xs:simpleType name="bool">
+		<xs:union memberTypes="null">
+			<xs:simpleType>
+				<xs:restriction base="xs:boolean"/>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="null">
+		<xs:restriction base="xs:token">
+			<xs:length value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ipv4">
+		<xs:union memberTypes="null">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<!-- IPv4 -->
+					<xs:pattern value="(((25[0-5])|(2[0-4]\d)|(1?\d{1,2}))\.){3}((25[0-5])|(2[0-4]\d)|(1?\d{1,2}))"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="ipv6">
+		<xs:annotation>
+			<xs:documentation>
+				An IP address. Either an IPv4 address represented
+        in dot-decimal notation, or an IPv6 address in hex-colon notation as
+        specified in the IETF RFC 4291 specification.
+      
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="null">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<!-- Normal IPv6 -->
+					<xs:pattern value="([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}(%[^%\s]+)?"/>
+					<!-- IPv6 Hex Compressed -->
+					<xs:pattern value="(([0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4})*)?)::(([0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4})*)?)(%[^%\s]+)?"/>
+					<!-- IPv6 Hex + IPv4 Dec -->
+					<xs:pattern value="(([0-9A-Fa-f]{1,4}:){6,6})(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}(%[^%\s]+)?"/>
+					<!-- IPv6 Hex Compressed + IPv4 Dec -->
+					<xs:pattern value="(([0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4})*)?)::(([0-9A-Fa-f]{1,4}:)*)(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}(%[^%\s]+)?"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="number">
+		<xs:union memberTypes="null">
+			<xs:simpleType>
+				<xs:restriction base="xs:double"/>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="string">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="datetime">
+		<xs:union memberTypes="null">
+			<xs:simpleType>
+				<xs:restriction base="xs:dateTime"/>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="typeEnum">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="string"/>
+			<xs:enumeration value="number"/>
+			<xs:enumeration value="null"/>
+			<xs:enumeration value="datetime"/>
+			<xs:enumeration value="bool"/>
+			<xs:enumeration value="ipv4"/>
+			<xs:enumeration value="ipv6"/>
+			<xs:enumeration value="object"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BoolField">
+		<xs:simpleContent>
+			<xs:extension base="bool">
+				<xs:attribute name="type" type="typeEnum" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="NumberField">
+		<xs:simpleContent>
+			<xs:extension base="number">
+				<xs:attribute name="type" type="typeEnum" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="NullField">
+		<xs:attribute name="type" type="typeEnum" />
+	</xs:complexType>
+	<xs:complexType name="StringField">
+		<xs:simpleContent>
+			<xs:extension base="string">
+				<xs:attribute name="type" type="typeEnum" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IPv4Field">
+		<xs:simpleContent>
+			<xs:extension base="ipv4">
+				<xs:attribute name="type" type="typeEnum" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IPv6Field">
+		<xs:simpleContent>
+			<xs:extension base="ipv6">
+				<xs:attribute name="type" type="typeEnum" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DatetimeField">
+		<xs:simpleContent>
+			<xs:extension base="datetime">
+				<xs:attribute name="type" type="typeEnum" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ObjectField">
+		<xs:attribute name="type" type="typeEnum" />
+	</xs:complexType>
+<!-- move declaration of host, pname and time from core-profile.xsd	-->
+<!--	<xs:element name="host" type="StringField">-->
+<!--		<xs:annotation>-->
+<!--			<xs:documentation>Hostname of the event source</xs:documentation>-->
+<!--		</xs:annotation>-->
+<!--	</xs:element>-->
+<!--	<xs:element name="pname" type="StringField">-->
+<!--		<xs:annotation>-->
+<!--			<xs:documentation>Process name that generated the event</xs:documentation>-->
+<!--		</xs:annotation>-->
+<!--	</xs:element>-->
+<!--	<xs:element name="time" type="DatetimeField">-->
+<!--		<xs:annotation>-->
+<!--			<xs:documentation>Event Start Time</xs:documentation>-->
+<!--		</xs:annotation>-->
+<!--	</xs:element>-->
+<!--  end of this annotation  -->
+	<xs:element block="#all" final="#all" name="cee">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="event"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="event" type="EventType" />
+	<xs:complexType name="EventType">
+		<xs:sequence>
+			<xs:element ref="profile:host" minOccurs="1" />
+			<xs:element ref="profile:pname" minOccurs="1" />
+			<xs:element ref="profile:time" minOccurs="1" />
+			<xs:any namespace="http://cee.mitre.org/1.0/profile/" processContents="strict" minOccurs="0" maxOccurs="unbounded"></xs:any>
+			<xs:element name="native" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:any minOccurs="0" maxOccurs="unbounded" processContents="lax" />	
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="profile" type="xs:anyURI" />
+	</xs:complexType>
+	<xs:simpleType name="tag">
+    	<xs:restriction base="xs:string">
+      		<xs:pattern value=":?[a-zA-Z0-9]{1,32}"/>
+      		<xs:whiteSpace value="collapse"/>
+    	</xs:restriction>
+  	</xs:simpleType>
+  	<xs:simpleType name="tag_ext">
+	    <xs:restriction base="tag">
+    		<xs:pattern value=":.*"/>
+    	</xs:restriction>
+  	</xs:simpleType>
+</xs:schema>

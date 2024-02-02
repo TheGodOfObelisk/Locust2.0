@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="CEE description" />
+        <meta name="keywords" content="CEE Keywords" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>CEE &mdash; 1.0-beta1 CEE Log Transport (CLT) Specification</title>
+        <link href="assets/css/cee-styles.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/doc-styles.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div id="Main" class="right_bodycopy">
+            <h1>CEE Log Transport (CLT) Specification<span class="version">1.0-beta1</span></h1>
+            
+<ol id="toc">
+<li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#protocol-requirements">Protocol Requirements</a>    <ol>
+<li><a href="#conformance-level-0---core-requirements">Conformance Level 0 - Core Requirements</a></li>
+      <li><a href="#conformance-level-1---basic-capabilities">Conformance Level 1 - Basic Capabilities</a></li>
+      <li><a href="#conformance-level-2---securely-log-in-the-presence-of-attackers">Conformance Level 2 - Securely Log in the Presence of Attackers</a></li>
+      <li><a href="#conformance-level-3---secure-against-local-administration-attacks">Conformance Level 3 - Secure Against Local Administration Attacks</a></li>
+    </ol>
+</li>
+  <li>
+<a href="#ctl-implementation-requirements">CTL Implementation Requirements</a>    <ol>
+<li><a href="#conformance-level-0---core-requirements-1">Conformance Level 0 - Core Requirements</a></li>
+      <li><a href="#conformance-level-1---basic-requirements">Conformance Level 1 - Basic Requirements</a></li>
+      <li><a href="#conformance-level-2---log-in-the-presence-of-attackers">Conformance Level 2 - Log In The Presence of Attackers</a></li>
+      <li><a href="#conformance-level-3---secure-against-local-administration-attacks-1">Conformance Level 3 - Secure Against Local Administration Attacks</a></li>
+    </ol>
+</li>
+  <li><a href="#transport-mappings">Transport Mappings</a></li>
+  <li>
+<a href="#appendix-1-cee-over-syslog-transport-mapping">Appendix 1: CEE Over Syslog Transport Mapping</a>    <ol>
+<li><a href="#introduction-1">Introduction</a></li>
+      <li><a href="#syslog">Syslog</a></li>
+      <li><a href="#clt-syslog-mapping">CLT Syslog Mapping</a></li>
+    </ol>
+</li>
+</ol><p>This document describes the CEE Common Log Transport (CLT) requirements that define the mandatory and preferred capabilities for a log transport protocol. Such protocols enable CEE Log Syntax (<a href="CLS.html">CLS</a>) encoded event records to be shared between parties in a universal, machine-readable manner. The intent of CLT is to provide guidance for vendors and end users regarding how event records should be reliably and securely shared.</p>
+
+<h2 id="introduction">1 Introduction</h2>
+
+<p>The CEE Log Transport (CLT) provides the technical support necessary for a secure, interoperable, and reliable log infrastructure. A log infrastructure requires more than just standardized event records, support is needed for international string encodings, secure logging services, standardized event interfaces, and secure, verifiable log trails.</p>
+
+<p>The CLT defines a listing of requirements that a <strong>CLT Protocol</strong> must meet to be considered CEE-compatible as well as additional capabilities that may be required for specific use cases. For example, a CLT-compatible Protocol must be able to transmit a <a href="CLS.html">Common Log Syntax (CLS)</a> encoded <a href="CLS.html#event-model">CEE Event</a>. More advanced CLT Protocols may provide additional capabilities such as encryption and full acknowledgments. A CLT Protocol may also be able to specify or transmit <a href="Profile.html#event-profile">CEE Profiles</a> and additional event-related information, such as packet captures or file data.</p>
+
+<p>CLT also defines transport mappings. A <strong>CLT Mapping</strong> defines a standardized way for CEE Events to be transmitted over a certain CLT Protocol. CLT Mappings allow for consistency in using the specified transport mechanism to transmit CEE events: for example, it may specify flags to indicate the data is a CEE event or the character encoding used. To date, the only mapping published by CEE is a specification for sending JSON-encoded events over the <a href="http://tools.ietf.org/html/rfc5425">RFC5425</a> TLS Syslog protocol.</p>
+
+<h2 id="protocol-requirements">2 Protocol Requirements</h2>
+
+<p>Many uses for events records require them to be transported from the originating system. CLT Protocols must meet some basic requirements in order to do this reliably and efficiently. This document categorizes these requirements into four groups based on the requirements of the use case. Conformance Level 0 is the mandatory conformance level and includes basic capability. Further conformance levels describe optional capabilities that more advanced CLT protocols should support. Conformance Level 1 is core capability providing the minimum set of requirements for robustness. Conformance Level 2 contains a set of additional requirements that address logging in the presence of attackers. Conformance Level 3 contains an additional set of requirements that address local administrative attack scenarios. Conformance Level 3 is the most robust requirements set.</p>
+
+<h3 id="conformance-level-0---core-requirements">2.1 Conformance Level 0 - Core Requirements</h3>
+
+<h4 id="publish">2.1.1 0.1 Publish</h4>
+
+<p>The CLT Protocol shall be a published protocol specification with no licensing barriers to interoperability, no royalties and no approval process. The CLT Protocol shall utilize only those protocols and standards which are openly available.</p>
+
+<h4 id="transport">2.1.2 0.2 Transport</h4>
+
+<p>The CLT Protocol shall be able to transport at least one form of CEE encoded event records within the body of the protocol packet.</p>
+
+<h4 id="self-identification">2.1.3 0.3 Self-Identification</h4>
+
+<p>The CLT Protocol shall make evident by the protocol as to which data belongs to CEE event records and the CEE defined encoding used when a transmission is made consisting of CEE and non-CEE data.</p>
+
+<h4 id="identification-of-cee-events">2.1.4 0.3.1 Identification of CEE Events</h4>
+
+<p>The CLT Protocol shall have a mechanism that identifies the CEE Events within the protocol packet body.</p>
+
+<h4 id="encoding-identifier">2.1.5 0.3.2 Encoding Identifier</h4>
+
+<p>A CLT Protocol capable of handling more than one (1) data encoding method shall provide evidence as to the encoding being used.</p>
+
+<h4 id="timestamp">2.1.6 0.4 Timestamp</h4>
+
+<p>Each protocol packet shall have timestamp that indicates the date and time the packet was transmitted. A valid timestamp must indicate year, month, day, hour, minute, and second. Including sub-seconds is encouraged.</p>
+
+<h3 id="conformance-level-1---basic-capabilities">2.2 Conformance Level 1 - Basic Capabilities</h3>
+
+<p>One of the core capabilities is for the log transport to perform in limited bandwidth environments. Additional core capabilities include log transport tamper detection.</p>
+
+<h4 id="event-record-delivery">2.2.1 1.1 Event Record Delivery</h4>
+
+<p>The CLT Protocol shall preserve the integrity of the logical order of a channel's packets such that the Event Receiver will be able to reconstitute the original logical order.</p>
+
+<h4 id="compression-of-records">2.2.2 1.2 Compression of Records</h4>
+
+<p>The CLT Protocol shall provide a method that allows the Event Sender to compress the packet body prior to transmission.</p>
+
+<h4 id="missing-record-detection">2.2.3 1.3 Missing Record Detection</h4>
+
+<p>The CLT Protocol shall be able to accurately and reliably detect missing transport packets.</p>
+
+<h4 id="message-identification">2.2.4 1.4 Message Identification</h4>
+
+<p>The CLT Protocol shall support message identifiers.</p>
+
+<h4 id="packet-duplication">2.2.5 1.4.1 Packet Duplication</h4>
+
+<p>The CLT Protocol shall be able to identify when duplicate packets have been received.</p>
+
+<h4 id="packet-acknowledgement">2.2.6 1.4.2 Packet Acknowledgement</h4>
+
+<p>The CLT Protocol shall support at least one method of allowing the Event Receiver to acknowledge (ACK) that a packet has been received.</p>
+
+<h4 id="packet-retransmission">2.2.7 1.4.3 Packet Retransmission</h4>
+
+<p>The CLT Protocol shall be able to retransmit individual packets on request at least until the Event Receiver has acknowledged reception or until a nominal time has elapsed.</p>
+
+<h4 id="packet-traversal-traceability">2.2.8 1.5 Packet Traversal Traceability</h4>
+
+<p>The CLT Protocol shall be capable of tracing and recording the path a packet traverses. The intent of this requirement is to allow packets to be traced through Session Relay devices such as NATs.</p>
+
+<h4 id="tamper-detection">2.2.9 1.6 Tamper Detection</h4>
+
+<p>The CLT Protocol shall accurately and reliably detect any evidence of tampering or data corruption through the use of digital signatures or other anti-tamper mechanisms.</p>
+
+<h3 id="conformance-level-2---securely-log-in-the-presence-of-attackers">2.3 Conformance Level 2 - Securely Log in the Presence of Attackers</h3>
+
+<p>The core theme for the Conformance Level 2 transport requirements is the capability for CLT Protocol to securely log in the presence of attackers. Additional requirements include Confidentiality, Authenticity, and transmission Encryption.</p>
+
+<h4 id="full-integrity-acknowledgements">2.3.1 2.1 Full Integrity Acknowledgements</h4>
+
+<p>The CLT Protocol shall be capable of producing packet level acknowledgements that contains data through which the sender can verify the integrity of a received packet. This requirement is an extension of that of Requirement <a href="#packet-acknowledgement">1.4.2: Packet Acknowledgement</a>.</p>
+
+<h4 id="message-replay-protection">2.3.2 2.2 Message Replay Protection</h4>
+
+<p>The CLT Protocol shall protect against message replay.</p>
+
+<h4 id="event-integrity">2.3.3 2.3 Event Integrity</h4>
+
+<p>The CLT Protocol shall accurately and reliably detect any repeated or unexpected message identifiers.</p>
+
+<h4 id="chain-of-modification">2.3.4 2.3.1 Chain of Modification</h4>
+
+<p>The CLT Protocol shall maintain the chain of modification of CEE Event data that is modified while in transit.</p>
+
+<h4 id="reproduction-of-original-event">2.3.5 2.3.2 Reproduction of Original Event</h4>
+
+<p>The CLT Protocol shall be able to reproduce by request, the original CEE Event that is modified while in transit.</p>
+
+<h4 id="transmission-encryption">2.3.6 2.4 Transmission Encryption</h4>
+
+<p>The CLT Protocol shall support transmission encryption using best practice encryption algorithms. One way to achieve this requirement is by using Transport Layer Security (TLS).</p>
+
+<h4 id="confidentiality">2.3.7 2.5 Confidentiality</h4>
+
+<p>The CLT Protocol shall maintain confidentiality of data, minimally within the packet body. The CLT Protocol cryptography modules shall be capable of performing data encryption using data encryption best practices.</p>
+
+<h4 id="authenticity">2.3.8 2.6 Authenticity</h4>
+
+<p>The CLT Protocol shall maintain authenticity of the data in transit.</p>
+
+<h4 id="use-of-sasl-gss-api-and-kerberos">2.3.9 2.6.1 Use of SASL, GSS-API, and Kerberos</h4>
+
+<p>The CLT Protocol shall support authenticity using Simple Authentication and Security Layer (SASL), Generic Security Services Application Program Interface (GSS-API), and Kerberos.</p>
+
+<h3 id="conformance-level-3---secure-against-local-administration-attacks">2.4 Conformance Level 3 - Secure Against Local Administration Attacks</h3>
+
+<p>The core theme for the Conformance Level 3 transport requirements is the capability for CLT Protocol to securely log in the presence of local administration attacks.</p>
+
+<h4 id="tamper-resistant">2.4.1 3.1 Tamper Resistant</h4>
+
+<p>The CLT Protocol shall maintain integrity mechanisms resistant to tampering by local administrator (e.g. perfect forward secrecy).</p>
+
+<h4 id="record-channels">2.4.2 3.2 Record Channels</h4>
+
+<p>The CLT Protocol shall be able to provide support for multiple channels within a session.</p>
+
+<h4 id="profile-channels">2.4.3 3.3 Profile Channels</h4>
+
+<p>A CLT Protocol channel shall be able to have CEE-specific metadata bound to it, such as a CEE Event Profile. This metadata can be used by the Event Sender/Receiver to exchange record format data or reduce duplicative data from being sent.</p>
+
+<h2 id="ctl-implementation-requirements">3 CTL Implementation Requirements</h2>
+
+<h3 id="conformance-level-0---core-requirements-1">3.1 Conformance Level 0 - Core Requirements</h3>
+
+<h4 id="support-clt-protocol-level-0">3.1.1 0.1 Support CLT Protocol Level 0</h4>
+
+<p>The implementation must support at least a Conformance Level 0 of the CLT Protocol.</p>
+
+<h3 id="conformance-level-1---basic-requirements">3.2 Conformance Level 1 - Basic Requirements</h3>
+
+<h4 id="support-clt-protocol-level-1">3.2.1 1.1 Support CLT Protocol Level 1</h4>
+
+<p>The implementation must support at least a Conformance Level 1 of the CLT Protocol.</p>
+
+<h4 id="sender-side-buffering">3.2.2 1.2 Sender-side Buffering</h4>
+
+<p>The CLT Protocol shall be capable of sender-side buffering, e.g. event record is retained in a recoverable fashion on sender until server indicates that event has been received.</p>
+
+<h4 id="single-log-record-buffering">3.2.3 1.2.1 Single Log Record Buffering</h4>
+
+<p>The client shall retain each log record until the server has acknowledged (ACKed) the reception of the message; ideally this ACK should include a hash or signature whereby the sender can validate the message was correctly received. </p>
+
+<h4 id="batch-log-record-buffering">3.2.4 1.2.2 Batch Log Record Buffering</h4>
+
+<p>The client shall retain each batch of log records until the server has ACKed the reception of the batch message; ideally this ACK should include a hash or signature whereby the sender can validate the message was correctly received.</p>
+
+<h4 id="enable-and-disable-switch">3.2.5 1.2.3 Enable and Disable Switch</h4>
+
+<p>The CLT Protocol shall have a switch that enables and disables send-side buffering.</p>
+
+<h4 id="log-in-limited-network-environments">3.2.6 1.3 Log in Limited Network Environments</h4>
+
+<p>The CLT Protocol shall be capable of reordering the event transmission queue so that the most important messages receive priority. Many environments utilize Network Address Translation (NAT). The CLT Protocol shall be capable of functioning correctly in that environment.</p>
+
+<h4 id="retransmission-priority">3.2.7 1.3.1 Retransmission Priority</h4>
+
+<p>The Priority of the event retransmission queue shall be settable by the application.</p>
+
+<h4 id="network-address-translation-nat">3.2.8 1.3.2 Network Address Translation (NAT)</h4>
+
+<p>The CLT Protocol shall be capable of communicating in a Network Address Translation (NAT) environment.</p>
+
+<h3 id="conformance-level-2---log-in-the-presence-of-attackers">3.3 Conformance Level 2 - Log In The Presence of Attackers</h3>
+
+<h4 id="support-clt-protocol-level-2">3.3.1 2.1 Support CLT Protocol Level 2</h4>
+
+<p>The implementation must support at least a Conformance Level 2 of the CLT Protocol.</p>
+
+<h3 id="conformance-level-3---secure-against-local-administration-attacks-1">3.4 Conformance Level 3 - Secure Against Local Administration Attacks</h3>
+
+<h4 id="support-clt-protocol-level-3">3.4.1 3.1 Support CLT Protocol Level 3</h4>
+
+<p>The implementation must support at least a Conformance Level 3 of the CLT Protocol.</p>
+
+<h4 id="secure-against-local-administration-attacks">3.4.2 3.2 Secure against local administration attacks</h4>
+
+<p>The CLT Protocol shall, on average, transmit event records within 1 second of event record creation.</p>
+
+<h4 id="event-source-channel-binding">3.4.3 3.3 Event Source Channel Binding</h4>
+
+<p>Applications sending events over the CLT Protocol shall be able to bind the event records to a CLT Protocol channel.</p>
+
+<h4 id="event-destination-channel-binding">3.4.4 3.4 Event Destination Channel Binding</h4>
+
+<p>Applications receiving events over a CLT Protocol channel shall be able to reconstruct the full event record based on the channel contents and previously exchanged channel metadata.</p>
+
+<h4 id="channel-profiles">3.4.5 3.5 Channel Profiles</h4>
+
+<p>Applications shall be able to bind one or more event profiles to a registered
+channel.</p>
+
+<h4 id="continuous-operation">3.4.6 3.6 Continuous Operation</h4>
+
+<p>The CLT Protocol shall be able to support load balancing and gracefully failover to backup servers when the primary is lost.</p>
+
+<h2 id="transport-mappings">4 Transport Mappings</h2>
+
+<p>Transport mappings specify standard interoperability mapping between CEE and popular log transmission protocols. Mappings have been defined between CEE and the following protocol:</p>
+
+<ul>
+<li>
+<a href="#cee-over-syslog-mapping">Syslog</a>: Conformance Level 0</li>
+</ul><p>See the associated appendix for information on each mapping.</p>
+
+<h2 id="appendix-1-cee-over-syslog-transport-mapping">5 Appendix 1: CEE Over Syslog Transport Mapping</h2>
+
+<h3 id="introduction-1">5.1 Introduction</h3>
+
+<p>Since Syslog is the de facto standard in log transport protocols and it is supported by numerous products, CEE provides a way to send CEE Event data over Syslog. This document defines a standard process to encode CEE Events using a <a href="CLS.html">CEE Log Syntax (CLS)</a> Encoding and place the encoded event into a Syslog message.</p>
+
+<h3 id="syslog">5.2 Syslog</h3>
+
+<p>There exist several different formats for Syslog messages. Within this document, they will be separated into two groups: <a href="http://tools.ietf.org/html/rfc3164">legacy</a> and <a href="http://tools.ietf.org/html/rfc5424">RFC5424</a>. While the basic process for transmitting CEE Events is the same for both Syslog groups, there are some nuances surrounding the use of legacy Syslog of which implementers must be cognizant.</p>
+
+<h4 id="legacy-syslog">5.2.1 Legacy Syslog</h4>
+
+<p>Most people are familiar with legacy Syslog. Legacy Syslog is characterized by its timestamp format missing the year and the event message consisting only of an unstructured line of text. The various formats of legacy Syslog messages are identified in <a href="http://tools.ietf.org/html/rfc3164">RFC3164</a>.</p>
+
+<p>Besides the variance in message formats, not all legacy Syslog implementations can handle 8-bit character sets. That is, some implementations use only the lower 7 bits of each byte. This causes problems when trying to send binary data or extended character sets (e.g., extended ASCII, UTF-8) that rely on "8-bit clean" processing.</p>
+
+<h4 id="rfc5424-syslog">5.2.2 RFC5424 Syslog</h4>
+
+<p>The Syslog specification was updated in March 2009 with the release of <a href="http://tools.ietf.org/html/rfc5424">RFC5424</a>. This update brought many needed enhancements, including a standardized timestamp that includes the year, Unicode support (UTF-8), and a way of providing more structured content within Syslog messages.</p>
+
+<p>One of the lesser recognized improvements was to make the entire Syslog protocol and RFC5424 implementations 8-bit clean. This step was necessary to enable full Unicode support.</p>
+
+<p>While RFC5424 Syslog is preferred over legacy versions, there are still many environments and platforms that have been built on top of legacy Syslog implementations. All Syslog implementations supporting CEE SHOULD be RFC5424-compatible.</p>
+
+<h3 id="clt-syslog-mapping">5.3 CLT Syslog Mapping</h3>
+
+<p>This document defines a CLT mapping that is conformant to both CEE and Syslog specifications via the inclusion of a <a href="CLS.html#json-encoding">CLS JSON (Javascript Object Notation) encoded event</a> within a Syslog message.</p>
+
+<h5 id="syslog-header">Syslog Header</h5>
+
+<p>The standard Syslog header MUST be used. The actual formatting of the Syslog header is dependent on the Syslog protocol version and may vary based on the implementation. Regardless, these header values are for the Syslog protocol and are independent of CEE. The Syslog header values SHOULD NOT be used to add or modify any values within an enclosed CEE Event.</p>
+
+<h5 id="syslog-body">Syslog Body</h5>
+
+<p>The CEE Event MUST be represented using a CLS Encoding. For compliance with this specification, the CEE Event MUST be represented using the <a href="CLS.html#json-encoding">CLS JSON</a> Encoding.</p>
+
+<p>In contrast to Section 2 of <a href="http://tools.ietf.org/html/rfc4627">RFC4627</a>, the JSON encoding suitable for Syslog transport MUST NOT contain insignificant whitespace before or after any of the six JSON structural characters.</p>
+
+<h5 id="cee-event-flag">CEE Event Flag</h5>
+
+<p>The beginning of the encoded CEE Event MUST be identified by the CEE Event Flag. Within Syslog, the CEE Event Flag is <code>@cee:</code> (ABNF %x40.63.63.65.3A).</p>
+
+<p>The CEE Event Flag MAY be followed by one space (' ', ABNF %x20) character.</p>
+
+<p>A CLS JSON Encoded CEE Event MUST appear immediately following a CEE Event Flag. Other, non-CEE, non-JSON content MUST NOT appear in the Syslog body after a CEE Event Flag. A Syslog message MUST NOT contain more than one CEE Event Flag.</p>
+
+<h5 id="character-encoding">Character Encoding</h5>
+
+<p>All CLS Encodings, including the CLS JSON Encoding, assume an 8-bit clean environment. Therefore, it is important that the event producer understand the <a href="#syslog">Syslog format</a> that will be used, especially whether implementation is a 7-bit or 8-bit clean implementation.</p>
+
+<p>If the Syslog implementation is 8-bit clean, then the implementation supports <a href="http://tools.ietf.org/html/rfc3629">UTF-8</a> and no additional encodings are necessary beyond those required by the <a href="CLS.html#json-encoding">JSON CLS Specification</a>. However, if the implementation is only 7-bit, then all characters not in the ASCII character set (ABNF %x00-7F) MUST be additionally escaped.</p>
+
+<p>When using a 7-bit Syslog implementation or have requirements for 7-bit Syslog compatibility, then all UTF-8 encoded characters that cannot be represented using the lower 7 bits of an 8-bit byte MUST be escaped. These characters SHOULD be escaped using the JSON escape sequences <a href="http://tools.ietf.org/html/rfc4627">RFC4627</a>, especially the Unicode escape: <code>\u</code> followed by four (4) hexadecimal digits (ABNF %x5C.75
+4HEXDIG).</p>
+
+<h4 id="transmission">5.3.1 Transmission</h4>
+
+<p>A Syslog message containing a CEE Event should be able to be transmitted using any Syslog-based transport mechanism. Due to the potential priority or sensitivity of certain event records, it is recommended that the transmission protocol supply the necessary confidentiality and integrity measures for the event content and operating environment.</p>
+
+<p>The original Syslog protocol sent event records in plaintext over UDP. This does not provide any security controls. One option is to transmit the Syslog messages using Transport Layer Security, as specified in <a href="http://tools.ietf.org/html/rfc5425">RFC5425</a>.</p>
+
+<h4 id="examples">5.3.2 Examples</h4>
+
+<h5 id="example-1---valid">Example 1 - Valid</h5>
+
+<p>A valid CEE JSON Event Record embedded within an <a href="http://tools.ietf.org/html/rfc5424">RFC5424</a> Syslog transport:</p>
+
+<pre class="text"><code>&lt;165&gt;1 2011-12-20T12:38:06Z 10.10.0.1 process - example-event-1 @cee:{"pname":"auth","host":"system.example.com","time":"2011-12-20T12:38:05.123456-05:00"}
+</code></pre>
+<!-- _ -->
+
+<h5 id="example-2---valid">Example 2 - Valid</h5>
+
+<p>A valid CEE JSON Event Record used with a "legacy" Syslog transport:</p>
+
+<pre class="text"><code>&lt;0&gt;Dec 20 12:42:20 syslog-relay process[35]: @cee: {"crit":123,"id":"abc","appname":"application","pname":"auth","pid":123,"host":"system.example.com","pri":10,"time":"2011-12-20T12:38:05.123456-05:00","action":"login","domain":"app","object":"account","service":"web","status":"success"}
+</code></pre>
+<!-- [][] -->
+            <p class="lastupdated">Page Last Updated: August 01, 2012</p>
+        </div>
+    </body>
+</html>
+

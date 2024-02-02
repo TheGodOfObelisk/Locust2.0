@@ -1,0 +1,48 @@
+{
+	"type": "package",
+	"id": "package--8b528c58-4ce6-446a-bf18-9a3e4a1425cc",
+	"schema_version": "5.0",
+	"maec_objects": [
+		{
+			"type": "malware-instance",
+			"id": "malware-instance--9b947fbc-68da-43ee-a323-125e3f8cd64a",
+			"instance_object_refs": ["0"],
+			"dynamic_features": {
+				"network_traffic_refs": ["1"]
+			}
+		}
+	],
+	"observable_objects": {
+		"0": {
+			"type": "file",
+			"size": 24840,
+			"hashes": {
+				"MD5": "3d23ec8b55840b95ea75197ce9446b6d",
+				"SHA-1": "272ce73adebba81983abbbf112155e463951d046"
+			}
+		},
+		"1": {
+			"type": "network-traffic",
+			"src_payload_ref": "2",
+			"src_ref": "3",
+			"dst_ref": "4",
+			"protocols": [
+				"tcp"
+			]
+		},
+		"2": {
+			"type": "artifact",
+			"payload_bin": "Ed8BAAABAAAAAAAABXlhaG9vA2NvbQAADwABABHfgYAAAQAHAAcADgV5YWhvbwNjb20AAA8AAcAMAA8AAQAAHCAADgABAWECbXgEbWFpbMAMwAwADwABAAAcIAAGAAEBYsArwAwADwABAAAcIAAGAAEBY8ArwAwADwABAAAcIAAGAAEBZMArwAwADwABAAAcIAAGAAEBZcArwAwADwABAAAcIAAGAAEBZsArwAwADwABAAAcIAAGAAEBZ8ArwAwAAgABAAFqsQAGA25zNsAMwAwAAgABAAFqsQAGA25zOMAMwAwAAgABAAFqsQAGA25zMcAMwAwAAgABAAFqsQAGA25zMsAMwAwAAgABAAFqsQAGA25zM8AMwAwAAgABAAFqsQAGA25zNMAMwAwAAgABAAFqsQAGA25zNcAMwCkAAQABAAAHCAAEQ8OoH8BDAAEAAQAABwgABELEYfrAVQABAAEAAAcIAATYJzUCwFUAAQABAAAHCAAE2Cc1A8BnAAEAAQAABwgABELEUgfAeQABAAEAAAcIAATYJzUBwIsAAQABAAAHCAAERI7K98CLAAEAAQAABwgABGKJNu3AnQABAAEAAAcIAATOvjW/wJ0AAQABAAAHCAAE0b92Z8DRAAEAAQABYxIABES0gxDA4wABAAEAAWMSAAREjv8QwPUAAQABAAFjEgAEeWWYY8EHAAEAAQABYxIABESOxD8="
+		},
+		"3": {
+			"type": "ipv4-addr",
+			"spec_version": "2.1",
+			"value": "198.51.100.5"
+		},
+		"4": {
+			"type": "ipv4-addr",
+			"spec_version": "2.1",
+			"value": "198.51.100.9"
+		}
+	}
+}

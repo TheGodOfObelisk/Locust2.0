@@ -1,0 +1,9 @@
+img {
+	width: 50%;
+}
+
+pre code, pre {
+	white-space: pre-wrap !important;
+	overflow: auto !important;
+	background-color: transparent !important;
+}

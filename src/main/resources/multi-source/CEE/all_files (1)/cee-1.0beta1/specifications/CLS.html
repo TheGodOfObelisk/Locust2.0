@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="CEE description" />
+        <meta name="keywords" content="CEE Keywords" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>CEE &mdash; 1.0-beta1 CEE Log Syntax (CLS) Specification</title>
+        <link href="assets/css/cee-styles.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/doc-styles.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div id="Main" class="right_bodycopy">
+            <h1>CEE Log Syntax (CLS) Specification<span class="version">1.0-beta1</span></h1>
+            
+<ol id="toc">
+<li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#cee-event-model">CEE Event Model</a>    <ol>
+<li><a href="#profile-reference">Profile Reference</a></li>
+      <li><a href="#event-body">Event Body</a></li>
+      <li><a href="#categorization-into-the-taxonomy">Categorization into the Taxonomy</a></li>
+    </ol>
+</li>
+  <li>
+<a href="#cls-encodings">CLS Encodings</a>    <ol>
+<li><a href="#json-encoding">JSON Encoding</a></li>
+      <li><a href="#representing-multiple-events">Representing multiple events</a></li>
+      <li><a href="#examples">Examples</a></li>
+      <li><a href="#xml-encoding">XML Encoding</a></li>
+      <li><a href="#examples-1">Examples</a></li>
+    </ol>
+</li>
+  <li><a href="#translating-between-json-and-xml">Translating between JSON and XML</a></li>
+</ol><h2 id="introduction">1 Introduction</h2>
+
+<p>This document describes the requirements for encoding and decoding Common Event Expression (CEE) Events into a specific markup format to represent the event either on disk or in transit. These requirements are designed for maximum interoperability with existing event and interchange standards to minimize adoption costs. To ensure that Events are consistently encoded into each markup format CEE defines  CEE Log Syntax (CLS) Encodings for each supported markup format (currently JSON and XML). Each CLS Encoding defines how to represent a CEE Event as an event record in the given markup language.</p>
+
+<h2 id="cee-event-model">2 CEE Event Model</h2>
+
+<p>The CEE Event Model is the high-level description of what the structure of a CEE Event looks. The Event Model is not directly implemented by any tools, instead the tools adopt one or both of the CLS Encodings described below (JSON and XML). The Event Model is a codification of how an event record is represented to conform to a <a href="Profile.html">CEE Profile</a> (including the <a href="Profile.html#cee-core-profile">CEE Core Profile</a>).</p>
+
+<p>The CEE Event Model, and therefore each and every CEE Event, consists of a <em>profile reference</em> and a list of fields and zero or more values for each of those fields.</p>
+
+<h3 id="profile-reference">2.1 Profile Reference</h3>
+
+<p>Every CEE event has either an explicit or implicit reference to a CEE Profile. Events MAY explicitly reference a specific profile using a URI that identifies a specific profile. It's strongly encouraged that this URI SHOULD be a resolveable URL for easy of use, however this is not a requirement.</p>
+
+<p>The profile reference itself refers to any valid CEE Profile, including either a human-readable profile document that follows the CEE Profile requirements or a machine-processable profile if the given encoding supports it (currently, only XML).</p>
+
+<p>If the profile reference is omitted there SHALL be an assumed reference to the latest release of the <a href="Profile.html#cee-core-profile">CEE Core Profile</a>. The reference URIs for Core Profile are:</p>
+
+<ul>
+<li>For JSON or other human-readable profiles: [http://cee.mitre.org/1.0/profiles/core/latest.html][]</li>
+  <li>For the core XML Profile Schema: [http://cee.mitre.org/1.0/profiles/core/latest.xsd][]</li>
+</ul><h3 id="event-body">2.2 Event Body</h3>
+
+<p>The CEE Event Body is a listing of zero or more fields that describe the event. Fields are defined further in the <a href="Profile.html#field-identifiers">CEE Profile</a> specification; valid field identifiers in a CEE Event are the same as valid identifiers in a CEE Profile.</p>
+
+<p>The order of the fields in a CEE Event is significant and MUST be retained when encoding and decoding.</p>
+
+<p>The listing of fields MUST comply with the following requirements:</p>
+
+<ol>
+<li>Fields are hierarchical in nature; they MAY be nested up to two levels but MUST NOT be nested more than that.</li>
+  <li>Field ordering SHALL be significant and MUST be retained when encoding and decoding.</li>
+  <li>Fields that are required in the referenced profile MUST be included.</li>
+  <li>Fields that are optional in the referenced profile MAY be included.</li>
+  <li>All fields that are defined in the referenced profile MUST conform to either the specified data type or to the NULL data type.</li>
+  <li>Fields that are not in a referenced profile MAY be included; the data type for these fields SHALL be assumed to be a string and they MUST be placed in a "native" object. This native object SHALL NOT count as a level of nesting for purposes of the first requirement above.</li>
+  <li>Each field MAY contain zero to many values.</li>
+</ol><h3 id="categorization-into-the-taxonomy">2.3 Categorization into the Taxonomy</h3>
+
+<p>The event categorization is the information that places the Event into the referenced profile's <a href="Profile.html#event-categorization">Taxonomy</a>. It consists of a set of categories, from the taxonomy, and the tag value for each category that best describes the event. All taxonomy fields are optional, however if given they MUST contain exactly one non-null value.</p>
+
+<h2 id="cls-encodings">3 CLS Encodings</h2>
+
+<p>CEE makes a distinction between the event occurence itself, an event record, and an encoding of an event record. The event itself is the original occurence of some set of circumstances that the logging program wishes to record. When the event occurs, the logging program collects any relevant data about it into the abstract notion of an event record using the CEE Event specification. That event record can then be encoded into a markup language using a CLS Encoding. In order to consume the event, the event consumer uses a CLS mapping to decode the markup into the abstract CEE Event.</p>
+
+<h3 id="json-encoding">3.1 JSON Encoding</h3>
+
+<p>The JavaScript Object Notation (JSON) format is a text-based data exchange format and is used by a large number of devices and applications. The simplicity, readability, and efficiency of JSON makes it ideal for encoding event record data when performance and small data size are important. Lack of validation and inline digital signature capability makes it less ideal for cases where event chain of custody, integredity, and validity need to be assured. This document describes a method for encoding a CEE Event into a <a href="http://json.org">JSON</a> event record.</p>
+
+<p>The use of the CEE JSON Encoding SHOULD be indicated by the use of the <a href="http://tools.ietf.org/html/rfc4288">MIME</a> (Internet) media type: <code>application/cee+json</code>. As UTF-8 is the only allowable encoding for the CEE JSON encoding, an encoding specification in the MIME type is redundant.</p>
+
+<h4 id="general-encoding-requirements">3.1.1 General Encoding Requirements</h4>
+
+<ul>
+<li>A JSON-encoded event record MUST completely conform to the <a href="http://www.ietf.org/rfc/rfc4627.txt">RFC 4627</a> specification.</li>
+  <li>In addition to the standard JSON requirements for escaping characters, the line feed and carriage return characters MUST also be escaped when used as field values.</li>
+  <li>All JSON-encoded event record MUST be represented as a sequence of valid <a href="http://tools.ietf.org/html/rfc3629">UTF-8</a> encoded Unicode characters.</li>
+  <li>Fields in a JSON-encoded event record with multiple values MUST be encoded using the native JSON array mechanism. Fields with a single value MAY be wrapped in a JSON array.</li>
+  <li>JSON object structures SHOULD be used to represent the field hierarchy. Inline field names MAY also be used.</li>
+</ul><h5 id="mapping-json-to-cee-core-profilecore-profile-field-types">Mapping JSON to <a href="Profile.html#cee-core-profile">CEE Core Profile</a> Field Types</h5>
+
+<p>JSON offers native support for four value types: <em>string</em>, <em>number</em>, <em>bool</em>, and <em>null</em>.</p>
+
+<p>For maximal compatibility, <code>null</code>, <code>number</code>, and <code>bool</code> CEE Field Types SHOULD be encoded using the equivalent, built-in JSON types. Values corresponding to these native types SHOULD NOT appear within quote characters.</p>
+
+<p>All other CEE Core Profile Field Types MUST be represented as JSON string values.</p>
+
+<p>Note that the explicit field types are lost when representing non-CEE Core Profile fields because they're converted to JSON strings. Implementations MAY try to infer these lost types to the maximum precision they are capable of determining. That is, a JSON string value of <code>"10.0.0.2"</code> MAY be resolved to an IPv4 address type when feasible.</p>
+
+<h3 id="representing-multiple-events">3.2 Representing multiple events</h3>
+
+<p>JSON provides a simple array mechanism which SHOULD be used to represent multiple events whenever possible.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>{<span style="color:#606"><span style="color:#404">"</span><span>src</span><span style="color:#404">"</span></span>:{<span style="color:#606"><span style="color:#404">"</span><span>ipv4</span><span style="color:#404">"</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">1.2.3.4</span><span style="color:#710">"</span></span>}}
+</pre></div>
+</div>
+</div>
+
+<p>For compatibility reasons, however, the inline field names may also be used:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>{<span style="color:#606"><span style="color:#404">"</span><span>src.ipv4</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">1.2.3.4</span><span style="color:#710">"</span></span>}
+</pre></div>
+</div>
+</div>
+
+<h3 id="examples">3.3 Examples</h3>
+
+<h4 id="example-1---valid">3.3.1 Example 1 - Valid</h4>
+
+<p>This is a JSON Event Record corresponding to the most minimal event compliant with the CEE Core Profile. Note the lack of a profile reference, implying an implicit reference to the CEE Core Profile.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>{
+  <span style="color:#606"><span style="color:#404">"</span><span>host</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">system.example.com</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>pname</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">auth</span><span style="color:#710">"</span></span>,  
+  <span style="color:#606"><span style="color:#404">"</span><span>time</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">2011-12-20T12:38:05.123456-05:00</span><span style="color:#710">"</span></span>
+}
+</pre></div>
+</div>
+</div>
+
+<h4 id="example-2---valid">3.3.2 Example 2 - Valid</h4>
+
+<p>This is a JSON Event Record generated using the optional fields in the CEE Core Profile.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>{
+  <span style="color:#606"><span style="color:#404">"</span><span>host</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">system.example.com</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>pid</span><span style="color:#404">"</span></span>:<span style="color:#00D">123</span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>time</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">2011-12-20T12:38:05.123456-05:00</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>msgid</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">abc</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>msg</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">my event message</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>app</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">application</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>pname</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">auth</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>sev</span><span style="color:#404">"</span></span>:<span style="color:#00D">10</span>,  
+  <span style="color:#606"><span style="color:#404">"</span><span>action</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">login</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>status</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">success</span><span style="color:#710">"</span></span>
+}
+</pre></div>
+</div>
+</div>
+
+<h4 id="example-3---valid">3.3.3 Example 3 - Valid</h4>
+
+<p>This is a JSON Event Record that a CEE Profile reference.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>{
+  <span style="color:#606"><span style="color:#404">"</span><span>profile</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://vendor.com/events/1.0</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>host</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">host.vendor.com</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>pname</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">proc1</span><span style="color:#710">"</span></span>,  
+  <span style="color:#606"><span style="color:#404">"</span><span>time</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">2012-01-18T05:55:12.4321-05:00</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>action</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">login</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>status</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ongoing</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>tags</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">:hipaa</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>new_field</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">a string value</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>new_val</span><span style="color:#404">"</span></span>:<span style="color:#00D">1234</span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>product_host</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">source.example.com</span><span style="color:#710">"</span></span>
+}
+</pre></div>
+</div>
+</div>
+
+<h4 id="example-3---valid-1">3.3.4 Example 3 - Valid</h4>
+
+<p>This is a JSON Event Record that uses "native" fields not found in the referenced profile.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>{
+  <span style="color:#606"><span style="color:#404">"</span><span>profile</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://vendor.com/events/1.0</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>host</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">host.vendor.com</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>pname</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">proc1</span><span style="color:#710">"</span></span>,  
+  <span style="color:#606"><span style="color:#404">"</span><span>time</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">2012-01-18T05:55:12.4321-05:00</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>action</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">login</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>status</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ongoing</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>tags</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">:hipaa</span><span style="color:#710">"</span></span>,
+  <span style="color:#606"><span style="color:#404">"</span><span>native</span><span style="color:#404">"</span></span>: {
+    <span style="color:#606"><span style="color:#404">"</span><span>new_field</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">a string value</span><span style="color:#710">"</span></span>,
+    <span style="color:#606"><span style="color:#404">"</span><span>new_val</span><span style="color:#404">"</span></span>:<span style="color:#00D">1234</span>,
+    <span style="color:#606"><span style="color:#404">"</span><span>product_host</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">source.example.com</span><span style="color:#710">"</span></span>
+  }
+}
+</pre></div>
+</div>
+</div>
+
+<h4 id="example-4---valid">3.3.5 Example 4 - Valid</h4>
+
+<p>This is a list of JSON Event Records (i.e. a log)</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>[
+  {<span style="color:#606"><span style="color:#404">"</span><span>host</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">host.vendor.com</span><span style="color:#710">"</span></span>,<span style="color:#606"><span style="color:#404">"</span><span>pname</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">process1</span><span style="color:#710">"</span></span>,<span style="color:#606"><span style="color:#404">"</span><span>time</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">2012-01-18T05:55:12.4321-05:00</span><span style="color:#710">"</span></span>},
+  {<span style="color:#606"><span style="color:#404">"</span><span>host</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">host.vendor.com</span><span style="color:#710">"</span></span>,<span style="color:#606"><span style="color:#404">"</span><span>pname</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">process2</span><span style="color:#710">"</span></span>,<span style="color:#606"><span style="color:#404">"</span><span>time</span><span style="color:#404">"</span></span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">2012-01-18T05:55:12.4321-05:01</span><span style="color:#710">"</span></span>}
+]
+</pre></div>
+</div>
+</div>
+
+<h3 id="xml-encoding">3.4 XML Encoding</h3>
+
+<p>The W3C Extensible Markup Language (XML) 1.0 format is a text-based data exchange format and is used by a large number of devices and web services. It supports validation of documents against a definition (schema), digital signatures, and advanced compression. This makes it ideal for representing audit data that must be assured.</p>
+
+<p>The use of the CEE XML Encoding SHOULD be indicated by the use of the <a href="http://tools.ietf.org/html/rfc4288">MIME</a> or Internet media type: <code>application/cee+xml</code>. As UTF-8 is the only allowable encoding for the CEE JSON encoding, an encoding specification in the MIME type is redundant.</p>
+
+<h4 id="general-encoding-requirements-1">3.4.1 General Encoding Requirements</h4>
+
+<ul>
+<li>All XML-encoded event records MUST completely conform to the <a href="http://www.w3.org/TR/REC-xml">XML</a> specification.</li>
+  <li>All XML-encoded event records MUST be encoded in <a href="http://tools.ietf.org/html/rfc3629">UTF-8</a>. If an XML header is present, the <em>encoding</em> attribute MUST be set to <code>UTF-8</code>.</li>
+  <li>All XML-encoded event records MUST validate against the referenced profile.</li>
+  <li>XML namespaces SHALL NOT be used to extend CEE. Elements that are not in the namespaces included in the CEE schemas are not considered part of the CEE event.</li>
+  <li>NULL characters MUST NOT appear, even in escaped format.</li>
+  <li>CEE field values MUST be encoded without leading or trailing whitespace unless that whitespace is part of the field value. In other words, whitespace is significant.</li>
+  <li>Fields in an XML-encoded event record with multiple values MUST be encoded using multiple XML elements in a list.</li>
+  <li>XML object structures MUST be used to represent the field hierarchy. Inline field names are not permitted due to limitations in XML.</li>
+</ul><h4 id="mapping-xml-to-cee-value-types">3.4.2 Mapping XML to CEE Value Types</h4>
+
+<p>All XML values are contained within XML elements as character sequences.</p>
+
+<p>Based on the content of the XML value, the CEE <a href="cee.xsd">XML Event Schema</a>, and any corresponding <a href="Profile.html#event-profile">Event Profile</a> schemas, it is up to the application to choose the best mapping for their needs. All CEE applications MUST at least map an XML-encoded field value to the <code>xs:string</code> field type.</p>
+
+<p>However, the value types may be explicitly noted by adding a <code>type</code> attribute to the associated field element. The value of <code>type</code> should be set to one of the following values, each corresponding a CEE Value Type: <code>string</code>, <code>number</code>, <code>bool</code>, <code>ipv4</code>, <code>ipv6</code>, <code>datetime</code>, <code>null</code>, or <code>object</code>.</p>
+
+<h4 id="conforming-to-a-cee-profile">3.4.3 Conforming to a CEE Profile</h4>
+
+<p>Because XML supports a native validation mechanism through XML Schema, the profile reference in a CEE event may be placed both in the <code>profile</code> element and in the <code>schemaLocation</code> attribute on the root element.</p>
+
+<p>The profile reference in the <code>profile</code> element is the normative reference and, if it's a URL, SHOULD point to the URL for a human-readable profile. The profile reference in the <code>schemaLocation</code> attribute is used for XSD Validation and, if used, MUST point to any URL for the profile XSD.</p>
+
+<h3 id="examples-1">3.5 Examples</h3>
+
+<h4 id="example-1---valid-1">3.5.1 Example 1 - Valid</h4>
+
+<p>The XML Event Record corresponding to the most minimal event that is compliant with the CEE Core Profile.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#070">&lt;cee:cee</span> <span style="color:#b48">xmlns</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/profile/</span><span style="color:#710">"</span></span> <span style="color:#b48">xmlns:cee</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+  <span style="color:#070">&lt;cee:event&gt;</span>
+    <span style="color:#070">&lt;host&gt;</span>system.example.com<span style="color:#070">&lt;/host&gt;</span>
+    <span style="color:#070">&lt;pname&gt;</span>auth<span style="color:#070">&lt;/pname&gt;</span>
+    <span style="color:#070">&lt;time&gt;</span>2011-12-20T12:38:05.123456-05:00<span style="color:#070">&lt;/time&gt;</span>
+  <span style="color:#070">&lt;/cee:event&gt;</span>
+<span style="color:#070">&lt;/cee:cee&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<h4 id="example-2---valid-1">3.5.2 Example 2 - Valid</h4>
+
+<p>A CEE Event generated using <code>type</code> attributes and the CEE Event structure defined in <a href="cee.xsd">cee.xsd</a>. Note the further lack of a CEE Profile reference, implying the <a href="cee.xsd">cee.xsd</a> schema.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#579">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span style="color:#070">&lt;cee:cee</span> <span style="color:#b48">xmlns</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/profile/</span><span style="color:#710">"</span></span> <span style="color:#b48">xmlns:cee</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+  <span style="color:#070">&lt;cee:event&gt;</span>
+    <span style="color:#070">&lt;host&gt;</span>system.example.com<span style="color:#070">&lt;/host&gt;</span>
+    <span style="color:#070">&lt;pname&gt;</span>auth<span style="color:#070">&lt;/pname&gt;</span>
+    <span style="color:#070">&lt;time&gt;</span>2011-12-20T12:38:05.123456-05:00<span style="color:#070">&lt;/time&gt;</span>
+    <span style="color:#070">&lt;appname&gt;</span>application<span style="color:#070">&lt;/appname&gt;</span>
+    <span style="color:#070">&lt;pid&gt;</span>123<span style="color:#070">&lt;/pid&gt;</span>
+    <span style="color:#070">&lt;sev&gt;</span>10<span style="color:#070">&lt;/sev&gt;</span>    
+    <span style="color:#070">&lt;action&gt;</span>login<span style="color:#070">&lt;/action&gt;</span>
+    <span style="color:#070">&lt;domain&gt;</span>app<span style="color:#070">&lt;/domain&gt;</span>
+    <span style="color:#070">&lt;object&gt;</span>account<span style="color:#070">&lt;/object&gt;</span>
+    <span style="color:#070">&lt;service&gt;</span>web<span style="color:#070">&lt;/service&gt;</span>
+    <span style="color:#070">&lt;status&gt;</span>success<span style="color:#070">&lt;/status&gt;</span>
+  <span style="color:#070">&lt;/cee:event&gt;</span>
+<span style="color:#070">&lt;/cee:cee&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<h4 id="example-3---will-not-validate">3.5.3 Example 3 - Will Not Validate</h4>
+
+<p>A CEE XML Record that contains a CEE Profile reference specific to the event producer. Note that this event won't validate since the external profile isn't defined anywhere.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#070">&lt;cee:cee</span> <span style="color:#b48">xmlns</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/profile/</span><span style="color:#710">"</span></span> <span style="color:#b48">xmlns:cee</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+  <span style="color:#070">&lt;cee:event</span> <span style="color:#b48">profile</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://vendor.com/events/1.0</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+    <span style="color:#070">&lt;host&gt;</span>host.vendor.com<span style="color:#070">&lt;/host&gt;</span>
+    <span style="color:#070">&lt;pname&gt;</span>proc1<span style="color:#070">&lt;/pname&gt;</span>
+    <span style="color:#070">&lt;time&gt;</span>2012-01-18T05:55:12.4321-05:00<span style="color:#070">&lt;/time&gt;</span>
+    <span style="color:#070">&lt;action&gt;</span>login<span style="color:#070">&lt;/action&gt;</span>
+    <span style="color:#070">&lt;status&gt;</span>ongoing<span style="color:#070">&lt;/status&gt;</span>
+    <span style="color:#070">&lt;new_field&gt;</span>a string value<span style="color:#070">&lt;/new_field&gt;</span>
+    <span style="color:#070">&lt;new_val&gt;</span>1234<span style="color:#070">&lt;/new_val&gt;</span>
+    <span style="color:#070">&lt;product_host&gt;</span>source.example.com<span style="color:#070">&lt;/product_host&gt;</span>
+  <span style="color:#070">&lt;/cee:event&gt;</span>
+<span style="color:#070">&lt;/cee:cee&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<h4 id="example-4---valid-1">3.5.4 Example 4 - Valid</h4>
+
+<p>A CEE XML Record that contains native (custom) fields not specified in any profile.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#070">&lt;cee:cee</span> <span style="color:#b48">xmlns</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/profile/</span><span style="color:#710">"</span></span> <span style="color:#b48">xmlns:cee</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+  <span style="color:#070">&lt;cee:event&gt;</span>
+    <span style="color:#070">&lt;host&gt;</span>host.vendor.com<span style="color:#070">&lt;/host&gt;</span>
+    <span style="color:#070">&lt;pname&gt;</span>proc1<span style="color:#070">&lt;/pname&gt;</span>        
+    <span style="color:#070">&lt;time&gt;</span>2012-01-18T05:55:12.4321-05:00<span style="color:#070">&lt;/time&gt;</span>
+    <span style="color:#070">&lt;action&gt;</span>login<span style="color:#070">&lt;/action&gt;</span>
+    <span style="color:#070">&lt;status&gt;</span>ongoing<span style="color:#070">&lt;/status&gt;</span>
+    <span style="color:#070">&lt;cee:native&gt;</span>
+      <span style="color:#070">&lt;custom_field&gt;</span>custom val<span style="color:#070">&lt;/custom_field&gt;</span>
+    <span style="color:#070">&lt;/cee:native&gt;</span>
+  <span style="color:#070">&lt;/cee:event&gt;</span>
+<span style="color:#070">&lt;/cee:cee&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="translating-between-json-and-xml">4 Translating between JSON and XML</h2>
+
+<p>JSON and XML-encoded CEE events reference the same data. As such, there is a 0% data-loss rate when translating between the two formats. The translation rules are:</p>
+
+<ul>
+<li>JSON arrays and objects are anonymous, meaning the <code>cee</code> element in XML becomes an array in JSON and the <code>event</code> element in JSON becomes an anonymous object</li>
+  <li>Field names and taxonomy facets are identical in JSON and XML.</li>
+  <li>Both elements and attributes in the XML will be translated into keys and properties in the JSON. For example, the <code>profile</code> attribute of an event will be translated to a <code>profile</code> key in the JSON.</li>
+  <li>Type annotation attributes are not valid in JSON since they can be represented natively.</li>
+  <li>Any XML Namespace features are not relevant to JSON and can be safely ignored.</li>
+  <li>Inline field names are not permitted in XML, and therefore must be converted to structured names if present in the JSON.</li>
+</ul><p>For example, these are equivalent events:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#070">&lt;cee:cee</span> <span style="color:#b48">xmlns:cee</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/</span><span style="color:#710">"</span></span> <span style="color:#b48">xmlns:cee</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://cee.mitre.org/1.0/profile/</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+  <span style="color:#070">&lt;cee:event</span> <span style="color:#b48">profile</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://vendor.com/events/1.0</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+    <span style="color:#070">&lt;host&gt;</span>host.vendor.com<span style="color:#070">&lt;/host&gt;</span>
+    <span style="color:#070">&lt;pname&gt;</span>proc1<span style="color:#070">&lt;/pname&gt;</span>
+    <span style="color:#070">&lt;time&gt;</span>2012-01-18T05:55:12.4321-05:00<span style="color:#070">&lt;/time&gt;</span>
+    <span style="color:#070">&lt;cee:native&gt;</span>
+      <span style="color:#070">&lt;custom_field&gt;</span>custom val<span style="color:#070">&lt;/custom_field&gt;</span>
+    <span style="color:#070">&lt;/cee:native&gt;</span>
+  <span style="color:#070">&lt;/cee:event&gt;</span>
+<span style="color:#070">&lt;/cee:cee&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>[
+  {
+    <span style="color:#606"><span style="color:#404">"</span><span>profile</span><span style="color:#404">"</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">http://vendor.com/events/1.0</span><span style="color:#710">"</span></span>,
+    <span style="color:#606"><span style="color:#404">"</span><span>host</span><span style="color:#404">"</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">host.vendor.com</span><span style="color:#710">"</span></span>,
+    <span style="color:#606"><span style="color:#404">"</span><span>pname</span><span style="color:#404">"</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">proc1</span><span style="color:#710">"</span></span>,
+    <span style="color:#606"><span style="color:#404">"</span><span>time</span><span style="color:#404">"</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">2012-01-18T05:55:12.4321-05:00</span><span style="color:#710">"</span></span>,
+    <span style="color:#606"><span style="color:#404">"</span><span>native</span><span style="color:#404">"</span></span>: {<span style="color:#606"><span style="color:#404">"</span><span>custom_field</span><span style="color:#404">"</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">custom val</span><span style="color:#710">"</span></span>}   
+  }
+]
+</pre></div>
+</div>
+</div>
+            <p class="lastupdated">Page Last Updated: August 01, 2012</p>
+        </div>
+    </body>
+</html>
+

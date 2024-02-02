@@ -1,0 +1,500 @@
+/*
+Style Name: CEE
+Author: William Heinbockel
+*/
+
+
+
+/* @group Reset
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;} */
+
+ul, ol {list-style: none;}
+/* body {line-height: 1;} */
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after {content: ""; content: none;}
+q:before, q:after {content: ""; content: none;}
+:focus {outline: 0;}
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+table {border-collapse: collapse; border-spacing: 0;}
+.imgRight {float:right; margin:10px 0 0 40px;}
+.left {float:left;}
+.right {float:right;}
+/* @end */
+
+
+/* Added by debj on 2-20-2012 */
+div.table td { font-size: .85em; padding: .5em; vertical-align: top; }
+div.table tr.odd { background-color: #eaeaea; }
+/* End style added by debj */
+
+table.related thead {text-align:left; color: #1b6ec9; font-size: 2em; border-bottom: 1px solid black;}
+table.related td {text-align:left; padding: 5px; color: #474747;}
+
+#middle {padding-top:0px;height:auto; background-color: #f0f0f0; text-align:center; padding: 25px 0;} 
+#middle_bottom {height:auto; background-color: #eaeaea; text-align:center; padding: 10px 0;} 
+/* #footer {padding-top:0px;height:auto; background-color: #3a3a3a; text-align:left; padding: 10px 0; color: white;} 
+#footer a:link, #footer a:active, #footer a:visited { color: #cecece; text-decoration: underline; } */
+.left_photo {float:left; width:400px; padding:0 5px 0 0; margin: 0 10px 0 0;}
+.right_copy {float:right; width:525px; text-align: left;}
+
+.left_sub_nav {float:left; width:220px; padding:0 5px 0 0; margin: 0 10px 0 0;}
+/* .right_bodycopy {float:right; width:700px; text-align: left;} Commneted out by debj on 2-14-2012 */
+
+.left_focus {float:left; width:520px; padding: 5px;}
+.right_news {float:right; width:400px; padding: 5px; text-align: left;}
+td.header {font-weight: bold;}
+
+
+#toc {
+padding: 10px 30px;
+/* width: 300px; float:right; */
+display: block;
+/* background-color: #eaeaea; */
+}
+#toc li ol {
+  list-style: none;}
+/* #toc:after {clear: both; content: "."; display: block; font-size: 0; height: 0; visibility: hidden;} */
+
+.block h2 {margin-top: 0;}
+.block ul.menu {padding: 0 0 0.25em 1em;}
+
+/* p.backtotop {text-align: right; font-size: 11px; */
+border-bottom: 1px dashed #3a3a3a; padding-bottom: 10px;}
+
+#middle_bottom h1 {font-size: 2em; color: #1b6ec9; text-align: left;}
+#middle h1 {font-size:18px; color: #cc5f15; text-align: left;}
+.panes li {font-size: 2em; color: #1b6ec9; text-align: left;}
+.panes td {padding: 5px;}
+.panes td.date {width: 95px; color: #1b6ec9; }
+.panes td.desc {position: relative;}
+.panes p.locale {margin: -1em 0 0 0; font-style: italic;}
+
+p.hp-bucket {margin: 0 5px;}
+
+#related_efforts {display: table; max-width: 75%;margin:1em auto; border: 2px solid #444444; border-radius: 15px; -moz-border-radius: 15px; padding: 1em 2em 2em 2em;}
+#related_efforts table {margin:0 1em;}
+#related_efforts td {padding: 0 1em;}
+#related_efforts h1 {font-size: 2em; color: #444444; text-align: left; padding: 0 0 0 1em;}
+table {max-width: 940px;}
+
+p {margin: 1em 0;} 
+
+p.text {color:#444444; font-family: verdana, arial, helvetica, sans-serif; font-size: 14px; line-height:20px;}
+
+/* #footer img {width: 100px; height: auto;}
+#footer td {vertical-align: middle; font-size: 12px; padding: 1em; line-height: 1.6em;} */
+
+.bold {font-weight: bold;}
+
+#middle_ip {padding-top:0px;height:auto; background-color: #f0f0f0; text-align:center; padding: 25px 0 0 0;} 
+#middle_ip td {padding: 2px 15px;}
+#middle_ip td {padding: 2px 15px;}
+#middle_ip h1 { font-size: 32px; font-weight: normal; padding: 22px 0; color: #3a3a3a; text-shadow: 0 1px white; line-height:25px;}
+#middle_ip h2 { font-size: 24px; font-weight: normal; color: #0063ce; text-shadow: 0 1px white; line-height:20px; padding: 14px 0;}
+#middle_ip h3 { font-size: 20px; font-weight: normal; color: #0063ce; text-shadow: 0 1px white; line-height:18px; padding: 10px 0;}
+#middle_ip h4 { font-size: 16px; font-weight: normal; color: #0063ce; text-shadow: 0 1px white; line-height:14px; padding: 8px 0;}
+
+#block-content {margin: 3px 0 0 0;}
+
+.large_right_copy h2 { font-size: 25px; font-weight: bold; color: #3c976d; margin: 5px 0 15px 0;text-shadow: 0 1px white; line-height:31px;}
+.large_right_copy h3 { color: #767676; text-shadow: 0 1px white; font-size: 18px; line-height: 22px;}
+.large_right_copy ul li {font-weight: normal; font-size: 14px; color: #767676; text-shadow: 0 1px white; list-style: none; margin: 6px 3px 3px 6px; padding-left:22px; background: url('img/check.jpg') no-repeat;}
+
+#showcase .showcaseText {display: inline-block;}
+#white_line {min-height: 12px; height:auto; height:12px; background: #f0f0ef url('img/white_line.jpg') top center repeat-x; text-align:center; margin: 20px 0 0 0;}
+
+#nav {text-align: left; background-color:#f8f8f7;}
+
+.group {padding: 0px 0px 1px 0px;}
+.subgroup_ul {list-style: none; padding: 0px 0px 5px 0px; margin: 0px;}
+
+a.nav_link {font-family:helvetica, arial, sans-serif; font-size: 11px;  font-weight:bold; text-transform: uppercase;}
+a.nav_link:link, a.nav_link:visited { color: #616161; text-decoration: none; display: block; width:215px; padding: 10px 0 10px 5px; letter-spacing: 1px;background-color: #cecece; text-align: left;}
+
+a.nav_link:hover, a.nav_link.active {background-color: #54a2e2; color: #ffffff; text-decoration: none;}
+a.sub_nav_link {font-family:helvetica, arial, sans-serif; font-size: 12px;}
+
+a.sub_nav_link:link, a.sub_nav_link:visited, a.sub_nav_link:active {color: #422100; text-decoration: none; padding-left: 10px}
+a.sub_nav_link:hover {color: #6c901c;text-decoration: none;}
+
+/* root element for tabs  */
+ul.tabs { 
+  list-style:none; 
+  margin:0 !important; 
+  padding:0;  
+  border-bottom:1px solid #666; 
+  height:30px;
+}
+
+/* single tab */
+ul.tabs li { 
+  float:left;  
+  text-indent:0;
+  padding:0;
+  margin:0 !important;
+  list-style-image:none !important; 
+}
+
+/* link inside the tab. uses a background image */
+ul.tabs a { 
+  background: url(img/blue.png) no-repeat -420px 0;
+  font-size:11px;
+  display:block;
+  height: 30px;  
+  line-height:30px;
+  width: 134px;
+  text-align:center;  
+  text-decoration:none;
+  color:#333;
+  padding:0px;
+  margin:0px; 
+  position:relative;
+  top:1px;
+}
+
+ul.tabs a:active {
+  outline:none;   
+}
+
+/* when mouse enters the tab move the background image */
+ul.tabs a:hover {
+  background-position: -420px -31px;  
+  color:#fff; 
+}
+
+/* active tab uses a class name "current". its highlight is also done by moving the background image. */
+ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
+  background-position: -420px -62px;    
+  cursor:default !important; 
+  color:#000 !important;
+}
+
+/* Different widths for tabs: use a class name: s, l, xl */
+
+
+/* width 1 */
+ul.tabs a.s       { background-position: -553px 0; width:81px; }
+ul.tabs a.s:hover   { background-position: -553px -31px; }
+ul.tabs a.s.current  { background-position: -553px -62px; }
+
+/* width 2 */
+ul.tabs a.l       { background-position: -247px -0px; width:174px; }
+ul.tabs a.l:hover   { background-position: -247px -31px; }
+ul.tabs a.l.current  { background-position: -247px -62px; }
+
+
+/* width 3 */
+ul.tabs a.xl      { background-position: 0 -0px; width:248px; }
+ul.tabs a.xl:hover  { background-position: 0 -31px; }
+ul.tabs a.xl.current { background-position: 0 -62px; }
+
+
+/* initially all panes are hidden */ 
+.panes .pane {
+  display:none;   
+}
+
+/* tab pane styling */
+.panes div {
+  display:none;   
+  padding:15px 10px;
+  border:1px solid #999;
+  border-top:0;
+  height:200px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size:14px;
+  background-color:#fff;
+}
+div.caption {
+  text-align: center;
+  font-size:14px;
+  font-style: italic;
+}
+
+div.figure {
+  /* width: 400px; */
+  text-align: center;
+  margin: 0 auto;
+}
+/* Added by debj on 2-14-2012 */
+div.figure img {
+  width: 400px;
+  margin-bottom: .5em;
+}
+/* End style added by debj */
+
+.right_bodycopy img {
+  margin: 0 auto;
+  max-width: 400px;
+  height: auto;
+}
+.right_bodycopy pre {
+  max-height: 250px;
+  max-width: 90%;
+  overflow: auto; /* was auto */
+  background-color: transparent;
+  margin-bottom: 1em;
+}
+.right_bodycopy table {
+  border: 1px solid #3a3a3a;
+  max-width: 650px;
+  margin: 10px auto;
+}
+
+span.version {
+  font-size: 0.5em;
+  display: block;
+  font-weight: normal;
+  font-style: italic;
+}
+table thead tr th {
+  background-color:#3a3a3a;
+  color: #fff;
+  padding: 3px 15px 3px 3px;
+}
+table.tablesorter thead tr th {
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-image: url(/images/asc-desc.gif);
+}
+table.tablesorter thead tr .header {
+  cursor: pointer;
+}
+table.tablesorter tbody tr.odd td {
+  background-color:#eaeaea;
+}
+table.tablesorter thead tr .headerSortUp {
+  background-image: url(/images/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+  background-image: url(/images/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+  background-color:#707070;
+  font-style: italic;
+}
+/* style added by debj 2-17-2-12 */
+.tablesorter th, .tablesorter td { font-size: .85em; padding: .3em 1em; }
+
+dt {
+  font-weight: bold;
+  padding: 5px 0;
+}
+dd {
+  margin: 3px 0 20px 40px;
+}
+.right_bodycopy ol { list-style-type: decimal; }
+.right_bodycopy li { margin-left: 1em;}
+.right_bodycopy ul { list-style-type: square; }
+
+code {
+  color: #4584c5;
+  font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', 'Monaco', Courier, monospace !important;
+}
+code .hll {
+  background-color: #ffffcc;
+}
+code .c {
+  color: #408080;
+  font-style: italic;
+}
+code .err {
+  border: 1px solid #ff0000;
+}
+code .k {
+  color: #008000;
+  font-weight: bold;
+}
+code .o {
+  color: #666666;
+}
+code .cm {
+  color: #408080;
+  font-style: italic;
+}
+code .cp {
+  color: #bc7a00;
+}
+code .c1 {
+  color: #408080;
+  font-style: italic;
+}
+code .cs {
+  color: #408080;
+  font-style: italic;
+}
+code .gd {
+  color: #a00000;
+}
+code .ge {
+  font-style: italic;
+}
+code .gr {
+  color: #ff0000;
+}
+code .gh {
+  color: #000080;
+  font-weight: bold;
+}
+code .gi {
+  color: #00a000;
+}
+code .go {
+  color: #808080;
+}
+code .gp {
+  color: #000080;
+  font-weight: bold;
+}
+code .gs {
+  font-weight: bold;
+}
+code .gu {
+  color: #800080;
+  font-weight: bold;
+}
+code .gt {
+  color: #0040d0;
+}
+code .kc {
+  color: #008000;
+  font-weight: bold;
+}
+code .kd {
+  color: #008000;
+  font-weight: bold;
+}
+code .kn {
+  color: #008000;
+  font-weight: bold;
+}
+code .kp {
+  color: #008000;
+}
+code .kr {
+  color: #008000;
+  font-weight: bold;
+}
+code .kt {
+  color: #b00040;
+}
+code .m {
+  color: #666666;
+}
+code .s {
+  color: #ba2121;
+}
+code .na {
+  color: #7d9029;
+}
+code .nb {
+  color: #008000;
+}
+code .nc {
+  color: #0000FF;
+  font-weight: bold;
+}
+code .no {
+  color: #880000;
+}
+code .nd {
+  color: #aa22ff;
+}
+code .ni {
+  color: #999999;
+  font-weight: bold;
+}
+code .ne {
+  color: #D2413A;
+  font-weight: bold;
+}
+code .nf {
+  color: #0000ff;
+}
+code .nl {
+  color: #a0a000;
+}
+code .nn {
+  color: #0000FF;
+  font-weight: bold;
+}
+code .nt {
+  color: #008000;
+  font-weight: bold;
+}
+code .nv {
+  color: #19177c;
+}
+code .ow {
+  color: #AA22FF;
+  font-weight: bold;
+}
+code .w {
+  color: #bbbbbb;
+}
+code .mf {
+  color: #666666;
+}
+code .mh {
+  color: #666666;
+}
+code .mi {
+  color: #666666;
+}
+code .mo {
+  color: #666666;
+}
+code .sb {
+  color: #ba2121;
+}
+code .sc {
+  color: #ba2121;
+}
+code .sd {
+  color: #BA2121;
+  font-style: italic;
+}
+code .s2 {
+  color: #ba2121;
+}
+code .se {
+  color: #BB6622;
+  font-weight: bold;
+}
+code .sh {
+  color: #ba2121;
+}
+code .si {
+  color: #BB6688;
+  font-weight: bold;
+}
+code .sx {
+  color: #008000;
+}
+code .sr {
+  color: #bb6688;
+}
+code .s1 {
+  color: #ba2121;
+}
+code .ss {
+  color: #19177c;
+}
+code .bp {
+  color: #008000;
+}
+code .vc {
+  color: #19177c;
+}
+code .vg {
+  color: #19177c;
+}
+code .vi {
+  color: #19177c;
+}
+code .il {
+  color: #666666;
+}

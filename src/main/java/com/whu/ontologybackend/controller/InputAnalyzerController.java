@@ -31,7 +31,8 @@ public class InputAnalyzerController {
 
     @RequestMapping("postExcels")
     public String integrateExcels(){
-        return "excels";
+        File excelFile = new File(resourcePrefix + "2000.csv");
+        return inputAnalyzeService.analyzeExistingExcel(excelFile);
     }
 
     @RequestMapping("postXML")

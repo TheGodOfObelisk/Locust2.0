@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="CEE description" />
+        <meta name="keywords" content="CEE Keywords" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>CEE &mdash; 1.0-beta1 CHANGELOG</title>
+        <link href="assets/css/cee-styles.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/doc-styles.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div id="Main" class="right_bodycopy">
+            <h1>CHANGELOG<span class="version">1.0-beta1</span></h1>
+            
+<p>Describes the changes that were made to this specification since the alpha release of CEE 1.0.</p>
+
+<h3 id="architecture-and-data-model-changes">Architecture and Data Model Changes</h3>
+
+<ul>
+<li>Removed concept of augments</li>
+  <li>Simplified Profile and Event model</li>
+  <li>Added Requirements and Compatibility section to Overview</li>
+</ul><h3 id="specification-changes">Specification Changes</h3>
+
+<h4 id="profile">Profile</h4>
+
+<ul>
+<li>Complete rewrite to simplify Profile and Event model</li>
+</ul><h4 id="cls">CLS</h4>
+
+<ul>
+<li>Rewrite of CEE Event section to include visual data model diagram and reference to validation mechanisms</li>
+  <li>Added Field Names section to specify valid CEE Field Names (inline vs. structured in particular)</li>
+  <li>Expanded Field Types section to specify field types external to XML Schema types</li>
+  <li>Updated ABNF definition of CEE JSON Event</li>
+  <li>Changed some JSON encoding specifications</li>
+  <li>Updated ABNF definition of CEE XML Event</li>
+  <li>Removed paragraph about validation against XSD</li>
+  <li>Added paragraph about optional type annotations</li>
+  <li>Updated all examples per above changes</li>
+</ul><h4 id="clt">CLT</h4>
+
+<ul>
+<li>Removed references to augment</li>
+  <li>Added '@' prefix to cee indicator in Syslog transport</li>
+  <li>Removed outer "Event" object from JSON example in Syslog transport</li>
+</ul>
+            <p class="lastupdated">Page Last Updated: July 16, 2012</p>
+        </div>
+    </body>
+</html>
+
