@@ -30,7 +30,7 @@ public class InputAnalyzerController {
     }
 
     @RequestMapping("postExcels")
-    public String integrateExcels(){
+    public String integrateExcels() throws FileNotFoundException {
         File excelFile = new File(resourcePrefix + "2000.csv");
         return inputAnalyzeService.analyzeExistingExcel(excelFile);
     }

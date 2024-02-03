@@ -3,6 +3,9 @@ package com.whu.ontologybackend.service.impl;
 
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -39,8 +42,17 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     }
 
     @Override
-    public String analyzeExistingExcel(File excelFile) {
-
+    public String analyzeExistingExcel(File excelFile) throws FileNotFoundException {
+        CSVFormat csvFormat = CSVFormat.DEFAULT.withHeader();
+//        FileReader fileReader = new FileReader(excelFile);
+        try(CSVParser csvParser = new CSVParser(new FileReader(excelFile), csvFormat)){
+            for(CSVRecord csvRecord : csvParser){
+                System.out.println("--------csvRecord--------");
+                System.out.println(csvRecord.stream().toList());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return "In the serviceImpl class. Analyzing excels.";
     }
 
