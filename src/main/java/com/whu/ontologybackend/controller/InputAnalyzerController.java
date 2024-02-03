@@ -60,7 +60,6 @@ public class InputAnalyzerController {
         File ontologyFile = new File(resourcePrefix + "MALOnt.owl");
         return inputAnalyzeService.analyzeExistingOntologies(ontologyFile);
         // move specific process away from controllers
-
     } // process existing ontologies
 
     @RequestMapping("uploadFile")
