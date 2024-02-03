@@ -46,7 +46,7 @@ public class OntMultiwayTree implements Serializable {
     // Map<concept, Map<nodeId, classFullPath>>
     private Map<String, Map<String, String>> conceptMap = new HashMap<>();
 
-    private Set<OntProperty> objectProperties = new HashSet<>();
+    private transient Set<OntProperty> objectProperties = new HashSet<>();
 
     public Set<OntProperty> getObjectProperties() {
         return objectProperties;
