@@ -47,6 +47,9 @@ public class InputAnalyzerController {
 
     @RequestMapping("postCQ")
     public String integrateCQs(){
+        // take a list of competency questions
+        // each competency question is a single query sentence
+        
         return "CQs";
     }
 

@@ -1,7 +1,7 @@
 # Locust2.0
 
 #### Description
-新版本本体学习工具，在1.0版本基础上大幅改动和增强，纳入对能力问题（Competency Question，CQ）及多源异构输入的本体学习，具备完善前端用户交互界面，CQ可用于生成本体的验证。
+A new version Locust tool for ontology generation on cybersecurity. It implements ontologies supporting competency questions as input (can answer competency questions in SPARQL).
 
 #### Software Architecture
 Software architecture description

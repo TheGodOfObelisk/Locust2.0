@@ -45,6 +45,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     public String analyzeExistingExcel(File excelFile) throws FileNotFoundException {
         CSVFormat csvFormat = CSVFormat.DEFAULT.withHeader();
 //        FileReader fileReader = new FileReader(excelFile);
+        // follow steps in essay 348
         try(CSVParser csvParser = new CSVParser(new FileReader(excelFile), csvFormat)){
             for(CSVRecord csvRecord : csvParser){
                 System.out.println("--------csvRecord--------");
