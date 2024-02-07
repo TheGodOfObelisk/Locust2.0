@@ -24,6 +24,11 @@ public class InputAnalyzerController {
         return "name: " + name + " age: " + age + "... OK";
     }
 
+    @RequestMapping("glossary")
+    public String integrateGlossary(){
+        return "glossary";
+    }
+
     @RequestMapping("postArticles")
     public String integrateArticles(@RequestParam Map<String, Object> params){
         return "articles: " + params.get("article") + ", value: " + params.get("value") + "...OK";
@@ -49,7 +54,7 @@ public class InputAnalyzerController {
     public String integrateCQs(){
         // take a list of competency questions
         // each competency question is a single query sentence
-        
+
         return "CQs";
     }
 
