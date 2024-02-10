@@ -54,6 +54,7 @@ public class InputAnalyzerController {
     public String integrateCQs(){
         // take a list of competency questions
         // each competency question is a single query sentence
+        // CQ is divided into two parts: 1, from words of existing ontologies and glossaries; 2, from user-defined competency questions or requirement descriptions
 
         return "CQs";
     }
