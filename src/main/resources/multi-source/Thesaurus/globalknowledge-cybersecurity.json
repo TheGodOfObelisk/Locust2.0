@@ -1,0 +1,308 @@
+{
+  "access control": {
+    "description": "The means and mechanisms of managing access to and use of resources by users. There are three primary forms of access control: DAC, MAC, and RBAC. DAC (Discretionary Access Control) manages access through the use of on-object ACLs (Access Control Lists), which indicate which users have been granted (or denied) specific privileges or permissions on that object. MAC (Mandatory Access Control) restricts access by assigning each subject and object a classification or clearance level label; resource use is then controlled by limiting access to those subjects with equal or superior labels to that of the object. RBAC (Role Base Access Control) controls access through the use of job labels, which have been assigned the permissions and privilege needed to accomplish the related job tasks. (Also known as authorization.)"
+  },
+  "anti-virus (anti-malware)":{
+    "description": "A security program designed to monitor a system for malicious software. Once malware is detected, the AV program will attempt to remove the offending item from the system or may simply quarantine the file for further analysis by an administrator. It is important to keep AV software detection databases current in order to have the best chance of detecting known forms of malware."
+  },
+  "antivirus software": {
+    "description": "A software program that monitors a computer system or network communications for known examples of malicious code and then attempts to remove or quarantine the offending items. (Also known as Malware Scanner.) Most anti-virus (AV) products use a pattern recognition or signature matching system to detect the presence of known malicious code. Some AV products have adopted technologies to potentially detect new and unknown malware. These technologies include anomaly detection (i.e. watch for programs which violate specific rules), behavioral detection (i.e. watch for programs that have behaviors that are different from the normal baseline of behavior of the system), and heuristic detection (i.e. watch for programs that exhibit actions which are known to be those of confirmed malware; it is a type of technological profiling)."
+  },
+  "APT (Advanced Persistent Threat)": {
+    "description": "A security breach that enables an attacker to gain access or control over a system for an extended period of time usually without the owner of the system being aware of the violation. Often an APT takes advantage of numerous unknown vulnerabilities or zero day attacks, which allow the attacker to maintain access to the target even as some attack vectors are blocked."
+  },
+  "asset": {
+    "description": "Anything that is used in and is necessary to the completion of a business task. Assets include both tangible and intangible items such as equipment, software code, data, facilities, personnel, market value and public opinion."
+  },
+  "authentication": {
+    "description": "The process of proving an individual is a claimed identity. Authentication is the first element of the AAA services concept, which includes Authentication, Authorization, and Accounting. Authentication occurs after the initial step of identification (i.e. claiming an identity). Authentication is accomplished by providing one or more authentication factors—Type 1: something you know (e.g. password, PIN, or combination), Type 2: something you have (e.g. smart card, RSA SecureID FOB, or USB drive), and Type 3: something you are (e.g. biometrics—fingerprint, iris scan, retina scan, hand geometry, signature verification, voice recognition, and keystroke dynamics)."
+  },
+  "authorization": {
+    "description": "The security mechanism determining and enforcing what authenticated users are authorized to do within a computer system. The dominant forms of authorization are DAC, MAC and RBAC. DAC (Discretionary Access Control) manages access using ACL (Access Control Lists) on each resource object where users are listed along with the permissions or privileges granted or denied them. MAC (Mandatory Access Control) manages access using labels of classification or clearance on both subjects and objects, and only those subjects with equal or superior clearance are allowed to access resources. RBAC (Role Based Access Control) manages access using labels of a job role that has been granted the permissions and privileges needed to accomplish a specific job or role."
+  },
+  "backing up": {
+    "description": "Creating a duplicate copy of data onto a separate physical storage device or online/cloud storage solution. A backup is the only insurance against data loss. With a backup, damaged or lost data files can be restored. Backups should be created on a regular, periodic basis such as daily. A common strategy is based on the 3-2-1 rule: you should have three copies of your data - the original and 2 backups; you should use 2 different types of media (such as a physical media (such as a hard drive or tape) and a cloud storage solution); and do not store the three copies of data in 1 plane (i.e. backups should be stored offsite). It is important to store backups for disaster recovery at an offsite location in order to insure they are not damaged by the same event that would damage the primary production location. However, additional onsite backups can be retained for resolving minor issues such as accidental file deletion or hard drive failure."
+  },
+  "BCP (Business Continuity Planning)": {
+    "description": "A business management plan used to resolve issues that threaten core business tasks. (Also known as Business Continuity Management.) The goal of BCP is to prevent the failure of mission critical processes when they have be harmed by a breach or accident. Once core business tasks have been stabilized, BCP dictates the procedure to return the environment back to normal conditions. BCP is used when the normal security policy has failed to prevent harm from occurring, but before the harm has reached the level of fully interrupting mission critical processes, which would trigger the Disaster Recovery Process (DRP)."
+  },
+  "behavior monitoring": {
+    "description": "Recording the events and activities of a system and its users. The recorded events are compared against security policy and behavioral baselines to evaluate compliance and/or discover violations. Behavioral monitoring can include the tracking of trends, setting of thresholds and defining responses. Trend tracking can reveal when errors are increasing requiring technical support services, when abnormal load levels occur indicating the presence of malicious code, or when production work levels increase indicating a need to expand capacity. Thresholds are used to define the levels of activity or events above which are of concern and require a response. The levels below the threshold are recorded but do not trigger a response. Responses can be to resolve conflicts, handle violations, prevent downtime or improve capabilities."
+  },
+  "blacklist": {
+    "description": "A security mechanism prohibiting the execution of those programs on a known malicious or undesired list of software. The blacklist is a list of specific files known to be malicious or otherwise are unwanted. Any program on the list is prohibited from executing while any other program, whether benign or malicious, is allowed to execute by default. (See whitelist.)"
+  },
+  "block cipher": {
+    "description": "A type of symmetric encryption algorithm that divides data into fixed length sections and then performs the encryption or decryption operation on each block. The action of dividing a data set into blocks enables the algorithm to encrypt data of any size."
+  },
+  "botnet": {
+    "description": "A collection of innocent computers which have been compromised by malicious code in order to run a remote control agent granting an attacker the ability to remotely take advantage of the system's resources in order to perform illicit or criminal actions. These actions include DoS flooding attacks, hosting false Web services, spoofing DNS, transmitting SPAM, eavesdropping on network communications, recording VOIP communications and attempting to crack encryption or password hashes. Botnets can be comprised of dozens to over a million individual computers. The term botnet is a shortened form of robotic network."
+  },
+  "bug": {
+    "description": "An error or mistake in software coding or hardware design or construction. A bug represents a flaw or vulnerability in a system discoverable by attackers and used as point of compromise. Attacks often use fuzzing technique (i.e. randomize testing tools) to locate previously unknown bugs in order to craft new exploits."
+  },
+  "BYOD (Bring Your Own Device)": {
+    "description": "A company’s security policy dictating whether or not workers can bring in their own devices into the work environment, whether or not such devices can be connected to the company network and to what extent that connection allows interaction with company resources. A BYOD policy can range from complete prohibition of personal devices being brought into the facility to allowing any device to be connected to the company network with full access to all company resources. Generally, a BYOD policy puts reasonable security limitations on which devices can be used on company property and severely limits access to sensitive company network resources. BYOD should address concerns such as data ownership, asset tracking, geo location, patching and upgrades, security applications (such as malware scanners, firewalls and IDS), storage segmentation, appropriate vs inappropriate applications, on-boarding, off-boarding, repair/replacement due to damage, legal concerns, internal investigations and law enforcement investigations and forensics."
+  },
+  "ciphertext": {
+    "description": "The unintelligible and seeming random form of data that is produced by the cryptographic function of encryption. Ciphertext is produced by a symmetric algorithm when a data set is transformed by the encryption process using a selected key. Ciphertext can converted back into its original form (i.e. plain text) by performing the decryption process using the same symmetric encryption algorithm and the key used during the encryption process. (Also known as cryptogram.)"
+  },
+  "clickjacking": {
+    "description": "A malicious technique by which a victim is tricked into clicking on a URL, button or other screen object other than that intended by or perceived by the user. Clickjacking can be performed in many ways; one of which is to load a web page transparently behind another visible page in such a way that the obvious links and objects to click are facades, so clicking on an obvious link actually causes the hidden page's link to be selected."
+  },
+  "cloud computing": {
+    "description": "A means to offer computing services to the public or for internal use through remote services. Most cloud computing systems are based on remote virtualization where the application or operating environment offered to customers is hosted on the cloud provider's computer hardware. There are a wide range of cloud solutions including software applications (examples include e-mail and document editing), custom code hosting (namely execution platforms and web services) as well as full system replacements (such as remote virtual services to host databases or file storage). (See SaaS, PaaS, and IaaS.) Most forms of cloud computing are considered public cloud as they are provided by a third party. However, private cloud (internally hosted), community cloud (a group of companies' privately hosted cloud), a hosted private cloud (the cloud servers are owned and managed by a third party but hosted in the facility of the customer) and hybrid cloud (a mixture of public and private) are also options."
+  },
+  "CND (Computer Network Defense)": {
+    "description": "The establishment of a security perimeter and of internal security requirements with the goal of defending a network against cyberattacks, intrusions and other violations. A CND is defined by a security policy and can be stress tested using vulnerability assessment and penetration testing measures."
+  },
+  "cracker": {
+    "description": "The proper term to refer to an unauthorized attacker of computers, networks and technology instead of the misused term “hacker.” However, this term is not as widely used in the media; thus, the term hacker has become more prominent in-spite of the terms misuse. (See hacker.)"
+  },
+  "critical infrastructure": {
+    "description": "The physical or virtual systems and assets that are vital to an organization or country. If these systems are compromised, the result would be catastrophic. If an organization's mission critical processes are interrupted, this could result in the organization ceasing to exist. If a country's critical infrastructure is destroyed, it will have severe negative impact on national security, economic stability, citizen safety and health, transportation and communications."
+  },
+  "CVE (Common Vulnerabilities and Exposures)": {
+    "description": "An online database of attacks, exploits and compromises operated by the MITRE organization for the benefit of the public. It includes any and all attacks and abuses known for any type of computer system or software product. Often new attacks and exploits are documented in a CVE long before a vendor admits to the issue or releases an update or patch to resolve the concern."
+  },
+  "cryptography": {
+    "description": "The application of mathematical processes on data-at-rest and data-in-transit to provide the security benefits of confidentiality, authentication, integrity and non-repudiation. Cryptography includes three primary components: symmetric encryption, asymmetric encryption and hashing. Symmetric encryption is used to provide confidentiality. Asymmetric encryption is used to provide secure symmetric key generation, secure symmetric key exchange (via digital envelopes created through the use of the recipient's public key) verification of source, verification/control of recipient, digital signature (a combination of hashing and use of the sender's private key) and digital certificates (which provides third-party authentication services). Hashing is the cryptographic operation that produces a representational value from an input data set. A before and after hash can be compared in order to detect protection of or violation of integrity."
+  },
+  "cyberattack": {
+    "description": "Any attempt to violate the security perimeter of a logical environment. An attack can focus on gathering information, damaging business processes, exploiting flaws, monitoring targets, interrupting business tasks, extracting value, causing damage to logical or physical assets or using system resources to support attacks against other targets. Cyberattacks can be initiated through exploitation of a vulnerability in a publicly exposed service, through tricking a user into opening an infectious attachment, or even causing automated installation of exploitation tools through innocent website visits. (Also known as drive-by download.)"
+  },
+  "cyber ecosystem": {
+    "description": "The collection of computers, networks, communication pathways, software, data and users that comprise either a local private network or the world-wide Internet. It is the digital environment within which software operates and data is manipulated and exchanged."
+  },
+  "cyberespionage": {
+    "description": "The unethical act of violating the privacy and security of an organization in order to leak data or disclose internal/private/confidential information. Cyberespionage can be performed by individuals, organization or governments for the direct purpose of causing harm to the violated entity to benefit individuals, organizations or governments."
+  },
+  "cybersecurity": {
+    "description": "The efforts to design, implement, and maintain security for an organization's network, which is connected to the Internet. It is a combination of logical/technical-, physical- and personnel-focused countermeasures, safeguards and security controls. An organization's cybersecurity should be defined in a security policy, verified through evaluation techniques (such as vulnerability assessment and penetration testing) and revised, updated and improved over time as the organization evolves and as new threats are discovered."
+  },
+  "cyber teams": {
+    "description": "Groups of professional or amateur penetration testing specialists who are tasked with evaluating and potentially improving the security stance of an organization. Common cyber teams include the red, blue and purple/white teams. A red team is often used as part of a multi-team penetration test (i.e. security evaluation), which is responsible for attacking the target which is being defended by the blue team. A purple team or white team is either used as a reference between the attack/red and defense/blue teams; or this team can be used as an interpreter of the results and activities of the red and blue teams in order to maximize their effectiveness in the final results."
+  },
+  "data breach": {
+    "description": " The occurrence of disclosure of confidential information, access to confidential information, destruction of data assets or abusive use of a private IT environment. Generally, a data breach results in internal data being made accessible to external entities without authorization."
+  },
+  "data integrity": {
+    "description": "A security benefit that verifies data is unmodified and therefore original, complete and intact. Integrity is verified through the use of cryptographic hashing. A hashing algorithm generates a fixed length output known as a hash value, fingerprint or MAC (Message Authenticating Code), which is derived from the input data but which does not contain the input data. This makes hashing a one-way operation. A hash is calculated before an event, and another hash is calculated after the event (an event can be a time frame of storage (i.e. data-at-rest) or an occurrence of transmission (i.e. data-in-transit); the two hashes are then compared using an XOR Boolean operation. If the two hashes exactly match (i.e. the XOR result is zero), then the data has retained its integrity. However, if the two hashes do not match exactly (i.e. the XOR result is a non-zero value), then something about the data changed during the event."
+  },
+  "data mining": {
+    "description": "The activity of analyzing and/or searching through data in order to find items of relevance, significance or value. The results of data mining are known as meta-data. Data mining can be a discovery of individual important data items, a summary or overview of numerous data items or a consolidation or clarification of a collection of data items."
+  },
+  "data theft": {
+    "description": "The act of intentionally stealing data. Data theft can occur via data loss (physical theft) or data leakage (logical theft) event. Data loss occurs when a storage device is lost or stolen. Data leakage occurs when copies of data is possessed by unauthorized entities."
+  },
+  "DDoS (Distributed Denial of Service) Attack": {
+    "description": "An attack which attempts to block access to and use of a resource. It is a violation of availability. DDOS (or DDoS) is a variation of the DoS attack (see DOS) and can include flooding attacks, connection exhaustion, and resource demand. The distinction of DDOS from DOS is that the attack traffic may originate from numerous sources or is reflected or bounced off of numerous intermediary systems. The purpose of a DDoS attack is to significantly amplify the level of the attack beyond that which can be generated by a single attack system in order to overload larger and more protected victims. DDoS attacks are often waged using botnets. (See botnet.)"
+  },
+  "decrypt": {
+    "description": "The act which transforms ciphertext (i.e. the unintelligible and seeming random form of data that is produced by the cryptographic function of encryption) back into its original plaintext or cleartext form. Ciphertext is produced by a symmetric encryption algorithm when a data set is transformed by the encryption process using a selected key. Ciphertext can converted back into its original form (i.e. plaintext) by performing the decryption process using the same symmetric encryption algorithm and the same key used during the encryption process."
+  },
+  "digital certificate": {
+    "description": "A means by which to prove identity or provide authentication commonly by means of a trusted third-party entity known as a certificate authority. A digital certificate is based on the x.509 v3 standard. It is the public key of a subject signed by the private key of a certificate authority with clarifying text information such as issuer, subject identity, date of creation, date of expiration, algorithms, serial number and thumbprint (i.e. hash value)."
+  },
+  "digital forensics": {
+    "description": "The means of gathering digital information to be used as evidence in a legal procedure. Digital forensics focuses on gathering, preserving and analyzing the fragile and volatile data from a computer system and/or network. Computer data that is relevant to a security breach and/or criminal action is often intermixed with standard benign data from business functions and personal activities. Thus, digital forensics can be challenging to properly collect relevant evidence while complying with the rules of evidence in order to ensure that such collected evidence is admissible in court."
+  },
+  "DLP (Data Loss Prevention)": {
+    "description": "A collection of security mechanisms which aim at preventing the occurrence of data loss and/or data leakage. Data loss occurs when a storage device is lost or stolen while data leakage occurs when copies of data is possessed by unauthorized entities. In both cases, data is accessible to those who should not have access. DLP aims at preventing such occurrences through various techniques such as strict access controls on resources, blocking the use of email attachments, preventing network file exchange to external systems, blocking cut-and-paste, disabling use of social networks and encrypting stored data."
+  },
+  "DMZ (Demilitarized Zone)": {
+    "description": "A segment or subnet of a private network where resources are hosted and accessed by the general public from the Internet. The DMZ is isolated from the private network using a firewall and is protected from obvious abuses and attacks from the Internet using a firewall. A DMZ can be deployed in two main configurations. One method is the screened subnet configuration, which has the structure of I-F-DMZ-F-LAN (i.e. internet, then firewall, then the DMZ, then another firewall, then the private LAN). A second method is the multi-homed firewall configuration, which has the structure of a single firewall with three interfaces, one connecting to the Internet, a second to the DMZ, and a third to the private LAN."
+  },
+  "DOS (Denial of Service)": {
+    "description": "An attack that attempts to block access to and use of a resource. It is a violation of availability. DOS (or DoS) attacks include flooding attacks, connection exhaustion and resource demand. A flooding attack sends massive amounts of network traffic to the target overloading the ability of network devices and servers to handle the raw load. Connection exhaustion repeatedly makes connection requests to a target to consume all system resources related to connections, which prevents any other connections from being established or maintained. A resource demand DoS repeatedly requests a resource from a server in order to keep it too busy to respond to other requests."
+  },
+  "drive-by download": {
+    "description": "A type of web-based attack that automatically occurs based on the simple act of visiting a malicious or compromised/poisoned Web site. A drive-by download is accomplished by taking advantage of the default nature of a Web browser to execute mobile code, most often JavaScript, with little to no security restrictions. A drive-by download can install tracking tools, remote access backdoors, botnet agents, keystroke loggers or other forms of malicious utilities. In most cases, the occurrence of the infection based on the drive-by download is unnoticed by the user/victim."
+  },
+  "eavesdropping": {
+    "description": "The act of listening in on a transaction, communication, data transfer or conversation. Eavesdropping can be used to refer to both data packet capture on a network link (also known as sniffing or packet capture) and to audio recording using a microphone (or listening with ears)."
+  },
+  "encode": {
+    "description": "The act which transforms plaintext or cleartext (i.e. the original form of normal standard data) into ciphertext (i.e. the unintelligible and seeming random form of data that is produced by the cryptographic function of encryption). Ciphertext is produced by a symmetric encryption algorithm when a data set is transformed by the encryption process using a selected key (i.e. to encrypt or encode). Ciphertext can converted back into its original form (i.e. plaintext) by performing the decryption process using the same symmetric encryption algorithm and the same key used during the encryption process (i.e. decrypt or decode)."
+  },
+  "encryption key": {
+    "description": "The secret number value used by a symmetric encryption algorithm to control the encryption and decryption process. A key is a number defined by its length in binary digits. Generally, the longer the key length, the more security (i.e. defense against confidentiality breaches) it provides. The length of the key also determines the key space, which is the range of values between the binary digits being all zeros and all ones from which the key can be selected."
+  },
+  "firewall": {
+    "description": "A security tool, which may be a hardware or software solution that is used to filter network traffic. A firewall is based on an implicit deny stance where all traffic is blocked by default. Rules, filters or ACLs can be defined to indicate which traffic is allowed to cross the firewall. Advanced firewalls can make allow/deny decisions based on user authentication, protocol, header values and even payload contents."
+  },
+  "hacker": {
+    "description": "A person who has knowledge and skill in analyzing program code or a computer system, modifying its functions or operations and altering its abilities and capabilities. A hacker may be ethical and authorized (the original definition) or may be malicious and unauthorized (the altered but current use of the term). Hackers can range from professionals who are skilled programmers to those who have little to no knowledge of the specifics of a system or exploit but who can follow directions; in this instance, they are called script kiddies."
+  },
+  "hacktivism": {
+    "description": "Attackers who hack for a cause or belief rather than some form of personal gain. Hacktivism is often viewed by attackers as a form of protest or fighting for their perceived “right” or “justice.” However, it is still an illegal action in most cases when the victim’s technology or data is abused, harmed or destroyed."
+  },
+  "honeypot": {
+    "description": "A trap or decoy for attackers. A honeypot is used to distract attackers in order to prevent them from attacking actual production systems. It is a false system that is configured to look and function as a production system and is positioned where it would be encountered by an unauthorized entity who is seeking out a connection or attack point. A honeypot may contain false data in order to trick attackers into spending considerable time and effort attacking and exploiting the false system. A honeypot may also be able to discover new attacks or the identity of the attackers."
+  },
+  "IaaS (Infrastructure-as-a-Service)": {
+    "description": "A type of cloud computing service where the provider offers the customer the ability to craft virtual networks within their computing environment. An IaaS solution enables a customer to select which operating systems to install into virtual machines/nodes as well as the structure of the network including use of virtual switches, routers and firewalls. It also provides complete freedom as to the software or custom code run on the virtual machines. An IaaS solution is the most flexible of all the cloud computing services; it allows for significant reduction in hardware by the customer in their own local facility. It is the most expensive form of cloud computing service."
+  },
+  "identity cloning": {
+    "description": "A form of identity theft in which the attacker takes on the identity of a victim and then attempts to live and act as the stolen identity. Identity cloning is often performed in order to hide the birth country or a criminal record of the attacker in order to obtain a job, credit or other secured financial instrument."
+  },
+  "identity fraud": {
+    "description": "A form of identity theft in which a transaction, typically financial, is performed using the stolen identity of another individual. The fraud is due to the attacker impersonating someone else."
+  },
+  "IDS (Intrusion Detection System)": {
+    "description": "A security tool that attempts to detect the presence of intruders or the occurrence of security violations in order to notify administrators, enable more detailed or focused logging or even trigger a response such as disconnecting a session or blocking an IP address. An IDS is considered a more passive security tool as it detects compromises after they are already occurring rather than preventing them from becoming successful."
+  },
+  "information security policy": {
+    "description": "A written account of the security strategy and goals of an organization. A security policy is usually comprised of standards, policies (or SOPs – Standard Operating Procedures) and guidelines. All hardware, software, facilities and personnel must abide by the terms of the security policy of an organization. (Also known as security policy.)"
+  },
+  "insider threat": {
+    "description": "The likelihood or potential that an employee or another form of internal personnel may pose a risk to the stability or security of an organization. An insider has both physical access and logical access (through their network logon credentials). These are the two types of access that an outside attacker must first gain before launching malicious attacks whereas an insider already has both of these forms of access. Thus, an insider is potentially a bigger risk than an outsider if that insider goes rogue or is tricked into causing harm."
+  },
+  "IPS (Intrusion Prevention System)": {
+    "description": "A security tool that attempts to detect the attempt to compromise the security of a target and then prevent that attack from becoming successful. An IPS is considered a more active security tool as it attempts to proactively respond to potential threats. An IPS can block IP addresses, turn off services, block ports and disconnect sessions as well as notify administrators."
+  },
+  "ISP (Internet Service Provider)": {
+    "description": "The organization that provides connectivity to the Internet for individuals or companies. Some ISPs offer additional services above that of just connectivity such as e-mail, web hosting and domain registration."
+  },
+  "JBOH (JavaScript-Binding-Over-HTTP)": {
+    "description": "A form of Android-focused mobile device attack that enables an attacker to be able to initiate the execution of arbitrary code on a compromised device. A JBOH attack often takes place or is facilitated through compromised or malicious apps."
+  },
+  "keylogger": {
+    "description": "Any means by which the keystrokes of a victim are recorded as they are typed into the physical keyboard. A keylogger can be a software solution or a hardware device used to capture anything that a user might type in including passwords, answers to secret questions or details and information form e-mails, chats and documents."
+  },
+  "LAN (Local Area Network)": {
+    "description": "An interconnection of devices (i.e. a network) that is contained within a limited geographic area (typically a single building). For a typical LAN, all of the network cables or interconnection media is owned and controlled by the organization unlike a WAN (Wide Area Network) where the interconnection media is owned by a third party."
+  },
+  "link jacking": {
+    "description": "A potentially unethical practice of redirecting a link to a middle-man or aggregator site or location rather than the original site the link seemed to indicate it was directed towards. For example, a news aggregation service may publish links that seem as if they point to the original source of their posted articles, but when a user discovers those links via search or through social networks, the links redirect back to the aggregation site and not the original source of the article."
+  },
+  "malware (malicious software)": {
+    "description": "Any code written for the specific purpose of causing harm, disclosing information or otherwise violating the security or stability of a system. Malware includes a wide range of types of malicious programs including: virus, worm, Trojan horse, logic bomb, backdoor, Remote Access Trojan (RAT), rootkit, ransomware and spyware/adware."
+  },
+  "outsider threat": {
+    "description": "The likelihood or potential that an outside entity, such as an ex-employee, competitor or even an unhappy customer, may pose a risk to the stability or security of an organization. An outsider must often gain logical or physical access to the target before launching malicious attacks."
+  },
+  "outsourcing": {
+    "description": "The action of obtaining services from an external entity. Rather than performing certain tasks and internal functions, outsourcing enables an organization to take advantages of external entities that can provide services for a fee. Outsourcing is often used to obtain best-of-breed level service rather than settling for good-enough internal operations. It can be expensive and increases an organization's security risk due to the exposure of internal information and data to outsiders."
+  },
+  "OWASP (Open Web Application Security Project)": {
+    "description": "An Internet community focused on understanding web technologies and exploitations. Their goal is to help anyone with a website improve the security of their site through defensive programming, design and configuration. Their approach includes understanding attacks in order to know how to defend against them. OWASP offers numerous tools and utilities related to website vulnerability evaluation and discovery as well as a significant amount of training and reference material related to all things web security."
+  },
+  "PaaS (Platform-as-a-Service)": {
+    "description": "A type of cloud computing service where the provider offers the customer the ability to operate custom code or applications. A PaaS operator determines which operating systems or execution environments are offered. A PaaS system does not allow the customer to change operating systems, patch the OS or alter the virtual network space. A PaaS system allows the customer to reduce hardware deployment in their own local facility and to take advantage of on-demand computing (also known as pay as you go)."
+  },
+  "packet sniffing": {
+    "description": "The act of collecting frames or packets off of a data network communication. This activity allows the evaluation of the header contents as well as the payload of network communications. Packet sniffing requires that the network interface card be placed into promiscuous mode in order to disable the MAC (Media Access Control) address filter which would otherwise discard any network communications not intended for the specific local network interface. (Also known as sniffing or eavesdropping.)"
+  },
+  "patch": {
+    "description": "An update or change or an operating system or application. A patch is often used to repair flaws or bugs in deployed code as well as introduce new features and capabilities. It is good security practice to test all updates and patches before implementation and attempt to stay current on patches in order to have the latest version of code that has the fewest known flaws and vulnerabilities."
+  },
+  "patch management": {
+    "description": "The management activity related to researching, testing, approving and installing updates and patches to computer systems, which includes firmware, operating systems and applications. A patch is an update, correction, improvement or expansion of an existing software product through the application of new code issued by the vendor. Patch management is an essential part of security management in order to prevent downtime, minimize vulnerabilities and prevent new untested updates from interfering with productivity."
+  },
+  "payment card skimmers": {
+    "description": "A malicious device used to read the contents of an ATM, debit or credit card when inserted into a POS (Point of Sale) payment system. A skimmer may be an internal component or an external addition. An attacker will attempt to use whatever means to imbed their skimmer into a payment system that will have the highest likelihood of not being detected and thus gather the most amount of financial information from victims. (See POS intrusions.)"
+  },
+  "pen testing": {
+    "description": "A means of security evaluation where automated tools and manual exploitations are performed by security and attack experts. This is an advanced form of security assessment that should only be used by environments with a mature security infrastructure. A penetration test will use the same tools, techniques and methodologies as criminal hackers, and thus, it can cause downtime and system damage. However, such evaluations can assist with securing a network by discovering flaws that are not visible to automated tools based on human (i.e. social engineering) or physical attack concepts. (Also known as penetration testing or ethical hacking.)"
+  },
+  "phishing": {
+    "description": "A social engineering attack that attempts to collect information from victims. Phishing attacks can take place over e-mail, text messages, through social networks or via smart phone apps. The goal of a phishing attack may be to learn logon credentials, credit card information, system configuration details or other company, network, computer or personal identity information. Phishing attacks are often successful because they mimic legitimate communications from trusted entities or groups such as false emails from a bank or a retail website."
+  },
+  "PKI (Public Key Infrastructure)": {
+    "description": "A security framework (i.e. a recipe) for using cryptographic concepts in support of secure communications, storage and job tasks. A PKI solution is a combination of symmetric encryption, asymmetric encryption, hashing and digital certificate-based authentication."
+  },
+  "POS (Point of Sale) intrusions": {
+    "description": "An attack that gains access to the POS (Point of Sale) devices at a retail outlet enabling an attacker to learn payment card information as well as other customer details. POS intrusions can occur against a traditional brick-and-mortar retail location as well as any online retail websites. (See payment card skimmers.)"
+  },
+  "ransomware": {
+    "description": "A form of malware that holds a victim's data hostage on their computer typically through robust encryption. This is followed by a demand for payment in the form of Bitcoin (an untraceable digital currency) in order to release control of the captured data back to the user."
+  },
+  "restore": {
+    "description": "The process of returning a system back to a state of normalcy. A restore or restoration process may involve formatting the main storage device before re-installing the operating system and applications as well as copying data from backups onto the reconstituted system."
+  },
+  "risk assessment": {
+    "description": "The process of evaluating the state of risk of an organization. Risk assessment is often initiated through taking an inventory of all assets, assigning each asset a value, and then considering any potential threats against each asset. Threats are evaluated for their exposure factor (EF) (i.e. the amount of loss that would be caused by the threat causing harm) and frequency of occurrence (i.e. ARO—Annualized Rate of Occurrence) in order to calculate a relative risk value known as the ALE (Annualized Loss Expectancy). The largest ALE indicates the biggest concern or risk for the organization."
+  },
+  "risk management": {
+    "description": "The process of performing a risk assessment and evaluating the responses to risk in order to mitigate or otherwise handle the identified risks. Countermeasures, safeguards or security controls are to be selected that may eliminate or reduce risk, assign or transfer risk to others (i.e. outsourcing or buying insurance) or avoid and deter risk. The goal is to reduce risk down to an acceptable or tolerable level."
+  },
+  "SaaS (Software-as-a-Service)": {
+    "description": "A type of cloud computing service where the provider offers the customer the ability to use a provided application. Examples of a SaaS include online e-mail services or online document editing systems. A user of a SaaS solution is only able to use the offered application and make minor configuration tweaks. The SaaS provider is responsible for maintaining the application."
+  },
+  "sandboxing": {
+    "description": "A means of isolating applications, code or entire operating systems in order to perform testing or evaluation. The sandbox limits the actions and resources available to the constrained item. This allows for the isolated item to be used for evaluation while preventing any harm or damage to be caused to the host system or related data or storage devices."
+  },
+  "SCADA (Supervisory Control and Data Acquisition)": {
+    "description": "A complex mechanism used to gather data and physical world metrics as well as perform measurement or management actions of the monitored systems for the purposes of automatic large complex real-world processes such as oil refining, nuclear power generation or water filtration. SCADA can provide automated control over very large complex systems whether concentrated in a single physical location or spread across long distances."
+  },
+  "security control": {
+    "description": "Anything used as part of a security response strategy which addresses a threat in order to reduce risk. (Also known as countermeasure or safeguard.)"
+  },
+  "security perimeter": {
+    "description": "The boundary of a network or private environment where specific security policies and rules are enforced. The systems and users within the security boundary are forced into compliance with local security rules while anything outside is not under such restrictions. The security perimeter prevents any interactions between outside entities and internal entities that might violate or threaten the security of the internal systems."
+  },
+  "SIEM (Security Information and Event Management)": {
+    "description": "A formal process by which the security of an organization is monitored and evaluated on a constant basis. SIEM helps to automatically identify systems that are out of compliance with the security policy as well as to notify the IRT (Incident Response Team) of any security violating events."
+  },
+  "sniffing": {
+    "description": "See packet sniffing and eavesdropping."
+  },
+  "social engineering": {
+    "description": "An attack focusing on people rather than technology. This type of attack is psychological and aims to either gain access to information or to a logical or physical environment. A social engineering attack may be used to gain access to a facility by tricking a worker into assisting by holding the door when making a delivery, gaining access into a network by tricking a user into revealing their account credentials to the false technical support staff or gaining copies of data files by encouraging a worker to cut-and-paste confidential materials into an e-mail or social networking post."
+  },
+  "SPAM": {
+    "description": "A form of unwanted or unsolicited messages or communications typically received via e-mail but also occurring through text messaging, social networks or VoIP. Most SPAM is advertising, but some may include malicious code, malicious hyperlinks or malicious attachments."
+  },
+  "spear phishing": {
+    "description": "A form of social engineering attack that is targeted to victims who have an existing digital relationship with an online entity such as a bank or retail website. A spear phishing message is often an e-mail although there are also text message and VoIP spear phishing attacks as well, which looks exactly like a legitimate communication from a trusted entity. The attack tricks the victim into clicking on a hyperlink to visit a company website only to be re-directed to a false version of the website operated by attackers. The false website will often look and operate similarly to the legitimate site and focus on having the victim provide their logon credentials and potentially other personal identity information such as answers to their security questions, an account number, their social security number, mailing address, email address and/or phone number. The goal of a spear phishing attack is to steal identity information for the purpose of account takeover or identity theft."
+  },
+  "spoof (spoofing)": {
+    "description": "The act of falsifying the identity of the source of a communication or interaction. It is possible to spoof IP address, MAC address and email address."
+  },
+  "spyware": {
+    "description": "A form of malware that monitors user activities and reports them to an external their party. Spyware can be legitimate in that it is operated by an advertising and marketing agency for the purpose of gathering customer demographics. However, spyware can also be operated by attackers using the data gathering tool to steal an identity or learn enough about a victim to harm them in other ways."
+  },
+  "supply chain": {
+    "description": "The path of linked organizations involved in the process of transforming original or raw materials into a finished product that is delivered to a customer. An interruption of the supply chain can cause a termination of the production of the final product immediately or this effect might not be noticed until the materials already in transit across the supply chain are exhausted."
+  },
+  "threat assessment": {
+    "description": "The process of evaluating the actions, events and behaviors that can cause harm to an asset or organization. Threat assessment is an element of risk assessment and management. (Also known as threat modeling and threat inventory.)"
+  },
+  "Trojan Horse (Trojan)": {
+    "description": "A form of malware where a malicious payload is imbedded inside of a benign host file. The victim is tricked into believing that the only file being retrieved is the viewable benign host. However, when the victim uses the host file, the malicious payload is automatically deposited onto their computer system."
+  },
+  "two-factor authentication": {
+    "description": "The means of proving identity using two authentication factors usually considered stronger than any single factor authentication. A form of multi-factor authentication. Valid factors for authentication include Type 1: Something you know such as passwords and PINs; Type 2: Something you have such as smart cards or OTP (One Time Password) devices; and Type 3: Someone you are such as fingerprints or retina scans (aka biometrics)."
+  },
+  "two-step authentication": {
+    "description": "A means of authentication commonly employed on websites as an improvement over single factor authentication but not as robust as two-factor authentication. This form of authentication requires the visitor provide their username (i.e. claim an identity) and password (i.e. the single factor authentication) before performing an additional step. The additional step could be receiving a text message with a code, then typing that code back into the website for confirmation. Alternatives include receiving an e-mail and needing to click on a link in the message for confirmation, or viewing a pre-selected image and statement before typing in another password or PIN. Two-step is not as secure as two-factor because the system provides one of the factors to the user at the time of logon rather than requiring that the user provide both."
+  },
+  "unauthorized access": {
+    "description": "Any access or use of a computer system, network or resource which is in violation of the company security policy or when the person or user was not explicitly granted authorization to access or use the resource or system."
+  },
+  "VPN (Virtual Private Network)": {
+    "description": "A communication link between systems or networks that is typically encrypted in order to provide a secured, private, isolate pathway of communications."
+  },
+  "virus": {
+    "description": "A form of malware that often attaches itself to a host file or the MBR (Master Boot Record) as a parasite. When the host file or MBR is accessed, it activates the virus enabling it to infect other objects. Most viruses spread through human activity within and between computers. A virus is typically designed to damage or destroy data, but different viruses implement their attack at different rates, speeds or targets. For example, some viruses attempt to destroy files on a computer as quickly as possible while others may do so slowly over hours or days. Others might only target images or Word documents (.doc/.docx)."
+  },
+  "vishing": {
+    "description": "A form of phishing attack which takes place over VoIP. In this attack, the attacker uses VoIP systems to be able to call any phone number with no toll-charge expense. The attacker often falsifies their caller-ID in order to trick the victim into believing they are receiving a phone call from a legitimate or trustworthy source such as a bank, retail outlet, law enforcement or charity. The victims do not need to be using VoIP themselves in order to be attacked over their phone system by a vishing attack. (See phishing.)"
+  },
+  "vulnerability": {
+    "description": "Any weakness in an asset or security protection which would allow for a threat to cause harm. It may be a flaw in coding, a mistake in configuration, a limitation of scope or capability, an error in architecture, design, or logic or a clever abuse of valid systems and their functions."
+  },
+  "whitelist": {
+    "description": "A security mechanism prohibiting the execution of any program that is not on a pre-approved list of software. The whitelist is often a list of the file name, path, file size and hash value of the approved software. Any code that is not on the list, whether benign or malicious, will not be able to execute on the protected system. (See blacklist.)"
+  },
+  "Wi-Fi": {
+    "description": "A means to support network communication using radio waves rather than cables. The current Wi-Fi or wireless networking technologies are based on the IEE 802.11 standard and its numerous amendments, which address speed, frequency, authentication and encryption."
+  },
+  "worm": {
+    "description": "A form of malware that focuses on replication and distribution. A worm is a self-contained malicious program that attempts to duplicate itself and spread to other systems. Generally, the damage caused by a worm is indirect and due to the worm's replication and distribution activities consuming all system resources. A worm can be used to deposit other forms of malware on each system it encounters."
+  },
+  "zombie": {
+    "description": "A term related to the malicious concept of a botnet. The term zombie can be used to refer to the system that is host to the malware agent of the botnet or to the malware agent itself. If the former, the zombie is the system that is blinding performing tasks based on instructions from an external and remote hacker. If the latter, the zombie is the tool that is performing malicious actions such as DoS flooding, SPAM transmission, eavesdropping on VoIP calls or falsifying DNS resolutions as one member of a botnet."
+  }
+}
