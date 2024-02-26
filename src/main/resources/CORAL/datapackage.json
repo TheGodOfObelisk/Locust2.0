@@ -1,0 +1,475 @@
+{
+  "bytes": 2364373,
+  "datahub": {
+    "created": "2018-12-09T15:33:58.704211",
+    "findability": "published",
+    "flowid": "0c4d8c8ea57a4e72db85932d6ba7c298/coralcorpus/7",
+    "modified": "2018-12-10T17:05:34.946253",
+    "owner": "albaizq13",
+    "ownerid": "0c4d8c8ea57a4e72db85932d6ba7c298"
+  },
+  "hash": "793645f18012dfc744a19bcd3b421d6f",
+  "id": "0c4d8c8ea57a4e72db85932d6ba7c298/coralcorpus",
+  "licenses": [
+    {
+      "name": "CC-BY",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    }
+  ],
+  "name": "coralcorpus",
+  "resources": [
+    {
+      "bytes": 991134,
+      "datahub": {
+        "type": "original"
+      },
+      "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/ef7a1777210a660dcbccc9870078cf5e.zip",
+      "encoding": "windows-1252",
+      "format": "zip",
+      "mediatype": "application/zip",
+      "name": "html",
+      "path": "archive/html.zip",
+      "pathType": "local",
+      "profile": "data-resource"
+    },
+    {
+      "bytes": 2355,
+      "datahub": {
+        "type": "original"
+      },
+      "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/012d12857a42a94d1988b1241596682b.rdf",
+      "encoding": "ISO-8859-1",
+      "format": "rdf",
+      "mediatype": "application/rdf+xml",
+      "name": "vocabularydescription",
+      "path": "archive/vocabularydescription.rdf",
+      "pathType": "local",
+      "profile": "data-resource"
+    },
+    {
+      "bytes": 485930,
+      "datahub": {
+        "type": "original"
+      },
+      "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/a5f805a7df2c78dad39cc44e2cb3e829.ttl",
+      "encoding": "UTF-8",
+      "format": "ttl",
+      "mediatype": "text/turtle",
+      "name": "annotatedrequirements",
+      "path": "archive/annotatedrequirements.ttl",
+      "pathType": "local",
+      "profile": "data-resource"
+    },
+    {
+      "bytes": 205407,
+      "datahub": {
+        "type": "original"
+      },
+      "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/5d7ac1d6ff9369a3f8884b80cf1b8620.ttl",
+      "encoding": "UTF-8",
+      "format": "ttl",
+      "mediatype": "text/turtle",
+      "name": "dictionaryofpatterns",
+      "path": "archive/dictionaryofpatterns.ttl",
+      "pathType": "local",
+      "profile": "data-resource"
+    },
+    {
+      "bytes": 126954,
+      "datahub": {
+        "type": "original"
+      },
+      "dialect": {
+        "delimiter": ";",
+        "quoteChar": "\""
+      },
+      "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/1e8b209c6581e935a1093e50cbeec0bd.csv",
+      "encoding": "windows-1252",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "annotatedrequirementscsv_original",
+      "path": "archive/annotatedrequirementscsv.csv",
+      "pathType": "local",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "format": "default",
+            "name": "Identifier",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Competency questions/ Natural language sentence (fact)",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Answer",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "LSP associated",
+            "type": "string"
+          },
+          {
+            "format": "uri",
+            "name": "Ontology",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 56005,
+      "datahub": {
+        "type": "original"
+      },
+      "dialect": {
+        "delimiter": ";",
+        "quoteChar": "\""
+      },
+      "dpp:streamedFrom": "https://s3.amazonaws.com/rawstore.datahub.io/85744ad8bd9c5fab4383ecfc7eb95e34.csv",
+      "encoding": "ISO-8859-1",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "dictionaryofpatternscsv_original",
+      "path": "archive/dictionaryofpatternscsv.csv",
+      "pathType": "local",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "format": "default",
+            "name": "ID",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "NeOn ODP",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Formalization",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Example",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "OWL constructs",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Expressivity",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "bytes": 2115,
+      "datahub": {
+        "type": "derived/report"
+      },
+      "description": "Validation report for tabular data",
+      "dpp:streamedFrom": "/tmp/tmpkw3p_ev8/0c4d8c8ea57a4e72db85932d6ba7c298/coralcorpus/validation_report/data/7be38839cd7077e8a476dfce10c58536/validation_report.json",
+      "format": "json",
+      "hash": "7be38839cd7077e8a476dfce10c58536",
+      "name": "validation_report",
+      "path": "data/validation_report.json",
+      "profile": "data-resource"
+    },
+    {
+      "bytes": 127442,
+      "datahub": {
+        "derivedFrom": [
+          "annotatedrequirementscsv"
+        ],
+        "type": "derived/csv"
+      },
+      "delimiter": ";",
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpkw3p_ev8/0c4d8c8ea57a4e72db85932d6ba7c298/coralcorpus/annotatedrequirementscsv_csv/data/b2d98417a2ed5878013cb9fb18d9e3ee/annotatedrequirementscsv_csv.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "b2d98417a2ed5878013cb9fb18d9e3ee",
+      "mediatype": "text/csv",
+      "name": "annotatedrequirementscsv_csv",
+      "path": "data/annotatedrequirementscsv_csv.csv",
+      "pathType": "local",
+      "profile": "data-resource",
+      "quotechar": "\"",
+      "rowcount": 838,
+      "schema": {
+        "fields": [
+          {
+            "format": "default",
+            "name": "Identifier",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Competency questions/ Natural language sentence (fact)",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Answer",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "LSP associated",
+            "type": "string"
+          },
+          {
+            "format": "uri",
+            "name": "Ontology",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      },
+      "signed": true
+    },
+    {
+      "bytes": 56186,
+      "datahub": {
+        "derivedFrom": [
+          "dictionaryofpatternscsv"
+        ],
+        "type": "derived/csv"
+      },
+      "delimiter": ";",
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpkw3p_ev8/0c4d8c8ea57a4e72db85932d6ba7c298/coralcorpus/dictionaryofpatternscsv_csv/data/7f5435bc05d3ea2c4dfb053e696294ab/dictionaryofpatternscsv_csv.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "7f5435bc05d3ea2c4dfb053e696294ab",
+      "mediatype": "text/csv",
+      "name": "dictionaryofpatternscsv_csv",
+      "path": "data/dictionaryofpatternscsv_csv.csv",
+      "pathType": "local",
+      "profile": "data-resource",
+      "quotechar": "\"",
+      "rowcount": 187,
+      "schema": {
+        "fields": [
+          {
+            "format": "default",
+            "name": "ID",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "NeOn ODP",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Formalization",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Example",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "OWL constructs",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Expressivity",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      },
+      "signed": true
+    },
+    {
+      "bytes": 234682,
+      "datahub": {
+        "derivedFrom": [
+          "annotatedrequirementscsv"
+        ],
+        "type": "derived/json"
+      },
+      "delimiter": ";",
+      "dialect": {
+        "delimiter": ";",
+        "quoteChar": "\""
+      },
+      "dpp:streamedFrom": "/tmp/tmpkw3p_ev8/0c4d8c8ea57a4e72db85932d6ba7c298/coralcorpus/annotatedrequirementscsv_json/data/357e7206a567fc9fc45e2268501eab57/annotatedrequirementscsv_json.json",
+      "encoding": "utf-8",
+      "format": "json",
+      "hash": "357e7206a567fc9fc45e2268501eab57",
+      "mediatype": "text/csv",
+      "name": "annotatedrequirementscsv_json",
+      "path": "data/annotatedrequirementscsv_json.json",
+      "pathType": "local",
+      "profile": "data-resource",
+      "quotechar": "\"",
+      "rowcount": 838,
+      "schema": {
+        "fields": [
+          {
+            "format": "default",
+            "name": "Identifier",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Competency questions/ Natural language sentence (fact)",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Answer",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "LSP associated",
+            "type": "string"
+          },
+          {
+            "format": "uri",
+            "name": "Ontology",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      },
+      "signed": true
+    },
+    {
+      "bytes": 75835,
+      "datahub": {
+        "derivedFrom": [
+          "dictionaryofpatternscsv"
+        ],
+        "type": "derived/json"
+      },
+      "delimiter": ";",
+      "dialect": {
+        "delimiter": ";",
+        "quoteChar": "\""
+      },
+      "dpp:streamedFrom": "/tmp/tmpkw3p_ev8/0c4d8c8ea57a4e72db85932d6ba7c298/coralcorpus/dictionaryofpatternscsv_json/data/608fd462399001332afbb8c0d933447a/dictionaryofpatternscsv_json.json",
+      "encoding": "utf-8",
+      "format": "json",
+      "hash": "608fd462399001332afbb8c0d933447a",
+      "mediatype": "text/csv",
+      "name": "dictionaryofpatternscsv_json",
+      "path": "data/dictionaryofpatternscsv_json.json",
+      "pathType": "local",
+      "profile": "data-resource",
+      "quotechar": "\"",
+      "rowcount": 187,
+      "schema": {
+        "fields": [
+          {
+            "format": "default",
+            "name": "ID",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "NeOn ODP",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Formalization",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Example",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "OWL constructs",
+            "type": "string"
+          },
+          {
+            "format": "default",
+            "name": "Expressivity",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      },
+      "signed": true
+    },
+    {
+      "bytes": 328,
+      "dpp:streamedFrom": "/tmp/tmp0_d1_t3t/README.md",
+      "format": "md",
+      "name": "readme",
+      "path": "README.md"
+    }
+  ],
+  "sources": [
+    {
+      "name": "CORAL corpus",
+      "path": "http://coralcorpus.linkeddata.es/",
+      "title": "CORAL"
+    }
+  ],
+  "title": "Coralcorpus"
+}

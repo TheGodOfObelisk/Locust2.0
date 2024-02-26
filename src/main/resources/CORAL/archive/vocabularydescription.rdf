@@ -1,0 +1,46 @@
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix wv: <http://vocab.org/waiver/terms/norms> .        
+@prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+
+:Patterns a dcat:Dataset;
+    dcterms:title "CORAL";
+    dcterms:description "CORAL (Corpus of Ontological Requirements Annotated with Lexico-syntactic patterns) is a corpus of ontological requirements annotated with their corresponding lexico-syntactic patterns. This document includes two resources: (1) the dictionary of lexico-syntactic patterns, together with their associated description, ontology design pattern and possible implementation, and (2) the corpus of annotated requirements, which is annotated using the dictionary of lexico-syntactic patterns";
+    dcterms:contributor "Alba Fernandez Izquierdo";
+    dcterms:contributor <http://w3id.org/people/mpoveda>;
+    dcterms:contributor <http://www.garcia-castro.com/foaf.rdf#me>;
+    dcterms:created "2018-12-08"^^xsd:date ;
+    dcterms:modified "2018-12-10"^^xsd:date;
+    dcterms:language <http://id.loc.gov/vocabulary/iso639-1/en>  ;
+    dcat:keyword "patterns", "lexico-syntactic patterns", "requirements", "ontology";
+    dcat:distribution :dataset-coral-csv ;
+    dcat:distribution :dataset-coral-html ;
+    dcat:distribution :dataset-coral-rdf ;
+
+
+:dataset-coral-csv
+       a dcat:Distribution ;
+       dcat:downloadURL <https://doi.org/10.5281/zenodo.1967306> ;
+       dcterms:title "CSV distribution of CORAL corpus" ;
+       dcterms:license
+       dcat:mediaType "text/csv" ;
+       .
+:dataset-coral-html
+       a dcat:Distribution ;
+       dcat:downloadURL <https://doi.org/10.5281/zenodo.1967306> ;
+       dcterms:title "HTML distribution of CORAL corpus" ;
+       dcat:mediaType "html" ;
+       .
+
+:dataset-coral-rdf
+       a dcat:Distribution ;
+       dcat:downloadURL <https://doi.org/10.5281/zenodo.1967306> ;
+       dcterms:title "RDF distribution of CORAL corpus" ;
+       dcat:mediaType "TURTLE" ;
+       .
