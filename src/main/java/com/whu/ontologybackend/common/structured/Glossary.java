@@ -4,6 +4,8 @@ public class Glossary {
     private String word;
     private String description;
 
+    // label can be (i) class; (ii) data property; (iii) object property; (iv) unknown, etc.
+    // add more cases if necessary
     private String label;
 
     public String getWord() {

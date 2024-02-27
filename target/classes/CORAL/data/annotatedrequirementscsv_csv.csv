@@ -1,0 +1,846 @@
+Identifier,Competency questions/ Natural language sentence (fact),Answer,LSP associated,Ontology
+req01,Which is the height of peak x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req02,Which are the geometries and maximum levels of the Curvas de Nivel Maestra of bathymetric type?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req03,Which is the name and geometry of the primary interest mountain range?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req04,Which are the rivers of tertiary interest at ground level?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req05,Which are the names and geometry of the major canals at ground level?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req06,Which are the permanent regime lagoons?,,LSP-CD-EN,https://datos.ign.es/def/btn100#
+req07,Which is the geometry of the wetlands of rambla type?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req08,Which are the names of the seas that surround the Spanish territory?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req09,Which capitals from the population center has a population density higher than x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req10,Which are the names and geometry of the population center that has a population density higher than x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req11,What are the name of disseminated places that are not capitals of municipality?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req12,What are the name of  superficial disseminated places that are  capitals of municipality?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req13,Which are the names of the free access motorways?,,LSP-OP-DP-PW-EN,https://datos.ign.es/def/btn100#
+req14,Which are the names of the national highway which belong to the european highway network?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req15,Which are the names of the national highway which do not belong to the european highway network?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req16,"Which are the names and geometry of the itinerary which belong to the ""Camino de Santiago""?",,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req17,Which are the FFCC stations that are stopping places and whcih are the FFCC stations that have passenger traffic?,,LSP-INST-SC-EN,https://datos.ign.es/def/btn100#
+req17,Which are the FFCC stations that are stopping places and whcih are the FFCC stations that have passenger traffic?,,LSP-OP-DP-PW-EN,https://datos.ign.es/def/btn100#
+req18,Which are the geometries of the cable transport?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req19,Which are the sea ports that are not under state control?,,LSP-COMPL-EN,https://datos.ign.es/def/btn100#
+req20,Which are the heliport that are not under state control and do not belong to the trans-European transport network?,,LSP-COMPL-EN,https://datos.ign.es/def/btn100#
+req21,Which are the oil pipelines at ground level?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req22,Which are the low voltage electric lines?,,LSP-CD-EN,https://datos.ign.es/def/btn100#
+req23,Which are the nuclear power plants?,,LSP-CD-EN,https://datos.ign.es/def/btn100#
+req24,"Which are the names, altitudes and longitudes of the lower order geodesic vertex ?",,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req25,Which roads cross a municipality ?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req26,Which are the AVE lines that connect two towns?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req27,which is the optimum way between two population centers?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req28,Which are the towns though which the Camino the santiago passes?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req29,Which are the intial point and the end point of the road x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req30,Which are the intial point and the end point of the railway x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req31,Which are the places of interest in a town ?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req32,Which are the historic places in a town?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req33,Which churches are placed in a town?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req34,Which are the monuments of cultural interest in a town?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req35,Which places of interest are in a province?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req36,Which historic places are in a province?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req37,Which goods of cultural interest are in a province?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req38,Which places of interest are in a county?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req39,Which historic places are in a county?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req40,Which goods of cultural interest are in a county?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req41,Which beaches are placed in the province X?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req42,Which gas stations are placed in the municipality x?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req43,Which electrict lines passes through a municipality?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req44,Which municipalities are connected through the electric line x?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req45,Which hospital attend to a particular municipality?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req46,Which communication stations are in a particular municipality?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req47,Which mines are in a particular province?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req48,Which mines are within a particular distance in a particular municipality?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req49,What geodesic vertex are in a particular municipality?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req50,What REDNAP signals are in a municipality?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req51,Which is the altitude of the municipality x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req52,Which is the altitude of the peak or mountain x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req53,Which are the NP placed along th river x?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req54,Which are the cave type places of interest which are also good of cultural interest?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req55,Which are the good of cultural interest of the national park x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req56,Which are the railway stations of the province x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req57,Which are the airports of the autonomous region?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req58,Through which villages does the road x goes through ?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req59,Which are the National Parks?,,LSP-CD-EN,https://datos.ign.es/def/btn100#
+req60,Which are the natural places?,,LSP-CD-EN,https://datos.ign.es/def/btn100#
+req61,Which are the Special bird protection area?,,LSP-CD-EN,https://datos.ign.es/def/btn100#
+req62,Which river cross the National Park x?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req63,Which municiaplities are located inside the PN,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req64,Which roads cross the PN?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req65,How many and which are the surface water located inside thePN x?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req66,Which are the protected areas in Spain?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req67,Which are the tributaries on the right of the river x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req68,Where does the river X flows into?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req69,How many rivers flow into the sea or ocean zzz?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req70,What are the rivers which belong to municipality x?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req71,Through which autonomous community does the river x flow into ?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req72,Through which provinces does the river x flow into ?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req73,Through which municipalities does the river x flow into?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req74,Which town is adjacent to town X?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req75,Which municipality belongs to province X?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req76,Which municipality belongs to the autonomous community x?,,LSP-OP-EN,https://datos.ign.es/def/btn100#
+req77,What are the reservoirs of the river x?,,LSP-OP-DP-EN,https://datos.ign.es/def/btn100#
+req78,Zones are areas with spatial 3D volumes,,LSP-DC-SC-EN,http://www.w3id.org/bot#
+req79,Construction sites are areas with spatial 3D volumes,,LSP-DC-SC-EN,http://www.w3id.org/bot#
+req80,Buildings are areas with spatial 3D volumes,,LSP-DC-SC-EN,http://www.w3id.org/bot#
+req81,Storeys are areas with spatial 3D volumes,,LSP-DC-SC-EN,http://www.w3id.org/bot#
+req82,"Spaces are limited three-dimensional extent defined physically or notionally, and are areas with spatial 3D volumes",,LSP-CD-EN,http://www.w3id.org/bot#
+req82,"Spaces are limited three-dimensional extent defined physically or notionally, and are areas with spatial 3D volumes",,LSP-DC-SC-EN,http://www.w3id.org/bot#
+req83,Zones may contain other zones,,LSP-PW-CONS-COM-CE-EN,http://www.w3id.org/bot#
+req84,Construction sites may contain buildings,,LSP-PW-CONS-COM-CE-EN,http://www.w3id.org/bot#
+req85,Buildings may contain storeys,,LSP-PW-CONS-COM-CE-EN,http://www.w3id.org/bot#
+req86,Storeys may contain spaces,,LSP-PW-CONS-COM-CE-EN,http://www.w3id.org/bot#
+req87,"Spaces may be contained in storeys, buildings, and construction sites",,LSP-PW-CONS-COM-CE-EN,http://www.w3id.org/bot#
+req88,"Spaces may intersect different storeys, buildings, and construction sites",,LSP-OP-EN,http://www.w3id.org/bot#
+req89,A zone can be adjacent to another zone,,LSP-OP-EN,http://www.w3id.org/bot#
+req90,There are building elements,,LSP-CD-EN,http://www.w3id.org/bot#
+req91,Building elements may have sub elements,,LSP-OP-DP-PW-EN,http://www.w3id.org/bot#
+req92,"Zones may have elements, either contained in it, or adjacent to it",,LSP-OP-DP-PW-EN,http://www.w3id.org/bot#
+req93,A zone and an adjacent zone share an interface,,LSP-OP-EN,http://www.w3id.org/bot#
+req94,A zone and an adjacent element share an interface,,LSP-OP-EN,http://www.w3id.org/bot#
+req95,An element and an adjacent element share an interface,,LSP-OP-EN,http://www.w3id.org/bot#
+req96,What is the username of the player?,"Japskua, TheGuy47",LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req97,Who are the friends of the player?,"Ivanhoe444, Super1337",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req98,Who are the friends that play other games as well with this player?,"Japskua, C00LDud3",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req99,Who are the most active players in the game?,"Michael98, Justin Bieber",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req100,What are the achievements of my friends?,"Cool Guy,Mr. Guru",LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req101,Who does the player play with?,"Nobody, ArnoldTheHunkz",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req102,What are the achievements your friend has received?,"Guru, Kill’Em’All",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req103,What achievements does a game have?,"Unlock me!, You Rock",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req104,How many hours has this game been played in total?,50 000 hours,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req105,What are the types of achievements in this game?,"Skill­based, Veteran, Luck",LSP-INST-SC-EN,http://purl.org/net/VideoGameOntology#
+req106,What are the types of achievements a game can have?,"Skill­based, Veteran, Luck",LSP-INST-SC-EN,http://purl.org/net/VideoGameOntology#
+req107,What is the genre of the game?,"RPG, Adventure, Puzzle",LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req108,What items exist in a game?,"Magical Staff, Ferrari",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req109,Who is the creator of the game?,"Electronic Arts, Janne Parkkila",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req110,What is the release date of the game?,38486,LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req111,What are the games similar to this one?,"Hitman 1, Hitman 2, MassEffect 2",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req112,List all games of a certain Genre?,"NHL12, Fifa13, NBA10",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req113,What type is the item of?,Consumable Equipable,LSP-INST-SC-EN,http://purl.org/net/VideoGameOntology#
+req114,What abilities does an item have?,"Magic, Equipable, Damage­dealing",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req115,9. What is the fastest car in the game?,"Ferrari, Audi A8",LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req116,How much damage does a weapon deal?,"57, A lot",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req117,Who has the best kill count in the game?,Gamer47,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req118,Who are the top 3 players in the game?,1. Gamer47 ­ 2. MeMee ­ 3. MrUber,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req119,What games has the player played?,"“World of Warcraft”, “Final Fantasy VII”, “Clash of
+Clans”",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req120,What items does the player have?,"“Sword of Steel”, “Magic Potion”, “Mage’s Hat”",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req121,What achievements of a certain type does the player have?,"“Speedy Runner”, “Jumping Hero”, “Rolling Master”",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req122,What kind of games are owned by players that have certain achievement?,"NHL12, WoW, Space Invaders",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req123,What is the last game a player has played?,Hitman 2,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req124,How big percentage of players have a certain item in the game?,"23%, 87%",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req125,What are the most common genres played by players with a certain character class in a game?,"RPG, Sports, Simulators",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req126,What is the preferred weapon of players with a certain character class?,"Shuriken, Buster Sword, AK­47",LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req127,What type of weapon are players using who win mostly in the game?,"Ak­47, Longsword, Crossbow",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req128,When was the last time a certain player played this game?,36392,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req129,In how many games does the player have all the achievements?,"2, 0, 67",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req130,What is the favorite map of the player in the game?,"de_dust, cs_italy",LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req131,What is the most played map in a game?,RunRun,LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req132,What is the difficulty level the player uses in certain game genres?,Easy,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req133,How many times have I killed someone in a game?,4,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req134,How many goals did I score in FIFA 15?,0,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req135,What is the most common level in the game where players stop playing?,"Level 4, Level 7, Le Mans ­track",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req136,How big percentage of players have made a certain decision in the game?,"24%, 6%",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req137,How big percentage of players skip the cutscenes?,"0,99",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req138,How many players mute the game music?,"100%, 50 000",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req139,"After gaining an item in the game, how many players use it?","100, 5, None",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req140,How many times players have died in a level?,"50, 600 000",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req141,How big percentage of players use the item in question in other linked games?,"2%, 55%",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req142,"How many players have moved from game to another when they have seen a linked
+commercial?","40 000, 100 million",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req143,What is the first action done by the player after an event?,"Save game, Drink health
+potion, Change equipment",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req144,What is the location in map where the players die the most?,"X:47, Y:58, Z:60 [level
+coordinates]",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req145,What equipment does a player have in a game?,"Sword of Zelda, Dagger of Ice",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req146,What consumable items does a player have in game?,"Health Potion, Potion of Mana,
+Cookie",LSP-OP-DP-PW-EN,http://purl.org/net/VideoGameOntology#
+req147,What is the most used item in the game?,Baseball bat,LSP-OP-DP-EN,http://purl.org/net/VideoGameOntology#
+req148,What are the games where a player can use this item?,"Sam & Max, Space Quest",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req149,How many players have made in­app purchases?,"5 000, 8%",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req150,"How many players who have already spent money in this game, spend money again?","0,03",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req151,"What is the likelihood that a player who has purchased in­app purchase in one game, do
+so in the other one?","47%, 99%, 0.5%",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req152,"If a player is given free item in the game, how likely are they to make an in­app purchase?","0,85",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req153,What type of items are the most traded ones in the game’s marketplace?,"“Health potions”, “Consumable Items”, “Cute Cakes”",LSP-INST-SC-EN,http://purl.org/net/VideoGameOntology#
+req154,How much money an average player spends in in­app purchases?,"56 €, 98 USD",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req155,What time are most of the in­app purchases done?,"“Evening”, between 19­22 GMT",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req156,Where do the most paying customers live in?,"“London”, Singapore, Paris",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req157,How long does an average player spend in the game before making first in-­app purchase?,"1 hour, 87 minutes, 2 weeks",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req158,Where do the players live who have not made any in­-app purchases?,"“Brazil”, “South Europe”",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req159,Where do the players who have done the most in­-app purchases live?,"“Zimbabwe”, “Nairobi”, “South America”",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req160,How many players clicked an ingame advertisement?,50000,LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req161,How many players start the other game after seeing an advertisement?,"24, 600",LSP-OP-EN,http://purl.org/net/VideoGameOntology#
+req162,What is a thing in the web thing context?,"The abstract concept of a physical entity that can either be a real-world artieact, such as a device, or a virtual entity that represents physicality, such as a room or group of devices",LSP-CD-EN,http://iot.linkeddata.es/def/wot#
+req162,What is a thing in the web thing context?,"The abstract concept of a physical entity that can either be a real-world artieact, such as a device, or a virtual entity that represents physicality, such as a room or group of devices",LSP-SC-EN,http://iot.linkeddata.es/def/wot#
+req163,What is a servient?,The addressable application endpoint of a Thing that makes it interactive by providing a WoT Interface and means to execute application logic,LSP-CD-EN,http://iot.linkeddata.es/def/wot#
+req164,What is a repository?,"A registry for Thing Descriptions that provides a Web interface to register Thing Descriptions and look them up, for intance using SPARQL queries",LSP-CD-EN,http://iot.linkeddata.es/def/wot#
+req165,"Things in the WoT architecture are represented by servients,",,LSP-OP-EN,http://iot.linkeddata.es/def/wot#
+req166,Servient can represent virtual things as well.,,LSP-OP-EN,http://iot.linkeddata.es/def/wot#
+req167,"Servients are hosted anywhere, a smartphone, local gateway, or the cloud.",,LSP-OP-EN,http://iot.linkeddata.es/def/wot#
+req168,Servient communicate to each other through a WoT interface,,LSP-OP-EN,http://iot.linkeddata.es/def/wot#
+req169,Servient can have cliente or server roles or both.,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/wot#
+req170,Thing Descriptions can be registered in Td repositories.,,LSP-OP-EN,http://iot.linkeddata.es/def/wot#
+req171,What is a property?,"A property provides readable and/or writeable data that can be static (e.g., supported mode, rated output voltage, etc.) or dynamic (e.g., current fill level of water, minimum recorded temperature, etc.). (From wg documentation)",LSP-CD-EN,http://iot.linkeddata.es/def/wot#
+req172,What is an action?,"The Action interaction pattern targets changes or processes on a Thing that take a certain time to complete (i.e., actions cannot be applied instantaneously like property writes).",LSP-CD-EN,http://iot.linkeddata.es/def/wot#
+req173,What is an event?,The Event interaction pattern enables a mechanism to be notified by a Thing on a certain condition.,LSP-CD-EN,http://iot.linkeddata.es/def/wot#
+req174,A thing interaction can be available over different or multiple protocols,,LSP-OP-EN,http://iot.linkeddata.es/def/wot#
+req175,What is a protocol?,Any web protocol that is supported by WoT interfaces.,LSP-CD-EN,http://iot.linkeddata.es/def/wot#
+req176,Each thing has at least an interaction pattern,,LSP-OP-Min-EN,http://iot.linkeddata.es/def/wot#
+req177,An interaction pattern can have different endpoints,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/wot#
+req178,Each interaction pattern has its own attributes,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/wot#
+req179,Each interaction pattern has an endpoint,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/wot#
+req180,Each endpoints has minimun two attributes: URI and mediatype,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/wot#
+req181,Security is associated with things,,LSP-OP-EN,http://iot.linkeddata.es/def/wot#
+req182,An endpoint can be associated with a thing without determine the interaction patterns,,LSP-OP-EN,http://iot.linkeddata.es/def/wot#
+req183,Each interaction pattern has a name and a Web Resource address,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/wot#
+req184,An interaction has a type and attributes,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/wot#
+req185,Each interaction pattern can be readable or writable through an endpoint,,LSP-DP-EN,http://iot.linkeddata.es/def/wot#
+req186,A TED describes one or more web thing,,LSP-OP-Min-EN,http://iot.linkeddata.es/def/wot-mappings#
+req187,A TED refers to a service accesible in an URI,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req188,A Thing ecosystem describes relations between TEDs,,LSP-SYM-EN,http://iot.linkeddata.es/def/wot-mappings#
+req189,A thing description  can have access mappings defined,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req190,An access mapping defines the transformation to be carried out for a specific key,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req191,An access mapping can have many mappings defined,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req192,A mapping can transform keys to object properties or datatype properties.,,LSP-U-EN,http://iot.linkeddata.es/def/wot-mappings#
+req193,An object property mapping transforms keys to object properties,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req194,A datatype property mapping transforms keys to datatype properties,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req195,An object property mapping can have many target classes to be the type of the generated instances,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req196,A datatype property mapping can have many target (consistent) datatypes to be the datatype of the generated values,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req197,An object property mapping generate instances transforming values following the mappings defined in a another thing description.,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req198,A mapping might be needed to be executed befor another mapping,,LSP-OP-EN,http://iot.linkeddata.es/def/wot-mappings#
+req199,A mapping has a JSON path,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/wot-mappings#
+req200,An access mapping can be applied at most to one endpoint,,LSP-OP-Max-EN,http://iot.linkeddata.es/def/wot-mappings#
+req201,What is an IoT device?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req202,What is a partnership?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req203,What attributes has a partnership?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req204,Which are the relationships a partnership is involved in ?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req205,How many organizations can have a partnership?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req206,What is the relation between organization and devices?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req207,What is an IoT infrastructre?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req208,Who is the owner of a given device?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req209,A device has a unique identifier,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req210,Which attributes can have a device?,"A name, an avatar, group membership, etc.",LSP-DP-EN,http://iot.linkeddata.es/def/core#
+req211,What is a device profile?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req212,A device can have a status,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req213,A device can have a location,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req214,Which are the social relationships a device can be involved in?,ownership,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req215,Which roles are involved in a ownership relationship?,"devices, services and agents",LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req216,Which roles are involved in a partnership relationship?,organizations,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req217,What is a user?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req218,Who is a service provider?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req219,What are the parameters that has a service?,"owner, avatar, description, name",LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req220,What is a service logical name?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req221,Which devices are there?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req222,What are the devices of a given agent or organization?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req223,Which devices can I see?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req224,Which services can I see?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req225,What are the devices of a specific partner?,,LSP-OP-DP-EN,http://iot.linkeddata.es/def/core#
+req226,What are the services of a specific partner?,,LSP-OP-DP-EN,http://iot.linkeddata.es/def/core#
+req227,Which is the profile of a given device?,,LSP-OP-DP-EN,http://iot.linkeddata.es/def/core#
+req228,A device profile indicates the device name,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req229,A device profile indicates the device avatar,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req230,"A device profile indicates the type of device, e.g: sensor or actuator",,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req231,A device profile indicates the device vendor,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req232,A device profile indicates the device serial number,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req233,A service profile indicates the service name,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req234,A service profile indicates the service avatar,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req235,A service profile indicates the service owner,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req236,A service profile indicates the service provider,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req237,A service profile indicates the service description (in text),,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req238,A service profile indicates the service type,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req239,A partnership is established between organizations,,LSP-SYM-EN,http://iot.linkeddata.es/def/core#
+req240,A partnership is established between only 2 organizations,,LSP-SYM-EN,http://iot.linkeddata.es/def/core#
+req241,A neighbourhood is the group of partnerships you have,,LSP-DC-SC-EN,http://iot.linkeddata.es/def/core#
+req242,An organization has users,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req243,One of the users of an organization is the manager,,LSP-DC-SC-EN,http://iot.linkeddata.es/def/core#
+req244,Users has to belong to one organization,,LSP-OP-Exact-EN,http://iot.linkeddata.es/def/core#
+req245,All organizations have the same roles in a partnership,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req246,Users can have different roles in the organization,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req247,user can create a group of services/devices,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req248,The security can be set up at a group level,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req249,Authorization can be set up at the level of properties/actions,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req250,What is a building?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req251,Where is something located?,,LSP-LO-EN,http://iot.linkeddata.es/def/core#
+req252,Which devices measure temperature?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req253,Which devices measure CO2?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req254,Which devices measure noise?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req255,Which devices measure humidity?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req256,The IoT;User can be human (human user) or non;human (digital user),,LSP-SC-EN,http://iot.linkeddata.es/def/core#
+req257,Digital user consumes services,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req258,A human user interacts using applications,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req259,An application is a specialized form of service,,LSP-SC-EN,http://iot.linkeddata.es/def/core#
+req260,An Entity can be physical or virtual,,LSP-SC-Di-EC-EN,http://iot.linkeddata.es/def/core#
+req261,A physical entity is controlled by an actuator,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req262,A physical entity is monitored by a sensor,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req263,A physical entity may have one or more attached tag,,LSP-OP-Min-EN,http://iot.linkeddata.es/def/core#
+req264,A virtual entity represents a physical entity,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req265,Actuators and sensors are kinds of IoT device,,LSP-SC-EN,http://iot.linkeddata.es/def/core#
+req266,IoT devices interact through a network,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req267,IoT devices are connected with an IoT gateway,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req268,Data Stores hold data relating to IoT systems,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req269,An entity has an identifier,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req270,An entity can have more than one identifier,,LSP-OP-Min-EN,http://iot.linkeddata.es/def/core#
+req271,A network connects endpoints,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req272,A service exposes one or more endpoints by which it can be invoked,,LSP-OP-Min-EN,http://iot.linkeddata.es/def/core#
+req273,An IoT gateway is a digital entity,,LSP-SC-EN,http://iot.linkeddata.es/def/core#
+req274,IoT gateways interact through networks,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req275,IoT gateways expose endpoints,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req276,IoT gateways connect IoT devices,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req277,IoT gateways use data stores,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req278,IoT device interacts with one or more networks,,LSP-OP-Min-EN,http://iot.linkeddata.es/def/core#
+req279,IoT device exposes one or more endpoints,,LSP-OP-Min-EN,http://iot.linkeddata.es/def/core#
+req280,A service interacts with other entities via one or more networks,,LSP-Min-and-OP-EN,http://iot.linkeddata.es/def/core#
+req281,A service interacts with zero or more IoT gateways,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req282,A service interacts with zero or more IoT devices,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req283,A service can interact with other services,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req284,A service can use data stores,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req285,A virtual entity interacts through an endpoint,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req286,Everything in an IoT system is a kind of entity,,LSP-SC-EN,http://iot.linkeddata.es/def/core#
+req287,"Data associated with services, devices and gateways can be held in data stores",,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req288,Human users uses applications,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req289,An application typically uses Services,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req290,Sensors can monitor the tag attached to a physical entity rather than the physical entity itself,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req291,What is a thing description?,,LSP-CD-EN,http://iot.linkeddata.es/def/core#
+req292,Each thing is described by WoT Thing Descriptions.,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req293,An endpoint can be relative to an endpoint that must not be relative.,,LSP-INTER-EN,http://iot.linkeddata.es/def/core#
+req294,Which devices are located at a CERTH lab?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req295,Which properties does a people counting observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req296,Which properties does a humidity sensor observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req297,Which properties does a light switch observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req298,Which properties does a motion sensor observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req299,Which properties does a thermometer observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req300,Which properties does a CO2 sensor observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req301,Which properties does a HVAC sensor observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req302,Which devices are located at a Oslo SciencePark?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req303,Which devices are located at UNIKL?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req304,Which properties does an e;bike charger observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req305,Which properties does a light bulb observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req306,Which properties does a door sensor observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req307,Which properties does a window sensor observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req308,Which properties does a thermostat observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req309,Service thing description should be inline with Device thing description.,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req310,Service thing description should be inline with WoT thing description.,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req311,Service thing description should define the concepts that service produces and provides to end user.,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req312,Service thing description should define the interaction patterns how to interact with products of added value service.,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req313,Service thing description should includeits version.,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req314,Service thing description should define required inputs for the products and supported interaction patterns.,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req315,Which devices are located at a CERTH lab?,,LSP-OP-EN,http://iot.linkeddata.es/def/core#
+req316,Which properties does a weight scale observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req317,Which properties does a weight scale affect?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req318,Which properties from a weight scale are observed in events?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req319,Which properties does a blood pressure monitor observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req320,Which properties does a blood pressure monitor affect?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req321,Which properties from a blood pressure monitor are observed in events?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req322,Which properties does an activity tracker observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req323,Which properties does an activity tracker affect?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req324,Which properties from an activity trackerare observed in events?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req325,Which properties from a panic button observed in events?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req326,Which properties does a motion sensor observe?,,LSP-OP-DP-PW-EN,http://iot.linkeddata.es/def/core#
+req327,Are there any modification to the clustering algorithm that Weka uses?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req328,Does Protege provide XML editing?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req329,What software works best with RDF data?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req330,Does SIM render a gif?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req331,"What data from Andrew Ng is analysed with Weka, version 4.0?",,LSP-OP-EN,http://theswo.sourceforge.net/
+req332,To what extent does DAVID support appropriate open standards?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req333,Is PostgreSQL compatible with dfp?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req334,Can I render gif if the software supplier goes out of business?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req335,"Given DNA nucleotide sequence, what are the data exports for SPSS version 20?",,LSP-OP-EN,http://theswo.sourceforge.net/
+req336,To what extent does Q support appropriate open standards?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req337,Is there a mailing list for Microsoft Windows?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req338,How can I get problems with multiscan fixed?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req339,Are there any active forums discussing minet use?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req340,Where do I get updates for MUSCLE?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req341,Can we collaborate with developers of MATLAB?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req342,Where can I buy LPE from?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req343,Which is the fastest software to read DNA nucleotide sequence?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req344,Does prada meet the ISO-4 standard?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req345,Do I know anyone who has used puma or processed DXF?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req346,How and where has IntelliJ Idea been used successfully in the past?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req347,What do others say about UNIX quality?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req348,How reliable is Kakadu?,,LSP-DP-EN,http://theswo.sourceforge.net/
+req349,What software is better for clustering task given PDF as input type?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req350,Who are the potential users of ITALICS?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req351,Who else has used oligo today?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req352,How popular is Kakadu?,,LSP-DP-EN,http://theswo.sourceforge.net/
+req353,How many settings do I need to know to rerun data annotation analysis?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req354,To what extent does WordStar support appropriate open standards?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req355,What new features are in version 4.3 of ScanArray?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req356,What are the differences between versions of SMAP?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req357,At what point did the license type of SpikeLI change?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req358,What is the licensing history of SLGI?,,LSP-OP-DP-PW-EN,http://theswo.sourceforge.net/
+req359,How many license do we need to run vsn productively?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req360,Does cost of using XDE make sense for my project? Is XDE cost effective?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req361,What level of expertise is required to use ROC?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req362,Are there any usage examples for PSI-BLAST?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req363,Does R software have a tutorial?,,LSP-OP-DP-PW-EN,http://theswo.sourceforge.net/
+req364,How well documented is AIDA for developers?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req365,How do I cite SPSS?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req366,Is ppiStats scriptable?,,LSP-DP-EN,http://theswo.sourceforge.net/
+req367,How can I extend AIDA to include a new function?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req368,Can I use some components of ppiStats for my software?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req369,What hardware do I need to run ROC?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req370,What graphics card does LPE require?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req371,What platform does qvalue run on?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req372,Can I install Rgraphviz on a university computer?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req373,What compiler do I need to compile source code on Windows platform?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req374,Does MATLAB work on 64 bit windows?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req375,What is the algorithm used to process XML?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req376,What are the alternatives to Weka?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req377,What other alternatives to PostgreSQL are there?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req378,Which of the named and published “algorithms” does Unix use?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req379,What type of software is vsn?,,LSP-INST-SC-EN,http://theswo.sourceforge.net/
+req380,What software can perform clustering task?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req381,Is Ringo appropriate software for data annotation?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req382,What are the primary inputs and outputs of XDE?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req383,Which visualisation software is there for TSV and what will it cost?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req384,Which software tool created Matrix?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req385,What software can I use RDF data with to support pattern discovery task?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req386,What are the input and output formats for Adobe Acrobat Reader?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req387,What software can read a .cel file?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req388,What are the export options for AIDA?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req389,What is the valid input for DROID?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req390,"Can Eclipse export from its proprietary data format to an open format such as csv, txt?",,LSP-OP-EN,http://theswo.sourceforge.net/
+req391,Can Dropbox work with data that are output from vsn?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req392,"What open source, maintained software can I use to process heat map in binary format?",,LSP-OP-EN,http://theswo.sourceforge.net/
+req393,Is the output format of Spotfire proprietary?,,LSP-INST-SC-EN,http://theswo.sourceforge.net/
+req394,Where can I get R software?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req395,How do I get help with Microsoft Excel?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req396,Who developed Mfuzz?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req397,What is the homepage of the DAVID?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req398,Which URL can I get UNIX from?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req399,How long has Jaguar been around?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req400,How actively developed prada is?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req401,Is Weka available as a web service?,,LSP-INST-SC-EN,http://theswo.sourceforge.net/
+req402,What is the version of BioJava?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req403,When was the 1.0 version of MUSCLE released?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req404,Is MFuzz open source development? Is there a community development?,,LSP-INST-SC-EN,http://theswo.sourceforge.net/
+req405,"What license Jaguar has, and what is its permissiveness?",,LSP-OP-DP-PW-EN,http://theswo.sourceforge.net/
+req406,Is PSI-BLAST open source or not?,,LSP-INST-SC-EN,http://theswo.sourceforge.net/
+req407,Who owns the copyright for SIM?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req408,Is Linux FOSS?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req409,Is LPE free or not?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req410,Is there any documentation for ROC and where can I find it?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req411,Where is the documentation of Cytoscape?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req412,Where’s the documentation of CRG TCoffee?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req413,Is there a publication with rama?,,LSP-OP-DP-EN,http://theswo.sourceforge.net/
+req414,Is Rosetta Resolver extensible?,,LSP-DP-EN,http://theswo.sourceforge.net/
+req415,In what language was Ringo implemented?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req416,Do I need a license key to use Ringo?,,LSP-OP-EN,http://theswo.sourceforge.net/
+req417,What is a TESS?,TESS is a Telescope Encoder and Sky Sensor,LSP-DC-SC-EN,https://w3id.org/def/saref4envi#
+req418,Which type of sensor is a TESS?,TESS is a photometer,LSP-DC-SC-EN,https://w3id.org/def/saref4envi#
+req419,What is a photometer?,"A photometer, generally, is an instrument that measures light intensity or optical properties of solutions or surfaces",LSP-DC-SC-EN,https://w3id.org/def/saref4envi#
+req420,What is the main component of TESS?,The main component of TESS is a custom-based electronic board,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req421,Which are the communication interfaces available in TESS?,"RS232, Bluetooth, and Wi-Fi",LSP-OP-EN,https://w3id.org/def/saref4envi#
+req422,Which components of TESS are sensors?,"The light detector, nIR temperature sensor",LSP-DC-SC-EN,https://w3id.org/def/saref4envi#
+req423,Which properties can be measured by a photometer?,"Illuminance, irradiance, light absorption, scattering of light, reflection of light, fluorescence, phosphorescence, and luminescence",LSP-OP-EN,https://w3id.org/def/saref4envi#
+req424,Each reading in a TESS has a timestamp,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req425,Which are the properties observed by a TESS?,"Ambient temperature, sky temperature, frequency and magnitude.",LSP-DC-SC-EN,https://w3id.org/def/saref4envi#
+req426,Physical objects can contain devices,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req427,A sensor could be a person,,LSP-DC-SC-EN,https://w3id.org/def/saref4envi#
+req428,Devices might have different versions and revision numbers,,LSP-DC-SC-EN,https://w3id.org/def/saref4envi#
+req429,Which type(s) of RS232 is supported by TESS?,V.24,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req430,Which type(s) of Bluetooth is supported by TESS?,V2.1,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req431,Which type(s) of WiFi is supported by TESS?,802.11ah,LSP-SC-EN,https://w3id.org/def/saref4envi#
+req432,Which are the components of TESS?,"Printed circuit board, light detector, infrared thermometer module, remote serial port Wi-Fi transceiver module, power supply, light collector, nIR filter, clear glass window, enclosure box",LSP-DC-SC-EN,https://w3id.org/def/saref4envi#
+req433,Which hardware elements is a TESS connected to?,To a Wi-Fi router,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req434,Which is the communication protocol used by TESS?,MQTT Broker (RabbitMQ + MQTT Adapter),LSP-OP-Min-EN,https://w3id.org/def/saref4envi#
+req435,What is the transmission period of the TESS?,5 minutes (configurable),LSP-SC-EN,https://w3id.org/def/saref4envi#
+req436,A device is located in a given geographical point defined by a latitude and a longitude,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req437,A device position is defined using the azimuth and altitude horizontal coordinates,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req438,A sensing device takes measures following a frequency,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req439,A device can be actionable or not,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req440,A device is part of a system,,LSP-OP-Min-EN,https://w3id.org/def/saref4envi#
+req441,An actuator is a type of device,,LSP-OP-Min-EN,https://w3id.org/def/saref4envi#
+req442,A device has energy consumption,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req443,A lamppost uses a given light generation method,,LSP-OP-Min-EN,https://w3id.org/def/saref4envi#
+req444,A lamppost has energy consumption,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req445,A lamppost might have a light shield,,LSP-U-EN,https://w3id.org/def/saref4envi#
+req446,What is a lamppost?,A lamppost is a physical object that lights an outdoor area.,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req447,A light has a geometry,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req448,A light is projected in a given direction,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req449,A light is projected in a given angle,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req450,A light is projected from a given height,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req451,A light has a colour,,LSP-U-EN,https://w3id.org/def/saref4envi#
+req452,A light can have flash,,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4envi#
+req453,What can be considered as physical objects?,"An Arduino board, a garage door, a bottle of soda, a building, a TV, etc.",LSP-CD-EN,https://w3id.org/def/saref4envi#
+req454,A digital representation of an object has a name,,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4envi#
+req455,A digital representation of an object has a description,,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4envi#
+req456,A physical object has a description,,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4envi#
+req457,A digital representation of an object has a unique identifier,,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4envi#
+req458,A digital representation of an object can have zero or more tags,,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4envi#
+req459,A digital representation of an object has exactly one creation date,,LSP-OP-Exact-EN,https://w3id.org/def/saref4envi#
+req460,"A digital representation of an object includes the date in which some characteristic of object was last modified (e.g., its geolocation)",,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req461,A sensing device produces a log of property observations,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req462,A log indicates which is its last value,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req463,Values in a log are related to the time in which they were observed,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req464,A physical representation of an object includes an observation log for each property to be observed,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req465,An observation value is measured in a given unit,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req466,What is a service?,A service is a software system to support interaction over a network,LSP-CD-EN,https://w3id.org/def/saref4envi#
+req467,Physical objects can have digital representations that are accessible through services,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req468,A service can expose either none or multiple digital representations of an object,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req469,A digital representation of an object is exposed at maximum by one service,,LSP-OP-Max-EN,https://w3id.org/def/saref4envi#
+req470,A digital representation of an object performs actions,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req471,An action manages an actuator,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req472,An action of a digital representation of an object can keep an action log,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req473,A property of a digital representation of an object can keep an observation log,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req474,A digital representation of an object encapsulates a system,,LSP-OP-EN,https://w3id.org/def/saref4envi#
+req475,What is a device?,"A tangible
+object designed to accomplish a particular task in households, common public buildings or offices",LSP-CD-EN,https://w3id.org/saref#
+req476,A device performs one or more functions,,LSP-OP-Min-EN,https://w3id.org/saref#
+req477,"Examples of devices are a light switch, a temperaturesensor, an energy meter, a washing machine",,LSP-INST-SC-EN,https://w3id.org/saref#
+req478,A device shall have a model property,,LSP-OP-Min-EN,https://w3id.org/saref#
+req479,A device shall have a manufacturer property,,LSP-OP-Min-EN,https://w3id.org/saref#
+req480,A device can optionally  have a description,,LSP-OP-DP-PW-EN,https://w3id.org/saref#
+req481,"A building space definesthe physical spaces of the building where a device is located, such as a kitchen or a living room",,LSP-OP-EN,https://w3id.org/saref#
+req482,A building space contains devices or building objects,,LSP-U-EN,https://w3id.org/saref#
+req483,"Building objectsare objects in the building that can be controlled by devices, such as doors or windows",,LSP-OP-EN,https://w3id.org/saref#
+req484,A building object can be opened or closed by an actuator,,LSP-OP-EN,https://w3id.org/saref#
+req485,"A building space has also a  property that can be used to specify thetype of space, for example, the living room or the bedroom",,LSP-OP-EN,https://w3id.org/saref#
+req486,"A building space is a geographical point characterized by acertain altitude, latitude and longitude",,LSP-DP-EN,https://w3id.org/saref#
+req487,"The devices can be classified into categories: FunctionRelated, EneryRelated and BuildingRelated",,LSP-SC-Di-EC-EN,https://w3id.org/saref#
+req488,"The FunctionRelated category can be specialized into: Actuator, Applicance, HVAC, Lighting, Meter, MicroRenewable, Multimedia, Network, Sensor",,LSP-SC-Di-EC-EN,https://w3id.org/saref#
+req489,"The EnergyRelated category can be specialized into: Load, Generator and Storage",,LSP-SC-Di-EC-EN,https://w3id.org/saref#
+req490,The devices can belong to several categories,,LSP-OP-EN,https://w3id.org/saref#
+req491,A device can be used for  the purpose of offering a commodity,,LSP-OP-EN,https://w3id.org/saref#
+req492,Water or gas are examples of commodities,,LSP-INST-SC-EN,https://w3id.org/saref#
+req493,A device can be used for  the purpose of sensing,,LSP-OP-EN,https://w3id.org/saref#
+req494,A device can be used for measuring a property,,LSP-OP-EN,https://w3id.org/saref#
+req495,A device can be used for notifying a property,,LSP-OP-EN,https://w3id.org/saref#
+req496,"Examples of properties are temperature, energy or smoke",,LSP-INST-SC-EN,https://w3id.org/saref#
+req497,"A device can be used for  the purpose of controlling a building object,such as a door or a window",,LSP-OP-EN,https://w3id.org/saref#
+req498,A device may consists of other devices,,LSP-PW-CONS-COM-CE-EN,https://w3id.org/saref#
+req499,A sensor is a device,,LSP-DC-SC-EN,https://w3id.org/saref#
+req500,A sensor performs a sensing function,,LSP-OP-EN,https://w3id.org/saref#
+req501,A temperature sensor is a device that has category sensor,,LSP-DC-SC-EN,https://w3id.org/saref#
+req502,A temperature sensor consists of a sensor,,LSP-PW-CONS-COM-CE-EN,https://w3id.org/saref#
+req503,A temperature senso performs the sensing function and is used for the purpose of sensing temperature,,LSP-OP-EN,https://w3id.org/saref#
+req504,A washing machine is a device that has category Appliance  and Load,,LSP-DC-SC-EN,https://w3id.org/saref#
+req505,A washing machine accomplishes the task ofwashing,,LSP-OP-EN,https://w3id.org/saref#
+req506,A washing machine performs an actuating start/pause function,,LSP-OP-EN,https://w3id.org/saref#
+req507,A smoke sensor is a device that has category Sensor,,LSP-OP-EN,https://w3id.org/saref#
+req508,A smoke sensor is a device that consists of a sensor,,LSP-PW-CONS-COM-CE-EN,https://w3id.org/saref#
+req509,A smoke sensor performs asensing and event function,,LSP-OP-EN,https://w3id.org/saref#
+req510,A smoke sensor  is used for the purpose of sensing smoke,,LSP-OP-EN,https://w3id.org/saref#
+req511,A switch is a device that has category Actuator,,LSP-DC-SC-EN,https://w3id.org/saref#
+req512,"A door switch  has category Actuator,",,LSP-DC-SC-EN,https://w3id.org/saref#
+req513,A door switch is a device that consists of a switch,,LSP-DC-SC-EN,https://w3id.org/saref#
+req514,A door switch  performs theopen/close function,,LSP-OP-EN,https://w3id.org/saref#
+req515,A door switch is used for the purpose of controlling doors,,LSP-OP-EN,https://w3id.org/saref#
+req516,A dimmer lamp is a device that has category Lighting and Actuator,,LSP-DC-SC-EN,https://w3id.org/saref#
+req517,A dimmer lamp performs an actuating level control,,LSP-OP-EN,https://w3id.org/saref#
+req518,A dimmer lamp is used for the purpose of controlling the light,,LSP-OP-EN,https://w3id.org/saref#
+req519,A meter is a functionRelated device,,LSP-DC-SC-EN,https://w3id.org/saref#
+req520,A meter performs a metering function,,LSP-OP-EN,https://w3id.org/saref#
+req521,An energy meter is a device that has category Meter,,LSP-DC-SC-EN,https://w3id.org/saref#
+req522,An energy meter is a device that consists of a meter,,LSP-DC-SC-EN,https://w3id.org/saref#
+req523,An energy meter  is used for the purpose of measuring energy,,LSP-OP-EN,https://w3id.org/saref#
+req524,A function represents the functionality necessary toaccomplish the task for which a device is designed,,LSP-OP-EN,https://w3id.org/saref#
+req525,"Examples of functions are the  the actuating, sensing, metering or event functions",,LSP-SC-EN,https://w3id.org/saref#
+req526,"An actuating function can be specialized into on/off, open/close, start/stop or level control functions",,LSP-DC-SC-EN,https://w3id.org/saref#
+req527,A function can belong to a function category,,LSP-OP-EN,https://w3id.org/saref#
+req528,A function shall have at least one commandassociated to it,,LSP-OP-Min-EN,https://w3id.org/saref#
+req529,"The commands can be: on, off, open, toggle, close, startm pause, step up, step down, set level, get and notify",,LSP-SC-EN,https://w3id.org/saref#
+req530,A device can be found in a correponding state,,LSP-OP-EN,https://w3id.org/saref#
+req531,A command can act upon a state  to represent that theconsequence of a command can be a change of state of the device.,,LSP-OP-EN,https://w3id.org/saref#
+req532,A device offers a service,,LSP-OP-EN,https://w3id.org/saref#
+req533,"A service is a representation of afunction to a network that makes this function discoverable, registerable and remotely controllable by other devices inthe network",,LSP-OP-EN,https://w3id.org/saref#
+req534,A service shall represent at least one function,,LSP-OP-Min-EN,https://w3id.org/saref#
+req535,"A service is offered by at least one device that wants (a certain set of) its function(s) to be discoverable, registerable andremotely controllable by other devices in the network",,LSP-OP-Min-EN,https://w3id.org/saref#
+req536,Multiple devices can offer the same service,,LSP-OP-EN,https://w3id.org/saref#
+req537,A service shall specify the device that is offering the service,,LSP-OP-Min-EN,https://w3id.org/saref#
+req538,A device can be characterized by a profile.,,LSP-OP-EN,https://w3id.org/saref#
+req539,The profile allows to describe the energy or power production and consumption of a certain device.,,LSP-U-EN,https://w3id.org/saref#
+req540,The profile production and consumption can be calculated over a time span,,LSP-OP-EN,https://w3id.org/saref#
+req541,The profile production and consumption can be associated to some costs,,LSP-OP-EN,https://w3id.org/saref#
+req542,The power is characterized by a certain value that is measured in a certain unit of measure,,LSP-OP-EN,https://w3id.org/saref#
+req543,The energy is characterized by a certain value that is measured in a certain unit of measure,,LSP-OP-EN,https://w3id.org/saref#
+req544,"The price is also characterized by a value using currency, which is a type of unit of measure",,LSP-OP-EN,https://w3id.org/saref#
+req545,The time can be specified in terms of instants or intervals,,LSP-U-EN,https://w3id.org/saref#
+req546,What is the set of characterizing operations for a datatype X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req547,What is the set of datatype qualities for a datatype X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req548,What is the value space for a datatype X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req549,What is the set of datatypes that have a datatype quality X?,,LSP-OP-DP-PW-EN,http://www.ontodm.com/OntoDT#
+req550,What is the set of datatypes that have a characterizing operation X?,,LSP-OP-DP-PW-EN,http://www.ontodm.com/OntoDT#
+req551,What is the set of datatypes that have a datatype quality X and characterizing operation Y?,,LSP-OP-DP-PW-EN,http://www.ontodm.com/OntoDT#
+req552,What are the aggregated datatypes that have an aggregate generator property X?,,LSP-OP-DP-PW-EN,http://www.ontodm.com/OntoDT#
+req553,What is the set of aggregate properties for an aggregate datatype X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req554,What are the field components for a tuple datatype X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req555,What is the base datatype for a set/bag/sequence datatype X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req556,What is the base datatype for an extended datatype X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req557,What is the subtype generator for an extended datatype X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req558,What is the set of extended datatypes that have datatype X as their base datatype?,,LSP-OP-DP-PW-EN,http://www.ontodm.com/OntoDT#
+req559,What is the set of extended datatypes that are generated by a subtype generator X?,,LSP-OP-DP-EN,http://www.ontodm.com/OntoDT#
+req560,A thing is an entity that can be identified in the oneM2M System.,,LSP-DC-SC-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req561,A thing may have properties,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req562,A thing can have relations to other things,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req563,An aspect could be a (physical or non-physical) entity or it could be a quality,,LSP-U-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req564,An aspect can have metadata,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req565,"Metadata contain data (like units, precision-ranges …) about a variable or about an aspect",,LSP-U-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req566,A device is a thing that is able to interact electronically with its environment via a network,,LSP-CD-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req567,A device may be a physical or non-physical entity,,LSP-U-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req568,A device performs one or more functionalities in order to accomplish a particular task,,LSP-Min-and-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req569,A device has one or more services that expose in the network its functionalities,,LSP-Min-and-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req570,A device can be composed of several (sub-)devices,,LSP-PW-CONS-COM-CE-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req571,"An interworked device is a device that does not support oneM2M interfaces and can only be accessed from the oneM2M System by communicating with a ""proxied"" (virtual) device that has been created by an interworking proxy entity",,LSP-CD-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req572,An interworked device is part of an area network,,LSP-PW-CONS-COM-CE-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req573,An area network is a network that provides data transport services between an interworked device and the oneM2M System,,LSP-DC-SC-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req574,An area network follows an standard that defines its physical properties,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req575,An area network follows a communication protocol,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req576,An area network follows a profile,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req577,A service is an electronic representation of a functionality in a network,,LSP-DC-SC-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req578,A service can expose one or more functionalities,,LSP-OP-Min-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req579,A service can be composed of independent (sub-)services,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req580,A service has an operation,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req581,A service has an input data point,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req582,A service has an output data point,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req583,A functionality represents the functionality necessary to accomplish the task for which a device is designed,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req584,A functionality refers to (e.g. observes or influences) some real-world aspect(s),,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req585,A functionality has commands that allow human users to influence/observe such functionality,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req586,"A controlling functionality represents a functionality that has impacts on the real world, but does not gather data",,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req587,"A measuring functionality represents a functionality that has no impacts on the real world, but only gathers data",,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req588,An operation is the means of a service to communicate in a procedure-type manner over the network (i.e. transmit data to/from other devices),,LSP-SC-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req589,An operation is the -machine interpretable- exposure of a -human understandable- command to a network,,LSP-SC-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req590,An operation may receive input data from input data points (persistent entities),,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req591,An operation may receive data from operation inputs (transient entities that are deleted when the operation finishes),,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req592,An operation may produce output data into output data points (persistent entities),,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req593,An operation may produce data into operation outputs (transient entities that are deleted when the operation finishes),,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req594,An operation has an operation state that allows a oneM2M entity to get informed on the progress of that operation,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req595,An operation has a method,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req596,An operation has a target URI,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req597,A command represents an action that can be performed to support a functionality,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req598,A command has as input one or more operation inputs,,LSP-OP-Min-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req599,A command has as output one or more operation outputs,,LSP-OP-Min-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req600,An operation input describes an input of an operation and also describes the input of a command,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req601,An operation output describes an output of an operation and also describes the output of a command,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req602,An operation state describes the current state of an operation,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req603,An operation state is a simple type variable,,LSP-CD-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req604,An operation state has exactly one data restriction pattern,,LSP-OP-Exact-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req605,An input data point is a variable of a service that is accessed by a RESTful device in its environment and that the device reads out autonomously (e.g. at periodic times),,LSP-DC-SC-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req606,An output data point is a variable of a service that is set by a RESTful device in its environment and that the device updates autonomously (e.g. at periodic times),,LSP-DC-SC-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req607,"A variable describes an entity that stores some data (e.g. integers, text, etc., or structured data) that can change over time",,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req608,A variable describes a real-world aspect,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req609,A variable can have metadata,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req610,A variable can be structured using other variables,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req611,A variable may have a value (useful for values that are relatively static),,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req612,A variable has a CRUD method through which the instantiation of the variable value can be manipulated,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req613,A variable has a URI of a resource through which the instantiation of the value of the variable can be manipulated,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req614,"A simple type variable is a variable that only consists of variables of simple XML types like xsd:integer, xsd:string, etc., potentially including restrictions",,LSP-DC-SC-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req615,A simple type variable contains the name of the attribute of the resource that is referenced with the target URI and that stores the value of the simple type variable,,LSP-OP-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req616,A simple type variable has exactly one datatype,,LSP-OP-Exact-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req617,A simple type variable has a data restriction,,LSP-OP-DP-PW-EN,https://git.onem2m.org/MAS/BaseOntology/r-aw/3_6_0/base_ontology.owl#
+req618,A single option for applying a constraint to a party (of a specific role) should be defined.,,LSP-OP-Exact-EN,https://www.w3.org/ns/odrl/2/
+req619,"It should be possible to define the target of a constraint inside a Permission, Prohibition or Duty: e.g. a constraint of human age applies to the Assignee, a constraint of play time applies to Assets (of type audio or video), etc.",,LSP-OP-EN,https://www.w3.org/ns/odrl/2/
+req620,The current data model assumes a policy instance includes all required data explicitly. This should be extended to policy instances which include explicit data and variables for values which are defined by parameters provided by an access to this template.,,LSP-OP-EN,https://www.w3.org/ns/odrl/2/
+req621,In addition to the existing identifiers of a policy means for expressing a version of this policy should specified.,,LSP-OP-DP-EN,https://www.w3.org/ns/odrl/2/
+req622,It should be possible to define the price for duty/duties of payment for all permissions of a policy in a global way - while currently the payment duty must be defined for each permission individually.,,LSP-OP-DP-EN,https://www.w3.org/ns/odrl/2/
+req623,"Extend the temporal constraints by setting a time reference, any period in the rightOperand refers to this point in time.",,LSP-OP-EN,https://www.w3.org/ns/odrl/2/
+req624,For a relativeTimePeriod constraint the rightOperand has to provide a time period as value.,,LSP-OP-DP-PW-EN,https://www.w3.org/ns/odrl/2/
+req625,"Being able to tie Permission, Prohibition, Duty, and Constraint entities together with an AND, OR or XOR relationship",,LSP-OP-EN,https://www.w3.org/ns/odrl/2/
+req626,Being able to assign multiple individuals of type Party to a Group for which permissions/prohibitions/duties can be specified.,,LSP-OP-EN,https://www.w3.org/ns/odrl/2/
+req627,Ability to link from a Policy or a Permission to the original (text-based) license.,,LSP-OP-EN,https://www.w3.org/ns/odrl/2/
+req628,It should be possible to define policies of type Assertion.,,LSP-CD-EN,https://www.w3.org/ns/odrl/2/
+req629,"An Assertion policy does not grant any permissions/prohibitions, but reflects policy terms that a party believes to have.",,LSP-OP-EN,https://www.w3.org/ns/odrl/2/
+req630,What are the protocol parts?,"Medical consultation, clinical consultation and ecological assessment",LSP-CD-EN,http://www.demcare.eu/results/ontologies
+req631,What types of data are collected during medical and clinical consultation?,Demographic data and clinical data,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req632,What types of demographic data are collected?,"Date of birth, gender, education level, laterality, weight",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req633,What is the gender information?,"Female, male",LSP-CD-EN,http://www.demcare.eu/results/ontologies
+req634,What are the main types of education level?,"Basic education, higher education, ...",LSP-CD-EN,http://www.demcare.eu/results/ontologies
+req635,What are the main types of laterality?,Right-handed and left handed,LSP-CD-EN,http://www.demcare.eu/results/ontologies
+req636,What types of clinical data are collected?,"Diagnosis data, cognitive abilities assessment data, neuropsychiatric/mood assessment data, motricity abilities assessment data, autonomy assessment data",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req637,What are the types of diagnosis?,"Healthy, Alzheimer’s disease at predementia stage, Alzheimer’s disease at dementia stage",LSP-INST-SC-EN,http://www.demcare.eu/results/ontologies
+req638,What types of cognitive abilities assessment data are collected?,"Mini- mental state exam (MMSE), frontal assessment battery (FAB), trail making test A and B, short cognitive battery, the free and cued selective reminding test",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req639,What data are collected for MMSE?,A [0-30]/30 score,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req640,What data are collected for FAB?,A [0-18]/18 score,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req641,What data are collected for the trail making test?,The number of seconds to complete the test,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req642,What data are collected for the short cognitive battery test?,"An orientation test score, a 5-word memory test score, a clock test score and a verbal fluency test score.",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req643,What data are collected for the free and cued selective reminding test?,A [0-48]/48 score,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req644,What types of neuropsychiatric/mood assessment data are collected?,"NPI, DSM-IV criteria for depression, apathy inventory (AI) and diagnostic criteria for apathy",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req645,What data are collected for NPI?,"Frequency (scale 1-4), severity (scale 1-3) and impact on care (scale 1-5)",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req646,What data are collected for DSM-IV criteria?,Absence/Presence,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req647,What data are collected for AI and diagnostic criteria for apathy?,Absence/Presence,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req648,What types of motricity abilities assessment data are collected?,Part III of the Unified Parkinson’s Disease Rating Scale (UPDRS) data,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req649,What data are collected for UPDRS?,"A scores [0-4]/4 for the set of subparts used (trampling when walking, trembling, rigidity, rising from a chair, posture, postural stability, gait, bradykinesia)",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req650,What types of autonomy assessment data are collected?,A [0-8]/8 score at Instrumental Activities of Daily Living for Elderly (IADL-E),LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req651,What types of steps does ecological assessment consist of?,"Directed, semi directed, and discussion with clinician",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req652,What are the types of directed tasks?,"physical directed tasks, vocal directed tasks",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req653,Which are the physical directed tasks?,"Waking, counting backwards, walking and counting backwards",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req654,Which are the vocal directed tasks?,"Sentence repeating, articulation control",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req655,What is the nature of a directed task?,"Mono task, dual task",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req656,Which directed tasks are mono tasks?,"Walking, counting backwards",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req657,Which directed tasks are dual tasks?,Walking and counting backwards,LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req658,Which are the tasks of the semi-directed step?,"Water a plant, pay a bill, answer the phone, turn on TV, prepare hot tea, read an article, call the psychologist, leave the room, prepare the drugbox, ...",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req659,What are the types of tasks in the discussion with clinician step?,"Directed discussion tasks, free discussion tasks",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req660,Which are the directed discussion tasks?,"Questions about an article read, questions about the course of the semi directed tasks step",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req661,Which are the free discussion tasks?,"Verbal description of a picture, free discussion about a picture",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req662,What is assessed in the walking task?,"Gait, latency, stress level",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req663,What is assessed in the counting backwards task?,"Latency, stress level, cognitive and neuromuscular impairment",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req664,What is assessed in the walking and counting backwards task?,"Gait, latency, stress level, cognitive and neuromuscular impairment (voice-based), mutual influence of cognitive activity on motor activity",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req665,What is assessed in the sentence repeating task?,"Latency, stress level, cognitive and neuromuscular impairment",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req666,What is assessed in the articulation control task?,"Latency, stress level, neuromuscular impairment in speech production mechanism",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req667,What is assessed in the tasks of the semi-directed protocol step?,"Cognitive abilities, ability to organize efficiently several activities, functional abilities, stress level",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req668,What is assessed in the tasks of the discussion with clinician step?,"Affective state, interaction, cognitive and neuromuscular impairment)",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req669,What data are measured for gait assessment?,"Dynamic balance, step length, stopping displacement, walking speed, walking speed instantaneous",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req670,What data are measured for dynamic balance?,A [0-5]/5 score,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req671,What data are measured for step length?,Distance in meters,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req672,What data are measured for walking speed?,Speed in meters/sec,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req673,What data are measured for walking speed instantaneous?,Speed in meters/sec,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req674,What data are measured for stopping displacement?,Number of stops during task execution,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req675,What data are measured for latency?,Time in seconds,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req676,What data are measured for stress?,Time-stamped skin conductance intensity,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req677,What data are measured for cognitive and neuromuscular assessment?,Voice-based cognitive and neuromuscular indicators,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req678,What data are measured for affective state assessment?,Voice-based affective indicators,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req679,What data are measured for interaction assessment?,Voice-based interaction indicators,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req680,What data are measured for neuromuscular impairment in speech production mechanism?,Voice-based speech production indicators,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req681,What data are measured for cognitive abilities assessment?,"Status (completed/omitted/incomplete), number of repetitions and duration, for each of the activities comprising the semi-directed step",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req682,What data are measured for organizational efficiency assessment?,Participant’s trajectory in the experimentation room and total distance walked,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req683,What data are measured for functional abilities assessment?,Hand trajectories during activity execution,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req684,What functional areas are of clinical relevance for the home and nursing home environments?,"Sleep, activities of daily living (ADL), social interaction, exercise and mood",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req685,How are the statistics and identified problematic situations about the monitored functional areas reported to the clinician?,"In the form of daily, weekly and monthly summary reports.",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req686,What types of questionnaires are administered for self-assessment?,"The PSQI and Epworth Sleepiness Scale questionnaires for sleep assessment, questionnaires for mood assessment",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req687,What activities (situations) are of clinical interest with respect to sleep?,"Night sleep (entire sleep episode), napping during the day, awakening in the midst of the sleep episode, leaving the bed (bed exit), visiting the bathroom, visiting rooms other than the bathroom, sleep apneas, periodic limb movements and micro-arousals.",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req688,What information is of clinical interest regarding night sleep?,"Retiring time, bed time, sleep time, and wake up time",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req689,What information is of clinical interest regarding a nap?,Start time and duration,LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req690,What information is of clinical interest regarding an awakening?,Start time and duration of awakening,LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req691,What information is of clinical interest regarding a bed exit?,"Start time, duration, visited locations (e.g. kitchen) and activities performed (e.g. having a snack)",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req692,What information if of clinical interest regarding a night bathroom visit?,Start time and duration,LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req693,What information is clinically relevant for sleep assessment?,"Sleep latency, sleep efficiency, number of arousals at night, number of awakenings at night, number of bed exits, number of night bathroom visits, number of sleep apneas, number of periodic limb movements, number of naps during the day, total duration of naps, self assessed sleep quality (via questionnaires)",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req694,What sleep-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?,"Sleep latency less than 30 minutes, sleep duration more than 7 hours, sleep efficiency less than 85%, bed exit with visit to rooms other than the bathroom, bed exit with attempt to leave the house, occurrence of more than 5 apneas, fragmented sleep (more than 2 awakenings at night), nocturia (more than 2 bathroom visits at night), periodic limb movements occurrence, napping after lunch, napping for more than 30 minutes and a score of 5 or higher during sleep self-assessment.",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req695,What activities (situations) are of clinical interest with respect to ADLs?,"Food/drink preparation and consumption activities (e.g. having meal, leaving the table, open/close fridge and kitchen presses, usage of kitchen appliances), housekeeping activities (e.g. do laundry, rubbish disposal), personal hygiene, falls, disorientation, ...",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req696,What information is of clinical interest regarding food and drink preparation?,"Start time and duration, activities involved in the preparation and their sequence (e.g. heating water in pot, adding pasta to pot)",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req697,What information is of clinical interest regarding food and drink consumption?,"Start time, duration, location, whether the PwD has left the table while eating, ...",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req698,What information is of clinical interest regarding housekeeping?,"Type of cleaning/maintenance activity, start time and duration",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req699,What information is of clinical interest regarding personal hygiene?,"Time spent in the bathroom, ...",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req700,What food and drink preparation-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?,"Failure to prepare a meal, leaving fridge or cupboards open, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req701,What food and drink consumption-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?,"Skipped meals, long duration of meals, eating in inappropriate locations, leaving table while eating, irregular eating patterns, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req702,What housekeeping-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?,"Failure to engage in housekeeping activities (e.g. not doing the laundry or disposing of rubbish, not tidying up after meals)",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req703,What personal hygiene-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?,failure to engage in personal hygiene,LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req704,What activities (situations) are of clinical interest with respect to social interaction?,"Face to face interaction, telephone interaction, ...",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req705,What information is clinically relevant for social interaction assessment?,"Number of people encountered per day, number of face to face interactions, number of telephone interactions, speed and speech volume, number of communicative attempts, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req706,What social interaction related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?,"Insufficient number of people encountered per day, insufficient speech utterances made per day, slow speech speed, low speech volume, speech irregularity, insufficient number of conversations had daily, lack of questioning utterances by the PwD, insufficient number of communicative attempts, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req707,What activities (situations) are of clinical interest with respect to physical activity?,"Indoors/outdoors incidental and dedicated physical activities (e.g. walking, running, cycling, ...)",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req708,What information is clinically relevant for walking?,"Walk speed, distance travelled, stride length, onset time, duration, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req709,What information is clinically relevant for dedicated physical activities (i.e. exercises)?,"Onset time, duration, exercise intensity, heart rate, repetitions...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req710,What information is clinically relevant for physical activity assessment?,"Frequency, duration, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req711,What physical activity related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?,"Inappropriate exercise duration, inappropriate exercise intensity, slow walk speed, late exercise onset times, abnormal heart rate,",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req712,What are the main types of entities?,"Persons, Objects and Places",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req713,What are the main categories a person may belong to?,"Person with dementia, carer, clinician",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req714,What are the main types of objects?,"Appliances (e.g. kettle, television), furniture (e.g. bed, kitchen table), daily living objects (e.g. plate, sink)",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req715,What are the main categories of places?,Indoors and outdoors,LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req716,What are the types of indoor place?,The individual house rooms (e.g. bedroom),LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req717,What are the main types of events?,"Events related to a person (i.e. activities and states), events related to physiological measurements, events related to ambient measurements, and events related to objects",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req718,What are the main types of information describing an event?,"The agent of the event (i.e. the referred person, object or room), start time, duration, and location (where applicable)",LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req719,What are the main categories of events?,Atomic (detected by WP3 and WP4 analysis components) and complex (derived through reasoning by WP5),LSP-OP-DP-EN,http://www.demcare.eu/results/ontologies
+req720,What activities are detected?,"Eating, drinking, dialing a number, picking up the phone, walking, sleeping, speaking, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req721,What states are detected?,"Person posture (e.g. sitting, standing), person localisation (e.g. person in the bedroom, person near the bed), person moving, person having an apnea incidence, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req722,What object related events are detected?,"Phone ringing, fridge open, usage of an object, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req723,What ambient measurements are detected?,"Light level, noise level, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req724,What physiological measurements are detected?,"Heart rate, skin conductance, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req725,What activities are inferred?,"Having meal, preparing meal, leaving the table during a meal, leaving bed at night, taking a nap,",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req726,What are the main types of data considered?,"Observations (i.e. information about the activities/events/states of the monitored person), reports (i.e. manually inputted data made available via questionnaires, clinical consultation, etc.), interpretation result (i.e. interpretations drawn about a person’s behaviour), ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req727,What are the main types of data an observation may refer to?,"Measurements (physiological and ambient), detected events and inferred events",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req728,What types of descriptive information are relevant to an observation?,"The type of data the observation refers to, the time the observation is made available to the system, its plausibility and its provider (i.e. what sensor/processing component made it available to the system)",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req729,What are the main types of data a report may refer to?,"Questionnaires, clinical characteristics, demographic data, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req730,What types of descriptive information are relevant to a report?,"The type of data the report refers to, the time it is made available to the system, its provider (i.e. what sensor/processing component made it available to the system) and (possibly) its plausibility",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req731,What are the main types of data an interpretation result may refer to?,"Problems relevant to functional areas considered, summary information, ...",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req732,What types of descriptive information are relevant to a result?,"The type of data the result refers to, the time the result is made available to the system, its plausibility and its provider (i.e. what sensor/processing component made it available to the system)",LSP-OP-EN,http://www.demcare.eu/results/ontologies
+req733,What are the main types of sensors?,Wearable sensors and fixed sensors,LSP-INST-SC-EN,http://www.demcare.eu/results/ontologies
+req734,What are the possible types of wearable sensors?,"The Philips Discrete Tensions Indicator (DTI-2), the Tyndall Rev3 Wireless Inertial Measurement Unit sensor (Rev3 WIMU), the GoPro wearable camera, the wearable microphone, ...",LSP-INST-SC-EN,http://www.demcare.eu/results/ontologies
+req735,What are the possible types of fixed sensors?,"The Axis P13 static camera, kinect, ...",LSP-INST-SC-EN,http://www.demcare.eu/results/ontologies
+req736,What are the possible types processing components?,"The Rev2 WIMU signal processing software component (SPS), DTI-2 ASW, the offline speech analyser component (OSA), the complex activity recognition component (CAR), the semantic interpretation component (SI), ...",LSP-INST-SC-EN,http://www.demcare.eu/results/ontologies
+req737,What is a building?,"A building represents a structure that provides shelter for its occupants or contents and stands in one place. The building is also used to provide a basic element within the spatial structure subClassOf for the components of a building project (together with site, storey, and space).",LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req737,What is a building?,"A building represents a structure that provides shelter for its occupants or contents and stands in one place. The building is also used to provide a basic element within the spatial structure subClassOf for the components of a building project (together with site, storey, and space).",LSP-CD-EN,https://w3id.org/def/saref4bldg#
+req738,A building can contain devices,,LSP-PW-CONS-COM-CE-EN,https://w3id.org/def/saref4bldg#
+req739,What is a shading device?,"Shading devices are purpose built devices to protect from the sunlight, from natural light, or screening them from view. Shading devices can form part of the facade or can be mounted inside the building, they can be fixed or operable.","LSP-CD-EN, LSP-DC-SC-EN",https://w3id.org/def/saref4bldg#
+req740,Which properties has a shading device?,"Shading device type, whether the element is external, whether the element is operated mechanically, thermal transmittance, solar transmittance, visible light transmittance, solar reflectance, visible light reflectance, and roughness.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req741,What is an actuator?,"An actuator is a mechanical device for moving or controlling a mechanism or system. An actuator takes energy, usually created by air, electricity, or liquid, and converts that into some kind of motion.",LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req742,What is an alarm?,An alarm is a device that signals the existence of a condition or situation that is outside the boundaries of normal expectation or that activates such a device. Alarms include the provision of break glass buttons and manual pull boxes that are used to activate alarms.,LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req743,What is a controller?,A controller is a device that monitors inputs and controls outputs within a building automation system. A controller may be physical (having placement within a spatial structure) or logical (a software interface or aggregated within a programmable physical controller).,LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req744,What is a flow instrument?,"A flow instrument reads and displays the value of a particular property of a system at a point, or displays the difference in the value of a property between two points. Instrumentation is typically for the purpose of determining the value of the property at a point in time. It is not the purpose of an instrument to record or integrate the values over time (although they may be connected to recording devices that do perform such a function). This entity provides for all forms of mechanical flow instrument (thermometers, pressure gauges etc.) and electrical flow instruments (ammeters, voltmeters etc.)",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req745,What is a sensor?,A sensor is a device that measures a physical quantity and converts it into a signal which can be read by an observer or by an instrument.,LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req746,What is a unitary control element?,"A unitary control element combines a number of control components into a single product, such as a thermostat or humidistat. A unitary control element provides a housing for an aggregation of control or electrical distribution elements that, in combination, perform a singular (unitary) purpose. Each item in the aggregation may have its own geometric representation and location.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req747,Which properties has an actuator?,Fail position and manual override.,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req748,What is a protective device tripping unit?,A protective device tripping unit breaks an electrical circuit at a separate breaking unit when a stated electric current that passes through the unit is exceeded.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req749,What is an audio visual appliance?,"An audio-visual appliance is a device that displays, captures, transmits, or receives audio or video. Audio-visual appliances may be fixed in place or may be able to be moved from one space to another. They may require an electrical supply that may be supplied either by an electrical circuit or provided from a local battery source. Audio-visual appliances may be connected to data circuits including specialist circuits for audio visual purposes only.",LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req750,What is a communication appliance?,A communications appliance transmits and receives electronic or digital information as data or sound. Communication appliances may be fixed in place or may be able to be moved from one space to another. Communication appliances require an electrical supply that may be supplied either by an electrical circuit or provided from a local battery source.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req751,What is an electric appliance?,An electric appliance is a device intended for consumer usage that is powered by electricity. Electric appliances may be fixed in place or may be able to be moved from one space to another. Electric appliances require an electrical supply that may be supplied either by an electrical circuit or provided from a local battery source.,LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req752,What is an electric flow storage device?,An electric flow storage device is a device in which electrical energy is stored and from which energy may be progressively released.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req753,What is an electric generator?,An electric generator is an engine that is a machine for converting mechanical energy into electrical energy.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req754,What is an electric motor?,An electric motor is an engine that is a machine for converting electrical energy into mechanical energy.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req755,What is an electric time control?,An electric time control is a device that applies control to the provision or flow of electrical energy over time.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req756,What is a lamp?,A lamp is an artificial light source such as a light bulb or tube.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req757,What is an outlet?,"An outlet is a device installed at a point to receive one or more inserted plugs for electrical power or communications. Power outlets are commonly connected within a junction box; data outlets may be directly connected to a wall. For power outlets sharing the same circuit within a junction box, the ports should indicate the logical wiring relationship to the enclosing junction box, even though they may be physically connected to a cable going to another outlet, switch, or fixture.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req758,What is a protective device?,"A protective device breaks an electrical circuit when a stated electric current that passes through it is exceeded. A protective device provides protection against electrical current only (not as a general protective device). It may be used to represent the complete set of elements including both the tripping unit and the breaking unit that provide the protection. This may be particularly useful at earlier stages of design where the approach to breaking the electrical supply may be determined but the method of tripping may not. Alternatively, this entity may be used to specifically represent the breaking unit alone (in which case the tripping unit will also be specifically identified). This entity is specific to dedicated protective devices and excludes electrical outlets that may have circuit protection.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req759,What is a solar device?,A solar device converts solar radiation into other energy such as electric current or thermal energy.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req760,What is a switching device?,"A switch is used in a cable distribution system (electrical circuit) to control or modulate the flow of electricity. Switches include those used for electrical power, communications, audio-visual, or other distribution system types as determined by the available ports.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req761,What is a transformer?,"A transformer is an inductive stationary device that transfers electrical energy from one circuit to another. A transformer is used to transform electric power; conversion of electric signals for other purposes is handled at other entities: a controller converts arbitrary signals, an audio visual appliance converts signals for audio or video streams, and a communications appliance converts signals for data or other communications usage.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req762,Which properties has a protective device tripping unit?,Standard and limiting terminal size.,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req763,Which properties has an audio visual appliance?,Media source and audio volume.,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req764,Which properties has an electric flow storage device?,"Nominal supply voltage, nominal supply voltage offset, and nominal frequency.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req765,Which properties has an electric generator?,"Electric generator efficiency, start current factor, and maximum power output.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req766,Which properties has an electric motor?,"Maximum power output, electric motor efficiency, start current factor, starting time, TE time, locked rotor current, motor enclosure type, frame size, whether the motor enclosure is guarded, and whether the motor has part winding.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req767,Which properties has a lamp?,"Contributed luminous flux, light emitter nominal power, lamp maintenance factor, lamp ballast type, lamp compensation type, colour appearance, spectrum, colour temperature, and colour rendering index.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req768,Which properties has an outlet?,Whether the outlet accepts a loose plug connection and the number of sockets.,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req769,Which properties has a switching device?,"Number of gangs, switch function, whether it has a key operated lock, whether there is an illuminated indicator to show that the switch is on, legend, and set point.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req770,Which properties has a transformer?,"Primary voltage, secondary voltage, primary current, secondary current, primary frequency, secondary frequency, primary apparent power, secondary apparent power, maximum apparent power, secondary current type, short circuit voltage, real impedance ratio, imaginary impedance ratio, transformer vector group, whether the neutral point of the primary winding is available as a terminal, and whether the neutral point of the secondary winding is available as a terminal.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req771,What is an air to air heat recovery?,"An air-to-air heat recovery device employs a counter-flow heat exchanger between inbound and outbound air flow. It is typically used to transfer heat from warmer air in one chamber to cooler air in the second chamber (i.e., typically used to recover heat from the conditioned air being exhausted and the outside air being supplied to a building), resulting in energy savings from reduced heating (or cooling) requirements.",LSP-OP-DP-EN,https://w3id.org/def/saref4bldg#
+req772,What is a burner?,"A burner is a device that converts fuel into heat through combustion. It includes gas, oil, and wood burners.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req773,What is a chiller?,"A chiller is a device used to remove heat from a liquid via a vapor-compression or absorption refrigeration cycle to cool a fluid, typically water or a mixture of water and glycol. The chilled fluid is then used to cool and dehumidify air in a building.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req774,What is a boiler?,"A boiler is a closed, pressure-rated vessel in which water or other fluid is heated using an energy source such as natural gas, heating oil, or electricity. The fluid in the vessel is then circulated out of the boiler for use in various processes or heating applications. A boiler is a vessel solely used for heating of water or other fluids. Storage vessels, such as for drinking water storage are considered as tanks.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req775,What is a coil?,"A coil is a device used to provide heat transfer between non-mixing media. A common example is a cooling coil, which utilizes a finned coil in which circulates chilled water, antifreeze, or refrigerant that is used to remove heat from air moving across the surface of the coil. A coil may be used either for heating or cooling purposes by placing a series of tubes (the coil) carrying a heating or cooling fluid into an airstream. The coil may be constructed from tubes bundled in a serpentine form or from finned tubes that give an extended heat transfer surface. Coils may also be used for non-airflow cases such as embedded in a floor slab.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req776,What is a compressor?,A compressor is a device that compresses a fluid typically used in a refrigeration circuit.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req777,What is a condenser?,"A condenser is a device that is used to dissipate heat, typically by condensing a substance such as a refrigerant from its gaseous to its liquid state.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req778,What is a cooled beam?,"A cooled beam (or chilled beam) is a device typically used to cool air by circulating a fluid such as chilled water through exposed finned tubes above a space. Typically mounted overhead near or within a ceiling, the cooled beam uses convection to cool the space below it by acting as a heat sink for the naturally rising warm air of the space. Once cooled, the air naturally drops back to the floor where the cycle begins again.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req779,What is a cooling tower?,A cooling tower is a device which rejects heat to ambient air by circulating a fluid such as water through it to reduce its temperature by partial evaporation.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req780,What is a damper?,A damper typically participates in an HVAC duct distribution system and is used to control or modulate the flow of air.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req781,What is a duct silencer?,"A duct silencer is a device that is typically installed inside a duct distribution system for the purpose of reducing the noise levels from air movement, fan noise, etc. in the adjacent space or downstream of the duct silencer device.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req782,What is an engine?,An engine is a device that converts fuel into mechanical energy through combustion.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req783,What is an evaporative cooler?,An evaporative cooler is a device that cools air by saturating it with water vapour.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req784,What is an evaporator?,An evaporator is a device in which a liquid refrigerant is vaporized and absorbs heat from the surrounding fluid.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req785,What is a fan?,A fan is a device which imparts mechanical work on a gas. A typical usage of a fan is to induce airflow in a building services air distribution system.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req786,What is a filter?,A filter is an apparatus used to remove particulate or gaseous matter from fluids and gases.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req787,What is a flow meter?,A flow meter is a device that is used to measure the flow rate in a system.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req788,What is a heat exchanger?,"A heat exchanger is a device used to provide heat transfer between non-mixing media such as plate and shell and tube heat exchangers. A heat exchanger is commonly used on water-side distribution systems to recover energy from a liquid to another liquid (typically water-based), whereas an air-to-air heat recovery is commonly used on air-side distribution systems to recover energy from a gas to a gas (usually air).",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req789,What is a humidifier?,A humidifier is a device that adds moisture into the air.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req790,What is a medical device?,"A medical device is attached to a medical piping system and operates upon medical gases to perform a specific function. Medical gases include medical air, medical vacuum, oxygen, carbon dioxide, nitrogen, and nitrous oxide.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req791,What is a pump?,A pump is a device which imparts mechanical work on fluids or slurries to move them through a channel or pipeline. A typical use of a pump is to circulate chilled water or heating hot water in a building services distribution system.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req792,What is a space heater?,"Space heaters utilize a combination of radiation and/or natural convection using a heating source such as electricity, steam or hot water to heat a limited space or area.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req793,What is a tank?,A tank is a vessel or container in which a fluid or gas is stored for later use.,LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req794,What is a tube bundle?,"A tube bundle is a device consisting of tubes and bundles of tubes used for heat transfer and contained typically within other energy conversion devices, such as a chiller or coil.",LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req795,What is a unitary equipment?,"Unitary equipment typically combine a number of components into a single product, such as air handlers, pre-packaged rooftop air-conditioning units, heat pumps, and split systems.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req796,What is a valve?,A valve is used in a building services piping distribution system to control or modulate the flow of the fluid.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req797,What is a vibration isolator?,A vibration isolator is a device used to minimize the effects of vibration transmissibility in a building.,LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req798,Which properties has an air to air heat recovery?,"Heat transfer type, whether it has defrost function or not, operational temperature range, primary air flow rate range, and secondary air flow rate range.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req799,Which properties has a burner?,Energy source.,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req800,Which properties has a chiller?,"Nominal capacity, nominal efficiency, nominal condensing temperature, nominal evaporating temperature, nominal heat rejection rate, nominal power consumption.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req801,Which properties has a boiler?,"Pressure rating, operating mode, heat transfer surface area, nominal part load ratio, water inlet temperature range, water storage capacity, whether it is a water storage heater, outlet temperature range, nominal energy consumption, and energy source.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req802,Which properties has a coil?,"Operational temperature range, air flow rate range, nominal sensible capacity, nominal latent capacity, nominal UA, and placement type.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req803,Which properties has a compressor?,"Power source, refrigerant class, minimum part load ratio, maximum part load ratio, compressor speed, nominal capacity, ideal capacity, ideal shaft power, whether it has hot gas bypass, and impeller diameter.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req804,Which properties has a condenser?,"Refrigerant class, external surface area, internal surface area, internal refrigerant volume, internal water volume, nominal heat transfer area, nominal heat transfer coefficient.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req805,Which properties has a cooled beam?,"Whether it is free hanging, water flow control system type, water pressure range, nominal cooling capacity, nominal surrounding temperature cooling, nominal surrounding humidity cooling, nominal supply water temperature cooling, nominal return water temperature cooling, nominal water flow cooling, nominal heating capacity, nominal surrounding temperature heating, nominal supply water temperature heating, nominal return water temperature heating, nominal water flow heating, integrated lighting type, pipe connection, finish colour, coil length, and coil width.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req806,Which properties has a cooling tower?,"Nominal capacity, circuit type, flow arrangement, spray type, capacity control, control strategy, number of cells, basin reserve volume, lift elevation difference, water requirement, operation temperature range, ambient design dry bulb temperature, ambient design wet bulb temperature.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req807,Which properties has a damper?,"Operation, orientation, blade thickness, blade action, blade shape, blade edge, number of blades, face area, maximum air flow rate, temperature range, maximum working pressure, temperature rating, nominal air flow rate, open pressure drop, leakage fully closed, frame type, frame depth, frame thickness, and close off rating.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req808,Which properties has a duct silencer?,"Hydraulic diameter, length, weight, air flow rate range, working pressure range, temperature range, and has exterior insulation.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req809,Which properties has an engine?,Energy source.,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req810,Which properties has an evaporative cooler?,"Flow arrangement, heat exchange area, operational temperature range, and water requirement.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req811,Which properties has an evaporator?,"Evaporation medium type, evaporation coolant, refrigerant class, external surface area, internal surface area, internal refrigerant volume, internal water volume, nominal heat transfer area, and nominal heat transfer coefficient.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req812,Which properties has a fan?,"Motor drive type, capacity control type, operation temperature range, nominal air flow rate, nominal total pressure, nominal static pressure, nominal rotation speed, nominal power rate, operational riterial.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req813,Which properties has a filter?,"Weight, initial resistance, final resistance, operation temperature range, flow rate range, nominal filter face velocity, nominal media surface velocity, nominal pressure drop, nominal flow rate, nominal particle geometric mean diameter, and nominal particle geometric standard deviation.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req814,Which properties has a flow meter?,Read out type and remote reading.,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req815,Which properties has a heat exchanger?,Arrangement.,LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req816,Which properties has a humidifier?,"Application, weight, nominal moisture gain, nominal air flow rate, internal control, and water requirement.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req817,Which properties has a pump?,"Flow rate range, flow resistance range, connection size, temperature range, net positive suction head, and nominal rotation speed.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req818,Which properties has a space heater?,"Placement type, temperature classification, heat transfer dimension, heat transfer medium, energy source, body mass, thermal mass heat capacity, output capacity, thermal efficiency, number of panels, number of sections.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req819,Which properties has a tank?,"Access type, storage type, nominal length or diameter, nominal width or diameter, nominal depth, nominal capacity, effective capacity, operating weight, pattern type, end shape type, first curvature radius, second curvature radius, number of sections.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req820,Which properties has a tube bundle?,"Number of rows, staggered row spacing, in line row spacing, number of circuits, fouling factor, thermal conductivity, length, volume, nominal diameter, outside diameter, inside diameter, horizontal spacing, vertical spacing, has turbulator.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req821,Which properties has a valve?,"Valve pattern, valve operation, valve mechanism, size, test pressure, working pressure, flow coefficient, and close off rating.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req822,Which properties has a vibration isolator?,"Vibration transmissibility, isolator static deflection, isolator compressibility, height, and maximum supported weight.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req823,What is a fire suppression terminal?,"A fire suppression terminal has the purpose of delivering a fluid (gas or liquid) that will suppress a fire. A fire suppression terminal provides for all forms of sprinkler, spreader and other form of terminal that is connected to a pipework system and intended to act in the role of suppressing a fire.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req824,What is an interceptor?,"An interceptor is a device designed and installed in order to separate and retain deleterious, hazardous or undesirable matter while permitting normal sewage or liquids to discharge into a collection system by gravity.",LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req825,What is a sanitary terminal?,"A sanitary terminal is a fixed appliance or terminal usually supplied with water and used for drinking, cleaning or foul water disposal or that is an item of equipment directly used with such an appliance or terminal.",LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req826,Which properties has an interceptor?,"Nominal body length, nominal body width, nominal body depth, inlet connection size, outlet connection size, cover length, cover width, ventilating pipe size.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#
+req827,What is an energy conversion device?,The distribution flow element energy conversion device defines the occurrence of a device used to perform energy conversion or heat transfer and typically participates in a flow distribution system.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req828,What is a flow controller?,The distribution flow element flow controller defines the occurrence of elements of a distribution system that are used to regulate flow through a distribution system.,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req829,What is a flow moving device?,"The distribution flow element flow moving device defines the occurrence of an apparatus used to distribute, circulate or perform conveyance of fluids, including liquids and gases (such as a pump or fan), and typically participates in a flow distribution system.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req830,What is a flow storage device?,The distribution flow element flow storage device defines the occurrence of a device that participates in a distribution system and is used for temporary storage (such as a tank).,LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req831,What is a flow terminal?,"The distribution flow element flow terminal defines the occurrence of a permanently attached element that acts as a terminus or beginning of a distribution system (such as an air outlet, drain, water closet, or sink). A terminal is typically a point at which a system interfaces with an external environment.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req832,What is a flow treatment device?,"The distribution flow element flow treatment device defines the occurrence of a device typically used to remove unwanted matter from a fluid, either liquid or gas, and typically participates in a flow distribution system.",LSP-OP-EN,https://w3id.org/def/saref4bldg#
+req833,What is a transport element?,"A transport element is a generalization of all transport related objects that move people, animals or goods within a building or building complex.",LSP-DC-SC-EN,https://w3id.org/def/saref4bldg#
+req834,Which properties has a transport element?,"Capacity people, capacity weight, and fire exit.",LSP-OP-DP-PW-EN,https://w3id.org/def/saref4bldg#

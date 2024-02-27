@@ -1,0 +1,1 @@
+In this work we present CORAL, an openly available corpus of 29 lexico-syntactic patterns, from which 12 are proposed in this work, and  834 ontological requirements annotated with their corresponding lexico-syntactic patterns. The corpus is openly available as a resource in three different formats, namely, HTML, CSV and RDF. 
