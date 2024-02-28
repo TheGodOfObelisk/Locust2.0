@@ -1,6 +1,7 @@
 package com.whu.ontologybackend.common.utils;
 
 import com.whu.ontologybackend.common.GlobalVariables;
+import com.whu.ontologybackend.common.structured.Glossary;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -30,6 +31,29 @@ public class OntologyOperationMethods {
             List<OntMultiwayTree> res = (List<OntMultiwayTree>) objectInputStream.readObject();
             return res;
         } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void localThesaurusSerialization(){
+        // serialization test
+        try{
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("D:\\localThesaurus.out"));
+            objectOutputStream.writeObject(GlobalVariables.localThesaurus);
+            objectOutputStream.flush();
+            objectOutputStream.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Glossary> localThesaurusDeserialization(){
+        try{
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("D:\\localThesaurus.out"));
+            List<Glossary> res = (List<Glossary>)objectInputStream.readObject();
+            return res;
+        } catch(Exception e){
             e.printStackTrace();
         }
         return null;

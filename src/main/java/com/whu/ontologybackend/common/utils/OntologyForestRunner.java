@@ -1,6 +1,7 @@
 package com.whu.ontologybackend.common.utils;
 
 import com.whu.ontologybackend.common.GlobalVariables;
+import com.whu.ontologybackend.common.structured.Glossary;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -27,5 +28,12 @@ public class OntologyForestRunner implements ApplicationRunner {
             OntMultiwayTree newTree = new OntMultiwayTree();
             GlobalVariables.ontMultiwayForest.add(newTree);
         }
+
+        // initialize local thesaurus
+        List<Glossary> tmpGlossary = OntologyOperationMethods.localThesaurusDeserialization();
+        if(tmpGlossary != null && tmpGlossary.size() > 0){
+            GlobalVariables.localThesaurus = tmpGlossary;
+        }
+        // no step 2
     }
 }

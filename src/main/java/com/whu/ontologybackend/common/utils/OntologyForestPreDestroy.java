@@ -9,5 +9,6 @@ public class OntologyForestPreDestroy {
     @PreDestroy
     public void exportOntologyForestBeforeExit(){
         OntologyOperationMethods.ontologyForestSerialization();
+        OntologyOperationMethods.localThesaurusSerialization();
     }
 }
