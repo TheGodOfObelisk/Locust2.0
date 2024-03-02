@@ -8,9 +8,7 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.iterator.ExtendedIterator;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class OntologyOperationMethods {
     public static void ontologyForestSerialization(){
@@ -204,5 +202,17 @@ public class OntologyOperationMethods {
             fullClassPath += ("." + combinedClassPath.get(i));
         }
         return fullClassPath;
+    }
+
+    public static void synchronizeTerms2LocalThesaurus(){
+        // extract terms from ontology forest to local thesaurus
+        Set<Glossary> termsFromOF = new HashSet<>();
+        for(OntMultiwayTree tmpTree : GlobalVariables.ontMultiwayForest){
+            // TODO: implement extractTerms() method
+            Set<Glossary> tmpTerms = tmpTree.extractTerms();
+            termsFromOF.addAll(tmpTerms);
+        }
+
+        GlobalVariables.localThesaurus.addAll(termsFromOF);
     }
 }

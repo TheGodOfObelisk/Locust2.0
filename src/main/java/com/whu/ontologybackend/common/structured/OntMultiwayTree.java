@@ -710,6 +710,26 @@ public class OntMultiwayTree implements Serializable {
         return false;
     }
 
+    public Set<Glossary> extractTerms(){
+        Set<Glossary> glossaries = new HashSet<>();
+        Glossary tmpGlossary = new Glossary();
+        // TODO: extract terms from this multi-way tree
+        // 1. op
+        for(OntProperty op : objectProperties){
+            tmpGlossary.setWord(op.getLocalName());
+            tmpGlossary.setLabel("op");
+            glossaries.add(tmpGlossary);
+            // reinitialize tmpGlossary
+        }
+        // 2. c
+
+        // 3. dt
+
+        // 4. i
+
+        return glossaries;
+    }
+
     public OntModel exportOntologyRDF(){
 //        String resRDF = new String();
         // to create an ontology model for a particular language, but leaving all other values as defaults
