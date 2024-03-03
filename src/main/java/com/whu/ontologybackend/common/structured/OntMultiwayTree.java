@@ -173,6 +173,7 @@ public class OntMultiwayTree implements Serializable {
         }
     }
 
+    // return a long string
     public String traverseTree(OntMultiwayTreeNode ontMultiwayTreeNode) {
         StringBuffer buffer = new StringBuffer();
         buffer.append("\n");
@@ -197,7 +198,7 @@ public class OntMultiwayTree implements Serializable {
     public void setRoot(OntMultiwayTreeNode root) {
         this.root = root;
     }
-
+    // deprecated in this version
     // parameter: full class name
     // for example, com.whu.ontology.cee.xxx
     // dot symbol in class name indicates hierarchy relation
@@ -227,6 +228,7 @@ public class OntMultiwayTree implements Serializable {
 //        readClass(className);
     }
 
+    // deprecated in this version
     public void updateTree(ArrayList<String> combinedClassPath){
         // TODO:
         // utilize addChild() method
@@ -372,6 +374,7 @@ public class OntMultiwayTree implements Serializable {
         }
     }
 
+    // deprecated in this version
     public boolean checkIsExist(ArrayList<String> combinedClassPath){
         // ensure items in combinedClassPath are in right order
         // index from 0 to n-1: directory
@@ -713,6 +716,7 @@ public class OntMultiwayTree implements Serializable {
     public Set<Glossary> extractTerms(){
         Set<Glossary> glossaries = new HashSet<>();
         Glossary tmpGlossary = new Glossary();
+        Set<NodeData> tmpNodeDataSet = new HashSet<>();
         // TODO: extract terms from this multi-way tree
         // 1. op
         for(OntProperty op : objectProperties){
@@ -722,12 +726,43 @@ public class OntMultiwayTree implements Serializable {
             // reinitialize tmpGlossary
         }
         // 2. c
+        tmpNodeDataSet = extractNodeDataSet();
+        for(NodeData nd: tmpNodeDataSet){
 
+        }
         // 3. dt
 
         // 4. i
 
         return glossaries;
+    }
+
+    // extract all existing concepts and data properties (how about instances?)
+    // unnecessary to encapsulate it
+    public Set<NodeData> extractNodeDataSet(){
+//         nodeDataSet = new HashSet<>();
+        // TODO: traverse and collect all NodeData objects
+        Set<NodeData> nodeDataSet = traverse2CollectNodeData(root);
+        return nodeDataSet;
+    }
+
+    public Set<NodeData> traverse2CollectNodeData(OntMultiwayTreeNode tmpTreeNode){
+//        if(tmpTreeNode == null || tmpTreeNode.getData() == null || tmpTreeNode.getData().getNodeData() == null){ // check it later
+//            return null;
+//        }
+        if(tmpTreeNode == null){
+            return null;
+        }
+        Set<NodeData> tmpNodeDataSet = new HashSet<>();
+        tmpNodeDataSet.add(tmpTreeNode.getData().getNodeData());
+        if(tmpTreeNode.getChildList() == null || tmpTreeNode.getChildList().size() == 0){
+            return tmpNodeDataSet;
+        } else {
+            for(OntMultiwayTreeNode iterTreeNode : tmpTreeNode.getChildList()){
+                tmpNodeDataSet.addAll(traverse2CollectNodeData(iterTreeNode));
+            }
+        }
+        return tmpNodeDataSet;
     }
 
     public OntModel exportOntologyRDF(){

@@ -32,12 +32,16 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             OntologyOperationMethods.integrateExistingOntology(m, "Malware Ontology", "0000001");
 
 //            Methods.ontMetadataProperties(m);
+            // synchronize before an input process's ending
+            // call it before every time exiting the input process methods (fill)
+            OntologyOperationMethods.synchronizeTerms2LocalThesaurus();
             return "open ontology: " + m.getBaseModel().toString();
         } catch (IOException e){
             e.printStackTrace();
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }
+
         return "In the serviceImpl class.";
     }
 
