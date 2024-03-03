@@ -1,7 +1,9 @@
 package com.whu.ontologybackend.common.structured;
 
+import java.io.Serializable;
+
 // Thesaurus: candidate words or phrases for glossary
-public class Glossary {
+public class Glossary implements Serializable {
     private String word;
     private String description;
 

@@ -15,4 +15,5 @@ public class GlobalVariables {
     public static List<Glossary> localThesaurus = new ArrayList<>();
 
     // key relationships between classes from CQs (ensure that the resulting ontology can answer a part of CQs)
+    // four types of terms are stored in localThesaurus
 }
