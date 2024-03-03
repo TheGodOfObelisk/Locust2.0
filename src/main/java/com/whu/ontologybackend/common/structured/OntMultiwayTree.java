@@ -715,11 +715,12 @@ public class OntMultiwayTree implements Serializable {
 
     public Set<Glossary> extractTerms(){
         Set<Glossary> glossaries = new HashSet<>();
-        Glossary tmpGlossary = new Glossary();
+
         Set<NodeData> tmpNodeDataSet = new HashSet<>();
         // TODO: extract terms from this multi-way tree
         // 1. op
         for(OntProperty op : objectProperties){
+            Glossary tmpGlossary = new Glossary();
             tmpGlossary.setWord(op.getLocalName());
             tmpGlossary.setLabel("op");
             glossaries.add(tmpGlossary);
@@ -728,12 +729,38 @@ public class OntMultiwayTree implements Serializable {
         // 2. c
         tmpNodeDataSet = extractNodeDataSet();
         for(NodeData nd: tmpNodeDataSet){
-
+            Glossary tmpGlossary = new Glossary();
+            tmpGlossary.setWord(nd.getConcept());
+            tmpGlossary.setLabel("c");
+            glossaries.add(tmpGlossary);
         }
         // 3. dt
-
+        for(NodeData nd: tmpNodeDataSet){
+            List<Map<String, Object>> dpList = nd.getDataProperties();
+            if(dpList == null){
+                continue;
+            }
+            if(dpList.size() == 0){
+                continue;
+            }
+            for(Map<String, Object> dp : dpList){
+                Glossary tmpGlossary = new Glossary();
+                Set<String> keyset = dp.keySet();
+                if(keyset.size() == 1){
+                    for(String key: keyset){
+                        tmpGlossary.setWord(key);
+                        tmpGlossary.setLabel("dt");
+                        tmpGlossary.setDescription("data property name: " + key + ",\n" + "data property range: " + dp.get(key));
+                    }
+                } else {
+                    System.out.println("error: more than one item in dpList!");
+                    continue;
+                }
+                glossaries.add(tmpGlossary);
+            }
+        }
         // 4. i
-
+        // handle instances -> now there no instance info in ontology forest
         return glossaries;
     }
 
@@ -750,11 +777,14 @@ public class OntMultiwayTree implements Serializable {
 //        if(tmpTreeNode == null || tmpTreeNode.getData() == null || tmpTreeNode.getData().getNodeData() == null){ // check it later
 //            return null;
 //        }
-        if(tmpTreeNode == null){
-            return null;
-        }
         Set<NodeData> tmpNodeDataSet = new HashSet<>();
-        tmpNodeDataSet.add(tmpTreeNode.getData().getNodeData());
+        if(tmpTreeNode == null){
+            return tmpNodeDataSet;
+        }
+        if(tmpTreeNode.getData() != null && tmpTreeNode.getData().getNodeData() != null){
+            tmpNodeDataSet.add(tmpTreeNode.getData().getNodeData());
+        }
+
         if(tmpTreeNode.getChildList() == null || tmpTreeNode.getChildList().size() == 0){
             return tmpNodeDataSet;
         } else {
