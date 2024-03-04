@@ -5,13 +5,14 @@ import com.whu.ontologybackend.common.structured.Glossary;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Set;
 
 @Component
-//@Order(1)
+@Order(1)
 public class OntologyContextRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
