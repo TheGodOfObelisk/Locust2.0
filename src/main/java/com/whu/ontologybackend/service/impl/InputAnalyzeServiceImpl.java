@@ -1,6 +1,8 @@
 package com.whu.ontologybackend.service.impl;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONReader;
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
 import org.apache.commons.csv.CSVFormat;
@@ -11,6 +13,8 @@ import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+
 
 @Service
 public class InputAnalyzeServiceImpl implements InputAnalyzeService {
@@ -63,6 +67,25 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
     @Override
     public String analyzeInputGlossary(File glossaryFile){
-        return "Analyzing glossary files.";
+
+        try(InputStream is = new FileInputStream(glossaryFile);
+        InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+        BufferedReader br = new BufferedReader(isr);
+        JSONReader jr = new JSONReader(br)) {
+            JSONObject object = new JSONObject();
+            jr.startObject();
+            while(jr.hasNext()){
+                String key = jr.readString();
+                JSONObject value = (JSONObject) jr.readObject();
+                object.put(key, value);
+            }
+            jr.endObject();
+            return object.toString();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+//        return "Analyzing glossary files.";
     }
 }
