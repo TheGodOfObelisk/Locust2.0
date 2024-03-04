@@ -27,6 +27,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
 <!--        &lt;!&ndash; mysql driver&ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>mysql</groupId>-->
