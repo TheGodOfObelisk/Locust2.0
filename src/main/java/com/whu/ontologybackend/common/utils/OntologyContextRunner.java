@@ -5,16 +5,24 @@ import com.whu.ontologybackend.common.structured.Glossary;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 
 @Component
-@Order(1)
-public class OntologyForestRunner implements ApplicationRunner {
+//@Order(1)
+public class OntologyContextRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        System.out.println("ready to initialize!");
+        initializeOntologyForest();
+        initializeLocalThesaurus();
+        // no step 2
+        System.out.println("initialize successfully!");
+    }
+
+    private void initializeOntologyForest(){
         // initialize ontology forest
         // Step 1: deserialize from disk
         // TODO: implementation of deserialize from a "*.out" file
@@ -28,12 +36,13 @@ public class OntologyForestRunner implements ApplicationRunner {
             OntMultiwayTree newTree = new OntMultiwayTree();
             GlobalVariables.ontMultiwayForest.add(newTree);
         }
+    }
 
+    private void initializeLocalThesaurus(){
         // initialize local thesaurus
-        List<Glossary> tmpGlossary = OntologyOperationMethods.localThesaurusDeserialization();
+        Set<Glossary> tmpGlossary = OntologyOperationMethods.localThesaurusDeserialization();
         if(tmpGlossary != null && tmpGlossary.size() > 0){
             GlobalVariables.localThesaurus = tmpGlossary;
         }
-        // no step 2
     }
 }

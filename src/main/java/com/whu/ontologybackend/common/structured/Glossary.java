@@ -1,6 +1,7 @@
 package com.whu.ontologybackend.common.structured;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 // Thesaurus: candidate words or phrases for glossary
 public class Glossary implements Serializable {
@@ -18,6 +19,18 @@ public class Glossary implements Serializable {
 
     public String getWord() {
         return word;
+    }
+
+    public Glossary(){
+        this.word = "";
+        this.description = "";
+        this.label = "";
+    }
+
+    public Glossary(String word, String description, String label) {
+        this.word = word;
+        this.description = description;
+        this.label = label;
     }
 
     public void setWord(String word) {
@@ -38,5 +51,27 @@ public class Glossary implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    @Override
+    public String toString(){
+        return "Candidate Term\nWord: " + getWord() + ",\nDescription: " + getDescription() + "\nLabel: " + getLabel();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(obj == null || getClass() != obj.getClass()){
+            return false;
+        }
+        Glossary other = (Glossary) obj;
+        return word.equals(other.getWord()) && description.equals(other.getDescription()) && label.equals(other.getLabel());
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(word, description, label);
     }
 }

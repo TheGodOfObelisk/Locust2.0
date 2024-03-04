@@ -1,5 +1,6 @@
 package com.whu.ontologybackend.common.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.structured.Glossary;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
@@ -46,10 +47,10 @@ public class OntologyOperationMethods {
         }
     }
 
-    public static List<Glossary> localThesaurusDeserialization(){
+    public static Set<Glossary> localThesaurusDeserialization(){
         try{
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("D:\\localThesaurus.out"));
-            List<Glossary> res = (List<Glossary>)objectInputStream.readObject();
+            Set<Glossary> res = (Set<Glossary>)objectInputStream.readObject();
             return res;
         } catch(Exception e){
             e.printStackTrace();
@@ -174,6 +175,22 @@ public class OntologyOperationMethods {
             GlobalVariables.ontMultiwayForest.add(targetTree);
         }
         return;
+    }
+
+    public static void synchronizeInputGlossaries2localThesaurus(JSONObject inputGlossaries){
+        // synchronize inputted glossaries to local thesaurus
+        // only handle two types of thesaurus
+        Set<String> glossaries = inputGlossaries.keySet();
+        for(String glossary : glossaries){
+            JSONObject body = inputGlossaries.getJSONObject(glossary);
+            String description = body.getString("description");
+            Glossary candidateTerm = new Glossary();
+            candidateTerm.setWord(glossary);
+            candidateTerm.setDescription(description);
+            // label 'u' represents 'unknown'
+            candidateTerm.setLabel("u");
+            GlobalVariables.localThesaurus.add(candidateTerm);
+        }
     }
 
     // drop Java class parser

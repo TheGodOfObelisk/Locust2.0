@@ -720,18 +720,18 @@ public class OntMultiwayTree implements Serializable {
         // TODO: extract terms from this multi-way tree
         // 1. op
         for(OntProperty op : objectProperties){
-            Glossary tmpGlossary = new Glossary();
-            tmpGlossary.setWord(op.getLocalName());
-            tmpGlossary.setLabel("op");
+            Glossary tmpGlossary = new Glossary(op.getLocalName(), "", "op");
+//            tmpGlossary.setWord(op.getLocalName());
+//            tmpGlossary.setLabel("op");
             glossaries.add(tmpGlossary);
             // reinitialize tmpGlossary
         }
         // 2. c
         tmpNodeDataSet = extractNodeDataSet();
         for(NodeData nd: tmpNodeDataSet){
-            Glossary tmpGlossary = new Glossary();
-            tmpGlossary.setWord(nd.getConcept());
-            tmpGlossary.setLabel("c");
+            Glossary tmpGlossary = new Glossary(nd.getConcept(), "", "c");
+//            tmpGlossary.setWord(nd.getConcept());
+//            tmpGlossary.setLabel("c");
             glossaries.add(tmpGlossary);
         }
         // 3. dt

@@ -80,6 +80,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
                 object.put(key, value);
             }
             jr.endObject();
+            OntologyOperationMethods.synchronizeInputGlossaries2localThesaurus(object);
             return object.toString();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
