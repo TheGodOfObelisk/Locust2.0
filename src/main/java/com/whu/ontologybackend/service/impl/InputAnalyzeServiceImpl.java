@@ -61,5 +61,8 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         return "In the serviceImpl class. Analyzing excels.";
     }
 
-
+    @Override
+    public String analyzeInputGlossary(File glossaryFile){
+        return "Analyzing glossary files.";
+    }
 }

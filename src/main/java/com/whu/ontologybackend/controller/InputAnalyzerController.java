@@ -17,6 +17,7 @@ public class InputAnalyzerController {
     @Autowired
     private InputAnalyzeService inputAnalyzeService;
 
+    // replace it with relative path in the release version
     private static String resourcePrefix = "D:\\Lowcode-ontology-generator\\Lowcode-ontology-generator-backend\\backend\\src\\main\\resources\\multi-source\\";
 
     @RequestMapping("postTest")
@@ -26,6 +27,12 @@ public class InputAnalyzerController {
 
     @RequestMapping("glossary")
     public String integrateGlossary(){
+        // handle two sources of glossaries, integrate them into local thesaurus
+        // in the release version, the file path should be conveyed as a parameter
+        // test 1
+//        File glossaryFile = new File(resourcePrefix + "Thesaurus\\globalknowledge-cybersecurity.json");
+        // test 2
+        File glossaryFile = new File(resourcePrefix + "Thesaurus\\NICCS_3.json");
         return "glossary";
     }
 

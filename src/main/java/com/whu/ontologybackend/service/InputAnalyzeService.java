@@ -14,4 +14,6 @@ public interface InputAnalyzeService {
     // with SQL operations
     // require corresponding Classes have been defined
     // consider vector databases
+
+    String analyzeInputGlossary(File glossaryFile);
 }
