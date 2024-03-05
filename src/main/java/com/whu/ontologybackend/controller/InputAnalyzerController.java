@@ -63,7 +63,13 @@ public class InputAnalyzerController {
         // each competency question is a single query sentence
         // CQ is divided into two parts: 1, from words of existing ontologies and glossaries; 2, from user-defined competency questions or requirement descriptions
 
-        return "CQs";
+        return inputAnalyzeService.analyzeInputCQs();
+    }
+
+    // requirements in the form of text
+    @RequestMapping("postRequirementDocuments")
+    public String integrateRequirements(){
+        return "requirements";
     }
 
     @RequestMapping("postJSON")

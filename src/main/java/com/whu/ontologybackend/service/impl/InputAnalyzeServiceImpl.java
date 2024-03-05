@@ -88,4 +88,19 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         }
 //        return "Analyzing glossary files.";
     }
+
+    @Override
+    public String analyzeInputCQs(){
+        // Step 1:
+        // materialize CQs in BigCQ using local thesaurus
+
+        // Step 2:
+        // analyze materialized CQs to help constructing the resulting ontology
+        // goal: enrich the ontology forest [design an update algorithm and implement it ]
+
+        // Step 3:
+        // translate materialized CQs into SPARQL-OWL format
+
+        return "analyzing inputted CQs";
+    }
 }

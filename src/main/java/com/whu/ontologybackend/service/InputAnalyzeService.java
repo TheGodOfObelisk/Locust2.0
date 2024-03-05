@@ -16,4 +16,6 @@ public interface InputAnalyzeService {
     // consider vector databases
 
     String analyzeInputGlossary(File glossaryFile);
+
+    String analyzeInputCQs();
 }
