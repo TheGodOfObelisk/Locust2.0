@@ -183,7 +183,13 @@ public class OntologyOperationMethods {
         Set<String> glossaries = inputGlossaries.keySet();
         for(String glossary : glossaries){
             JSONObject body = inputGlossaries.getJSONObject(glossary);
-            String description = body.getString("description");
+            String description = "";
+            if(body.containsKey("description")){
+                description = body.getString("description"); // from globalknowledge-cybersecurity.json
+            } else if(body.containsKey("Definition")){
+                description = body.getString("Definition"); // from NICCS_3.json
+            }
+            // how to handle those candidate terms with the same "word" field?
             Glossary candidateTerm = new Glossary();
             candidateTerm.setWord(glossary);
             candidateTerm.setDescription(description);

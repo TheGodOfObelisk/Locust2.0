@@ -67,7 +67,6 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
     @Override
     public String analyzeInputGlossary(File glossaryFile){
-
         try(InputStream is = new FileInputStream(glossaryFile);
         InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(isr);

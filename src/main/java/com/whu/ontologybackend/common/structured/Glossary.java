@@ -1,5 +1,7 @@
 package com.whu.ontologybackend.common.structured;
 
+import org.apache.jena.base.Sys;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -67,6 +69,7 @@ public class Glossary implements Serializable {
             return false;
         }
         Glossary other = (Glossary) obj;
+
         return word.equals(other.getWord()) && description.equals(other.getDescription()) && label.equals(other.getLabel());
     }
 
