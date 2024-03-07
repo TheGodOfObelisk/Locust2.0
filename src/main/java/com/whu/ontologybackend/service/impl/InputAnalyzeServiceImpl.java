@@ -93,7 +93,8 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     public String analyzeInputCQs(){
         // Step 1:
         // materialize CQs in BigCQ using local thesaurus
-
+        // & CQs from other resources
+        
         // Step 2:
         // analyze materialized CQs to help constructing the resulting ontology
         // goal: enrich the ontology forest [design an update algorithm and implement it ]
