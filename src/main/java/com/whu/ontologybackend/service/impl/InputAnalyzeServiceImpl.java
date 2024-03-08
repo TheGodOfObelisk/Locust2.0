@@ -8,6 +8,7 @@ import com.whu.ontologybackend.service.InputAnalyzeService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.jena.base.Sys;
 import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -90,11 +91,18 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     }
 
     @Override
-    public String analyzeInputCQs(){
+    public String analyzeInputCQs(String filePrefix){
         // Step 1:
         // materialize CQs in BigCQ using local thesaurus
         // & CQs from other resources
-        
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "cq_templates_only.txt"))){
+            String line;
+            while((line = reader.readLine()) != null){
+                System.out.println(line);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         // Step 2:
         // analyze materialized CQs to help constructing the resulting ontology
         // goal: enrich the ontology forest [design an update algorithm and implement it ]

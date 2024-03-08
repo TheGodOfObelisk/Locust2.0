@@ -17,5 +17,5 @@ public interface InputAnalyzeService {
 
     String analyzeInputGlossary(File glossaryFile);
 
-    String analyzeInputCQs();
+    String analyzeInputCQs(String filePrefix);
 }

@@ -20,6 +20,8 @@ public class InputAnalyzerController {
     // replace it with relative path in the release version
     private static String resourcePrefix = "D:\\Lowcode-ontology-generator\\Lowcode-ontology-generator-backend\\backend\\src\\main\\resources\\multi-source\\";
 
+    private static String templatePrefix = "D:\\Lowcode-ontology-generator\\Lowcode-ontology-generator-backend\\backend\\src\\main\\resources\\templates\\BigCQ_dataset\\";
+
     @RequestMapping("postTest")
     public String postTest(@RequestParam("name") String name, @RequestParam("age") Integer age){
         return "name: " + name + " age: " + age + "... OK";
@@ -63,7 +65,7 @@ public class InputAnalyzerController {
         // each competency question is a single query sentence
         // CQ is divided into two parts: 1, from words of existing ontologies and glossaries; 2, from user-defined competency questions or requirement descriptions
 
-        return inputAnalyzeService.analyzeInputCQs();
+        return inputAnalyzeService.analyzeInputCQs(templatePrefix);
     }
 
     // requirements in the form of text
