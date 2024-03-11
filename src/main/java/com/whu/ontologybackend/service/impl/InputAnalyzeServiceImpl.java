@@ -96,13 +96,15 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         // materialize CQs in BigCQ using local thesaurus
         // & CQs from other resources
         try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "cq_templates_only.txt"))){
-            String line;
-            while((line = reader.readLine()) != null){
-                System.out.println(line);
+            String CQTemplate;
+            while((CQTemplate = reader.readLine()) != null){
+                System.out.println(CQTemplate);
             }
         } catch (IOException e){
             e.printStackTrace();
         }
+
+
         // Step 2:
         // analyze materialized CQs to help constructing the resulting ontology
         // goal: enrich the ontology forest [design an update algorithm and implement it ]

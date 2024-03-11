@@ -4,14 +4,20 @@ import com.alibaba.fastjson.JSONObject;
 import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.structured.Glossary;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
+import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.iterator.ExtendedIterator;
 
 import java.io.*;
+import java.sql.*;
 import java.util.*;
 
 public class OntologyOperationMethods {
+    private static final String URL = "jdbc:mysql://localhost:3306/myontology";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "123456";
+
     public static void ontologyForestSerialization(){
         // serialization test
         try{
@@ -237,5 +243,31 @@ public class OntologyOperationMethods {
         }
 
         GlobalVariables.localThesaurus.addAll(termsFromOF);
+    }
+
+    private static Connection getDBConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    }
+
+    public static void DBQuery(){
+        try(Connection connection = OntologyOperationMethods.getDBConnection()){
+            String sql = "SELECT * FROM user";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                int age = resultSet.getInt("age");
+                String email = resultSet.getString("email");
+                System.out.println("ID: " + id);
+                System.out.println("Name: " + name);
+                System.out.println("Age: " + age);
+                System.out.println("Email: " + email);
+                System.out.println();
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
