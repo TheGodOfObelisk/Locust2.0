@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 @RequestMapping("/hello")
 public class HelloWorldController{
+
+    private static String BigCQTemplatePath = "D:\\Lowcode-ontology-generator\\Lowcode-ontology-generator-backend\\backend\\src\\main\\resources\\templates\\BigCQ_dataset\\query_templates_to_cq_template_mappings\\";
     @Autowired
     private HelloWorldService helloWorldService;
 
@@ -22,5 +24,10 @@ public class HelloWorldController{
     @RequestMapping("/dbconnect")
     public String dbConnect(){
         return helloWorldService.testDBConnect();
+    }
+
+    @RequestMapping("/dbInitializer")
+    public String dbInit(){
+        return helloWorldService.DBInit(BigCQTemplatePath);
     }
 }

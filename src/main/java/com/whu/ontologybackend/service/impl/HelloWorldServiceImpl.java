@@ -11,4 +11,11 @@ public class HelloWorldServiceImpl implements HelloWorldService {
         OntologyOperationMethods.DBQuery();
         return "test db connect";
     }
+
+    @Override
+    public String DBInit(String path) {
+        // import CQ templates and their corresponding SPARQL queries into DB
+        OntologyOperationMethods.DBInit(path);
+        return "db init";
+    }
 }
