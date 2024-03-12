@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class DatabaseOperationMethods {
 
@@ -16,13 +17,18 @@ public class DatabaseOperationMethods {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "123456";
 
+    private static int cqtsum = 0;
+    private static int relsum = 0;
+
     private static Connection getDBConnection() throws SQLException {
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
     public static void DBInit(String path){
+        System.out.println("Begin to initialize DB.");
         File folder = new File(path);
         traverseFiles(folder);
+        System.out.println("DB has been initialized.");
     }
 
     private static void traverseFiles(File folder){
@@ -87,12 +93,77 @@ public class DatabaseOperationMethods {
         } else {
             System.out.println("Error: no query field!");
         }
-        System.out.println("CQTList: " + CQTList.toString());
-        System.out.println("query: " + query);
-        System.out.println();
+//        System.out.println("CQTList: " + CQTList.toString());
+//        System.out.println("query: " + query);
+//        System.out.println();
 
         // write into MySQL
-
+        // step 1: connect
+        Connection connection = null;
+        try{
+            connection = DatabaseOperationMethods.getDBConnection();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        // step 2: insert SPARQL template
+        UUID ID = UUID.randomUUID();
+        try{
+            String sql = "INSERT INTO SPARQLTEMPLATE (ID, SPARQLTemplate) " +
+                    "VALUES (?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, ID.toString());
+            preparedStatement.setString(2, query);
+            preparedStatement.executeUpdate();
+//            int rowAffected = preparedStatement.executeUpdate();
+//            System.out.println(rowAffected + " row(s) has been inserted.");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        // step 3: insert related CQ templates and update relation table
+        UUID CQT_ID;
+        UUID REL_ID;
+        try{
+            String sql = "INSERT INTO CQTEMPLATES (ID, CQTemplate) " +
+                    "VALUES (?, ?)";
+            for(String cqt : CQTList){
+                CQT_ID = UUID.randomUUID();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, CQT_ID.toString());
+                preparedStatement.setString(2, cqt);
+                preparedStatement.executeUpdate();
+//                int rowAffected = preparedStatement.executeUpdate();
+//                System.out.println(rowAffected + " CQT has been inserted");
+                // for each cqt update the relation table
+                cqtsum++;
+                REL_ID = UUID.randomUUID();
+                String rel_sql = "INSERT INTO CQT_SPARQLT_REL (ID, CQTEMPLATEID, SPARQLTEMPLATEID) " +
+                        "VALUES (?, ?, ?)";
+                PreparedStatement preparedStatement4rel = connection.prepareStatement(rel_sql);
+                preparedStatement4rel.setString(1, REL_ID.toString());
+                preparedStatement4rel.setString(2, CQT_ID.toString());
+                preparedStatement4rel.setString(3, ID.toString());
+                preparedStatement4rel.executeUpdate();
+                relsum++;
+//                rowAffected = preparedStatement4rel.executeUpdate();
+//                System.out.println(rowAffected + " relation has been inserted.");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        if(cqtsum != relsum){
+            System.out.println("Error: they should equal.");
+        } else {
+            cqtsum = 0;
+            relsum = 0;
+        }
+        // step 4: disconnect
+        try{
+            // autocommit = true
+            // connection.commit();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void DBQuery(){
