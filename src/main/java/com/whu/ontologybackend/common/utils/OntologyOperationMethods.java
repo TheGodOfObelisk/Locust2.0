@@ -1,5 +1,6 @@
 package com.whu.ontologybackend.common.utils;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
 import com.whu.ontologybackend.common.GlobalVariables;
@@ -283,8 +284,15 @@ public class OntologyOperationMethods {
             jr.startObject();
             while(jr.hasNext()){
                 String key = jr.readString();
-                JSONObject value = (JSONObject) jr.readObject();
-                object.put(key, value);
+                if(key.equals("cqs")){
+                    JSONArray value = (JSONArray) jr.readObject();
+                    object.put(key, value);
+                } else if (key.equals("query")) {
+                    String value = (String) jr.readObject();
+                    object.put(key, value);
+                } else {
+                    System.out.println("Error: wrong field.");
+                }
             }
             jr.endObject();
             // extract "cqs" and "query" fields and process them, respectively
@@ -299,7 +307,21 @@ public class OntologyOperationMethods {
     private static void writeCQMappings(JSONObject inputCQTs){
         // TODO: extract two fields and write them into MySQL
         // assign ID to each CQ template and corresponding SPARQL template using UUID
-
+        List<String> CQTList = new ArrayList<>();
+        String query = "";
+        if(inputCQTs.containsKey("cqs")){
+            CQTList = (List<String>) inputCQTs.get("cqs");
+        } else {
+            System.out.println("Error: no cqs field!");
+        }
+        if(inputCQTs.containsKey("query")){
+            query = inputCQTs.getString("query");
+        } else {
+            System.out.println("Error: no query field!");
+        }
+        System.out.println("CQTList: " + CQTList.toString());
+        System.out.println("query: " + query);
+        System.out.println();
     }
 
     public static void DBQuery(){
