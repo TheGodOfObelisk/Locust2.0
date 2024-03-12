@@ -7,9 +7,7 @@ import com.alibaba.fastjson.JSONReader;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class DatabaseOperationMethods {
 
@@ -96,7 +94,7 @@ public class DatabaseOperationMethods {
 //        System.out.println("CQTList: " + CQTList.toString());
 //        System.out.println("query: " + query);
 //        System.out.println();
-
+        Set<String> CQTSet = new HashSet<>(CQTList);
         // write into MySQL
         // step 1: connect
         Connection connection = null;
@@ -125,7 +123,7 @@ public class DatabaseOperationMethods {
         try{
             String sql = "INSERT INTO CQTEMPLATES (ID, CQTemplate) " +
                     "VALUES (?, ?)";
-            for(String cqt : CQTList){
+            for(String cqt : CQTSet){
                 CQT_ID = UUID.randomUUID();
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, CQT_ID.toString());
