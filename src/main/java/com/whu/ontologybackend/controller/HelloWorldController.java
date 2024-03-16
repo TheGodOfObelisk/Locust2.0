@@ -18,6 +18,8 @@ public class HelloWorldController{
 
     @RequestMapping("/helloworld")
     public String helloWorld(){
+        long res = 0;
+        System.out.printf("%d", res);
         return "hello world";
     }
 
