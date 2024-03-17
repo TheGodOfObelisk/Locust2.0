@@ -18,4 +18,6 @@ public interface InputAnalyzeService {
     String analyzeInputGlossary(File glossaryFile);
 
     String analyzeInputCQs(String filePrefix);
+
+    String materializeCQs(String filePrefix);
 }

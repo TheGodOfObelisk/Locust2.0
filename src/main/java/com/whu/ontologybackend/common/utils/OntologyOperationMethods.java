@@ -238,4 +238,35 @@ public class OntologyOperationMethods {
 
         GlobalVariables.localThesaurus.addAll(termsFromOF);
     }
+
+    public static boolean checkCQTandSPARQLT(String filePrefix){
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "cq_templates_only.txt"))){
+            String CQTemplate;
+            while((CQTemplate = reader.readLine()) != null){
+                System.out.println(CQTemplate);
+                if(!DatabaseOperationMethods.checkCQTemplate(CQTemplate)){
+                    System.out.println("Error: incomplete CQTemplate db.");
+                    return false;
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "sparqlowl_templates_only.txt"))){
+            String SPARQLTemplate;
+            while((SPARQLTemplate = reader.readLine()) != null){
+                System.out.println(SPARQLTemplate);
+                if(!DatabaseOperationMethods.checkSPARQLTemplate(SPARQLTemplate)){
+                    System.out.println("Error: incomplete SPARQLTemplate db.");
+                    return false;
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 }

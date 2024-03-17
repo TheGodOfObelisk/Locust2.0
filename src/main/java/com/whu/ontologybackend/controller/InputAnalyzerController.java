@@ -68,6 +68,11 @@ public class InputAnalyzerController {
         return inputAnalyzeService.analyzeInputCQs(templatePrefix);
     }
 
+    @RequestMapping("materializeCQ")
+    public String materializeCQs(){
+        return inputAnalyzeService.materializeCQs(templatePrefix);
+    }
+
     // requirements in the form of text
     @RequestMapping("postRequirementDocuments")
     public String integrateRequirements(){

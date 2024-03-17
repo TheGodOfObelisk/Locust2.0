@@ -185,4 +185,38 @@ public class DatabaseOperationMethods {
             e.printStackTrace();
         }
     }
+
+    public static boolean checkCQTemplate(String CQT){
+        try(Connection connection = DatabaseOperationMethods.getDBConnection()){
+            String sql = "SELECT * FROM CQTEMPLATES WHERE CQTemplate = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, CQT);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean checkSPARQLTemplate(String SPARQLT){
+        try(Connection connection = DatabaseOperationMethods.getDBConnection()){
+            String sql = "SELECT * FROM SPARQLTEMPLATE WHERE SPARQLTemplate = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, SPARQLT);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

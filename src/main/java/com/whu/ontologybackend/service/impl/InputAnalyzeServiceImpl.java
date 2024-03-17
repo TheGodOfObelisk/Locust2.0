@@ -3,6 +3,7 @@ package com.whu.ontologybackend.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
+import com.whu.ontologybackend.common.utils.DatabaseOperationMethods;
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
 import org.apache.commons.csv.CSVFormat;
@@ -91,26 +92,49 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     }
 
     @Override
-    public String analyzeInputCQs(String filePrefix){
+    public String materializeCQs(String filePrefix){
         // Step 1:
         // materialize CQs in BigCQ using local thesaurus
         // & CQs from other resources
-        try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "cq_templates_only.txt"))){
-            String CQTemplate;
-            while((CQTemplate = reader.readLine()) != null){
-                System.out.println(CQTemplate);
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "sparqlowl_templates_only.txt"))){
+            String SPARQLTemplate;
+            while((SPARQLTemplate = reader.readLine()) != null){
+
             }
         } catch (IOException e){
             e.printStackTrace();
         }
+//        if(!OntologyOperationMethods.checkCQTandSPARQLT(filePrefix)){
+//            return "db hasn't been initialized.";
+//        };
+
 
 
         // Step 2:
-        // analyze materialized CQs to help constructing the resulting ontology
+        // analyze inputted CQs to help constructing the resulting ontology
         // goal: enrich the ontology forest [design an update algorithm and implement it ]
 
         // Step 3:
         // translate materialized CQs into SPARQL-OWL format
+        return "materializing CQs";
+    }
+
+    @Override
+    public String analyzeInputCQs(String filePrefix){
+        // Step 1:
+        // analyze inputted CQs to help constructing the resulting ontology
+        // goal: enrich the ontology forest [design an update algorithm and implement it ]
+        // check whether the inputted textual requirement is a CQ
+
+        // Step 2:
+        // use the inputted text to extract useful terms for enriching the resulting ontology
+
+        // Step 3:
+        // check whether the inputted CQ can match an existing template
+        // form a new template or match an existing template
+
+        // Step 4:
+        // translate the inputted CQs into SPARQL-OWL format
 
         return "analyzing inputted CQs";
     }
