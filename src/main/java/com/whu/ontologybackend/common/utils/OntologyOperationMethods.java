@@ -270,8 +270,8 @@ public class OntologyOperationMethods {
         return false;
     }
 
-    public static void extractPlaceHoldersFromSPARQLT(String SPARQLTemplate){
-        System.out.println("Ready to extract SPARQL Template: " + SPARQLTemplate);
+    public static List<String> extractPlaceHoldersFromSPARQLT(String SPARQLTemplate){
+        System.out.println("Ready to extract placeholders from SPARQL Template: " + SPARQLTemplate);
         String regex = "op\\d|c\\d|i\\d|dt\\d";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(SPARQLTemplate);
@@ -282,5 +282,6 @@ public class OntologyOperationMethods {
         for(String match:matches){
             System.out.println(match);
         }
+        return matches;
     }
 }

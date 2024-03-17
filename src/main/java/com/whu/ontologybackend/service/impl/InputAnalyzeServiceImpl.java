@@ -16,6 +16,9 @@ import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -96,10 +99,15 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         // Step 1:
         // materialize CQs in BigCQ using local thesaurus
         // & CQs from other resources
+        Set<String> cSet = new HashSet<>();
+        Set<String> opSet = new HashSet<>();
+        Set<String> dtSet = new HashSet<>();
+        Set<String> iSet = new HashSet<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "sparqlowl_templates_only.txt"))){
             String SPARQLTemplate;
             while((SPARQLTemplate = reader.readLine()) != null){
-                OntologyOperationMethods.extractPlaceHoldersFromSPARQLT(SPARQLTemplate);
+                List<String> placeholders = OntologyOperationMethods.extractPlaceHoldersFromSPARQLT(SPARQLTemplate);
+                // materializing...
             }
         } catch (IOException e){
             e.printStackTrace();
