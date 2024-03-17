@@ -96,9 +96,10 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
     @Override
     public String materializeCQs(String filePrefix){
-        // Step 1:
+        // materialize when thesaurus is stable
         // materialize CQs in BigCQ using local thesaurus
         // & CQs from other resources
+        // TODO: use 4 sets to materialize SPARQL and CQ, then update db
         Set<String> cSet = new HashSet<>();
         Set<String> opSet = new HashSet<>();
         Set<String> dtSet = new HashSet<>();
@@ -115,15 +116,6 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 //        if(!OntologyOperationMethods.checkCQTandSPARQLT(filePrefix)){
 //            return "db hasn't been initialized.";
 //        };
-
-
-
-        // Step 2:
-        // analyze inputted CQs to help constructing the resulting ontology
-        // goal: enrich the ontology forest [design an update algorithm and implement it ]
-
-        // Step 3:
-        // translate materialized CQs into SPARQL-OWL format
         return "materializing CQs";
     }
 
