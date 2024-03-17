@@ -10,6 +10,8 @@ import org.apache.jena.util.iterator.ExtendedIterator;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OntologyOperationMethods {
     public static void ontologyForestSerialization(){
@@ -268,5 +270,17 @@ public class OntologyOperationMethods {
         return false;
     }
 
-
+    public static void extractPlaceHoldersFromSPARQLT(String SPARQLTemplate){
+        System.out.println("Ready to extract SPARQL Template: " + SPARQLTemplate);
+        String regex = "op\\d|c\\d|i\\d|dt\\d";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(SPARQLTemplate);
+        List<String> matches = new ArrayList<>();
+        while(matcher.find()){
+            matches.add(matcher.group());
+        }
+        for(String match:matches){
+            System.out.println(match);
+        }
+    }
 }

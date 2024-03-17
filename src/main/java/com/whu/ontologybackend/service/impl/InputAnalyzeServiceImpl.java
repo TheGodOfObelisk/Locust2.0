@@ -99,7 +99,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "sparqlowl_templates_only.txt"))){
             String SPARQLTemplate;
             while((SPARQLTemplate = reader.readLine()) != null){
-
+                OntologyOperationMethods.extractPlaceHoldersFromSPARQLT(SPARQLTemplate);
             }
         } catch (IOException e){
             e.printStackTrace();
