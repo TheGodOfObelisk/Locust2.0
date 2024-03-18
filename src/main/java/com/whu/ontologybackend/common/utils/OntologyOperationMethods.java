@@ -299,5 +299,6 @@ public class OntologyOperationMethods {
                 System.out.println("Unknown label, continue..");
             }
         }
+        // instances should also be extracted from existing ontologies
     }
 }

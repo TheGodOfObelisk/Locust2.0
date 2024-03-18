@@ -48,6 +48,10 @@ public class OntMultiwayTree implements Serializable {
 
     private transient Set<OntProperty> objectProperties = new HashSet<>();
 
+//    private transient Set<OntResource> instances = new HashSet<>();
+    // key: className. object: ontResource containing instances
+    private transient Map<String, Set<String>> instances= new HashMap<>();
+
     public Set<OntProperty> getObjectProperties() {
         return objectProperties;
     }
@@ -131,6 +135,8 @@ public class OntMultiwayTree implements Serializable {
     public OntMultiwayTree() {
         // perhaps not nodeId
         root = new OntMultiwayTreeNode(new OntTreeNode("root"));
+        objectProperties = new HashSet<>();
+        instances = new HashMap<>();
     }
 
     // generate a multi-way tree of ontology architecture
@@ -427,6 +433,7 @@ public class OntMultiwayTree implements Serializable {
                 updateTree(presentClassName);
             }
             updateProperties2Tree(presentOntClass, presentClassName);
+            updateInstances2Tree(presentOntClass, presentClassName);
         }
 
         // reconsider altering data structure
@@ -450,6 +457,25 @@ public class OntMultiwayTree implements Serializable {
         }
     }
 
+    public void updateInstances2Tree(OntClass presentOntClass, String classFullName){
+        // TODO: extract instances and add them to the tree
+        ExtendedIterator<OntResource> ontResourceExtendedIterator = (ExtendedIterator<OntResource>) presentOntClass.listInstances(true);
+        boolean hasInstances = false; // Maybe there are no instances
+        Set<String> instanceSet = new HashSet<>();
+        while(ontResourceExtendedIterator.hasNext()){
+            hasInstances = true;
+            OntResource ontResource = ontResourceExtendedIterator.next();
+            String instanceName = ontResource.getLocalName();
+            String className = presentOntClass.getLocalName(); // the instances belong to this class
+            instanceSet.add(ontResource.getLocalName());
+            System.out.println("Extracting instances!");
+            System.out.println("instance name: " + instanceName);
+            System.out.println("Corresponding class name: " + className);
+        }
+        if(hasInstances){
+            this.instances.put(presentOntClass.getLocalName(), instanceSet);
+        }
+    }
     private void updateProperties2Tree(OntClass presentOntClass, String classFullName){
         OntTreeNode ontTreeNode = null;
         for(int i = 0; i < GlobalVariables.ontMultiwayForest.size(); i++){
@@ -761,6 +787,7 @@ public class OntMultiwayTree implements Serializable {
         }
         // 4. i
         // handle instances -> now there no instance info in ontology forest
+        // instances should also be stored
         return glossaries;
     }
 
