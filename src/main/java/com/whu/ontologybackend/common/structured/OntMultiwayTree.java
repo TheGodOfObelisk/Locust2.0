@@ -788,6 +788,16 @@ public class OntMultiwayTree implements Serializable {
         // 4. i
         // handle instances -> now there no instance info in ontology forest
         // instances should also be stored
+        Set<String> correspondingClassNames = this.instances.keySet();
+        for(String className: correspondingClassNames){
+            Set<String> correspondingInstances = this.instances.get(className);
+            for(String instanceStr : correspondingInstances){
+                Glossary tmpGlossary = new Glossary();
+                tmpGlossary.setWord(instanceStr);
+                tmpGlossary.setLabel("i");
+                glossaries.add(tmpGlossary);
+            }
+        }
         return glossaries;
     }
 

@@ -236,6 +236,8 @@ public class OntologyOperationMethods {
             // TODO: implement extractTerms() method
             Set<Glossary> tmpTerms = tmpTree.extractTerms();
             termsFromOF.addAll(tmpTerms);
+            // Also, add instances
+
         }
 
         GlobalVariables.localThesaurus.addAll(termsFromOF);
