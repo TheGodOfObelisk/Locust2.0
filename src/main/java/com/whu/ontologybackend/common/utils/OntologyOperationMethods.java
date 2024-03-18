@@ -284,4 +284,20 @@ public class OntologyOperationMethods {
         }
         return matches;
     }
+
+    public static void placeholderSetInit(Set<String> cSet, Set<String> opSet, Set<String> dtSet, Set<String> iSet){
+        for(Glossary glossary : GlobalVariables.localThesaurus){
+            if(glossary.getLabel().equals("c")){
+                cSet.add(glossary.getWord());
+            } else if(glossary.getLabel().equals("op")){
+                opSet.add(glossary.getWord());
+            } else if(glossary.getLabel().equals("dt")){
+                dtSet.add(glossary.getWord());
+            } else if(glossary.getLabel().equals("i")){
+                iSet.add(glossary.getWord());
+            } else {
+                System.out.println("Unknown label, continue..");
+            }
+        }
+    }
 }

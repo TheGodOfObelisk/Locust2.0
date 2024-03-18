@@ -104,11 +104,16 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         Set<String> opSet = new HashSet<>();
         Set<String> dtSet = new HashSet<>();
         Set<String> iSet = new HashSet<>();
+        OntologyOperationMethods.placeholderSetInit(cSet, opSet, dtSet, iSet);
+        // before fill in placeholders, check whether the set is empty
         try(BufferedReader reader = new BufferedReader(new FileReader(filePrefix + "sparqlowl_templates_only.txt"))){
             String SPARQLTemplate;
             while((SPARQLTemplate = reader.readLine()) != null){
                 List<String> placeholders = OntologyOperationMethods.extractPlaceHoldersFromSPARQLT(SPARQLTemplate);
                 // materializing...
+                for(String placeholder: placeholders){
+//                    List<String> materializedCQs =
+                }
             }
         } catch (IOException e){
             e.printStackTrace();
@@ -116,6 +121,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 //        if(!OntologyOperationMethods.checkCQTandSPARQLT(filePrefix)){
 //            return "db hasn't been initialized.";
 //        };
+
         return "materializing CQs";
     }
 
