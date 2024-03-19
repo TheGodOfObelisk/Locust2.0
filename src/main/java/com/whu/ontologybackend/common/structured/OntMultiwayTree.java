@@ -3,22 +3,14 @@ package com.whu.ontologybackend.common.structured;
 
 import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.*;
-import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.util.iterator.ExtendedIterator;
 
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.*;
 
 
@@ -467,9 +459,11 @@ public class OntMultiwayTree implements Serializable {
             OntResource ontResource = ontResourceExtendedIterator.next();
             String instanceName = ontResource.getLocalName();
             String className = presentOntClass.getLocalName(); // the instances belong to this class
-            instanceSet.add(ontResource.getLocalName());
+            if(ontResource.getLocalName() != null){
+                instanceSet.add(ontResource.getLocalName());
+            }
             System.out.println("Extracting instances!");
-            System.out.println("instance name: " + instanceName);
+            System.out.println("Instance name: " + instanceName);
             System.out.println("Corresponding class name: " + className);
         }
         if(hasInstances){
@@ -795,6 +789,7 @@ public class OntMultiwayTree implements Serializable {
                 Glossary tmpGlossary = new Glossary();
                 tmpGlossary.setWord(instanceStr);
                 tmpGlossary.setLabel("i");
+                tmpGlossary.setDescription("instance extracted from existing ontologies");
                 glossaries.add(tmpGlossary);
             }
         }
