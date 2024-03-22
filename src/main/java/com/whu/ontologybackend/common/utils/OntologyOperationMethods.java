@@ -303,4 +303,13 @@ public class OntologyOperationMethods {
         }
         // instances should also be extracted from existing ontologies
     }
+
+    public static void placeSequencePermutationInit(List<Map<String, String>> fullPermutation, Set<String> cSet, Set<String> opSet, Set<String> dtSet, Set<String> iSet, List<String> placeholders){
+        List<String> cList = cSet.stream().toList();
+        List<String> opList = opSet.stream().toList();
+        List<String> dtList = dtSet.stream().toList();
+        List<String> iList = iSet.stream().toList();
+        System.out.println("cList size = " + cList.size() + ", opList size = " + opList.size() + ", dtList size = " + dtList.size() + ", iList size = " + iList.size());
+        // TODO: use permutation of index to fill templates
+    }
 }

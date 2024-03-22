@@ -16,9 +16,7 @@ import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Service
@@ -111,9 +109,10 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             while((SPARQLTemplate = reader.readLine()) != null){
                 List<String> placeholders = OntologyOperationMethods.extractPlaceHoldersFromSPARQLT(SPARQLTemplate);
                 // materializing...
-                for(String placeholder: placeholders){
-//                    List<String> materializedCQs =
-                }
+                String materializedSPARQL = SPARQLTemplate;
+                List<Map<String, String>> placeSequencePermutation = new ArrayList<>();
+                OntologyOperationMethods.placeSequencePermutationInit(placeSequencePermutation, cSet, opSet, dtSet, iSet, placeholders);
+
             }
         } catch (IOException e){
             e.printStackTrace();
