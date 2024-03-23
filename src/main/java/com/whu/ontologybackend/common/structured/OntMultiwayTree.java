@@ -446,6 +446,8 @@ public class OntMultiwayTree implements Serializable {
             OntClass subOntClass = subClassesIterator.next();
 //            classFullName = classFullName + "." + subOntClass.getLocalName();
             updateSubClasses2Tree(subOntClass, classFullName + "." + subOntClass.getLocalName());
+            updateProperties2Tree(subOntClass, subOntClass.getLocalName());
+            updateInstances2Tree(subOntClass, subOntClass.getLocalName());
         }
     }
 
