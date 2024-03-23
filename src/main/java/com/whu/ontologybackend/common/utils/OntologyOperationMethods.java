@@ -164,16 +164,18 @@ public class OntologyOperationMethods {
 
         // further update operations should be implemented in OntMultiwayTree's methods
         targetTree.updateByExistingOntology(m);
-        // rewrite targetTree to the forest
-        boolean rewrtten = false;
+        // target tree in the forest has been updated, rewriting is unnecessary.
+        // append targetTree to the forest
+        boolean append = true;
         for(int i = 0; i < GlobalVariables.ontMultiwayForest.size(); i++){
             if(GlobalVariables.ontMultiwayForest.get(i).getModuleName().equals(targetTree.getModuleName()) && GlobalVariables.ontMultiwayForest.get(i).getModuleId().equals(targetTree.getModuleId())){
+                append = false;
+                // may lose data properties
                 GlobalVariables.ontMultiwayForest.set(i, targetTree);
-                rewrtten = true;
                 break;
             }
         }
-        if(!rewrtten){
+        if(append){
             GlobalVariables.ontMultiwayForest.add(targetTree);
         }
         return;
