@@ -313,5 +313,85 @@ public class OntologyOperationMethods {
         List<String> iList = iSet.stream().toList();
         System.out.println("cList size = " + cList.size() + ", opList size = " + opList.size() + ", dtList size = " + dtList.size() + ", iList size = " + iList.size());
         // TODO: use permutation of index to fill templates
+
+        // a bad implementation, out of memory. I should use disk storage instead.
+//        Map<String, String> onecase = new HashMap<>();
+//        List<List<Integer>> fullP = new ArrayList<>();
+//
+//        for(int index = 0; index < placeholders.size(); index++){
+//            String placeholder = placeholders.get(index);
+//            if(placeholder.contains("c")){
+//                for(int i = 0; i < cList.size(); i++){
+//                    if(index == 0){
+//                        List<Integer> newP = new ArrayList<>();
+//                        newP.add(i);
+//                        fullP.add(newP);
+//                    } else {
+//                        for(int j = 0; j < fullP.size(); j++){
+//                            List<Integer> previousP = fullP.get(j);
+//                            for(int k = 0; k < cList.size(); k++){
+//                                List<Integer> newP2 = previousP;
+//                                newP2.add(k);
+//                                fullP.add(newP2);
+//                            }
+//                        }
+//                    }
+//                }
+//            } else if (placeholder.contains("op")) {
+//                for(int i = 0; i < opList.size(); i++){
+//                    if(index == 0){
+//                        List<Integer> newP = new ArrayList<>();
+//                        newP.add(i);
+//                        fullP.add(newP);
+//                    } else {
+//                        for(int j = 0; j < fullP.size(); j++){
+//                            List<Integer> previousP = fullP.get(j);
+//                            for(int k = 0; k < opList.size(); k++){
+//                                List<Integer> newP2 = previousP;
+//                                newP2.add(k);
+//                                fullP.add(newP2);
+//                            }
+//                        }
+//                    }
+//                }
+//            } else if (placeholder.contains("dt")){
+//                for(int i = 0; i < dtList.size(); i++){
+//                    if(index == 0){
+//                        List<Integer> newP = new ArrayList<>();
+//                        newP.add(i);
+//                        fullP.add(newP);
+//                    } else {
+//                        for(int j = 0; j < fullP.size(); j++){
+//                            List<Integer> previousP = fullP.get(j);
+//                            for(int k = 0; k < dtList.size(); k++){
+//                                List<Integer> newP2 = previousP;
+//                                newP2.add(k);
+//                                fullP.add(newP2);
+//                            }
+//                        }
+//                    }
+//                }
+//            } else if (placeholder.contains("i")) {
+//                for(int i = 0; i < iList.size(); i++){
+//                    if(index == 0){
+//                        List<Integer> newP = new ArrayList<>();
+//                        newP.add(i);
+//                        fullP.add(newP);
+//                    } else {
+//                        for(int j = 0; j < fullP.size(); j++){
+//                            List<Integer> previousP = fullP.get(j);
+//                            for(int k = 0; k < iList.size(); k++){
+//                                List<Integer> newP2 = previousP;
+//                                newP2.add(k);
+//                                fullP.add(newP2);
+//                            }
+//                        }
+//                    }
+//                }
+//            } else {
+//                System.out.println("Unknown placeholder.");
+//            }
+//        }
+//        System.out.println(fullP);
     }
 }
