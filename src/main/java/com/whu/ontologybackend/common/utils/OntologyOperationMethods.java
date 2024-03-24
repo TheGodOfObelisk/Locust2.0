@@ -198,7 +198,7 @@ public class OntologyOperationMethods {
             candidateTerm.setWord(glossary);
             candidateTerm.setDescription(description);
             // label 'u' represents 'unknown'
-            candidateTerm.setLabel("u");
+            candidateTerm.setLabel("u"); // after Term Typing, it should be set according to the result of Term Typing
             GlobalVariables.localThesaurus.add(candidateTerm);
         }
     }

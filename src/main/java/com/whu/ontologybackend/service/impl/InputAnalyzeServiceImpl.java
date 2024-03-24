@@ -68,6 +68,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         return "In the serviceImpl class. Analyzing excels.";
     }
 
+    // TODO: Term Typing Task. In our context, classifying glossary into five types
     @Override
     public String analyzeInputGlossary(File glossaryFile){
         try(InputStream is = new FileInputStream(glossaryFile);
@@ -92,6 +93,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 //        return "Analyzing glossary files.";
     }
 
+    // TODO: Postpone it until the Term Typing Task has been completed
     @Override
     public String materializeCQs(String filePrefix){
         // materialize when thesaurus is stable
