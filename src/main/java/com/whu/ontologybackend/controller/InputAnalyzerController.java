@@ -40,7 +40,11 @@ public class InputAnalyzerController {
 
     @RequestMapping("postArticles")
     public String integrateArticles(@RequestParam Map<String, Object> params){
-        return "articles: " + params.get("article") + ", value: " + params.get("value") + "...OK";
+        if(!params.containsKey("article")){
+            return "Error: missing key of params!";
+        }
+//        return "articles: " + params.get("article") + ", value: " + params.get("value") + "...OK";
+        return inputAnalyzeService.analyzeArticles(params);
     }
 
     @RequestMapping("postExcels")

@@ -4,6 +4,7 @@ package com.whu.ontologybackend.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
 import com.whu.ontologybackend.common.utils.DatabaseOperationMethods;
+import com.whu.ontologybackend.common.utils.ExternalCallOperationMethods;
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
 import org.apache.commons.csv.CSVFormat;
@@ -92,6 +93,19 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         }
 //        return "Analyzing glossary files.";
     }
+
+    @Override
+    public String analyzeArticles(Map<String, Object> articles){
+        String scriptPath = "D:\\researchPro\\testpyate\\testcode.py";
+        try{ExternalCallOperationMethods.callPythonScript(scriptPath);}
+        catch (IOException e){
+            e.printStackTrace();
+        } catch (InterruptedException e1){
+            e1.printStackTrace();
+        }
+        return "Analyzing input articles. These are the main source of the resulting ontology";
+    }
+
 
     // TODO: Postpone it until the Term Typing Task has been completed
     @Override

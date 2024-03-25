@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Map;
 
 @Service
 public interface InputAnalyzeService {
@@ -16,6 +17,8 @@ public interface InputAnalyzeService {
     // consider vector databases
 
     String analyzeInputGlossary(File glossaryFile);
+
+    String analyzeArticles(Map<String, Object> articles);
 
     String analyzeInputCQs(String filePrefix);
 
