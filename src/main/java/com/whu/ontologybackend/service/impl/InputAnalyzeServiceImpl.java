@@ -97,7 +97,9 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     @Override
     public String analyzeArticles(Map<String, Object> articles){
         String scriptPath = "D:\\researchPro\\testpyate\\testcode.py";
-        try{ExternalCallOperationMethods.callPythonScript(scriptPath);}
+        String article = (String) articles.get("article");
+        // may store many articles in the map, extract them and call the script iteratively
+        try{ExternalCallOperationMethods.callPyateScript(scriptPath, article);}
         catch (IOException e){
             e.printStackTrace();
         } catch (InterruptedException e1){

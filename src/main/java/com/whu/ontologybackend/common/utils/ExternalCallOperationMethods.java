@@ -24,4 +24,25 @@ public class ExternalCallOperationMethods {
 
         return;
     }
+
+    public static void callPyateScript(String path, String article) throws IOException, InterruptedException {
+        // \n may exist in the article String
+        ProcessBuilder processBuilder = new ProcessBuilder("python", path, article);
+        Process process = processBuilder.start();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        StringBuilder output = new StringBuilder();
+        String line;
+
+        while((line = reader.readLine()) != null){
+            output.append(line).append("\n");
+        }
+
+        int exitCode = process.waitFor();
+
+        System.out.println("Exit code: " + exitCode);
+        System.out.println("Output: \n" + output.toString());
+
+        return;
+    }
 }
