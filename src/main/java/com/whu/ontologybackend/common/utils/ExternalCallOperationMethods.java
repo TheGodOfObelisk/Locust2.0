@@ -39,7 +39,7 @@ public class ExternalCallOperationMethods {
         StringBuilder output = new StringBuilder();
         String line;
 
-        String regex = "\\s{2,}";
+        String regex = "\\s{2,}"; // means more than one spaces
         Map<String, Double> extractedTerms = new HashMap<>();
         while((line = reader.readLine()) != null){
             String[] parts = line.split(regex);
