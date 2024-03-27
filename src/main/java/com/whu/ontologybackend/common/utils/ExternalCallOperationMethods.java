@@ -30,7 +30,7 @@ public class ExternalCallOperationMethods {
         return;
     }
 
-    public static void callPyateScript(String path, String article) throws IOException, InterruptedException {
+    public static Map<String, Double> callPyateScript(String path, String article) throws IOException, InterruptedException {
         // \n may exist in the article String
         ProcessBuilder processBuilder = new ProcessBuilder("python", path, article);
         Process process = processBuilder.start();
@@ -59,6 +59,6 @@ public class ExternalCallOperationMethods {
 //        System.out.println("Exit code: " + exitCode);
 //        System.out.println("Output: \n" + output.toString());
 
-        return;
+        return extractedTerms;
     }
 }

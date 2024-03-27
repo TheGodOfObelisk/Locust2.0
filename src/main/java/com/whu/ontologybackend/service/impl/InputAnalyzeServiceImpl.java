@@ -99,11 +99,27 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         String scriptPath = "D:\\researchPro\\testpyate\\testcode.py";
         String article = (String) articles.get("article");
         // may store many articles in the map, extract them and call the script iteratively
-        try{ExternalCallOperationMethods.callPyateScript(scriptPath, article);}
+        Map<String, Double> extractedTerms = new HashMap<>();
+        try{
+            extractedTerms = ExternalCallOperationMethods.callPyateScript(scriptPath, article);
+        }
         catch (IOException e){
             e.printStackTrace();
         } catch (InterruptedException e1){
             e1.printStackTrace();
+        }
+        // take top-K of the extracted terms
+        Double threshold4Term = 0.8;
+        Set<String> keySet = extractedTerms.keySet();
+        Set<String> removeSet = new HashSet<>();
+        for(String key: keySet){
+            Double curVal = extractedTerms.get(key);
+            if(curVal < threshold4Term){
+                removeSet.add(key);
+            }
+        }
+        for(String removedKey : removeSet){
+            extractedTerms.remove(removedKey);
         }
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
