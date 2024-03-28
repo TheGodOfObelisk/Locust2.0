@@ -123,6 +123,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         for(String removedKey : removeSet){
             extractedTerms.remove(removedKey);
         }
+        OntologyOperationMethods.synchronizeTermsFromArticles2localTheaaurus(extractedTerms);
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
 

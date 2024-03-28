@@ -181,6 +181,19 @@ public class OntologyOperationMethods {
         return;
     }
 
+    public static void synchronizeTermsFromArticles2localTheaaurus(Map<String, Double> extractedTerms){
+        Set<String> terms = extractedTerms.keySet();
+        // default to be i in that i should be the most cases
+        for(String term :terms){
+            Glossary candidateTerm = new Glossary();
+            candidateTerm.setLabel("i");
+            candidateTerm.setWord(term);
+            candidateTerm.setDescription(term + ": from inputted articles.");
+            GlobalVariables.localThesaurus.add(candidateTerm);
+        }
+
+    }
+
     public static void synchronizeInputGlossaries2localThesaurus(JSONObject inputGlossaries){
         // synchronize inputted glossaries to local thesaurus
         // only handle two types of thesaurus
