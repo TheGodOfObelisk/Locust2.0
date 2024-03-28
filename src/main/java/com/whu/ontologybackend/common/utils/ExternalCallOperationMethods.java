@@ -47,6 +47,9 @@ public class ExternalCallOperationMethods {
                 System.out.println("Error occurred or meets the end!");
             } else {
                 String key = parts[0];
+                if(!CommonOperationMethods.isDecimal(parts[1])){
+                    continue;
+                }
                 Double value = Double.parseDouble(parts[1]);
                 extractedTerms.put(key, value);
             }

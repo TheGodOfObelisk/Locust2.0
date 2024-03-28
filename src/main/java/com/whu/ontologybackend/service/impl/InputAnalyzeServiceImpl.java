@@ -94,6 +94,8 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 //        return "Analyzing glossary files.";
     }
 
+    // test input, from ISWC 2023
+    // One of the earliest approaches [23] used lexicosyntactic patterns to extract new lexicosemantic concepts and relations from large collections of unstructured text, enhancing WordNet [41]. WordNet is a lexical database comprising a lexical ontology of concepts (nouns, verbs, etc.) and lexico-semantic relations (synonymy, hyponymy, etc.). Hwang [24] proposed an alternative approach for constructing a dynamic ontology specific to an application domain. The method involved iteratively discovering types and taxonomy from unstructured text using a seed set of terms representing high-level domain types. In each iteration, newly discovered specialized types were incorporated, and the algorithm detected relations between linguistic features. The approach utilized a simple ontology algebra based on inheritance hierarchy and set operations. Agirre et al [2] enhanced WordNet by extracting topically related words from web documents. This unique approach added topical signatures to enrich WordNet. Kietz et al [28] introduced the On-To-Knowledge system, which utilized a generic core ontology like GermaNet [22] or WordNet as the foundational structure. It aimed to discover a domain-specific ontology from corporate intranet text resources.
     @Override
     public String analyzeArticles(Map<String, Object> articles){
         String scriptPath = "D:\\researchPro\\testpyate\\testcode.py";
