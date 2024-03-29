@@ -22,5 +22,7 @@ public interface InputAnalyzeService {
 
     String analyzeInputCQs(String filePrefix);
 
+    String analyzeInputXSD(File xsdFile);
+
     String materializeCQs(String filePrefix);
 }

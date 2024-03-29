@@ -49,6 +49,7 @@ public class InputAnalyzerController {
 
     @RequestMapping("postExcels")
     public String integrateExcels() throws FileNotFoundException {
+        // It's unnecessary to process CAPEC csv, because our focus is on schema
         File excelFile = new File(resourcePrefix + "2000.csv");
         return inputAnalyzeService.analyzeExistingExcel(excelFile);
     }
@@ -58,9 +59,11 @@ public class InputAnalyzerController {
         return "XML";
     }
 
+    // use XSD again?
     @RequestMapping("postXSD")
     public String integrateXSD(){
-        return "XSD";
+        File xsdFile = new File(resourcePrefix + "CAPEC\\ap_schema_latest.xsd");
+        return inputAnalyzeService.analyzeInputXSD(xsdFile);
     }
 
     @RequestMapping("postCQ")

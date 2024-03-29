@@ -15,6 +15,11 @@ import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.xml.sax.SAXException;
+
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -179,5 +184,21 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         // translate the inputted CQs into SPARQL-OWL format
 
         return "analyzing inputted CQs";
+    }
+
+    @Override
+    public String analyzeInputXSD(File xsdFile){
+        try{
+            SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+            Schema schema = schemaFactory.newSchema(xsdFile);
+            Validator validator = schema.newValidator();
+
+            System.out.println("XSD parsed successfully.");
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
+        }
+        // then parse and extract the tree structure of xsd
+        // since xsd files have high quality, maybe they should become a new module ontology
+        return "analyzing inputted XSD file";
     }
 }
