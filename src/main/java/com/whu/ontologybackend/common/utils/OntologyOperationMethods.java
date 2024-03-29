@@ -184,6 +184,7 @@ public class OntologyOperationMethods {
     public static void synchronizeTermsFromArticles2localTheaaurus(Map<String, Double> extractedTerms){
         Set<String> terms = extractedTerms.keySet();
         // default to be i in that i should be the most cases
+        // set the classification due to the belief that terms extracted from articles tend to be instances
         for(String term :terms){
             Glossary candidateTerm = new Glossary();
             candidateTerm.setLabel("i");
@@ -211,7 +212,8 @@ public class OntologyOperationMethods {
             candidateTerm.setWord(glossary);
             candidateTerm.setDescription(description);
             // label 'u' represents 'unknown'
-            candidateTerm.setLabel("u"); // after Term Typing, it should be set according to the result of Term Typing
+            // use 'c' instead of 'u' due to the belief that the terms listed in thesaurus should be concepts
+            candidateTerm.setLabel("c"); // after Term Typing, it should be set according to the result of Term Typing
             GlobalVariables.localThesaurus.add(candidateTerm);
         }
     }
