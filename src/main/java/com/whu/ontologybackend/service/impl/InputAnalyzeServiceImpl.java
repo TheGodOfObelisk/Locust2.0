@@ -3,6 +3,7 @@ package com.whu.ontologybackend.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
+import com.whu.ontologybackend.common.utils.CommonOperationMethods;
 import com.whu.ontologybackend.common.utils.DatabaseOperationMethods;
 import com.whu.ontologybackend.common.utils.ExternalCallOperationMethods;
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
@@ -15,8 +16,12 @@ import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
@@ -196,6 +201,19 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             System.out.println("XSD parsed successfully.");
         } catch (SAXException e) {
             throw new RuntimeException(e);
+        }
+
+        try{
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(xsdFile);
+            document.getDocumentElement().normalize();
+            Element root = document.getDocumentElement();
+            int rootId = CommonOperationMethods.generateIntUUID();
+            // insert root info into the element table
+            CommonOperationMethods.parseXSDElements(root, rootId);
+        } catch (Exception e){
+            e.printStackTrace();
         }
         // then parse and extract the tree structure of xsd
         // since xsd files have high quality, maybe they should become a new module ontology
