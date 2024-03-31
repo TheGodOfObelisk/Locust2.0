@@ -3,6 +3,7 @@ package com.whu.ontologybackend.common.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
+import org.w3c.dom.Element;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -218,5 +219,21 @@ public class DatabaseOperationMethods {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void insertXSDElement(int id, String name, String type, int minOccurs, int maxOccurs, int parentID){
+        try(Connection connection = DatabaseOperationMethods.getDBConnection()){
+            String sql = "INSERT INTO element (id, name, type, minOccurs, maxOccurs, parent_id) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, type);
+            preparedStatement.setInt(4, minOccurs);
+            preparedStatement.setInt(5, maxOccurs);
+            preparedStatement.setInt(6, parentID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
