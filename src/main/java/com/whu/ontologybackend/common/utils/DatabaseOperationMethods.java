@@ -211,8 +211,10 @@ public class DatabaseOperationMethods {
             statement.setString(1, SPARQLT);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
+                connection.close();
                 return true;
             } else {
+                connection.close();
                 return false;
             }
         } catch (SQLException e){
@@ -221,16 +223,48 @@ public class DatabaseOperationMethods {
         return false;
     }
 
-    public static void insertXSDElement(int id, String name, String type, int minOccurs, int maxOccurs, int parentID){
+    public static boolean checkXSDRootID(String rootId){
+        try(Connection connection = DatabaseOperationMethods.getDBConnection()){
+            String sql = "SELECT * FROM element WHERE ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, rootId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                connection.close();
+                return true;
+            } else {
+                connection.close();
+                return false;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void insertXSDElement(String id, String name, String type, int minOccurs, int maxOccurs, String parentID){
         try(Connection connection = DatabaseOperationMethods.getDBConnection()){
             String sql = "INSERT INTO element (id, name, type, minOccurs, maxOccurs, parent_id) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, id);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, type);
             preparedStatement.setInt(4, minOccurs);
             preparedStatement.setInt(5, maxOccurs);
-            preparedStatement.setInt(6, parentID);
+            preparedStatement.setString(6, parentID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertXSDElementRelation(String id, String parentId, String childId){
+        try(Connection connection = DatabaseOperationMethods.getDBConnection()){
+            String sql = "INSERT INTO relation (id, parent_id, child_id) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            preparedStatement.setString(2, parentId);
+            preparedStatement.setString(3, childId);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             e.printStackTrace();

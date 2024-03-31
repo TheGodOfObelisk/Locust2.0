@@ -209,8 +209,16 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             Document document = documentBuilder.parse(xsdFile);
             document.getDocumentElement().normalize();
             Element root = document.getDocumentElement();
-            int rootId = CommonOperationMethods.generateIntUUID();
+//            int rootId = CommonOperationMethods.generateIntUUID();
+//            String rootId = UUID.randomUUID().toString();
+            String rootId = xsdFile.getName() + "Root"; // xsdfile + Root, indicates it is the root of the xsd tree
+            // check whether the rootId existed in the element table
+            if(DatabaseOperationMethods.checkXSDRootID(rootId)){
+                return "this XSD file has been integrated";
+            }
             // insert root info into the element table
+            CommonOperationMethods.parseXSDRootElement(root, rootId);
+            // parse children of root
             CommonOperationMethods.parseXSDElements(root, rootId);
         } catch (Exception e){
             e.printStackTrace();
