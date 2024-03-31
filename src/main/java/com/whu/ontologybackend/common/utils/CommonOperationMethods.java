@@ -93,12 +93,15 @@ public class CommonOperationMethods {
                         }
                     }
                 }
+
+                // element with empty name or type should be filtered
                 // TODO: insert element into the element table
                 DatabaseOperationMethods.insertXSDElement(id, name, type, minOccurs, maxOccurs, parentId);
                 // TODO: insert relation into the relation table
 //                int relId = CommonOperationMethods.generateIntUUID();
                 String relId = UUID.randomUUID().toString();
                 DatabaseOperationMethods.insertXSDElementRelation(relId, parentId, id);
+
                 parseXSDElements(child, id);
             }
         }

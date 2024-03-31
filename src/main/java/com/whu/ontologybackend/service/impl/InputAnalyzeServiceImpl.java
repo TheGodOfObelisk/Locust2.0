@@ -214,6 +214,8 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             String rootId = xsdFile.getName() + "Root"; // xsdfile + Root, indicates it is the root of the xsd tree
             // check whether the rootId existed in the element table
             if(DatabaseOperationMethods.checkXSDRootID(rootId)){
+                // integrate XSD modules before exit
+                OntologyOperationMethods.integrateXSDModules2OntologyForest();
                 return "this XSD file has been integrated";
             }
             // insert root info into the element table
@@ -225,7 +227,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         }
         // then parse and extract the tree structure of xsd
         // since xsd files have high quality, maybe they should become a new module ontology
-
+        OntologyOperationMethods.integrateXSDModules2OntologyForest();
         return "analyzing inputted XSD file";
     }
 }

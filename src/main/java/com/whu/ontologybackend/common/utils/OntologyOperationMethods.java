@@ -413,6 +413,36 @@ public class OntologyOperationMethods {
     // read and parse xsd schemas from Database, then integrate schema into Global Variable ontology forest
     // duplicated modules may exist
     public static void integrateXSDModules2OntologyForest(){
+        List<String> xsdRootIds = DatabaseOperationMethods.extractXSDRootIdList();
+        for(String rootId : xsdRootIds){
+            System.out.println("Parse from rootId = " + rootId);
+            boolean moduleExist = false;
+            for(int index = 0; index < GlobalVariables.ontMultiwayForest.size(); index++){
+                OntMultiwayTree curTree = GlobalVariables.ontMultiwayForest.get(index);
+                if(curTree.getModuleName().equals(rootId)){
+                    moduleExist = true;
+                }
+            }
+            if(moduleExist){
+                System.out.println("Module " + rootId + " has been integrated into ontology forest.");
+                continue;
+            }
+            // TODO: analyze the xsd schema and synchronize it into the global ontology forest
+            appendOntTreeFromXSD(rootId);
+        }
 
+    }
+
+    public static void appendOntTreeFromXSD(String rootId){
+        // TODO: implement 1) analyze element table and relation table; 2) append a new OntMultiwayTree
+        OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+        String moduleId = UUID.randomUUID().toString();
+        ontMultiwayTree.setModuleId(moduleId);
+        ontMultiwayTree.setModuleName(rootId);
+        ontMultiwayTree.setImportedOntology(true);
+
+        // ...
+
+        // GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
     }
 }

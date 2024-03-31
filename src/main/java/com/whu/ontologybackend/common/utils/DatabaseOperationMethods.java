@@ -270,4 +270,23 @@ public class DatabaseOperationMethods {
             e.printStackTrace();
         }
     }
+
+    // rootId contains Root substring, others are all in UUID form
+    public static List<String> extractXSDRootIdList(){
+        List<String> rootIdList = new ArrayList<>();
+        try(Connection connection = DatabaseOperationMethods.getDBConnection()){
+            String sql = "SELECT id FROM element WHERE id LIKE ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, "%Root");
+            try(ResultSet rs = preparedStatement.executeQuery()){
+                while(rs.next()){
+                    System.out.println("Id: " + rs.getString("id"));
+                    rootIdList.add(rs.getString("id"));
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return rootIdList;
+    }
 }
