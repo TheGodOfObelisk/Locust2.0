@@ -181,7 +181,7 @@ public class OntologyOperationMethods {
         return;
     }
 
-    public static void synchronizeTermsFromArticles2localTheaaurus(Map<String, Double> extractedTerms){
+    public static void synchronizeTermsFromArticles2localThesaurus(Map<String, Double> extractedTerms){
         Set<String> terms = extractedTerms.keySet();
         // default to be i in that i should be the most cases
         // set the classification due to the belief that terms extracted from articles tend to be instances
@@ -408,5 +408,11 @@ public class OntologyOperationMethods {
 //            }
 //        }
 //        System.out.println(fullP);
+    }
+
+    // read and parse xsd schemas from Database, then integrate schema into Global Variable ontology forest
+    // duplicated modules may exist
+    public static void integrateXSDModules2OntologyForest(){
+
     }
 }

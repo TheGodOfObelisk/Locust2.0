@@ -133,7 +133,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         for(String removedKey : removeSet){
             extractedTerms.remove(removedKey);
         }
-        OntologyOperationMethods.synchronizeTermsFromArticles2localTheaaurus(extractedTerms);
+        OntologyOperationMethods.synchronizeTermsFromArticles2localThesaurus(extractedTerms);
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
 
@@ -225,6 +225,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         }
         // then parse and extract the tree structure of xsd
         // since xsd files have high quality, maybe they should become a new module ontology
+
         return "analyzing inputted XSD file";
     }
 }
