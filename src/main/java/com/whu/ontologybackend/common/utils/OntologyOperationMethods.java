@@ -2,9 +2,7 @@ package com.whu.ontologybackend.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.whu.ontologybackend.common.GlobalVariables;
-import com.whu.ontologybackend.common.structured.Glossary;
-import com.whu.ontologybackend.common.structured.OntMultiwayTree;
-import com.whu.ontologybackend.common.structured.XSDElement;
+import com.whu.ontologybackend.common.structured.*;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.iterator.ExtendedIterator;
@@ -443,17 +441,22 @@ public class OntologyOperationMethods {
         ontMultiwayTree.setModuleId(moduleId);
         ontMultiwayTree.setModuleName(rootId);
         ontMultiwayTree.setImportedOntology(true);
-        appendOntTreeFromXSDByNodeId(rootId);
+        OntMultiwayTreeNode rootNode = ontMultiwayTree.getRoot();
+        appendOntTreeFromXSDByElementId(rootNode, rootId);
         // ...
 
         // GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
     }
 
-    public static void appendOntTreeFromXSDByNodeId(String nodeId){
-        XSDElement xsdElement = DatabaseOperationMethods.extractXSDElementById(nodeId);
+    public static void appendOntTreeFromXSDByElementId(OntMultiwayTreeNode ontMultiwayTreeNode, String elementId){
+        XSDElement xsdElement = DatabaseOperationMethods.extractXSDElementById(elementId);
         // do not need to define another class corresponding to element
+        String nodeId = UUID.randomUUID().toString();
+//        OntTreeNode ontTreeNode = new OntTreeNode(nodeId, ontMultiwayTreeNode.);
         if(null != xsdElement){
+            if(null != xsdElement.getName() && !xsdElement.getName().contains("Root")){
 
+            }
         }
     }
 }
