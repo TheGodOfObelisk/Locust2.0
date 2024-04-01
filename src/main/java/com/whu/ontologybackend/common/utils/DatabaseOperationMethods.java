@@ -3,6 +3,7 @@ package com.whu.ontologybackend.common.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
+import com.whu.ontologybackend.common.structured.XSDElement;
 import org.w3c.dom.Element;
 
 import java.io.*;
@@ -288,5 +289,33 @@ public class DatabaseOperationMethods {
             e.printStackTrace();
         }
         return rootIdList;
+    }
+
+    public static XSDElement extractXSDElementById(String nodeId){
+        XSDElement xsdElement = new XSDElement();
+        try(Connection connection = DatabaseOperationMethods.getDBConnection()){
+            String sql = "SELECT * FROM element WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, nodeId);
+            try(ResultSet rs = preparedStatement.executeQuery()){
+                int size = 0;
+                while(rs.next()){
+                    xsdElement.setId(rs.getString("id"));
+                    xsdElement.setName(rs.getString("name"));
+                    xsdElement.setType(rs.getString("type"));
+                    xsdElement.setMinOccurs(rs.getInt("minOccurs"));
+                    xsdElement.setMaxOccurs(rs.getInt("maxOccurs"));
+                    xsdElement.setParentId(rs.getString("parent_id"));
+                    size++;
+                    if(size > 1){
+                        System.out.println("Error: more than one elements match nodeId: " + nodeId);
+                    }
+                } // there should be only one
+                return xsdElement;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

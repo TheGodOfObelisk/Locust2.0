@@ -4,11 +4,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.structured.Glossary;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
+import com.whu.ontologybackend.common.structured.XSDElement;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.iterator.ExtendedIterator;
 
 import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -440,9 +443,17 @@ public class OntologyOperationMethods {
         ontMultiwayTree.setModuleId(moduleId);
         ontMultiwayTree.setModuleName(rootId);
         ontMultiwayTree.setImportedOntology(true);
-
+        appendOntTreeFromXSDByNodeId(rootId);
         // ...
 
         // GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+    }
+
+    public static void appendOntTreeFromXSDByNodeId(String nodeId){
+        XSDElement xsdElement = DatabaseOperationMethods.extractXSDElementById(nodeId);
+        // do not need to define another class corresponding to element
+        if(null != xsdElement){
+
+        }
     }
 }
