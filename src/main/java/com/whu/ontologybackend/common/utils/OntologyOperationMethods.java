@@ -445,9 +445,10 @@ public class OntologyOperationMethods {
         appendOntTreeFromXSDByElementId(rootNode, rootId);
         // ...
 
-        // GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+         GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
     }
 
+    // in a mess
     public static void appendOntTreeFromXSDByElementId(OntMultiwayTreeNode ontMultiwayTreeNode, String elementId){
         XSDElement xsdElement = DatabaseOperationMethods.extractXSDElementById(elementId);
         // do not need to define another class corresponding to element
@@ -478,8 +479,8 @@ public class OntologyOperationMethods {
                 }
             } else {
                 // not root element
-                // new concept, added to child list
                 if(xsdElement.getName() != null && xsdElement.getType() != null){
+                    // new concept, added to child list
                     if(!xsdElement.getName().equals("") && xsdElement.getType().equals("")){
                         OntTreeNode ontTreeNode = new OntTreeNode(nodeId, ontMultiwayTreeNode.getData().getNodeId());
                         NodeData nodeData = new NodeData();
@@ -487,17 +488,33 @@ public class OntologyOperationMethods {
                         ontTreeNode.setNodeData(nodeData);
                         OntMultiwayTreeNode tmpTreeNode = new OntMultiwayTreeNode(ontTreeNode);
                         ontMultiwayTreeNode.getChildList().add(tmpTreeNode);
+                        List<String> subElementIds = DatabaseOperationMethods.extractSubXSDElementIdsByParentId(elementId);
+                        for(String subElementId : subElementIds){
+                            appendOntTreeFromXSDByElementId(tmpTreeNode, subElementId);
+                        }
                     }
                     // new data property
                     if(!xsdElement.getName().equals("") && !xsdElement.getType().equals("")){
                         Map<String, Object> dp = new HashMap<>();
                         dp.put(xsdElement.getName(), xsdElement.getType());
+                        if(ontMultiwayTreeNode.getData().getNodeData() == null){
+                            NodeData tmpNodeData = new NodeData();
+                            ontMultiwayTreeNode.getData().setNodeData(tmpNodeData);
+                        }
+                        // null dplist may exist
+                        if(ontMultiwayTreeNode.getData().getNodeData().getDataProperties() == null){
+                            List<Map<String, Object>> tmpDpList = new ArrayList<>();
+                            ontMultiwayTreeNode.getData().getNodeData().setDataProperties(tmpDpList);
+                        }
                         ontMultiwayTreeNode.getData().getNodeData().getDataProperties().add(dp);
                     }
                     // empty node, ignore
                 }
             }
         }
-
+        List<String> subElementIds = DatabaseOperationMethods.extractSubXSDElementIdsByParentId(elementId);
+        for(String subElementId : subElementIds){
+            appendOntTreeFromXSDByElementId(ontMultiwayTreeNode, subElementId);
+        }
     }
 }

@@ -318,4 +318,23 @@ public class DatabaseOperationMethods {
         }
         return null;
     }
+
+    public static List<String> extractSubXSDElementIdsByParentId(String parentId){
+        List<String> subElementIds = new ArrayList<>();
+        try(Connection connection = getDBConnection()){
+            String sql = "SELECT child_id FROM relation WHERE parent_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, parentId);
+            try(ResultSet rs = preparedStatement.executeQuery()){
+                while(rs.next()){
+                    String subElementId = rs.getString("child_id");
+                    subElementIds.add(subElementId);
+                }
+                return subElementIds;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return subElementIds;
+    }
 }
