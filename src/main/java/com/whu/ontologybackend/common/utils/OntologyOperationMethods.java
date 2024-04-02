@@ -451,12 +451,53 @@ public class OntologyOperationMethods {
     public static void appendOntTreeFromXSDByElementId(OntMultiwayTreeNode ontMultiwayTreeNode, String elementId){
         XSDElement xsdElement = DatabaseOperationMethods.extractXSDElementById(elementId);
         // do not need to define another class corresponding to element
-        String nodeId = UUID.randomUUID().toString();
+        String nodeId = UUID.randomUUID().toString(); // useful except root node
 //        OntTreeNode ontTreeNode = new OntTreeNode(nodeId, ontMultiwayTreeNode.);
+        // process current xsd element
         if(null != xsdElement){
-            if(null != xsdElement.getName() && !xsdElement.getName().contains("Root")){
-
+            // process root element
+            if(xsdElement.getId().contains("Root")){
+                System.out.println("This is the root element of xsd.");
+                if(!ontMultiwayTreeNode.getData().getNodeId().equals("root")){
+                    ontMultiwayTreeNode.getData().setNodeId("root");
+                }
+                if(xsdElement.getName() != null && xsdElement.getType() != null){
+                    // it is a concept, it should be an empty concept
+                    if(!xsdElement.getName().equals("") && xsdElement.getType().equals("")){
+                        OntTreeNode ontTreeNode = new OntTreeNode("root", null);
+                        NodeData nodeData = new NodeData();
+                        nodeData.setConcept(xsdElement.getName());
+                        ontTreeNode.setNodeData(nodeData);
+                        ontMultiwayTreeNode.setData(ontTreeNode);
+                    }
+                    // it is an attribute, actually it should not be an attribute
+                    if(!xsdElement.getName().equals("") && !xsdElement.getType().equals("")){
+                        System.out.println("As a root concept, it shouldn't be a data property");
+                    }
+                    // ignore other circumstances
+                }
+            } else {
+                // not root element
+                // new concept, added to child list
+                if(xsdElement.getName() != null && xsdElement.getType() != null){
+                    if(!xsdElement.getName().equals("") && xsdElement.getType().equals("")){
+                        OntTreeNode ontTreeNode = new OntTreeNode(nodeId, ontMultiwayTreeNode.getData().getNodeId());
+                        NodeData nodeData = new NodeData();
+                        nodeData.setConcept(xsdElement.getName());
+                        ontTreeNode.setNodeData(nodeData);
+                        OntMultiwayTreeNode tmpTreeNode = new OntMultiwayTreeNode(ontTreeNode);
+                        ontMultiwayTreeNode.getChildList().add(tmpTreeNode);
+                    }
+                    // new data property
+                    if(!xsdElement.getName().equals("") && !xsdElement.getType().equals("")){
+                        Map<String, Object> dp = new HashMap<>();
+                        dp.put(xsdElement.getName(), xsdElement.getType());
+                        ontMultiwayTreeNode.getData().getNodeData().getDataProperties().add(dp);
+                    }
+                    // empty node, ignore
+                }
             }
         }
+
     }
 }
