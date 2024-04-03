@@ -449,6 +449,8 @@ public class OntologyOperationMethods {
     }
 
     // in a mess
+    // need to figure out what xsd element with empty name and type means
+    // if the element is a data property, figure out which concept should it be attached to
     public static void appendOntTreeFromXSDByElementId(OntMultiwayTreeNode ontMultiwayTreeNode, String elementId){
         XSDElement xsdElement = DatabaseOperationMethods.extractXSDElementById(elementId);
         // do not need to define another class corresponding to element
