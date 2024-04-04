@@ -11,7 +11,7 @@ public interface InputAnalyzeService {
     // no SQL operation
     String analyzeExistingOntologies(File ontologyFile);
 
-    String analyzeExistingExcel(File excelFile) throws FileNotFoundException;
+    String analyzeExistingExcel(File excelFile, String moduleSource) throws FileNotFoundException;
     // with SQL operations
     // require corresponding Classes have been defined
     // consider vector databases
