@@ -3,6 +3,8 @@ package com.whu.ontologybackend.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
+import com.whu.ontologybackend.common.GlobalVariables;
+import com.whu.ontologybackend.common.structured.OntMultiwayTree;
 import com.whu.ontologybackend.common.utils.CommonOperationMethods;
 import com.whu.ontologybackend.common.utils.DatabaseOperationMethods;
 import com.whu.ontologybackend.common.utils.ExternalCallOperationMethods;
@@ -66,7 +68,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     // By default, module source is "", means not specified to any module
     // the first line is attributes, while others are instances
     @Override
-    public String analyzeExistingExcel(File excelFile, String moduleSource) throws FileNotFoundException {
+    public String analyzeExistingExcel(File excelFile, String moduleSource) {
         CSVFormat csvFormat = CSVFormat.DEFAULT.withHeader();
 //        FileReader fileReader = new FileReader(excelFile);
         // follow steps in essay 348
@@ -82,7 +84,18 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         }
         System.out.println("*************Attributes**********");
         System.out.println(header.toString());
-        
+        boolean updateModule = false;
+        for(OntMultiwayTree tmpTree : GlobalVariables.ontMultiwayForest){
+            if(tmpTree.isTheSameModule(moduleSource)){
+                updateModule = true;
+                // TODO: update this tree
+                // ...
+            }
+        }
+        if(!updateModule){
+            // TODO: take it as a new module, create a new OntMultiwayTree
+            // ...
+        }
         return "In the serviceImpl class. Analyzing excels.";
     }
 

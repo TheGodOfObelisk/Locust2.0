@@ -1011,4 +1011,11 @@ public class OntMultiwayTree implements Serializable {
 
 //        return ;
     }
+
+    public boolean isTheSameModule(String moduleSource){
+        if(moduleName.contains(moduleSource) || moduleName.contains(moduleSource.toUpperCase()) || moduleName.contains(moduleSource.toLowerCase())){
+            return true;
+        }
+        return false;
+    }
 }
