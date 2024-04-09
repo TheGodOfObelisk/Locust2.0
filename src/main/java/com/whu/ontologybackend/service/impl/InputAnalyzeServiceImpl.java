@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
 import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.structured.OntMultiwayTree;
+import com.whu.ontologybackend.common.structured.OntMultiwayTreeNode;
+import com.whu.ontologybackend.common.structured.OntTreeNode;
 import com.whu.ontologybackend.common.utils.CommonOperationMethods;
 import com.whu.ontologybackend.common.utils.DatabaseOperationMethods;
 import com.whu.ontologybackend.common.utils.ExternalCallOperationMethods;
@@ -13,7 +15,6 @@ import com.whu.ontologybackend.service.InputAnalyzeService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.jena.base.Sys;
 import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -89,12 +90,38 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             if(tmpTree.isTheSameModule(moduleSource)){
                 updateModule = true;
                 // TODO: update this tree
-                // ...
+                // In general, there should be no update because the corresponding module has been created
+                for(String term: header){
+                    OntTreeNode resTreeNode = tmpTree.traverseTreeByConcept(tmpTree.getRoot(), term);
+                    if(resTreeNode == null){
+                        try {
+                            tmpTree.updateTree(term);
+                        } catch (IOException e){
+                            e.printStackTrace();
+                        } catch (ReflectiveOperationException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
             }
         }
         if(!updateModule){
             // TODO: take it as a new module, create a new OntMultiwayTree
-            // ...
+            OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+            ontMultiwayTree.setModuleName(moduleSource);
+            ontMultiwayTree.setModuleId(UUID.randomUUID().toString());
+            for(String term: header){
+                // update, no duplicated column in a csv
+                try {
+                    ontMultiwayTree.updateTree(term);
+                } catch (IOException e){
+                    e.printStackTrace();
+                } catch (ReflectiveOperationException e) {
+                    e.printStackTrace();
+                }
+            }
+            GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+            OntologyOperationMethods.synchronizeTerms2LocalThesaurus();
         }
         return "In the serviceImpl class. Analyzing excels.";
     }

@@ -767,13 +767,16 @@ public class OntMultiwayTree implements Serializable {
         Set<NodeData> tmpNodeDataSet = new HashSet<>();
         // TODO: extract terms from this multi-way tree
         // 1. op
-        for(OntProperty op : objectProperties){
-            Glossary tmpGlossary = new Glossary(op.getLocalName(), "", "op");
+        if(objectProperties != null){
+            for(OntProperty op : objectProperties){
+                Glossary tmpGlossary = new Glossary(op.getLocalName(), "", "op");
 //            tmpGlossary.setWord(op.getLocalName());
 //            tmpGlossary.setLabel("op");
-            glossaries.add(tmpGlossary);
-            // reinitialize tmpGlossary
+                glossaries.add(tmpGlossary);
+                // reinitialize tmpGlossary
+            }
         }
+
         // 2. c
         tmpNodeDataSet = extractNodeDataSet();
         for(NodeData nd: tmpNodeDataSet){
