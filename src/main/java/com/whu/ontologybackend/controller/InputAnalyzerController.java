@@ -50,7 +50,9 @@ public class InputAnalyzerController {
     @RequestMapping("postExcels")
     public String integrateExcels() throws FileNotFoundException {
         // It's unnecessary to process CAPEC csv, because our focus is on schema
-        File excelFile = new File(resourcePrefix + "2000.csv");
+//        String filename = resourcePrefix + "2000.csv";
+        String filename = resourcePrefix + "cce-win7-5.20120521.xls";
+        File excelFile = new File(filename);
         String moduleSource = "CAPEC";
         // use module source to determine whether the small schema should be cast into an extra multiway tree
         return inputAnalyzeService.analyzeExistingExcel(excelFile, moduleSource);

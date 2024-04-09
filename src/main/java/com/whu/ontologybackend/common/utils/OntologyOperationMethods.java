@@ -3,9 +3,13 @@ package com.whu.ontologybackend.common.utils;
 import com.alibaba.fastjson.JSONObject;
 import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.structured.*;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.iterator.ExtendedIterator;
+import org.apache.poi.ss.usermodel.*;
 
 import java.io.*;
 import java.sql.ResultSet;
@@ -517,6 +521,112 @@ public class OntologyOperationMethods {
         List<String> subElementIds = DatabaseOperationMethods.extractSubXSDElementIdsByParentId(elementId);
         for(String subElementId : subElementIds){
             appendOntTreeFromXSDByElementId(ontMultiwayTreeNode, subElementId);
+        }
+    }
+
+    public static void analyzeXLSFile(File excelFile, String moduleSource){
+        try(Workbook workbook = WorkbookFactory.create(new FileInputStream(excelFile))){
+            Sheet sheet = workbook.getSheetAt(0);
+            Row headerRow = sheet.getRow(0);
+            // in CCE, header is set in the 3rd row
+            if(excelFile.getName().contains("cce") || excelFile.getName().contains("CCE")){
+                headerRow = sheet.getRow(2);
+            }
+            List<String> header = new ArrayList<>();
+            for(int i = 0; i < headerRow.getLastCellNum(); i++){
+                Cell cell = headerRow.getCell(i);
+                if(cell != null){
+                    header.add(cell.getStringCellValue());
+                }
+            }
+            System.out.println("*************attributes**************");
+            for(String term : header){
+                System.out.println(term);
+            }
+//            for(Row row: sheet){
+//                for(Cell cell : row){
+//                    String cellValue = getCellValueAsString(cell);
+//                    System.out.println(cellValue + "\t");
+//                }
+//                System.out.println();
+//            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // TODO: the same as csv, update or create a new OntMultiwayTree
+
+    }
+
+    private static String getCellValueAsString(Cell cell){
+        if(cell == null){
+            return "";
+        }
+        switch (cell.getCellType()){
+            case STRING:
+                return cell.getStringCellValue();
+            case NUMERIC:
+                return String.valueOf(cell.getNumericCellValue());
+            case BOOLEAN:
+                return String.valueOf(cell.getBooleanCellValue());
+            default:
+                return "";
+        }
+    }
+
+    public static void analyzeCSVFile(File excelFile, String moduleSource) {
+        CSVFormat csvFormat = CSVFormat.DEFAULT.withHeader();
+        // follow steps in essay 348
+        List<String> header = new ArrayList<>();
+        try(CSVParser csvParser = new CSVParser(new FileReader(excelFile), csvFormat)){
+            header = csvParser.getHeaderNames();
+            for(CSVRecord csvRecord : csvParser){
+                System.out.println("--------csvRecord--------");
+                System.out.println(csvRecord.stream().toList());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("*************Attributes**********");
+        System.out.println(header.toString());
+        boolean updateModule = false;
+        for(OntMultiwayTree tmpTree : GlobalVariables.ontMultiwayForest){
+            if(tmpTree.isTheSameModule(moduleSource)){
+                updateModule = true;
+                // TODO: update this tree
+                // In general, there should be no update because the corresponding module has been created
+                for(String term: header){
+                    OntTreeNode resTreeNode = tmpTree.traverseTreeByConcept(tmpTree.getRoot(), term);
+                    if(resTreeNode == null){
+                        try {
+                            tmpTree.updateTree(term);
+                        } catch (IOException e){
+                            e.printStackTrace();
+                        } catch (ReflectiveOperationException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        if(!updateModule){
+            // TODO: take it as a new module, create a new OntMultiwayTree
+            OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+            ontMultiwayTree.setModuleName(moduleSource);
+            ontMultiwayTree.setModuleId(UUID.randomUUID().toString());
+            for(String term: header){
+                // update, no duplicated column in a csv
+                try {
+                    ontMultiwayTree.updateTree(term);
+                } catch (IOException e){
+                    e.printStackTrace();
+                } catch (ReflectiveOperationException e) {
+                    e.printStackTrace();
+                }
+            }
+            GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+            OntologyOperationMethods.synchronizeTerms2LocalThesaurus();
         }
     }
 }

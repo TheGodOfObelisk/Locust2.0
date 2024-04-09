@@ -70,59 +70,13 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     // the first line is attributes, while others are instances
     @Override
     public String analyzeExistingExcel(File excelFile, String moduleSource) {
-        CSVFormat csvFormat = CSVFormat.DEFAULT.withHeader();
-//        FileReader fileReader = new FileReader(excelFile);
-        // follow steps in essay 348
-        List<String> header = new ArrayList<>();
-        try(CSVParser csvParser = new CSVParser(new FileReader(excelFile), csvFormat)){
-            header = csvParser.getHeaderNames();
-            for(CSVRecord csvRecord : csvParser){
-                System.out.println("--------csvRecord--------");
-                System.out.println(csvRecord.stream().toList());
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        String filename = excelFile.getName();
+        if(filename.contains(".csv")){
+            OntologyOperationMethods.analyzeCSVFile(excelFile, moduleSource);
+        } else if (filename.contains(".xls")) {
+            OntologyOperationMethods.analyzeXLSFile(excelFile, moduleSource);
         }
-        System.out.println("*************Attributes**********");
-        System.out.println(header.toString());
-        boolean updateModule = false;
-        for(OntMultiwayTree tmpTree : GlobalVariables.ontMultiwayForest){
-            if(tmpTree.isTheSameModule(moduleSource)){
-                updateModule = true;
-                // TODO: update this tree
-                // In general, there should be no update because the corresponding module has been created
-                for(String term: header){
-                    OntTreeNode resTreeNode = tmpTree.traverseTreeByConcept(tmpTree.getRoot(), term);
-                    if(resTreeNode == null){
-                        try {
-                            tmpTree.updateTree(term);
-                        } catch (IOException e){
-                            e.printStackTrace();
-                        } catch (ReflectiveOperationException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }
-        if(!updateModule){
-            // TODO: take it as a new module, create a new OntMultiwayTree
-            OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
-            ontMultiwayTree.setModuleName(moduleSource);
-            ontMultiwayTree.setModuleId(UUID.randomUUID().toString());
-            for(String term: header){
-                // update, no duplicated column in a csv
-                try {
-                    ontMultiwayTree.updateTree(term);
-                } catch (IOException e){
-                    e.printStackTrace();
-                } catch (ReflectiveOperationException e) {
-                    e.printStackTrace();
-                }
-            }
-            GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
-            OntologyOperationMethods.synchronizeTerms2LocalThesaurus();
-        }
+
         return "In the serviceImpl class. Analyzing excels.";
     }
 
