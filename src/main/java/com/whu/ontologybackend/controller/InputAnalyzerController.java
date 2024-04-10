@@ -58,8 +58,11 @@ public class InputAnalyzerController {
         return inputAnalyzeService.analyzeExistingExcel(excelFile, moduleSource);
     }
 
+    // first convert it to XSD form using the trang tool
+    // each xml corresponding to more than one xsd, then process the resulting xsd using methods in "postXSD"
     @RequestMapping("postXML")
     public String integrateXML(){
+        // TODO: ignore instances first, focus on its schema
         return "XML";
     }
 
