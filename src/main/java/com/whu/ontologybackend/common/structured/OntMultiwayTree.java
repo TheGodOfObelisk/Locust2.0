@@ -469,6 +469,9 @@ public class OntMultiwayTree implements Serializable {
             System.out.println("Corresponding class name: " + className);
         }
         if(hasInstances){
+            if(this.instances == null){
+                this.instances = new HashMap<>();
+            }
             this.instances.put(presentOntClass.getLocalName(), instanceSet);
         }
     }
@@ -518,6 +521,9 @@ public class OntMultiwayTree implements Serializable {
                 // 1: extract the domain and range of the object property
                 // 2: relationship between object properties
                 // new strategy: add it to the OntMultiwayTree itself
+                if(objectProperties == null){
+                    objectProperties = new HashSet<>();
+                }
                 objectProperties.add(presentOntProperty);
 //                String objectPropertyDomain = null;
 //                String objectPropertyRange = null;
@@ -813,17 +819,20 @@ public class OntMultiwayTree implements Serializable {
         // 4. i
         // handle instances -> now there no instance info in ontology forest
         // instances should also be stored
-        Set<String> correspondingClassNames = this.instances.keySet();
-        for(String className: correspondingClassNames){
-            Set<String> correspondingInstances = this.instances.get(className);
-            for(String instanceStr : correspondingInstances){
-                Glossary tmpGlossary = new Glossary();
-                tmpGlossary.setWord(instanceStr);
-                tmpGlossary.setLabel("i");
-                tmpGlossary.setDescription("instance extracted from existing ontologies");
-                glossaries.add(tmpGlossary);
+        if(this.instances != null){
+            Set<String> correspondingClassNames = this.instances.keySet();
+            for(String className: correspondingClassNames){
+                Set<String> correspondingInstances = this.instances.get(className);
+                for(String instanceStr : correspondingInstances){
+                    Glossary tmpGlossary = new Glossary();
+                    tmpGlossary.setWord(instanceStr);
+                    tmpGlossary.setLabel("i");
+                    tmpGlossary.setDescription("instance extracted from existing ontologies");
+                    glossaries.add(tmpGlossary);
+                }
             }
         }
+
         return glossaries;
     }
 

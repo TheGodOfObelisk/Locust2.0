@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class OntologyOperationMethods {
     public static void ontologyForestSerialization(){
@@ -525,6 +526,7 @@ public class OntologyOperationMethods {
     }
 
     public static void analyzeXLSFile(File excelFile, String moduleSource){
+        List<String> header = new ArrayList<>();
         try(Workbook workbook = WorkbookFactory.create(new FileInputStream(excelFile))){
             Sheet sheet = workbook.getSheetAt(0);
             Row headerRow = sheet.getRow(0);
@@ -532,7 +534,7 @@ public class OntologyOperationMethods {
             if(excelFile.getName().contains("cce") || excelFile.getName().contains("CCE")){
                 headerRow = sheet.getRow(2);
             }
-            List<String> header = new ArrayList<>();
+
             for(int i = 0; i < headerRow.getLastCellNum(); i++){
                 Cell cell = headerRow.getCell(i);
                 if(cell != null){
@@ -556,7 +558,7 @@ public class OntologyOperationMethods {
             e.printStackTrace();
         }
         // TODO: the same as csv, update or create a new OntMultiwayTree
-
+        updateGlobalOFByHeader(moduleSource, header);
     }
 
     private static String getCellValueAsString(Cell cell){
@@ -590,7 +592,15 @@ public class OntologyOperationMethods {
         }
         System.out.println("*************Attributes**********");
         System.out.println(header.toString());
+        updateGlobalOFByHeader(moduleSource, header);
+    }
+
+    private static void updateGlobalOFByHeader(String moduleSource, List<String> header) {
         boolean updateModule = false;
+        // empty string should not be a concept
+        header = header.stream()
+                       .filter(str -> !str.isEmpty())
+                       .collect(Collectors.toList());
         for(OntMultiwayTree tmpTree : GlobalVariables.ontMultiwayForest){
             if(tmpTree.isTheSameModule(moduleSource)){
                 updateModule = true;
