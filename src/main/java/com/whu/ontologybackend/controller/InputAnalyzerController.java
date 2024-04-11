@@ -66,6 +66,9 @@ public class InputAnalyzerController {
         String filename = resourcePrefix + "nvdcce-0.1-feed.xml";
         File xmlFile = new File(filename);
         String moduleSource = "CCE";
+        // empty moduleSource means default module or unknown module
+        // Actually, the parameters should be set by users
+//        String moduleSource = "";
         return inputAnalyzeService.analyzeInputXML(xmlFile, moduleSource);
     }
 

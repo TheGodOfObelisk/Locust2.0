@@ -54,9 +54,25 @@ public class ExternalCallOperationMethods {
             }
         } else {
             System.out.println("No module source has been specified");
+            // check defaultModule
+            path2Check = jarPath + "defaultModule";
+            path = Paths.get(path2Check);
+            boolean exist = Files.exists(path);
+            if(!exist){
+                System.out.println("Ready to create the default module directory.");
+                File moduleDir = new File(path2Check);
+                if(!moduleDir.mkdir()){
+                    System.out.println("Failed to create the module directory. Exit.");
+                    return false;
+                } else {
+                    System.out.println("Succeeded to create the module directory. Continue.");
+                }
+            } else {
+                System.out.println("The default module directory has been created.");
+            }
         }
 
-        String jarFile = jarPath + "trang-20091111.jar";
+        String jarFile = jarPath + "trang-20091111.jar"; // fixed
         String xmlAbsoluatePath = xmlFile.getAbsolutePath();
         String targetFile = path2Check + "\\" + xmlFile.getName().replace(".xml", "") + ".xsd";
         ProcessBuilder processBuilder = new ProcessBuilder("java", "-jar", jarFile, xmlAbsoluatePath, targetFile);
