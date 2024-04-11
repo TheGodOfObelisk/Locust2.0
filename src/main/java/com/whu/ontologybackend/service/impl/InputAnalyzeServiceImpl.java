@@ -196,7 +196,12 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     public String analyzeInputXML(File xmlFile, String moduleSource) throws IOException, InterruptedException {
         // invoke conversion
         String JarPath = "D:\\Lowcode-ontology-generator\\projectOutput\\";
-        ExternalCallOperationMethods.callTrangScript(JarPath, xmlFile);
+        if(ExternalCallOperationMethods.callTrangScript(JarPath, xmlFile, moduleSource)){
+            System.out.println("Succeeded to call Trang Jar");
+            // TODO: process XSD files in the target module directory
+        } else {
+            System.out.println("Failed to call Trang Jar.");
+        }
         return "Analyzing input XML files";
     }
 
