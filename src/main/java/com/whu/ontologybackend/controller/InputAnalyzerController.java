@@ -61,9 +61,12 @@ public class InputAnalyzerController {
     // first convert it to XSD form using the trang tool
     // each xml corresponding to more than one xsd, then process the resulting xsd using methods in "postXSD"
     @RequestMapping("postXML")
-    public String integrateXML(){
+    public String integrateXML() throws IOException, InterruptedException {
         // TODO: ignore instances first, focus on its schema
-        return "XML";
+        String filename = resourcePrefix + "nvdcce-0.1-feed.xml";
+        File xmlFile = new File(filename);
+        String moduleSource = "CCE";
+        return inputAnalyzeService.analyzeInputXML(xmlFile, moduleSource);
     }
 
     // use XSD again?

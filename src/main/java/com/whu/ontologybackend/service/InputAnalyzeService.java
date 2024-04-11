@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 
 @Service
@@ -21,6 +22,8 @@ public interface InputAnalyzeService {
     String analyzeArticles(Map<String, Object> articles);
 
     String analyzeInputCQs(String filePrefix);
+
+    String analyzeInputXML(File xmlFile, String moduleSource) throws IOException, InterruptedException;
 
     String analyzeInputXSD(File xsdFile);
 

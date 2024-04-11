@@ -193,6 +193,14 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     }
 
     @Override
+    public String analyzeInputXML(File xmlFile, String moduleSource) throws IOException, InterruptedException {
+        // invoke conversion
+        String JarPath = "D:\\Lowcode-ontology-generator\\projectOutput\\";
+        ExternalCallOperationMethods.callTrangScript(JarPath, xmlFile);
+        return "Analyzing input XML files";
+    }
+
+    @Override
     public String analyzeInputXSD(File xsdFile){
         try{
             SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
