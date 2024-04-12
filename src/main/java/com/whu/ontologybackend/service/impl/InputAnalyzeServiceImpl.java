@@ -250,4 +250,11 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         OntologyOperationMethods.integrateXSDModules2OntologyForest(moduleSource);
         return "analyzing inputted XSD file";
     }
+
+    @Override
+    public String analyzeInputJSON(File jsonFile, String moduleSource){
+        // TODO: use QuickType to convert json to whatever form we want, but its dependency is node.js and npm (open-source and written in TypeScript)
+        // ...
+        return "analyzing inputted JSON file";
+    }
 }

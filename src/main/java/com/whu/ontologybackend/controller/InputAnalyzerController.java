@@ -102,7 +102,9 @@ public class InputAnalyzerController {
 
     @RequestMapping("postJSON")
     public String integrateJSON(){
-        return "json";
+        File jsonFile = new File(resourcePrefix + "malware-family.json");
+        String moduleSource = "MITRE MAEC";
+        return inputAnalyzeService.analyzeInputJSON(jsonFile, moduleSource);
     }
 
     @RequestMapping("postOntology")

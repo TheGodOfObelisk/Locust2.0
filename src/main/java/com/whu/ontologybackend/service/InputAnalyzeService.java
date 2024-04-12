@@ -27,5 +27,7 @@ public interface InputAnalyzeService {
 
     String analyzeInputXSD(File xsdFile, String moduleSource);
 
+    String analyzeInputJSON(File jsonFile, String moduleSource);
+
     String materializeCQs(String filePrefix);
 }
