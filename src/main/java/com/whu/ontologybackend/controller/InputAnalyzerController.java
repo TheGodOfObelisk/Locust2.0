@@ -76,7 +76,8 @@ public class InputAnalyzerController {
     @RequestMapping("postXSD")
     public String integrateXSD(){
         File xsdFile = new File(resourcePrefix + "CAPEC\\ap_schema_latest.xsd");
-        return inputAnalyzeService.analyzeInputXSD(xsdFile);
+        String moduleSource = "CAPEC";
+        return inputAnalyzeService.analyzeInputXSD(xsdFile, moduleSource);
     }
 
     @RequestMapping("postCQ")

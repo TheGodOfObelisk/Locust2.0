@@ -25,7 +25,7 @@ public interface InputAnalyzeService {
 
     String analyzeInputXML(File xmlFile, String moduleSource) throws IOException, InterruptedException;
 
-    String analyzeInputXSD(File xsdFile);
+    String analyzeInputXSD(File xsdFile, String moduleSource);
 
     String materializeCQs(String filePrefix);
 }

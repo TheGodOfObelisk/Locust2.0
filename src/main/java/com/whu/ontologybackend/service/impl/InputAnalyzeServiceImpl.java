@@ -203,6 +203,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             List<File> resXSDFiles = CommonOperationMethods.fetchFilesInDir(moduleDir);
             for(File xsdFile : resXSDFiles){
                 System.out.println(xsdFile.getPath() + " >>>>> " + xsdFile.getName());
+                analyzeInputXSD(xsdFile, moduleSource); // are you ok?
             }
         } else {
             System.out.println("Failed to call Trang Jar.");
@@ -211,7 +212,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     }
 
     @Override
-    public String analyzeInputXSD(File xsdFile){
+    public String analyzeInputXSD(File xsdFile, String moduleSource){
         try{
             SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
             Schema schema = schemaFactory.newSchema(xsdFile);
@@ -219,7 +220,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
             System.out.println("XSD parsed successfully.");
         } catch (SAXException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         try{
@@ -234,7 +235,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             // check whether the rootId existed in the element table
             if(DatabaseOperationMethods.checkXSDRootID(rootId)){
                 // integrate XSD modules before exit
-                OntologyOperationMethods.integrateXSDModules2OntologyForest();
+                OntologyOperationMethods.integrateXSDModules2OntologyForest(moduleSource);
                 return "this XSD file has been integrated";
             }
             // insert root info into the element table
@@ -246,7 +247,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         }
         // then parse and extract the tree structure of xsd
         // since xsd files have high quality, maybe they should become a new module ontology
-        OntologyOperationMethods.integrateXSDModules2OntologyForest();
+        OntologyOperationMethods.integrateXSDModules2OntologyForest(moduleSource);
         return "analyzing inputted XSD file";
     }
 }

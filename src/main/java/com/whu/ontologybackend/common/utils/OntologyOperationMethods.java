@@ -418,15 +418,21 @@ public class OntologyOperationMethods {
 
     // read and parse xsd schemas from Database, then integrate schema into Global Variable ontology forest
     // duplicated modules may exist
-    public static void integrateXSDModules2OntologyForest(){
+    // chaos
+    public static void integrateXSDModules2OntologyForest(String moduleSource){
         List<String> xsdRootIds = DatabaseOperationMethods.extractXSDRootIdList();
+        if(moduleSource.equals("")){
+            moduleSource = "defaultModule";
+        }
         for(String rootId : xsdRootIds){
             System.out.println("Parse from rootId = " + rootId);
             boolean moduleExist = false;
             for(int index = 0; index < GlobalVariables.ontMultiwayForest.size(); index++){
                 OntMultiwayTree curTree = GlobalVariables.ontMultiwayForest.get(index);
-                if(curTree.getModuleName().equals(rootId)){
+                if(curTree.getModuleId().equals(rootId) || curTree.getModuleName().equals(moduleSource)){
                     moduleExist = true;
+                    curTree.setModuleId(rootId);
+                    curTree.setModuleName(moduleSource);
                 }
             }
             if(moduleExist){
@@ -434,17 +440,17 @@ public class OntologyOperationMethods {
                 continue;
             }
             // TODO: analyze the xsd schema and synchronize it into the global ontology forest
-            appendOntTreeFromXSD(rootId);
+            appendOntTreeFromXSD(rootId, moduleSource);
         }
 
     }
 
-    public static void appendOntTreeFromXSD(String rootId){
+    public static void appendOntTreeFromXSD(String rootId, String moduleSource){
         // TODO: implement 1) analyze element table and relation table; 2) append a new OntMultiwayTree
         OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
-        String moduleId = UUID.randomUUID().toString();
-        ontMultiwayTree.setModuleId(moduleId);
-        ontMultiwayTree.setModuleName(rootId);
+//        String moduleId = UUID.randomUUID().toString();
+        ontMultiwayTree.setModuleId(rootId);
+        ontMultiwayTree.setModuleName(moduleSource);
         ontMultiwayTree.setImportedOntology(true);
         OntMultiwayTreeNode rootNode = ontMultiwayTree.getRoot();
         appendOntTreeFromXSDByElementId(rootNode, rootId);
