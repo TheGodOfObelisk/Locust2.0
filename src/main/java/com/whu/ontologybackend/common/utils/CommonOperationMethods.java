@@ -5,6 +5,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -112,5 +113,22 @@ public class CommonOperationMethods {
         String uuidStr = uuid.toString().replace("-", "");
         int intUUID = uuidStr.hashCode();
         return intUUID;
+    }
+
+    public static List<File> fetchFilesInDir(File modulePath){
+        List<File> fileList = new ArrayList<>();
+        if(modulePath.isFile()){
+            fileList.add(modulePath);
+        } else if(modulePath.isDirectory()){
+            File[] files = modulePath.listFiles();
+            if(files != null){
+                for(File file: files){
+                    if(file.getName().contains(".xsd")){
+                        fileList.add(file);
+                    }
+                }
+            }
+        }
+        return fileList;
     }
 }

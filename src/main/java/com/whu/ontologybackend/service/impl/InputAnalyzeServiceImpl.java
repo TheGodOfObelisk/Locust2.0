@@ -199,6 +199,11 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         if(ExternalCallOperationMethods.callTrangScript(JarPath, xmlFile, moduleSource)){
             System.out.println("Succeeded to call Trang Jar");
             // TODO: process XSD files in the target module directory
+            File moduleDir = new File(JarPath + "\\" + moduleSource);
+            List<File> resXSDFiles = CommonOperationMethods.fetchFilesInDir(moduleDir);
+            for(File xsdFile : resXSDFiles){
+                System.out.println(xsdFile.getPath() + " >>>>> " + xsdFile.getName());
+            }
         } else {
             System.out.println("Failed to call Trang Jar.");
         }
