@@ -36,6 +36,17 @@ public class ExternalCallOperationMethods {
 
     public static boolean callQuickTypeScript(String targetPath, File jsonFile, String moduleSource){
         // the converted file name: XX-schema.json
+        // check write privilege
+        File file = new File(targetPath);
+        if(file.exists()){
+            if(file.canWrite()){
+                System.out.println("can write to this directory");
+            } else {
+                System.out.println("cannot write to this directory");
+            }
+        } else {
+            System.out.println("Directory does not exist.");
+        }
         try{
             // 1, cannot output
             String command = "quicktype " + jsonFile.getAbsolutePath() + " -o " + targetPath + "\\" + jsonFile.getName().replace(".json", "-schema.json") + " -l schema";

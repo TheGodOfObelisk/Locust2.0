@@ -259,7 +259,8 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         if(!ExternalCallOperationMethods.callQuickTypeScript(targetPath, jsonFile, moduleSource)){
             return "Failed to call QuickType in Administrator mode.";
         }
-        // process the outputted JSON Schema file
+        // TODO: process the outputted JSON Schema file
+        // ...
 
         return "analyzing inputted JSON file";
     }
