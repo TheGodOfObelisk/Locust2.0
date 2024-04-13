@@ -34,6 +34,31 @@ public class ExternalCallOperationMethods {
         return;
     }
 
+    public static boolean callQuickTypeScript(String targetPath, File jsonFile, String moduleSource){
+        // the converted file name: XX-schema.json
+        try{
+            // 1, cannot output
+            String command = "quicktype " + jsonFile.getAbsolutePath() + " -o " + targetPath + "\\" + jsonFile.getName().replace(".json", "-schema.json") + " -l schema";
+            Process process = Runtime.getRuntime().exec("runas /user:Administrator cmd /c " + command);
+            // 2, no privilege to run
+//            targetPath = targetPath + "\\" + jsonFile.getName().replace(".json", "-schema.json");
+//            ProcessBuilder processBuilder = new ProcessBuilder("quicktype", jsonFile.getAbsolutePath(), "-o", targetPath, "-l", "schema");
+//            processBuilder.redirectErrorStream(true);
+//            processBuilder.environment().put("hasAdministrativeRights", "true");
+//            Process process = processBuilder.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while((line = reader.readLine()) != null){
+                System.out.println(line);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     public static boolean callTrangScript(String jarPath, File xmlFile, String moduleSource) throws IOException, InterruptedException {
         // check directory
         String path2Check = jarPath + moduleSource;

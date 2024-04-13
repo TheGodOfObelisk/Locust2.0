@@ -254,7 +254,13 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     @Override
     public String analyzeInputJSON(File jsonFile, String moduleSource){
         // TODO: use QuickType to convert json to whatever form we want, but its dependency is node.js and npm (open-source and written in TypeScript)
-        // ...
+        // call subProcess in root privilege
+        String targetPath = "D:\\Lowcode-ontology-generator\\jsonConvert";
+        if(!ExternalCallOperationMethods.callQuickTypeScript(targetPath, jsonFile, moduleSource)){
+            return "Failed to call QuickType in Administrator mode.";
+        }
+        // process the outputted JSON Schema file
+
         return "analyzing inputted JSON file";
     }
 }
