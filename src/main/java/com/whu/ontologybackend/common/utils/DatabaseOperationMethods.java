@@ -205,6 +205,22 @@ public class DatabaseOperationMethods {
         return false;
     }
 
+    public static List<String> getCQTemplates(){
+        List<String> cqTemplateList = new ArrayList<>();
+        try(Connection connection = DatabaseOperationMethods.getDBConnection()){
+            String sql = "SELECT CQTemplate FROM cqtemplates";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                String cqt = resultSet.getString("CQTemplate");
+                cqTemplateList.add(cqt);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return cqTemplateList;
+    }
+
     public static boolean checkSPARQLTemplate(String SPARQLT){
         try(Connection connection = DatabaseOperationMethods.getDBConnection()){
             String sql = "SELECT * FROM SPARQLTEMPLATE WHERE SPARQLTemplate = ?";

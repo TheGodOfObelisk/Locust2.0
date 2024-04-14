@@ -645,4 +645,11 @@ public class OntologyOperationMethods {
             OntologyOperationMethods.synchronizeTerms2LocalThesaurus();
         }
     }
+
+    public static boolean cqMatch(String cqContent, String cqTemplate){
+        boolean match = false;
+        // TODO: precisely match
+
+        return match;
+    }
 }

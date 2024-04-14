@@ -85,8 +85,10 @@ public class InputAnalyzerController {
         // take a list of competency questions
         // each competency question is a single query sentence
         // CQ is divided into two parts: 1, from words of existing ontologies and glossaries; 2, from user-defined competency questions or requirement descriptions
-
-        return inputAnalyzeService.analyzeInputCQs(templatePrefix);
+        String inputCQ = "What can I say?";
+        // 0: informal cq; 1: formal cq
+        int CQType = 0;
+        return inputAnalyzeService.analyzeInputCQs(inputCQ, CQType);
     }
 
     @RequestMapping("materializeCQ")

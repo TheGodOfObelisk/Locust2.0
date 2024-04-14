@@ -173,18 +173,31 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     }
 
     @Override
-    public String analyzeInputCQs(String filePrefix){
+    public String analyzeInputCQs(String CQContent, int CQType){
         // Step 1:
         // analyze inputted CQs to help constructing the resulting ontology
         // goal: enrich the ontology forest [design an update algorithm and implement it ]
         // check whether the inputted textual requirement is a CQ
+        List<String> cqTemplateList = DatabaseOperationMethods.getCQTemplates();
+        if(!CQContent.contains("?")){
+            // not cq
+            // extract entities in CQContent and exit
+            return "invalid input";
+        }
 
         // Step 2:
         // use the inputted text to extract useful terms for enriching the resulting ontology
 
+
+
         // Step 3:
         // check whether the inputted CQ can match an existing template
         // form a new template or match an existing template
+        for(String cqt : cqTemplateList){
+            if(OntologyOperationMethods.cqMatch(CQContent, cqt)){
+                // extract entities and synchronize to local thesaurus
+            }
+        }
 
         // Step 4:
         // translate the inputted CQs into SPARQL-OWL format

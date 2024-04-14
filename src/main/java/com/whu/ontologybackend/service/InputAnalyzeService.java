@@ -21,7 +21,7 @@ public interface InputAnalyzeService {
 
     String analyzeArticles(Map<String, Object> articles);
 
-    String analyzeInputCQs(String filePrefix);
+    String analyzeInputCQs(String CQContent, int CQType);
 
     String analyzeInputXML(File xmlFile, String moduleSource) throws IOException, InterruptedException;
 
