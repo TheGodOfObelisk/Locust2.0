@@ -187,15 +187,20 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
         // Step 2:
         // use the inputted text to extract useful terms for enriching the resulting ontology
-
+        if(CQType == 0){
+            System.out.println("It is an informal competency question");
+            // TODO: treat it as normal text
+        }
 
 
         // Step 3:
         // check whether the inputted CQ can match an existing template
         // form a new template or match an existing template
-        for(String cqt : cqTemplateList){
-            if(OntologyOperationMethods.cqMatch(CQContent, cqt)){
-                // extract entities and synchronize to local thesaurus
+        if(CQType == 1){
+            for(String cqt : cqTemplateList){
+                if(OntologyOperationMethods.cqMatch(CQContent, cqt)){
+                    // extract entities and synchronize to local thesaurus
+                }
             }
         }
 
