@@ -198,8 +198,15 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         // form a new template or match an existing template
         if(CQType == 1){
             for(String cqt : cqTemplateList){
-                if(OntologyOperationMethods.cqMatch(CQContent, cqt)){
+                Map<String, Object> placeholderContentMap = new HashMap<>();
+                if(OntologyOperationMethods.cqMatch(CQContent, cqt, placeholderContentMap)){
                     // extract entities and synchronize to local thesaurus
+                    // placeholderContentMap has been filled
+                    System.out.println("placeholder content Map: ");
+                    System.out.println(placeholderContentMap.toString());
+
+                } else {
+                    System.out.println("CQ mismatches. Treat it as normal text.");
                 }
             }
         }

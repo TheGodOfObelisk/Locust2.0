@@ -646,31 +646,83 @@ public class OntologyOperationMethods {
         }
     }
 
-    public static boolean cqMatch(String cqContent, String cqTemplate){
-        boolean match = false;
+    public static boolean cqMatch(String cqContent, String cqTemplate, Map<String, Object> placeholderContentMap){
         // TODO: precisely match
         // without placeholders
         String regex = "dt\\d+|op\\d+|c\\d+|i\\d+";
         String[] parts = cqTemplate.split(regex);
         System.out.println("cqTemplate: " + cqTemplate);
+        int incIndex = 0;
         for(String part: parts){
             System.out.println(part);
+            if(cqContent.contains(part)){
+                if(incIndex > cqContent.indexOf(part)){
+                    // incorrect sequence
+                    System.out.println("Mismatch");
+                    return false;
+                } else {
+                    incIndex = cqContent.indexOf(part);
+                }
+            } else {
+                System.out.println("Mismatch: no such substring.");
+                return false;
+            }
         }
+        // Here, match succeeded. It is actually a cq.
         // with placeholders
-        List<String> result = new ArrayList<>();
+        List<String> partsWithPlaceholders = new ArrayList<>();
+        List<String> placeHolders = new ArrayList<>();
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cqTemplate);
         int start = 0;
         while(matcher.find()){
-            result.add(cqTemplate.substring(start, matcher.start()));
-            result.add(matcher.group());
+            partsWithPlaceholders.add(cqTemplate.substring(start, matcher.start()));
+            partsWithPlaceholders.add(matcher.group());
+            placeHolders.add(matcher.group());
             start = matcher.end();
         }
-        result.add(cqTemplate.substring(start));
+        partsWithPlaceholders.add(cqTemplate.substring(start));
         System.out.println("remain the parts matched. split again.");
-        for(String part: result){
+
+        boolean previousPlaceholderContentExist = false;
+        String previousPlaceholder = "";
+
+        for(String part: partsWithPlaceholders){
             System.out.println(part);
+            Matcher matchPlaceholder = pattern.matcher(part);
+            if(matchPlaceholder.matches()){
+                if(previousPlaceholderContentExist){
+                    System.out.println("Fatal error: two subsequent placeholders...");
+                    return false;
+                }
+                previousPlaceholder = part;
+                previousPlaceholderContentExist = true;
+                // match
+            } else {
+                // mismatch, remove textual content
+                if(previousPlaceholderContentExist){
+                    int nextIndex = cqContent.indexOf(part);
+                    String placeholderContent = cqContent.substring(0, nextIndex);
+                    if(!previousPlaceholder.equals("")){
+                        placeholderContentMap.put(previousPlaceholder, placeholderContent);
+                    } else {
+                        System.out.println("Fatal error: placeholder has not been initialized!!");
+                    }
+                    previousPlaceholderContentExist = false; // already handle it
+                } else {
+                    cqContent = cqContent.replaceFirst(part, "");
+                }
+            }
         }
-        return match;
+        System.out.println("Only placeholders.");
+        // check Map
+        for(String placeholder: placeHolders){
+            System.out.println(placeholder);
+            if(!placeholderContentMap.containsKey(placeholder)){
+                System.out.println("Fatal error: missing placeholder(s)!!");
+                return false;
+            }
+        }
+        return true;
     }
 }
