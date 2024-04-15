@@ -649,7 +649,28 @@ public class OntologyOperationMethods {
     public static boolean cqMatch(String cqContent, String cqTemplate){
         boolean match = false;
         // TODO: precisely match
-
+        // without placeholders
+        String regex = "dt\\d+|op\\d+|c\\d+|i\\d+";
+        String[] parts = cqTemplate.split(regex);
+        System.out.println("cqTemplate: " + cqTemplate);
+        for(String part: parts){
+            System.out.println(part);
+        }
+        // with placeholders
+        List<String> result = new ArrayList<>();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cqTemplate);
+        int start = 0;
+        while(matcher.find()){
+            result.add(cqTemplate.substring(start, matcher.start()));
+            result.add(matcher.group());
+            start = matcher.end();
+        }
+        result.add(cqTemplate.substring(start));
+        System.out.println("remain the parts matched. split again.");
+        for(String part: result){
+            System.out.println(part);
+        }
         return match;
     }
 }

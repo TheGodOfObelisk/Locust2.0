@@ -87,7 +87,7 @@ public class InputAnalyzerController {
         // CQ is divided into two parts: 1, from words of existing ontologies and glossaries; 2, from user-defined competency questions or requirement descriptions
         String inputCQ = "What can I say?";
         // 0: informal cq; 1: formal cq
-        int CQType = 0;
+        int CQType = 1;
         return inputAnalyzeService.analyzeInputCQs(inputCQ, CQType);
     }
 
