@@ -725,4 +725,30 @@ public class OntologyOperationMethods {
         }
         return true;
     }
+
+    public static void synchronizePlaceholderContent2localThesaurus(Map<String, Object> placeholderContentMap){
+        // check whether it exists, maybe update
+        Set<String> placeholders = placeholderContentMap.keySet();
+        for(String placeholder : placeholders){
+            String content = (String) placeholderContentMap.get(placeholder);
+            boolean checkDuplicated = false;
+            for(Glossary glossary : GlobalVariables.localThesaurus){
+                if(glossary.getWord().equals(content)){
+                    checkDuplicated = true;
+                    System.out.println("Duplicated glossary in local thesaurus.");
+                    String newPlaceholder = placeholder.replaceAll("\\d+", "");
+                    // update only when the previous label is "u"
+                    if(glossary.getLabel().equals("u")){
+                        glossary.setLabel(newPlaceholder);
+                    }
+                    break; //  to the outside for loop
+                }
+            }
+            if(!checkDuplicated){
+                // insert a new Glossary instance
+                Glossary glossary = new Glossary(content, "Comes from cq inputted", placeholder.replaceAll("\\d+", ""));
+                GlobalVariables.localThesaurus.add(glossary);
+            }
+        }
+    }
 }
