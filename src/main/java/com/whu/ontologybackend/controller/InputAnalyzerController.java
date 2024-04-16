@@ -85,9 +85,10 @@ public class InputAnalyzerController {
         // take a list of competency questions
         // each competency question is a single query sentence
         // CQ is divided into two parts: 1, from words of existing ontologies and glossaries; 2, from user-defined competency questions or requirement descriptions
-//        String inputCQ = "What can I say?";
+//        String inputCQ = "Hey, man. What can I say? Mamba out!";
+        String inputCQ = "ACM SIGMOD is a leading international forum for data management research. Through the conference, participants will explore cutting edge ideas and results, and exchange techniques, tools and experiences."; // test
         // match: what are the main types of c2 that op1 at most 1 thing and that op2 at least 1 thing?
-        String inputCQ = "what are the main types of SB Renyuan Ni that go at most 1 thing and that go back silly B at least 1 thing?";
+//        String inputCQ = "what are the main types of SB Renyuan Ni that go at most 1 thing and that go back silly B at least 1 thing?";
         // 0: informal cq; 1: formal cq
         int CQType = 1;
         return inputAnalyzeService.analyzeInputCQs(inputCQ, CQType);

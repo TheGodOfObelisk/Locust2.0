@@ -187,6 +187,11 @@ public class OntologyOperationMethods {
         return;
     }
 
+    public  static void synchronizeTermsFromInformalCQ2localThesaurus(Map<String, Double> extractedTerms){
+        // the same way as articles, temporarily.
+        synchronizeTermsFromArticles2localThesaurus(extractedTerms);
+    }
+
     public static void synchronizeTermsFromArticles2localThesaurus(Map<String, Double> extractedTerms){
         Set<String> terms = extractedTerms.keySet();
         // default to be i in that i should be the most cases
@@ -198,7 +203,6 @@ public class OntologyOperationMethods {
             candidateTerm.setDescription(term + ": from inputted articles.");
             GlobalVariables.localThesaurus.add(candidateTerm);
         }
-
     }
 
     public static void synchronizeInputGlossaries2localThesaurus(JSONObject inputGlossaries){
@@ -750,5 +754,33 @@ public class OntologyOperationMethods {
                 GlobalVariables.localThesaurus.add(glossary);
             }
         }
+    }
+
+    public static void processInformalCQContentAndSynchronize(String CQContent){
+        // strategy 1: reference 324, use glossary tagger based on Conditional Random Field method
+        // strategy 2: use pyate and then classify the glossary later
+        Map<String, Double> extractedTerms = new HashMap<>();
+        // Before release, all these variables should be set according to config files.
+        String scriptPath = "D:\\researchPro\\testpyate\\testcode.py";
+        try{
+            extractedTerms = ExternalCallOperationMethods.callPyateScript(scriptPath, CQContent);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("extracted terms: ");
+        System.out.println(extractedTerms);
+        Double threshold = 0.4;
+        Set<String> termSet = extractedTerms.keySet();
+        Set<String> removeSet = new HashSet<>();
+        for(String term: termSet){
+            if(extractedTerms.get(term) < threshold){
+                removeSet.add(term);
+            }
+        }
+        // only remain terms whose weight is larger or equal to threshold
+        for(String removedTerm : removeSet){
+            extractedTerms.remove(removedTerm);
+        }
+        synchronizeTermsFromInformalCQ2localThesaurus(extractedTerms);
     }
 }

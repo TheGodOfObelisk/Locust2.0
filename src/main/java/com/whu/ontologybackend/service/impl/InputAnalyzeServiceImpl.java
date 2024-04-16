@@ -182,6 +182,8 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         if(!CQContent.contains("?")){
             // not cq
             // extract entities in CQContent and exit
+            System.out.println("invalid input");
+            OntologyOperationMethods.processInformalCQContentAndSynchronize(CQContent);
             return "invalid input";
         }
 
@@ -190,6 +192,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         if(CQType == 0){
             System.out.println("It is an informal competency question");
             // TODO: treat it as normal text
+            OntologyOperationMethods.processInformalCQContentAndSynchronize(CQContent);
             return "treat it as informal competency question, use glossary tagger instead.";
         }
 
@@ -206,18 +209,20 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
                     System.out.println("placeholder content Map: ");
                     System.out.println(placeholderContentMap);
                     OntologyOperationMethods.synchronizePlaceholderContent2localThesaurus(placeholderContentMap);
-                } else {
-                    System.out.println("CQ mismatches. Treat it as normal text.");
-                    return "use glossary tagger instead.";
+                    return "match successfully.";
                 }
             }
         }
 
+        System.out.println("CQ mismatches. Treat it as normal text.");
+//                    return "use glossary tagger instead.";
+        // here do not use glossary tagger based on CRF
+        OntologyOperationMethods.processInformalCQContentAndSynchronize(CQContent);
+
         // Step 4:
         // translate the inputted CQs into SPARQL-OWL format -- deprecated
         // TODO: store the inputted cq into db before exit
-
-        return "analyzing inputted CQs";
+        return "exit";
     }
 
     @Override
