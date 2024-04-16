@@ -193,6 +193,10 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             System.out.println("It is an informal competency question");
             // TODO: treat it as normal text
             OntologyOperationMethods.processInformalCQContentAndSynchronize(CQContent);
+            // only store when it's a CQ
+            if(DatabaseOperationMethods.checkDuplicatedMaterializeCQ(CQContent)){
+                DatabaseOperationMethods.storeInputCQs(CQContent);
+            }
             return "treat it as informal competency question, use glossary tagger instead.";
         }
 
@@ -209,6 +213,10 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
                     System.out.println("placeholder content Map: ");
                     System.out.println(placeholderContentMap);
                     OntologyOperationMethods.synchronizePlaceholderContent2localThesaurus(placeholderContentMap);
+                    // only store when it's a CQ
+                    if(DatabaseOperationMethods.checkDuplicatedMaterializeCQ(CQContent)){
+                        DatabaseOperationMethods.storeInputCQs(CQContent);
+                    }
                     return "match successfully.";
                 }
             }
@@ -222,6 +230,10 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         // Step 4:
         // translate the inputted CQs into SPARQL-OWL format -- deprecated
         // TODO: store the inputted cq into db before exit
+        // only store when it's a CQ
+        if(DatabaseOperationMethods.checkDuplicatedMaterializeCQ(CQContent)){
+            DatabaseOperationMethods.storeInputCQs(CQContent);
+        }
         return "exit";
     }
 

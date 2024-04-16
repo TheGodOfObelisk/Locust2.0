@@ -353,4 +353,35 @@ public class DatabaseOperationMethods {
         }
         return subElementIds;
     }
+
+    // true: not duplicated; false: duplicated
+    public static boolean checkDuplicatedMaterializeCQ(String CQContent){
+        try(Connection connection = getDBConnection()){
+            String sql = "SELECT * FROM materializedcq WHERE MaterializedCQ = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, CQContent);
+            try(ResultSet rs = preparedStatement.executeQuery()){
+                if (!rs.next()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void storeInputCQs(String CQContent){
+        try(Connection connection = getDBConnection()){
+            String sql = "INSERT INTO materializedcq (ID, MaterializedCQ) VALUES (?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, UUID.randomUUID().toString());
+            preparedStatement.setString(2, CQContent);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
