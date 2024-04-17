@@ -136,6 +136,7 @@ public class InputAnalyzerController {
 
     @RequestMapping("ontologyEnrichment")
     public String enrichOntology(){
+
         return inputAnalyzeService.enrichOntologyForest();
     }
 }

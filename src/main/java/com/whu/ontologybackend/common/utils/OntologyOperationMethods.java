@@ -783,4 +783,12 @@ public class OntologyOperationMethods {
         }
         synchronizeTermsFromInformalCQ2localThesaurus(extractedTerms);
     }
+
+    public static void checkAndAdjustModularization(){
+
+    }
+
+    public static void updateOntologyForestByLocalThesaurus(){
+        
+    }
 }

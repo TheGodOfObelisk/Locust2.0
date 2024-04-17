@@ -312,6 +312,10 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
     @Override
     public String enrichOntologyForest(){
+        // Step 1: check modularization of ontology forest
+        OntologyOperationMethods.checkAndAdjustModularization();
+        // Step 2: process glossaries in local thesaurus and update ontology forest
+        OntologyOperationMethods.updateOntologyForestByLocalThesaurus();
 
         return "Ontology forest enrichment completed.";
     }
