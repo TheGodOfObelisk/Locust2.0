@@ -133,4 +133,9 @@ public class InputAnalyzerController {
             return "redirect:/error";
         }
     }
+
+    @RequestMapping("ontologyEnrichment")
+    public String enrichOntology(){
+        return inputAnalyzeService.enrichOntologyForest();
+    }
 }

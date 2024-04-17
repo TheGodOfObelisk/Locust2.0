@@ -309,4 +309,10 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
         return "analyzing inputted JSON file";
     }
+
+    @Override
+    public String enrichOntologyForest(){
+
+        return "Ontology forest enrichment completed.";
+    }
 }

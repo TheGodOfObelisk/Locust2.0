@@ -30,4 +30,6 @@ public interface InputAnalyzeService {
     String analyzeInputJSON(File jsonFile, String moduleSource);
 
     String materializeCQs(String filePrefix);
+
+    String enrichOntologyForest();
 }
