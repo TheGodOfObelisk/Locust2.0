@@ -785,10 +785,32 @@ public class OntologyOperationMethods {
     }
 
     public static void checkAndAdjustModularization(){
-
+        // functions: remove redundant ontologies
+        // in Map: <moduleId, moduleName>
+        Map<String, String> moduleMap = new HashMap<>();
+        Set<String> moduleIdTestSet = new HashSet<>();
+        Set<String> moduleNameTestSet = new HashSet<>();
+        List<Integer> duplicatedIndex = new ArrayList<>();
+        for(int index = 0; index < GlobalVariables.ontMultiwayForest.size(); index++){
+            OntMultiwayTree ontMultiwayTree = GlobalVariables.ontMultiwayForest.get(index);
+            if(moduleIdTestSet.contains(ontMultiwayTree.getModuleId()) || moduleNameTestSet.contains(ontMultiwayTree.getModuleName())){
+                System.out.println("Fatal error: duplicated moduleId exist!");
+                duplicatedIndex.add(index);
+            } else {
+                moduleIdTestSet.add(ontMultiwayTree.getModuleId());
+                moduleNameTestSet.add(ontMultiwayTree.getModuleName());
+                moduleMap.put(ontMultiwayTree.getModuleId(), ontMultiwayTree.getModuleName());
+            }
+        }
+        Collections.sort(duplicatedIndex, Collections.reverseOrder());
+        for(Integer index : duplicatedIndex){
+            // remove desc
+            GlobalVariables.ontMultiwayForest.remove(index);
+        }
+        System.out.println(moduleMap);
     }
 
     public static void updateOntologyForestByLocalThesaurus(){
-        
+
     }
 }
