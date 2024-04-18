@@ -812,6 +812,8 @@ public class OntologyOperationMethods {
 
     public static void updateOntologyForestByLocalThesaurus(){
         // Step 1: check the glossary, if it exists, skip.
+        // Step 2: if it doesn't exist, update the ontology forest according to glossary's label
+        // Step 3: some precondition besides local thesaurus should be met, core logic
         for(Glossary glossary: GlobalVariables.localThesaurus){
             String label = glossary.getLabel();
             switch (label){
@@ -819,19 +821,33 @@ public class OntologyOperationMethods {
                     if(checkIfConceptExist(glossary)){
                         System.out.println("Glossary concept already exists.");
                         continue;
+                    } else {
+                        // TODO: add concept hierarchically or as a sibling
+
                     }
                 case "op":
                     if(checkIfOPExist(glossary)){
                         System.out.println("Glossary object property already exists.");
                         continue;
+                    } else {
+                        // TODO: add op by constructing OntProperty object, requiring domain and range info
+                        // precondition: domain and range the object property has
+
                     }
                 case "i":
                     if(checkIfInstanceExist(glossary)){
                         System.out.println("Glossary instance already exists.");
                         continue;
+                    } else {
+                        // TODO: add instance only if you know which class does it belong to
+                        // precondition: concept it belongs to
+
                     }
                 case "dt":
                     System.out.println("It's unnecessary to check datatype properties because it may be duplicated.");
+                    // TODO: add dataProperty to its corresponding concept node
+                    // precondition: concept it belongs to
+
                     continue;
                 default:
                     System.out.println("Glossary with unknown label or unexpected label, skip.");
