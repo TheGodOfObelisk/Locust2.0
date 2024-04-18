@@ -811,6 +811,75 @@ public class OntologyOperationMethods {
     }
 
     public static void updateOntologyForestByLocalThesaurus(){
-
+        // Step 1: check the glossary, if it exists, skip.
+        for(Glossary glossary: GlobalVariables.localThesaurus){
+            String label = glossary.getLabel();
+            switch (label){
+                case "c":
+                    if(checkIfConceptExist(glossary)){
+                        System.out.println("Glossary concept already exists.");
+                        continue;
+                    }
+                case "op":
+                    if(checkIfOPExist(glossary)){
+                        System.out.println("Glossary object property already exists.");
+                        continue;
+                    }
+                case "i":
+                    if(checkIfInstanceExist(glossary)){
+                        System.out.println("Glossary instance already exists.");
+                        continue;
+                    }
+                case "dt":
+                    System.out.println("It's unnecessary to check datatype properties because it may be duplicated.");
+                    continue;
+                default:
+                    System.out.println("Glossary with unknown label or unexpected label, skip.");
+            }
+        }
     }
+
+    public static boolean checkIfConceptExist(Glossary glossary){
+        for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
+            OntTreeNode ontTreeNode = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), glossary.getWord());
+            if(ontTreeNode != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkIfOPExist(Glossary glossary){
+        for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
+            Set<OntProperty> OPSet = ontMultiwayTree.getObjectProperties();
+            if(OPSet.size() == 0){
+                continue;
+            }
+            for(OntProperty ontProperty : OPSet){
+                if (ontProperty.getLocalName().equals(glossary.getWord())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkIfInstanceExist(Glossary glossary){
+        for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
+            Map<String, Set<String>> instances = ontMultiwayTree.getInstances();
+            if(instances == null || instances.size() == 0){
+                continue;
+            }
+            Set<String> classNames = instances.keySet();
+            for(String className :classNames){
+                Set<String> correspondingInstances = instances.get(className);
+                if(correspondingInstances.contains(glossary.getWord())){
+                    System.out.println("Instance with the same name exists!");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

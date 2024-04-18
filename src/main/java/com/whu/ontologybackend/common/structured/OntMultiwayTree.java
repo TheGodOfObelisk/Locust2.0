@@ -42,6 +42,8 @@ public class OntMultiwayTree implements Serializable {
 
 //    private transient Set<OntResource> instances = new HashSet<>();
     // key: className. object: ontResource containing instances
+
+    // key: className, Set<String>: names of instances, stored in a set
     private transient Map<String, Set<String>> instances= new HashMap<>();
 
     public Set<OntProperty> getObjectProperties() {
@@ -449,6 +451,14 @@ public class OntMultiwayTree implements Serializable {
             updateProperties2Tree(subOntClass, subOntClass.getLocalName());
             updateInstances2Tree(subOntClass, subOntClass.getLocalName());
         }
+    }
+
+    public Map<String, Set<String>> getInstances() {
+        return instances;
+    }
+
+    public void setInstances(Map<String, Set<String>> instances) {
+        this.instances = instances;
     }
 
     public void updateInstances2Tree(OntClass presentOntClass, String classFullName){
