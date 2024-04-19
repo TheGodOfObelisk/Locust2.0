@@ -135,6 +135,10 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             extractedTerms.remove(removedKey);
         }
         OntologyOperationMethods.synchronizeTermsFromArticles2localThesaurus(extractedTerms);
+
+        // TODO: After that, extract triples from article and store them in database triple-context table
+        // Here, call LLM or pretrained entity-relation-extraction model to generate triples from articles
+
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
 

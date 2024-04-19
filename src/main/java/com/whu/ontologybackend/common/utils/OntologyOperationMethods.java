@@ -810,6 +810,7 @@ public class OntologyOperationMethods {
         System.out.println(moduleMap);
     }
 
+    // besides local thesaurus, a storage containing context info is required
     public static void updateOntologyForestByLocalThesaurus(){
         // Step 1: check the glossary, if it exists, skip.
         // Step 2: if it doesn't exist, update the ontology forest according to glossary's label
