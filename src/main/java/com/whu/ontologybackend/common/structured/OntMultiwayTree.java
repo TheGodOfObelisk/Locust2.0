@@ -1,7 +1,7 @@
 package com.whu.ontologybackend.common.structured;
 
 
-import com.whu.ontologybackend.common.GlobalVariables;
+
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;

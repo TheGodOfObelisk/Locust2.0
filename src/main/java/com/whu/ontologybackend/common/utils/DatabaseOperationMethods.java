@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
 import com.whu.ontologybackend.common.structured.XSDElement;
-import org.w3c.dom.Element;
+
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

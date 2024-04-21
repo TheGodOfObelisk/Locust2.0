@@ -3,18 +3,11 @@ package com.whu.ontologybackend.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
-import com.whu.ontologybackend.common.GlobalVariables;
-import com.whu.ontologybackend.common.structured.OntMultiwayTree;
-import com.whu.ontologybackend.common.structured.OntMultiwayTreeNode;
-import com.whu.ontologybackend.common.structured.OntTreeNode;
 import com.whu.ontologybackend.common.utils.CommonOperationMethods;
 import com.whu.ontologybackend.common.utils.DatabaseOperationMethods;
 import com.whu.ontologybackend.common.utils.ExternalCallOperationMethods;
 import com.whu.ontologybackend.common.utils.OntologyOperationMethods;
 import com.whu.ontologybackend.service.InputAnalyzeService;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
