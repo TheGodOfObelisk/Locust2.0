@@ -139,6 +139,13 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        try{
+            ExternalCallOperationMethods.callPythonScript(openIEScriptPath + "\\tripleExtractionWithOpenIE.py");
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
 
