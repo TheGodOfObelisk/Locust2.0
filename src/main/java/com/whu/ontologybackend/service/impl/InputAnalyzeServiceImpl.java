@@ -155,12 +155,24 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
         try{
             String jsonContent = new String(Files.readAllBytes(Paths.get(jsonFile)));
             jsonArray = JSON.parseArray(jsonContent);
-            for(int i = 0; i < jsonArray.size(); i++){
-                JSONObject item = jsonArray.getJSONObject(i);
-                System.out.println(item.toString());
-            }
         } catch (Exception e){
             e.printStackTrace();
+        }
+
+        // process and write triples into database
+        for(int i = 0; i < jsonArray.size(); i++){
+            JSONObject item = jsonArray.getJSONObject(i);
+            System.out.println(item.toString());
+            String subject = item.getString("subject");
+            String relation = item.getString("relation");
+            String object = item.getString("object");
+            if(!DatabaseOperationMethods.checkDuplicatedTriples(subject, relation, object)){
+                System.out.println("Duplicated triple!");
+                continue;
+            }
+            // insert
+            String id = UUID.randomUUID().toString();
+            DatabaseOperationMethods.storeTripleRecord(id, subject, relation, object);
         }
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }

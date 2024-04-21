@@ -355,6 +355,41 @@ public class DatabaseOperationMethods {
     }
 
     // true: not duplicated; false: duplicated
+    public static boolean checkDuplicatedTriples(String subject, String relation, String object){
+        try(Connection connection = getDBConnection()){
+            String sql = "SELECT * FROM triplecontext WHERE subject = ? and relation = ? and object = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, subject);
+            preparedStatement.setString(2, relation);
+            preparedStatement.setString(3, object);
+            try(ResultSet rs = preparedStatement.executeQuery()){
+                if(!rs.next()){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void storeTripleRecord(String id, String subject, String relation, String object){
+        try(Connection connection = getDBConnection()){
+            String sql = "INSERT INTO triplecontext (id, subject, relation, object) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            preparedStatement.setString(2, subject);
+            preparedStatement.setString(3, relation);
+            preparedStatement.setString(4, object);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    // true: not duplicated; false: duplicated
     public static boolean checkDuplicatedMaterializeCQ(String CQContent){
         try(Connection connection = getDBConnection()){
             String sql = "SELECT * FROM materializedcq WHERE MaterializedCQ = ?";
