@@ -131,7 +131,14 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
         // TODO: After that, extract triples from article and store them in database triple-context table
         // Here, call LLM or pretrained entity-relation-extraction model to generate triples from articles
-
+        String openIEScriptPath = "D:\\researchPro\\testStanfordNLP";
+        try{
+            FileWriter fileWriter = new FileWriter(openIEScriptPath + "\\tmpArticle.txt");
+            fileWriter.write(article);
+            fileWriter.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
 
