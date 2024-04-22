@@ -185,12 +185,13 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
            add("is parent of");
            add("belong to");
            add("contain");
-           add("discover"); // test
+           add("discover"); // test, remove it later
            //...
         }};
-        List<TripleRecord> tripleList4subclass = OntologyOperationMethods.synchronizeTriples2localThesaurus(subClassOpSet, "op");
+        // TODO: convey different parameters and call it three times
+        OntologyOperationMethods.synchronizeTriples2localThesaurus(subClassOpSet, "op", "subClassOf");
 
-        System.out.println(tripleList4subclass);
+        // TODO: filter pronouns with in subjects or objects
 
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }

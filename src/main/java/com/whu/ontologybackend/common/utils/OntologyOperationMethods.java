@@ -227,10 +227,38 @@ public class OntologyOperationMethods {
         }
     }
 
-    public static List<TripleRecord> synchronizeTriples2localThesaurus(Set<String> indicatorSet, String placeholder){
+    public static void synchronizeTriples2localThesaurus(Set<String> indicatorSet, String placeholder, String relType){
         List<TripleRecord> resTripleList = DatabaseOperationMethods.extractTripleRecordsByIndicator(indicatorSet, placeholder);
-
-        return resTripleList;
+        if(relType.equals("subClassOf")){
+            // both subject and object are concepts
+            for(TripleRecord tripleRecord : resTripleList){
+                Glossary subject = new Glossary(tripleRecord.getSubject(), "subject from triple", "c");
+                Glossary object = new Glossary(tripleRecord.getObject(), "object from triple", "c");
+                Glossary relation = new Glossary(tripleRecord.getRelation(), "subClassOf relation from triple", "op");
+                GlobalVariables.localThesaurus.add(subject);
+                GlobalVariables.localThesaurus.add(object);
+                GlobalVariables.localThesaurus.add(relation);
+            }
+        } else if(relType.equals(("instanceOf"))){
+            // either subject or object is instance, the other one is concept
+            // assume subject is instance while object is concept
+            for(TripleRecord tripleRecord : resTripleList){
+                Glossary subject = new Glossary(tripleRecord.getSubject(), "subject from triple", "i");
+                Glossary object = new Glossary(tripleRecord.getObject(), "object from triple", "c");
+                Glossary relation = new Glossary(tripleRecord.getRelation(), "subClassOf relation from triple", "op");
+                GlobalVariables.localThesaurus.add(subject);
+                GlobalVariables.localThesaurus.add(object);
+                GlobalVariables.localThesaurus.add(relation);
+            }
+        } else {
+            // other cases. refers to non-hierarchical relation
+            // do not focus on subject or object
+            for(TripleRecord tripleRecord : resTripleList){
+                Glossary relation = new Glossary(tripleRecord.getRelation(), "non-hierarchical relation from triple", "op");
+                GlobalVariables.localThesaurus.add(relation);
+            }
+        }
+        return;
     }
 
     // drop Java class parser
