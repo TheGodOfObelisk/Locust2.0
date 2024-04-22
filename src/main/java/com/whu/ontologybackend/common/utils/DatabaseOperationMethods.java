@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
 import com.whu.ontologybackend.common.structured.XSDElement;
+import com.whu.ontologybackend.common.unstructured.TripleRecord;
 
 
 import java.io.*;
@@ -143,6 +144,7 @@ public class DatabaseOperationMethods {
                 preparedStatement4rel.setString(2, CQT_ID.toString());
                 preparedStatement4rel.setString(3, ID.toString());
                 preparedStatement4rel.executeUpdate();
+                preparedStatement.close();
                 relsum++;
 //                rowAffected = preparedStatement4rel.executeUpdate();
 //                System.out.println(rowAffected + " relation has been inserted.");
@@ -183,6 +185,8 @@ public class DatabaseOperationMethods {
                 System.out.println("Email: " + email);
                 System.out.println();
             }
+            resultSet.close();
+            statement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -195,8 +199,12 @@ public class DatabaseOperationMethods {
             statement.setString(1, CQT);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
+                resultSet.close();
+                statement.close();
                 return true;
             } else {
+                resultSet.close();
+                statement.close();
                 return false;
             }
         } catch (SQLException e){
@@ -215,6 +223,8 @@ public class DatabaseOperationMethods {
                 String cqt = resultSet.getString("CQTemplate");
                 cqTemplateList.add(cqt);
             }
+            resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -229,9 +239,13 @@ public class DatabaseOperationMethods {
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
                 connection.close();
+                resultSet.close();
+                statement.close();
                 return true;
             } else {
                 connection.close();
+                resultSet.close();
+                statement.close();
                 return false;
             }
         } catch (SQLException e){
@@ -248,9 +262,13 @@ public class DatabaseOperationMethods {
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 connection.close();
+                resultSet.close();
+                preparedStatement.close();
                 return true;
             } else {
                 connection.close();
+                resultSet.close();
+                preparedStatement.close();
                 return false;
             }
         } catch (SQLException e){
@@ -270,6 +288,7 @@ public class DatabaseOperationMethods {
             preparedStatement.setInt(5, maxOccurs);
             preparedStatement.setString(6, parentID);
             preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -283,6 +302,7 @@ public class DatabaseOperationMethods {
             preparedStatement.setString(2, parentId);
             preparedStatement.setString(3, childId);
             preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -327,6 +347,8 @@ public class DatabaseOperationMethods {
                         System.out.println("Error: more than one elements match nodeId: " + nodeId);
                     }
                 } // there should be only one
+                rs.close();
+                preparedStatement.close();
                 return xsdElement;
             }
         } catch (SQLException e){
@@ -346,6 +368,8 @@ public class DatabaseOperationMethods {
                     String subElementId = rs.getString("child_id");
                     subElementIds.add(subElementId);
                 }
+                rs.close();
+                preparedStatement.close();
                 return subElementIds;
             }
         } catch (SQLException e){
@@ -364,8 +388,12 @@ public class DatabaseOperationMethods {
             preparedStatement.setString(3, object);
             try(ResultSet rs = preparedStatement.executeQuery()){
                 if(!rs.next()){
+                    preparedStatement.close();
+                    rs.close();
                     return true;
                 } else {
+                    preparedStatement.close();
+                    rs.close();
                     return false;
                 }
             }
@@ -384,6 +412,7 @@ public class DatabaseOperationMethods {
             preparedStatement.setString(3, relation);
             preparedStatement.setString(4, object);
             preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -397,8 +426,12 @@ public class DatabaseOperationMethods {
             preparedStatement.setString(1, CQContent);
             try(ResultSet rs = preparedStatement.executeQuery()){
                 if (!rs.next()) {
+                    preparedStatement.close();
+                    rs.close();
                     return true;
                 } else {
+                    preparedStatement.close();
+                    rs.close();
                     return false;
                 }
             }
@@ -415,8 +448,44 @@ public class DatabaseOperationMethods {
             preparedStatement.setString(1, UUID.randomUUID().toString());
             preparedStatement.setString(2, CQContent);
             preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public static List<TripleRecord> extractTripleRecordsByIndicator(Set<String> indicatorSet, String placeholder){
+        List<TripleRecord> tmpList = new ArrayList<>();
+        try(Connection connection = getDBConnection()){
+            String sql;
+            if(placeholder.equals("op")){
+                sql = "SELECT * FROM triplecontext WHERE relation IN (";
+                for(int i = 0; i < indicatorSet.size(); i++){
+                    sql += "?";
+                    if(i < indicatorSet.size() - 1){
+                        sql += ",";
+                    }
+                }
+                sql += ")";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                int parameterIndex = 1;
+                for(String indicator: indicatorSet){
+                    preparedStatement.setString(parameterIndex++, indicator);
+                }
+                ResultSet rs = preparedStatement.executeQuery();
+                while(rs.next()){
+                    System.out.println("subject: " + rs.getString("subject") + ", relation: " + rs.getString("relation") + ", object: " + rs.getString("object"));
+                    TripleRecord tmpTripleRecord = new TripleRecord(rs.getString("subject"), rs.getString("relation"), rs.getString("object"));
+                    tmpList.add(tmpTripleRecord);
+                }
+                rs.close();
+                preparedStatement.close();
+            } else {
+                return tmpList;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return tmpList;
     }
 }

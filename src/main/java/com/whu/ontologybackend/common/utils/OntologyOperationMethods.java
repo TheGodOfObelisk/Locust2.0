@@ -3,6 +3,7 @@ package com.whu.ontologybackend.common.utils;
 import com.alibaba.fastjson.JSONObject;
 import com.whu.ontologybackend.common.GlobalVariables;
 import com.whu.ontologybackend.common.structured.*;
+import com.whu.ontologybackend.common.unstructured.TripleRecord;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -224,6 +225,12 @@ public class OntologyOperationMethods {
             candidateTerm.setLabel("c"); // after Term Typing, it should be set according to the result of Term Typing
             GlobalVariables.localThesaurus.add(candidateTerm);
         }
+    }
+
+    public static List<TripleRecord> synchronizeTriples2localThesaurus(Set<String> indicatorSet, String placeholder){
+        List<TripleRecord> resTripleList = DatabaseOperationMethods.extractTripleRecordsByIndicator(indicatorSet, placeholder);
+
+        return resTripleList;
     }
 
     // drop Java class parser

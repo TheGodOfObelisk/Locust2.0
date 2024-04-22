@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
+import com.whu.ontologybackend.common.unstructured.TripleRecord;
 import com.whu.ontologybackend.common.utils.CommonOperationMethods;
 import com.whu.ontologybackend.common.utils.DatabaseOperationMethods;
 import com.whu.ontologybackend.common.utils.ExternalCallOperationMethods;
@@ -174,6 +175,23 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
             String id = UUID.randomUUID().toString();
             DatabaseOperationMethods.storeTripleRecord(id, subject, relation, object);
         }
+
+        // process and synchronize to local thesaurus
+        // only process some specific predicates
+        // 1: SubClassOf relation; 2: InstanceOf relation; 3: Non-hierarchical relation
+        // use word indicators to distinguish
+        Set<String> subClassOpSet = new HashSet<>(){{
+           add("is subclass of");
+           add("is parent of");
+           add("belong to");
+           add("contain");
+           add("discover"); // test
+           //...
+        }};
+        List<TripleRecord> tripleList4subclass = OntologyOperationMethods.synchronizeTriples2localThesaurus(subClassOpSet, "op");
+
+        System.out.println(tripleList4subclass);
+
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
 
