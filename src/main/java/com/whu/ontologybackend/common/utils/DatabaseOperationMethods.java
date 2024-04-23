@@ -454,32 +454,16 @@ public class DatabaseOperationMethods {
         }
     }
 
-    public static List<TripleRecord> extractTripleRecordsByIndicator(Set<String> indicatorSet, String placeholder){
+    public static List<TripleRecord> extractTripleRecordsByIndicator(Set<String> indicatorSet, String relType){
         List<TripleRecord> tmpList = new ArrayList<>();
         try(Connection connection = getDBConnection()){
             String sql;
-            if(placeholder.equals("op")){
+            if(relType.equals("subClassOf") || relType.equals("instanceOf")){
                 sql = "SELECT * FROM triplecontext WHERE relation IN (";
-                for(int i = 0; i < indicatorSet.size(); i++){
-                    sql += "?";
-                    if(i < indicatorSet.size() - 1){
-                        sql += ",";
-                    }
-                }
-                sql += ")";
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                int parameterIndex = 1;
-                for(String indicator: indicatorSet){
-                    preparedStatement.setString(parameterIndex++, indicator);
-                }
-                ResultSet rs = preparedStatement.executeQuery();
-                while(rs.next()){
-                    System.out.println("subject: " + rs.getString("subject") + ", relation: " + rs.getString("relation") + ", object: " + rs.getString("object"));
-                    TripleRecord tmpTripleRecord = new TripleRecord(rs.getString("subject"), rs.getString("relation"), rs.getString("object"));
-                    tmpList.add(tmpTripleRecord);
-                }
-                rs.close();
-                preparedStatement.close();
+                getTriples(indicatorSet, tmpList, connection, sql);
+            } else if(relType.equals("others")){
+                sql = "SELECT * FROM triplecontext WHERE relation NOT IN (";
+                getTriples(indicatorSet, tmpList, connection, sql);
             } else {
                 // empty, let it go. process these by traversing triple store
                 return tmpList;
@@ -488,5 +472,28 @@ public class DatabaseOperationMethods {
             e.printStackTrace();
         }
         return tmpList;
+    }
+
+    private static void getTriples(Set<String> indicatorSet, List<TripleRecord> tmpList, Connection connection, String sql) throws SQLException {
+        for(int i = 0; i < indicatorSet.size(); i++){
+            sql += "?";
+            if(i < indicatorSet.size() - 1){
+                sql += ",";
+            }
+        }
+        sql += ")";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        int parameterIndex = 1;
+        for(String indicator: indicatorSet){
+            preparedStatement.setString(parameterIndex++, indicator);
+        }
+        ResultSet rs = preparedStatement.executeQuery();
+        while(rs.next()){
+            System.out.println("subject: " + rs.getString("subject") + ", relation: " + rs.getString("relation") + ", object: " + rs.getString("object"));
+            TripleRecord tmpTripleRecord = new TripleRecord(rs.getString("subject"), rs.getString("relation"), rs.getString("object"));
+            tmpList.add(tmpTripleRecord);
+        }
+        rs.close();
+        preparedStatement.close();
     }
 }

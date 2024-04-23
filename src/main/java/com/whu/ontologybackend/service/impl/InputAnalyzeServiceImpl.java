@@ -189,17 +189,20 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
            //...
         }};
         // TODO: convey different parameters and call it three times
-        OntologyOperationMethods.synchronizeTriples2localThesaurus(subClassOpSet, "op", "subClassOf");
+        OntologyOperationMethods.synchronizeTriples2localThesaurus(subClassOpSet, "subClassOf");
         Set<String> instanceOpSet = new HashSet<>(){{
             add("is");
             add("am");
             add("are");
             // ...
         }};
-        OntologyOperationMethods.synchronizeTriples2localThesaurus(instanceOpSet, "op", "instanceOf");
+        OntologyOperationMethods.synchronizeTriples2localThesaurus(instanceOpSet, "instanceOf");
         // TODO: filter pronouns with in subjects or objects (can handle it when updating OF)
         // triple store will be utilized again in updating period
-
+        Set<String> specificOpSet = new HashSet<>();
+        specificOpSet.addAll(subClassOpSet);
+        specificOpSet.addAll(instanceOpSet);
+        OntologyOperationMethods.synchronizeTriples2localThesaurus(specificOpSet, "others");
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
 
