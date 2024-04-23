@@ -258,7 +258,6 @@ public class OntologyOperationMethods {
                 GlobalVariables.localThesaurus.add(relation);
             }
         }
-        return;
     }
 
     // drop Java class parser

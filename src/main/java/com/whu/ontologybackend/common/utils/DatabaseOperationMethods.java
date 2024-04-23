@@ -481,6 +481,7 @@ public class DatabaseOperationMethods {
                 rs.close();
                 preparedStatement.close();
             } else {
+                // empty, let it go. process these by traversing triple store
                 return tmpList;
             }
         } catch (SQLException e){

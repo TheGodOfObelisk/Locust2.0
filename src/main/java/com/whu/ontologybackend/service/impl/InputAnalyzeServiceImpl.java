@@ -177,20 +177,28 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
         // process and synchronize to local thesaurus
         // only process some specific predicates
-        // 1: SubClassOf relation; 2: InstanceOf relation; 3: Non-hierarchical relation
+        // 1: SubClassOf relation; 2: InstanceOf relation; 3: Non-hierarchical relation (ignore)
         // use word indicators to distinguish
+        // two sets shouldn't be hardcoded, load from config file or user input
         Set<String> subClassOpSet = new HashSet<>(){{
            add("is subclass of");
            add("is parent of");
            add("belong to");
            add("contain");
-           add("discover"); // test, remove it later
+//           add("discover"); // test, remove it later
            //...
         }};
         // TODO: convey different parameters and call it three times
         OntologyOperationMethods.synchronizeTriples2localThesaurus(subClassOpSet, "op", "subClassOf");
-
-        // TODO: filter pronouns with in subjects or objects
+        Set<String> instanceOpSet = new HashSet<>(){{
+            add("is");
+            add("am");
+            add("are");
+            // ...
+        }};
+        OntologyOperationMethods.synchronizeTriples2localThesaurus(instanceOpSet, "op", "instanceOf");
+        // TODO: filter pronouns with in subjects or objects (can handle it when updating OF)
+        // triple store will be utilized again in updating period
 
         return "Analyzing input articles. These are the main source of the resulting ontology";
     }
