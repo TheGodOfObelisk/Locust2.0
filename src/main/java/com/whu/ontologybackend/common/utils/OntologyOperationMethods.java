@@ -857,29 +857,29 @@ public class OntologyOperationMethods {
                 case "c":
                     if(checkIfConceptExist(glossary)){
                         System.out.println("Glossary concept already exists.");
-                        continue;
                     } else {
                         // TODO: add concept hierarchically or as a sibling
                         updateOntologyForestByConceptGlossary(glossary);
                     }
+                    continue;
                 case "op":
                     if(checkIfOPExist(glossary)){
                         System.out.println("Glossary object property already exists.");
-                        continue;
                     } else {
                         // TODO: add op by constructing OntProperty object, requiring domain and range info
                         // precondition: domain and range the object property has
                         updateOntologyForestByObjectPropertyGlossary(glossary);
                     }
+                    continue;
                 case "i":
                     if(checkIfInstanceExist(glossary)){
                         System.out.println("Glossary instance already exists.");
-                        continue;
                     } else {
                         // TODO: add instance only if you know which class does it belong to
                         // precondition: concept it belongs to
                         updateOntologyForestByInstanceGlossary(glossary);
                     }
+                    continue;
                 case "dt":
                     System.out.println("It's unnecessary to check datatype properties because it may be duplicated.");
                     // TODO: add dataProperty to its corresponding concept node
