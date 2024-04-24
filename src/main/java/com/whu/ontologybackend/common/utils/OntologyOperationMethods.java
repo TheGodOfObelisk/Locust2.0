@@ -860,7 +860,7 @@ public class OntologyOperationMethods {
                         continue;
                     } else {
                         // TODO: add concept hierarchically or as a sibling
-
+                        updateOntologyForestByConceptGlossary(glossary);
                     }
                 case "op":
                     if(checkIfOPExist(glossary)){
@@ -869,7 +869,7 @@ public class OntologyOperationMethods {
                     } else {
                         // TODO: add op by constructing OntProperty object, requiring domain and range info
                         // precondition: domain and range the object property has
-
+                        updateOntologyForestByObjectPropertyGlossary(glossary);
                     }
                 case "i":
                     if(checkIfInstanceExist(glossary)){
@@ -878,18 +878,34 @@ public class OntologyOperationMethods {
                     } else {
                         // TODO: add instance only if you know which class does it belong to
                         // precondition: concept it belongs to
-
+                        updateOntologyForestByInstanceGlossary(glossary);
                     }
                 case "dt":
                     System.out.println("It's unnecessary to check datatype properties because it may be duplicated.");
                     // TODO: add dataProperty to its corresponding concept node
                     // precondition: concept it belongs to
-
+                    updateOntologyForestByDatatypePropertyGlossary(glossary);
                     continue;
                 default:
                     System.out.println("Glossary with unknown label or unexpected label, skip.");
             }
         }
+    }
+
+    private static void updateOntologyForestByConceptGlossary(Glossary glossary){
+
+    }
+
+    private static void updateOntologyForestByObjectPropertyGlossary(Glossary glossary){
+
+    }
+
+    private static void updateOntologyForestByInstanceGlossary(Glossary glossary){
+
+    }
+
+    private static void updateOntologyForestByDatatypePropertyGlossary(Glossary glossary){
+
     }
 
     public static boolean checkIfConceptExist(Glossary glossary){
