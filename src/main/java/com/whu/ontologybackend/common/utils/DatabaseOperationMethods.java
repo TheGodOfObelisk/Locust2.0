@@ -496,4 +496,10 @@ public class DatabaseOperationMethods {
         rs.close();
         preparedStatement.close();
     }
+
+    public static List<TripleRecord> extractTripleRecordsByConceptGlossary(String glossaryWord){
+        List<TripleRecord> tmpList = new ArrayList<>();
+
+        return tmpList;
+    }
 }

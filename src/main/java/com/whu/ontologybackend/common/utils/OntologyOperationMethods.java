@@ -893,7 +893,7 @@ public class OntologyOperationMethods {
     }
 
     private static void updateOntologyForestByConceptGlossary(Glossary glossary){
-        // it has been check that no duplicated glossary is in the ontology forest
+        // it has been checked that no duplicated glossary is in the ontology forest
         List<TripleRecord> tripleRecordList = new ArrayList<>();
 
     }
