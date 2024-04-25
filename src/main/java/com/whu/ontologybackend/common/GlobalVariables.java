@@ -18,4 +18,18 @@ public class GlobalVariables {
 
     // key relationships between classes from CQs (ensure that the resulting ontology can answer a part of CQs)
     // four types of terms are stored in localThesaurus
+
+    // actually these set should be stored in a file or db table
+    public static Set<String> subClassOfRelationSet = new HashSet<>(){{
+        add("is subclass of");
+        add("is parent of");
+        add("belong to");
+        add("contain");
+    }};
+
+    public static Set<String> instanceOfRelationSet = new HashSet<>(){{
+        add("is");
+        add("am");
+        add("are");
+    }};
 }

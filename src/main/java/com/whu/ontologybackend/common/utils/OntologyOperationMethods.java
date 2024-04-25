@@ -894,8 +894,188 @@ public class OntologyOperationMethods {
 
     private static void updateOntologyForestByConceptGlossary(Glossary glossary){
         // it has been checked that no duplicated glossary is in the ontology forest
-        List<TripleRecord> tripleRecordList = new ArrayList<>();
+        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptGlossary(glossary.getWord());
+        if(tripleRecordList.size() == 0){
+            System.out.println("Concept " + glossary.getWord() + " is not duplicated, but no related triples found, add it as a child of root.");
+            if(GlobalVariables.ontMultiwayForest.size() == 0){
+                return;
+            }
+            if (addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) return;
+            // create a new OntMultiwayTree and set glossary word as its child node
+            OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+            addGlossaryAsChildNode(glossary, ontMultiwayTree);
+            GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+            return;
+        } else {
+            // not empty
+            for(TripleRecord tripleRecord : tripleRecordList){
+                String relation = tripleRecord.getRelation();
+                String subject = tripleRecord.getSubject();
+                String object = tripleRecord.getObject();
+                if(GlobalVariables.subClassOfRelationSet.contains(relation)){
+                    // judge the glossary is the subject or object
+                    if(subject.equals(glossary.getWord()) && object.equals(glossary.getWord())){
+                        if (!addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) {
+                            OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+                            addGlossaryAsChildNode(glossary, ontMultiwayTree);
+                            GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+                        }
+                    } else if(subject.equals(glossary.getWord())){
+                        // In this case, glossary is the child node.
+                        // try to find its parent node and add glossary to its child list
+                        Glossary tmpGlossary = new Glossary(object, "", "c");
+                        if(!checkIfConceptExist(tmpGlossary)){
+                            // not found, add glossary to default node
+                            if (!addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) {
+                                OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+                                addGlossaryAsChildNode(glossary, ontMultiwayTree);
+                                GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+                            }
+                            return;
+                        } else{
+                            // found, try to get it
+                            for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
+                                 OntTreeNode nodeOfObject = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), object);
+                                 if(nodeOfObject != null){
+                                     addNewConceptAsChildOfNodeInOntologyForest(subject, ontMultiwayTree, nodeOfObject);
+                                     return;
+                                 }
+                            }
+                            // after for loop, find no info of the object node
+                            // add the subject info to default module tree, if no default module tree, create one
+                            System.out.println("Error: in the branch that finds the object node, but fail to get the object node during the updating");
+                            System.out.println("Here are the remedies");
+                            if (!addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) {
+                                OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+                                addGlossaryAsChildNode(glossary, ontMultiwayTree);
+                                GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+                            }
+                            return;
+                        }
+                    } else if(object.equals(glossary.getWord())){
+                        // In this case, the glossary should become the object.
+                        // add the glossary as the parentNode
+                        Glossary tmpGlossary = new Glossary(subject, "", "c");
+                        if(!checkIfConceptExist(tmpGlossary)){
+                            // the subject node isn't in the ontology forest
+                            if (!addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) {
+                                OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+                                addGlossaryAsChildNode(glossary, ontMultiwayTree);
+                                GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+                            }
+                            return;
+                        }  else {
+                            // found, try to get it
+                            for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
+                                OntTreeNode nodeOfSubject = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), subject);
+                                if(nodeOfSubject != null){
+                                    addNewConceptAsParentOfNodeInOntologyForest(object, ontMultiwayTree, nodeOfSubject);
+                                    return;
+                                }
+                            }
+                        }
+                    } else {
+                        System.out.println("Error occurred. Wrong triple record.");
+                    }
+                } else if(GlobalVariables.instanceOfRelationSet.contains(relation)){
+                    System.out.println("It is the instanceOf relation where subject is instance while object is concept");
+                    if(subject.equals(glossary.getWord()) && object.equals(glossary.getWord())){
+                        // both concept
+                        if (!addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) {
+                            OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+                            addGlossaryAsChildNode(glossary, ontMultiwayTree);
+                            GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+                        }
+                        return;
+                    } else if(subject.equals(glossary.getWord())){
+                        System.out.println("Error: the concept should not be in the position of instance.");
+                        return;
+                    } else if(object.equals(glossary.getWord())){
+                        if (!addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) {
+                            OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+                            addGlossaryAsChildNode(glossary, ontMultiwayTree);
+                            GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+                        }
+                        return;
+                    } else {
+                        System.out.println("Error: unexpected circumstance, wrong triple record.");
+                    }
+                } else {
+                    // others
+                    // In this case, non-hierarchical relationship should be handled in OP branch. let it go
+                    // add the glossary concept to default module tree directly
+                    if (!addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) {
+                        OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
+                        addGlossaryAsChildNode(glossary, ontMultiwayTree);
+                        GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
+                    }
+                    return;
+                }
+            }
+        }
 
+
+    }
+
+    private static void addNewConceptAsChildOfNodeInOntologyForest(String concept, OntMultiwayTree ontMultiwayTree, OntTreeNode ontTreeNode) {
+        OntMultiwayTreeNode nodeOfObjectOntMultiwayTreeNode = ontMultiwayTree.traverseTreeByNodeIdV2(ontMultiwayTree.getRoot(), ontTreeNode.getNodeId());
+        NodeData tmpNodeData = new NodeData();
+        tmpNodeData.setConcept(concept);
+        String tmpId = UUID.randomUUID().toString();
+        String parentId = ontTreeNode.getNodeId();
+        OntTreeNode tmpOntTreeNode = new OntTreeNode(tmpId, parentId);
+        OntMultiwayTreeNode tmpOntMultiwayTreeNode = new OntMultiwayTreeNode(tmpOntTreeNode);
+        nodeOfObjectOntMultiwayTreeNode.getChildList().add(tmpOntMultiwayTreeNode);
+    }
+
+    private static void addNewConceptAsParentOfNodeInOntologyForest(String concept, OntMultiwayTree ontMultiwayTree, OntTreeNode ontTreeNode){
+        OntMultiwayTreeNode nodeOfChildConceptOntMultiwayTreeNode = ontMultiwayTree.traverseTreeByNodeIdV2(ontMultiwayTree.getRoot(), ontTreeNode.getNodeId());
+        if(nodeOfChildConceptOntMultiwayTreeNode == null){
+            return;
+        }
+        NodeData tmpNodeData = new NodeData();
+        tmpNodeData.setConcept(concept);
+        String tmpId = UUID.randomUUID().toString();
+        // take its parent as your parent
+        String parentId = ontTreeNode.getParentId();
+        OntTreeNode tmpOntTreeNode = new OntTreeNode(tmpId, parentId);
+        OntMultiwayTreeNode tmpOntMultiwayTreeNode = new OntMultiwayTreeNode(tmpOntTreeNode);
+
+        OntMultiwayTreeNode nodeOfParentConceptOntMultiwayTreeNode = ontMultiwayTree.traverseTreeByNodeIdV2(ontMultiwayTree.getRoot(), parentId);
+        // before adding, attach the node should be moved down to its child list
+        tmpOntMultiwayTreeNode.getChildList().add(nodeOfChildConceptOntMultiwayTreeNode);
+        nodeOfParentConceptOntMultiwayTreeNode.getChildList().add(tmpOntMultiwayTreeNode);
+        int index = 0;
+        for(OntMultiwayTreeNode ontMultiwayTreeNode : nodeOfParentConceptOntMultiwayTreeNode.getChildList()){
+            if (ontMultiwayTreeNode.getData().getNodeId().equals(ontTreeNode.getNodeId())){
+                break;
+            }
+            // try to find the index of the node which should be moved down
+            index++;
+        }
+        nodeOfParentConceptOntMultiwayTreeNode.getChildList().remove(index);
+    }
+
+    private static boolean addGlossaryConcept2DefaultTreeUnderRootNode(Glossary glossary) {
+        for(OntMultiwayTree ontMultiwayTree: GlobalVariables.ontMultiwayForest){
+            if(ontMultiwayTree.getModuleId().equals("default id") || ontMultiwayTree.getModuleName().equals("default name")){
+                // add this glossary as a new child of its root node
+                addGlossaryAsChildNode(glossary, ontMultiwayTree);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void addGlossaryAsChildNode(Glossary glossary, OntMultiwayTree ontMultiwayTree) {
+        String nodeId = UUID.randomUUID().toString();
+        String parentId = ontMultiwayTree.getRoot().getData().getNodeId();
+        NodeData tmpNodeData = new NodeData();
+        tmpNodeData.setConcept(glossary.getWord());
+        OntTreeNode tmpOntTreeNode = new OntTreeNode(nodeId, parentId);
+        tmpOntTreeNode.setNodeData(tmpNodeData);
+        OntMultiwayTreeNode tmpOntMultiwayTreeNode = new OntMultiwayTreeNode(tmpOntTreeNode);
+        ontMultiwayTree.getRoot().getChildList().add(tmpOntMultiwayTreeNode);
     }
 
     private static void updateOntologyForestByObjectPropertyGlossary(Glossary glossary){
@@ -923,7 +1103,7 @@ public class OntologyOperationMethods {
     public static boolean checkIfOPExist(Glossary glossary){
         for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
             Set<OntProperty> OPSet = ontMultiwayTree.getObjectProperties();
-            if(OPSet.size() == 0){
+            if(OPSet == null || OPSet.size() == 0){
                 continue;
             }
             for(OntProperty ontProperty : OPSet){

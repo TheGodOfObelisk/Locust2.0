@@ -499,7 +499,21 @@ public class DatabaseOperationMethods {
 
     public static List<TripleRecord> extractTripleRecordsByConceptGlossary(String glossaryWord){
         List<TripleRecord> tmpList = new ArrayList<>();
-
+        try(Connection connection = getDBConnection()){
+            String sql = "SELECT * FROM triplecontext WHERE subject = ? or object = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, glossaryWord);
+            preparedStatement.setString(2, glossaryWord);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                TripleRecord tmpTripleRecord = new TripleRecord(rs.getString("subject"), rs.getString("relation"), rs.getString("object"));
+                tmpList.add(tmpTripleRecord);
+            }
+            rs.close();
+            preparedStatement.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         return tmpList;
     }
 }
