@@ -516,4 +516,23 @@ public class DatabaseOperationMethods {
         }
         return tmpList;
     }
+
+    public static List<TripleRecord> extractTripleRecordsByObjectPropertyGlossary(String glossaryWord){
+        List<TripleRecord> tmpList = new ArrayList<>();
+        try(Connection connection = getDBConnection()){
+            String sql = "SELECT * FROM triplecontext WHERE relation = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, glossaryWord);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                TripleRecord tmpTripleRecord = new TripleRecord(rs.getString("subject"), rs.getString("relation"), rs.getString("object"));
+                tmpList.add(tmpTripleRecord);
+            }
+            rs.close();
+            preparedStatement.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return tmpList;
+    }
 }

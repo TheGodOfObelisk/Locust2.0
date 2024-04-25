@@ -895,7 +895,7 @@ public class OntologyOperationMethods {
     private static void updateOntologyForestByConceptGlossary(Glossary glossary){
         // it has been checked that no duplicated glossary is in the ontology forest
         List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptGlossary(glossary.getWord());
-        if(tripleRecordList.size() == 0){
+        if(tripleRecordList == null || tripleRecordList.size() == 0){
             System.out.println("Concept " + glossary.getWord() + " is not duplicated, but no related triples found, add it as a child of root.");
             if(GlobalVariables.ontMultiwayForest.size() == 0){
                 return;
@@ -931,14 +931,14 @@ public class OntologyOperationMethods {
                                 addGlossaryAsChildNode(glossary, ontMultiwayTree);
                                 GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
                             }
-                            return;
+                            continue;
                         } else{
                             // found, try to get it
                             for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
                                  OntTreeNode nodeOfObject = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), object);
                                  if(nodeOfObject != null){
                                      addNewConceptAsChildOfNodeInOntologyForest(subject, ontMultiwayTree, nodeOfObject);
-                                     return;
+                                     continue;
                                  }
                             }
                             // after for loop, find no info of the object node
@@ -950,7 +950,7 @@ public class OntologyOperationMethods {
                                 addGlossaryAsChildNode(glossary, ontMultiwayTree);
                                 GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
                             }
-                            return;
+                            continue;
                         }
                     } else if(object.equals(glossary.getWord())){
                         // In this case, the glossary should become the object.
@@ -963,14 +963,14 @@ public class OntologyOperationMethods {
                                 addGlossaryAsChildNode(glossary, ontMultiwayTree);
                                 GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
                             }
-                            return;
+                            continue;
                         }  else {
                             // found, try to get it
                             for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
                                 OntTreeNode nodeOfSubject = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), subject);
                                 if(nodeOfSubject != null){
                                     addNewConceptAsParentOfNodeInOntologyForest(object, ontMultiwayTree, nodeOfSubject);
-                                    return;
+                                    continue;
                                 }
                             }
                         }
@@ -986,17 +986,17 @@ public class OntologyOperationMethods {
                             addGlossaryAsChildNode(glossary, ontMultiwayTree);
                             GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
                         }
-                        return;
+                        continue;
                     } else if(subject.equals(glossary.getWord())){
                         System.out.println("Error: the concept should not be in the position of instance.");
-                        return;
+                        continue;
                     } else if(object.equals(glossary.getWord())){
                         if (!addGlossaryConcept2DefaultTreeUnderRootNode(glossary)) {
                             OntMultiwayTree ontMultiwayTree = new OntMultiwayTree();
                             addGlossaryAsChildNode(glossary, ontMultiwayTree);
                             GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
                         }
-                        return;
+                        continue;
                     } else {
                         System.out.println("Error: unexpected circumstance, wrong triple record.");
                     }
@@ -1009,12 +1009,10 @@ public class OntologyOperationMethods {
                         addGlossaryAsChildNode(glossary, ontMultiwayTree);
                         GlobalVariables.ontMultiwayForest.add(ontMultiwayTree);
                     }
-                    return;
+                    continue;
                 }
             }
         }
-
-
     }
 
     private static void addNewConceptAsChildOfNodeInOntologyForest(String concept, OntMultiwayTree ontMultiwayTree, OntTreeNode ontTreeNode) {
@@ -1079,7 +1077,21 @@ public class OntologyOperationMethods {
     }
 
     private static void updateOntologyForestByObjectPropertyGlossary(Glossary glossary){
-
+        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByObjectPropertyGlossary(glossary.getWord());
+        if(tripleRecordList == null || tripleRecordList.size() == 0){
+            System.out.println("this object property is not from text input");
+        } else {
+            // not empty, process the triple list
+            for(TripleRecord tripleRecord : tripleRecordList){
+                String relation = tripleRecord.getRelation();
+                String subject = tripleRecord.getSubject();
+                String object = tripleRecord.getObject();
+                if(GlobalVariables.subClassOfRelationSet.contains(relation) || GlobalVariables.instanceOfRelationSet.contains(relation)){
+                    System.out.println("SubClassOf or InstanceOf relation, since its atomic relation, ignore");
+                    continue;
+                }
+            }
+        }
     }
 
     private static void updateOntologyForestByInstanceGlossary(Glossary glossary){
