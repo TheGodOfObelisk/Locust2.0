@@ -1017,6 +1017,10 @@ public class OntologyOperationMethods {
 
     private static void addNewConceptAsChildOfNodeInOntologyForest(String concept, OntMultiwayTree ontMultiwayTree, OntTreeNode ontTreeNode) {
         OntMultiwayTreeNode nodeOfObjectOntMultiwayTreeNode = ontMultiwayTree.traverseTreeByNodeIdV2(ontMultiwayTree.getRoot(), ontTreeNode.getNodeId());
+        if(nodeOfObjectOntMultiwayTreeNode == null){
+            System.out.println("Failed to fetch the object tree node");
+            return;
+        }
         NodeData tmpNodeData = new NodeData();
         tmpNodeData.setConcept(concept);
         String tmpId = UUID.randomUUID().toString();
@@ -1029,6 +1033,7 @@ public class OntologyOperationMethods {
     private static void addNewConceptAsParentOfNodeInOntologyForest(String concept, OntMultiwayTree ontMultiwayTree, OntTreeNode ontTreeNode){
         OntMultiwayTreeNode nodeOfChildConceptOntMultiwayTreeNode = ontMultiwayTree.traverseTreeByNodeIdV2(ontMultiwayTree.getRoot(), ontTreeNode.getNodeId());
         if(nodeOfChildConceptOntMultiwayTreeNode == null){
+            System.out.println("Failed to fetch the child tree node");
             return;
         }
         NodeData tmpNodeData = new NodeData();
@@ -1040,6 +1045,10 @@ public class OntologyOperationMethods {
         OntMultiwayTreeNode tmpOntMultiwayTreeNode = new OntMultiwayTreeNode(tmpOntTreeNode);
 
         OntMultiwayTreeNode nodeOfParentConceptOntMultiwayTreeNode = ontMultiwayTree.traverseTreeByNodeIdV2(ontMultiwayTree.getRoot(), parentId);
+        if(nodeOfParentConceptOntMultiwayTreeNode == null){
+            System.out.println("Failed to fetch the parent tree node.");
+            return;
+        }
         // before adding, attach the node should be moved down to its child list
         tmpOntMultiwayTreeNode.getChildList().add(nodeOfChildConceptOntMultiwayTreeNode);
         nodeOfParentConceptOntMultiwayTreeNode.getChildList().add(tmpOntMultiwayTreeNode);
@@ -1089,6 +1098,70 @@ public class OntologyOperationMethods {
                 if(GlobalVariables.subClassOfRelationSet.contains(relation) || GlobalVariables.instanceOfRelationSet.contains(relation)){
                     System.out.println("SubClassOf or InstanceOf relation, since its atomic relation, ignore");
                     continue;
+                } else {
+                    // others
+                    // check if the label of subject and object is c (if it is already in the ontology forest)
+                    for(Glossary tmpGlossary : GlobalVariables.localThesaurus){
+                        if(tmpGlossary.getWord().equals(subject) && tmpGlossary.getLabel().equals("c")){
+                            for(OntMultiwayTree ontMultiwayTree: GlobalVariables.ontMultiwayForest){
+                                OntTreeNode subjectTreeNode = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), subject);
+                                if(subjectTreeNode != null){
+                                    // I am not sure the structure of op list in NodeData
+                                    Map<String, String> domainAndRange = new HashMap<>();
+                                    domainAndRange.put(subject, object);
+                                    Map<String, Object> opItem = new HashMap<>();
+                                    opItem.put(glossary.getWord(), domainAndRange);
+                                    if(subjectTreeNode.getNodeData().getObjectProperties() != null){
+                                        for(Map<String, Object> op: subjectTreeNode.getNodeData().getObjectProperties()){
+                                            Set<String> opName = op.keySet();
+                                            // check if the object property has been in the list
+                                            if(opName.contains(glossary.getWord())){
+                                                break;
+                                            } else {
+                                                subjectTreeNode.getNodeData().getObjectProperties().add(opItem);
+                                            }
+                                        }
+                                    } else {
+                                        List<Map<String, Object>> tmpList = new ArrayList<>();
+                                        tmpList.add(opItem);
+                                        subjectTreeNode.getNodeData().setObjectProperties(tmpList);
+                                    }
+                                    ontMultiwayTree.getObjectProperties();
+                                    break;
+                                }
+                            }
+                        }
+                        // similar process, add op to both concept's op list
+                        if(tmpGlossary.getWord().equals(object) && tmpGlossary.getLabel().equals("c")){
+                            for(OntMultiwayTree ontMultiwayTree: GlobalVariables.ontMultiwayForest){
+                                OntTreeNode objectTreeNode = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), object);
+                                if(objectTreeNode != null){
+                                    // I am not sure the structure of op list in NodeData
+                                    Map<String, String> domainAndRange = new HashMap<>();
+                                    domainAndRange.put(subject, object);
+                                    Map<String, Object> opItem = new HashMap<>();
+                                    opItem.put(glossary.getWord(), domainAndRange);
+                                    if(objectTreeNode.getNodeData().getObjectProperties() != null){
+                                        for(Map<String, Object> op: objectTreeNode.getNodeData().getObjectProperties()){
+                                            Set<String> opName = op.keySet();
+                                            // check if the object property has been in the list
+                                            if(opName.contains(glossary.getWord())){
+                                                break;
+                                            } else {
+                                                objectTreeNode.getNodeData().getObjectProperties().add(opItem);
+                                            }
+                                        }
+                                    } else {
+                                        List<Map<String, Object>> tmpList = new ArrayList<>();
+                                        tmpList.add(opItem);
+                                        objectTreeNode.getNodeData().setObjectProperties(tmpList);
+                                    }
+                                    ontMultiwayTree.getObjectProperties();
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

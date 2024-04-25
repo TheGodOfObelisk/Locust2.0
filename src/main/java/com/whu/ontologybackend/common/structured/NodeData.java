@@ -12,12 +12,22 @@ public class NodeData implements Serializable {
     private String concept;
     private List<Map<String, Object>> dataProperties;
 
+    private List<Map<String, Object>> objectProperties;
+
+    public List<Map<String, Object>> getObjectProperties() {
+        return objectProperties;
+    }
+
+    public void setObjectProperties(List<Map<String, Object>> objectProperties) {
+        this.objectProperties = objectProperties;
+    }
 
     private Map<String, Object> axioms; // unknown
 
     public NodeData() {
         concept = "";
         dataProperties = new ArrayList<>();
+        objectProperties = new ArrayList<>();
         axioms = new HashMap<>();
     }
 
