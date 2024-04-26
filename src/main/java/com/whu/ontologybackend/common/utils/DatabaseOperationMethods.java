@@ -497,7 +497,7 @@ public class DatabaseOperationMethods {
         preparedStatement.close();
     }
 
-    public static List<TripleRecord> extractTripleRecordsByConceptOrInstanceGlossary(String glossaryWord){
+    public static List<TripleRecord> extractTripleRecordsByConceptOrInstanceOrDatatypeGlossary(String glossaryWord){
         List<TripleRecord> tmpList = new ArrayList<>();
         try(Connection connection = getDBConnection()){
             String sql = "SELECT * FROM triplecontext WHERE subject = ? or object = ?";

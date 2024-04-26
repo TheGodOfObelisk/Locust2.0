@@ -32,4 +32,9 @@ public class GlobalVariables {
         add("am");
         add("are");
     }};
+
+    public static Set<String> datatypeRelationSet = new HashSet<>(){{
+       add("has attribute");
+       add("is an attribute of");
+    }};
 }

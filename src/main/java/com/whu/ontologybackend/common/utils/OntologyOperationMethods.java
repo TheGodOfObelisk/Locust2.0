@@ -894,7 +894,7 @@ public class OntologyOperationMethods {
 
     private static void updateOntologyForestByConceptGlossary(Glossary glossary){
         // it has been checked that no duplicated glossary is in the ontology forest
-        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptOrInstanceGlossary(glossary.getWord());
+        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptOrInstanceOrDatatypeGlossary(glossary.getWord());
         if(tripleRecordList == null || tripleRecordList.size() == 0){
             System.out.println("Concept " + glossary.getWord() + " is not duplicated, but no related triples found, add it as a child of root.");
             if(GlobalVariables.ontMultiwayForest.size() == 0){
@@ -1184,7 +1184,7 @@ public class OntologyOperationMethods {
             }
         }
         // not found as a concept, continue
-        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptOrInstanceGlossary(glossary.getWord());
+        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptOrInstanceOrDatatypeGlossary(glossary.getWord());
         if(tripleRecordList == null || tripleRecordList.size() == 0){
             System.out.println("no corresponding instance in triple records, exit");
             return;
@@ -1219,7 +1219,76 @@ public class OntologyOperationMethods {
     }
 
     private static void updateOntologyForestByDatatypePropertyGlossary(Glossary glossary){
+        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptOrInstanceOrDatatypeGlossary(glossary.getWord());
+        if(tripleRecordList == null || tripleRecordList.size() == 0){
+            System.out.println("no responding triple record found, exit");
+            return;
+        }
+        for(TripleRecord tripleRecord : tripleRecordList){
+            String subject = tripleRecord.getSubject();
+            String relation = tripleRecord.getRelation();
+            String object = tripleRecord.getObject();
+            // In the previous handler function, take datatype relation as the "others" classification
+            if(GlobalVariables.datatypeRelationSet.contains(relation)){
+                if(subject.equals(glossary.getWord())){
+                    // check the label of the other word
+                    attachDatatype2ConceptIfTheOtherEntityIsConcept(subject, object);
+                } else if(object.equals(glossary.getWord())){
+                    // check the label of subject
+                    attachDatatype2ConceptIfTheOtherEntityIsConcept(object, subject);
+                }
+            } else {
+                System.out.println("the current triple record doesn't infer a datatype relation");
+                continue;
+            }
+        }
+    }
 
+    private static void attachDatatype2ConceptIfTheOtherEntityIsConcept(String subject, String object) {
+        for(Glossary tmpGlossary : GlobalVariables.localThesaurus){
+            if(tmpGlossary.getWord().equals(object)){
+                if(tmpGlossary.getLabel().equals("c")){
+                    // attach datatype to this concept
+                    String respondingConcept = tmpGlossary.getWord();
+                    String datatype = subject;
+                    attachDatatype2Concept(respondingConcept, datatype);
+                } else {
+                    System.out.println("The other glossary is not a concept.");
+                    break;
+                }
+            }
+        }
+    }
+
+    private static void attachDatatype2Concept(String respondingConcept, String datatype){
+        for(OntMultiwayTree ontMultiwayTree: GlobalVariables.ontMultiwayForest){
+            OntTreeNode conceptTreeNode = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), respondingConcept);
+            if(conceptTreeNode == null){
+                System.out.println("Error: failed to find the responding concept");
+            } else {
+                List<Map<String, Object>> tmpDatatypeList = conceptTreeNode.getNodeData().getDataProperties();
+                if(tmpDatatypeList == null){
+                    conceptTreeNode.getNodeData().setDataProperties(new ArrayList<>());
+                } else {
+                    boolean dtFound = false;
+                    for(Map<String, Object> datatypeMap : tmpDatatypeList){
+                        Set<String> datatypeNameSet = datatypeMap.keySet();
+                        if(datatypeNameSet.contains(datatype)){
+                            System.out.println("this datatype already exists");
+                            dtFound = true;
+                            break;
+                        }
+                    }
+                    if(!dtFound){
+                        System.out.println("Should insert this glossary as a new datatype");
+                        Map<String, Object> datatypeMap = new HashMap<>();
+                        datatypeMap.put(datatype, "String");
+                        conceptTreeNode.getNodeData().getDataProperties().add(datatypeMap);
+                        // should check whether it actually add a new data type
+                    }
+                }
+            }
+        }
     }
 
     public static boolean checkIfConceptExist(Glossary glossary){
