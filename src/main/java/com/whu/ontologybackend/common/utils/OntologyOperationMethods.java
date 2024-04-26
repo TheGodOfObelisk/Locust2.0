@@ -894,7 +894,7 @@ public class OntologyOperationMethods {
 
     private static void updateOntologyForestByConceptGlossary(Glossary glossary){
         // it has been checked that no duplicated glossary is in the ontology forest
-        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptGlossary(glossary.getWord());
+        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptOrInstanceGlossary(glossary.getWord());
         if(tripleRecordList == null || tripleRecordList.size() == 0){
             System.out.println("Concept " + glossary.getWord() + " is not duplicated, but no related triples found, add it as a child of root.");
             if(GlobalVariables.ontMultiwayForest.size() == 0){
@@ -1168,7 +1168,54 @@ public class OntologyOperationMethods {
     }
 
     private static void updateOntologyForestByInstanceGlossary(Glossary glossary){
+        // first, take it as a concept and search it in ontology forest
+        for(OntMultiwayTree ontMultiwayTree : GlobalVariables.ontMultiwayForest){
+            OntTreeNode conceptNode = ontMultiwayTree.traverseTreeByConcept(ontMultiwayTree.getRoot(), glossary.getWord());
+            if(conceptNode != null){
+                System.out.println("current glossary should be a concept");
+                // update local thesaurus and exit
+                // the outside function is iterated according to local thesaurus, so do not alter local thesaurus temporarily
+                for(Glossary tmpGlossary : GlobalVariables.localThesaurus){
+                    if(tmpGlossary.equals(glossary)){
+                        tmpGlossary.setLabel("c");
+                    }
+                } // maybe unexpected error exists
+                return;
+            }
+        }
+        // not found as a concept, continue
+        List<TripleRecord> tripleRecordList = DatabaseOperationMethods.extractTripleRecordsByConceptOrInstanceGlossary(glossary.getWord());
+        if(tripleRecordList == null || tripleRecordList.size() == 0){
+            System.out.println("no corresponding instance in triple records, exit");
+            return;
+        }
 
+        for(TripleRecord tripleRecord : tripleRecordList){
+            String subject = tripleRecord.getSubject();
+            String relation = tripleRecord.getRelation();
+            String object = tripleRecord.getObject();
+            if(GlobalVariables.subClassOfRelationSet.contains(relation)){
+                System.out.println("This instance word exists in a subclass relation, so update it as a concept in local thesaurus");
+                for(Glossary tmpGlossary : GlobalVariables.localThesaurus){
+                    if(tmpGlossary.equals(glossary)){
+                        tmpGlossary.setLabel("c");
+                    }
+                } // maybe unexpected error exists
+            } else if(GlobalVariables.instanceOfRelationSet.contains(relation)){
+                // object is concept while subject is instance
+                if(object.equals(glossary.getWord())){
+                    // update
+                    for(Glossary tmpGlossary : GlobalVariables.localThesaurus){
+                        if(tmpGlossary.equals(glossary)){
+                            tmpGlossary.setLabel("c");
+                        }
+                    } // maybe unexpected error exists
+                } // else subject equals glossary, let it go
+            } else {
+                // other cases
+                System.out.println("non-hierarchical relation: can not determine the label of the other entity, continue");
+            }
+        }
     }
 
     private static void updateOntologyForestByDatatypePropertyGlossary(Glossary glossary){
