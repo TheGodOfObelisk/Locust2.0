@@ -910,8 +910,19 @@ public class OntMultiwayTree implements Serializable {
 //            List<Map<String, Object>> opList = ontMultiwayTreeNode.getData().getNodeData().getObjectProperties();
             Map<String, Object> axioms = ontMultiwayTreeNode.getData().getNodeData().getAxioms();
             // first, process nodeId and concept
-
-            OntClass tmpClass = model.createClass(NS + concept);
+            // since standard OWL doesn't allow white spaces in IRI, replace whitespaces in IRI with short '-' character
+            String tmpConcept = concept.replace(" ", "-");
+            tmpConcept = tmpConcept.replace("\"", "");
+//            if(tmpConcept.contains(" ")){
+//                System.out.println("failed to filter spaces.");
+//                tmpConcept.replaceAll(" ", "-");
+//            }
+//            if(tmpConcept.contains("\"")){
+//                System.out.println("failed to filter quotes.");
+//                tmpConcept.replaceAll("\"", "");
+//            }
+            System.out.println("1---- tmpConcept: " + tmpConcept);
+            OntClass tmpClass = model.createClass(NS + tmpConcept);
             DatatypeProperty nodeIdProperty = model.createDatatypeProperty(NS + "nodeId");
             DatatypeProperty parentNodeIdProperty = model.createDatatypeProperty(NS + "parentNodeId");
 //            nodeIdProperty.addDomain();
@@ -921,7 +932,8 @@ public class OntMultiwayTree implements Serializable {
                 // get parent's concept
                 OntTreeNode tmpNode = traverseTreeByNodeId(this.root, ontMultiwayTreeNode.getData().getParentId());
                 if(tmpNode.getNodeData() != null){
-                    tmpClass.addSuperClass(model.getOntClass(NS + tmpNode.getNodeData().getConcept()));
+                    tmpClass.addSuperClass(model.getOntClass(NS + tmpConcept));
+//                    tmpClass.addSuperClass(model.getOntClass(NS + tmpNode.getNodeData().getConcept().replaceAll(" ", "-").replaceAll("\"", "")));
                 } else {
                     tmpClass.addSuperClass(model.getOntClass(NS + "root"));
                 }
@@ -965,8 +977,21 @@ public class OntMultiwayTree implements Serializable {
 //                List<Map<String, Object>> opList = ontMultiwayTreeNode.getData().getNodeData().getObjectProperties();
                 Map<String, Object> axioms = ontMultiwayTreeNode.getData().getNodeData().getAxioms();
                 // first, process nodeId and concept
-
-                OntClass tmpClass = model.createClass(NS + concept);
+                String tmpConcept = concept.replaceAll(" ", "-");
+                tmpConcept = tmpConcept.replaceAll("\"", "");
+//                if(tmpConcept.contains(" ")){
+//                    System.out.println("failed to filter spaces.");
+//                    tmpConcept.replaceAll(" ", "-");
+//                }
+//                if(tmpConcept.contains("\"")){
+//                    System.out.println("failed to filter quotes.");
+//                    tmpConcept.replaceAll("\"", "");
+//                    while(tmpConcept.contains("\"")){
+//                        tmpConcept.replace("\"", "");
+//                    }
+//                }
+                System.out.println("2---- tmpConcept: " + tmpConcept);
+                OntClass tmpClass = model.createClass(NS + tmpConcept);
                 DatatypeProperty nodeIdProperty = model.createDatatypeProperty(NS + "nodeId");
                 DatatypeProperty parentNodeIdProperty = model.createDatatypeProperty(NS + "parentNodeId");
 //            nodeIdProperty.addDomain();
@@ -976,7 +1001,7 @@ public class OntMultiwayTree implements Serializable {
                     // get parent's concept
                     OntTreeNode tmpNode = traverseTreeByNodeId(this.root, ontMultiwayTreeNode.getData().getParentId());
                     if(tmpNode.getNodeData() != null){
-                        tmpClass.addSuperClass(model.getOntClass(NS + tmpNode.getNodeData().getConcept()));
+                        tmpClass.addSuperClass(model.getOntClass(NS + tmpNode.getNodeData().getConcept().replaceAll(" ", "-").replaceAll("\"", "")));
                     } else {
                         tmpClass.addSuperClass(model.getOntClass(NS + "root"));
                     }
