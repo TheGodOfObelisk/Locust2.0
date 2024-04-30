@@ -16,6 +16,11 @@ public class ExportController {
         return exportService.exportResultingOntologies();
     }
 
+    @RequestMapping("/materializedCQs")
+    String exportMaterializedCQs(){
+        return exportService.exportMaterializedCQs();
+    }
+
     @RequestMapping("/graph")
     String exportGraph(){
         return "graph";

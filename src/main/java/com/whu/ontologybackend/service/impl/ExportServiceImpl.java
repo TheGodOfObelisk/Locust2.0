@@ -36,4 +36,10 @@ public class ExportServiceImpl implements ExportService {
         }
         return "export resulting ontologies.";
     }
+
+    @Override
+    public String exportMaterializedCQs(){
+        // export materialized CQs in batch (not in the SPARQL-OWL form)
+        return "export materialized CQs";
+    }
 }
