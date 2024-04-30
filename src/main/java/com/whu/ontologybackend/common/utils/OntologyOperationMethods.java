@@ -13,6 +13,7 @@ import org.apache.jena.util.iterator.ExtendedIterator;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -374,6 +375,25 @@ public class OntologyOperationMethods {
         List<String> iList = iSet.stream().toList();
         System.out.println("cList size = " + cList.size() + ", opList size = " + opList.size() + ", dtList size = " + dtList.size() + ", iList size = " + iList.size());
         // TODO: use permutation of index to fill templates
+        // calculate the number of possible permutations
+        BigInteger number = new BigInteger(String.valueOf(1));
+        for(int index = 0; index < placeholders.size(); index++){
+            String placeholder = placeholders.get(index);
+            if(placeholder.contains("c")){
+                number = number.multiply(BigInteger.valueOf(cList.size()));
+            } else if (placeholder.contains("op")){
+                number = number.multiply(BigInteger.valueOf(opList.size()));
+            } else if (placeholder.contains("dt")){
+                number = number.multiply(BigInteger.valueOf(dtList.size()));
+            } else {
+                number = number.multiply(BigInteger.valueOf(iList.size()));
+            }
+        }
+        if(number.equals(1)){
+            System.out.println("No or only one suitable materialized SPARQL. Do not concentrate on CQ itself.");
+        } else {
+            System.out.println(number + " possible materialized SPARQL in total.");
+        }
 
         // a bad implementation, out of memory. I should use disk storage instead.
 //        Map<String, String> onecase = new HashMap<>();
