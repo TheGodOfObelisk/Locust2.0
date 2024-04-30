@@ -227,7 +227,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
                 // materializing...
                 String materializedSPARQL = SPARQLTemplate;
                 List<Map<String, String>> placeSequencePermutation = new ArrayList<>();
-                OntologyOperationMethods.placeSequencePermutationInit(placeSequencePermutation, cSet, opSet, dtSet, iSet, placeholders);
+                OntologyOperationMethods.placeSequencePermutationInit(placeSequencePermutation, cSet, opSet, dtSet, iSet, placeholders, materializedSPARQL);
 
             }
         } catch (IOException e){

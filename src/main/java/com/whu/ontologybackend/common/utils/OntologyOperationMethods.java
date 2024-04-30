@@ -368,7 +368,7 @@ public class OntologyOperationMethods {
         // instances should also be extracted from existing ontologies
     }
 
-    public static void placeSequencePermutationInit(List<Map<String, String>> fullPermutation, Set<String> cSet, Set<String> opSet, Set<String> dtSet, Set<String> iSet, List<String> placeholders){
+    public static void placeSequencePermutationInit(List<Map<String, String>> fullPermutation, Set<String> cSet, Set<String> opSet, Set<String> dtSet, Set<String> iSet, List<String> placeholders, String SPARQL){
         List<String> cList = cSet.stream().toList();
         List<String> opList = opSet.stream().toList();
         List<String> dtList = dtSet.stream().toList();
@@ -394,7 +394,8 @@ public class OntologyOperationMethods {
         } else {
             System.out.println(number + " possible materialized SPARQL in total.");
         }
-
+        // generate possible materialized SPARQL sequentially
+        dynamicFor2CQGeneration(placeholders, cList, opList, dtList, iList, new ArrayList<>(), SPARQL, 0, false);
         // a bad implementation, out of memory. I should use disk storage instead.
 //        Map<String, String> onecase = new HashMap<>();
 //        List<List<Integer>> fullP = new ArrayList<>();
@@ -474,6 +475,65 @@ public class OntologyOperationMethods {
 //            }
 //        }
 //        System.out.println(fullP);
+    }
+
+    private static void dynamicFor2CQGeneration(List<String> placeholders, List<String> cList, List<String> opList, List<String> dtList, List<String> iList, List<String> oneResult, String SPARQL, int currentIndex, boolean reachLast){
+        if(currentIndex == 0){
+            oneResult.clear(); // refresh
+        }
+        if(placeholders.size() < currentIndex + 1){
+            System.out.println("Iteration ends. In SPARQL: " + SPARQL);
+            System.out.println("oneResult = " + oneResult.toString());
+            System.out.println("Then clear oneResult and return, avoid too much memory cost.");
+//            oneResult.clear();// made bu zhi dao you mei you yong
+            if(oneResult.size() != placeholders.size()){
+                System.out.println("Fatal error: inconsistent number of placeholders and actual results.");
+            }
+            if(reachLast){
+                oneResult.clear();
+//                reachLast = false;
+            }
+            if(oneResult.size() != 0 && !reachLast){
+                int lastIndex = oneResult.size() - 1;
+                oneResult.remove(lastIndex); // remove the last one
+            }
+            // currentIndex represents the recursive depth
+            return;
+        }
+        String currentPlaceholder = placeholders.get(currentIndex);
+        reachLast = false;
+        if(currentPlaceholder.contains("c")){
+            for(int i = 0; i < cList.size(); i++){
+                if(i == cList.size() - 1 && currentIndex + 1 == placeholders.size()){
+                    // reach the last one
+                    reachLast = true;
+//                    oneResult.remove(lastIndex); // remove the last one
+                }
+                oneResult.add(cList.get(i));
+                // check
+                if(reachLast && oneResult.size() != placeholders.size()){
+                    System.out.println("oh no");
+                }
+                dynamicFor2CQGeneration(placeholders, cList, opList, dtList, iList, oneResult, SPARQL, currentIndex + 1, reachLast);
+            }
+        } else if (currentPlaceholder.contains("op")) {
+            for(int i = 0; i < opList.size(); i++){
+                oneResult.add(opList.get(i));
+                dynamicFor2CQGeneration(placeholders, cList, opList, dtList, iList, oneResult, SPARQL, currentIndex + 1, reachLast);
+            }
+        } else if (currentPlaceholder.contains("dt")) {
+            for(int i = 0; i < dtList.size(); i++){
+                oneResult.add(dtList.get(i));
+                dynamicFor2CQGeneration(placeholders, cList, opList, dtList, iList, oneResult, SPARQL, currentIndex + 1, reachLast);
+            }
+        } else if (currentPlaceholder.contains("i")) {
+            for(int i = 0; i < iList.size(); i++){
+                oneResult.add(iList.get(i));
+                dynamicFor2CQGeneration(placeholders, cList, opList, dtList, iList, oneResult, SPARQL, currentIndex + 1, reachLast);
+            }
+        } else {
+            System.out.println("Fatal error: unexpected placeholder.");
+        }
     }
 
     // read and parse xsd schemas from Database, then integrate schema into Global Variable ontology forest
