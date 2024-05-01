@@ -368,7 +368,7 @@ public class OntologyOperationMethods {
         // instances should also be extracted from existing ontologies
     }
 
-    public static void placeSequencePermutationInit(Set<String> cSet, Set<String> opSet, Set<String> dtSet, Set<String> iSet, List<String> placeholders, String SPARQL){
+    public static void placeholderSequenceOneByOne(Set<String> cSet, Set<String> opSet, Set<String> dtSet, Set<String> iSet, List<String> placeholders, String SPARQL){
         List<String> cList = cSet.stream().toList();
         List<String> opList = opSet.stream().toList();
         List<String> dtList = dtSet.stream().toList();
