@@ -492,24 +492,8 @@ public class OntologyOperationMethods {
             if(oneResult.size() != placeholders.size()){
                 System.out.println("Fatal error: inconsistent number of placeholders and actual results.");
             }
-//            if(reachLast){
-//                oneResult.clear();
-//                if(oneResult.size() == 1){
-//                    oneResult.remove(0);
-//                } else if(oneResult.size() > 1){
-//                    // remove the last two
-//                    int lastIndex = oneResult.size() - 1;
-//                    oneResult.remove(lastIndex);
-//                    lastIndex = oneResult.size() - 1;
-//                    oneResult.remove(lastIndex);
-//                }
-//                reachLast = false;
-//            }
-//            if(oneResult.size() != 0 && !reachLast){
-//                int lastIndex = oneResult.size() - 1;
-//                oneResult.remove(lastIndex); // remove the last one
-//            }
-            // currentIndex represents the recursive depth
+            // TODO: process the final one result, one by one
+            // ...
             return;
         }
         String currentPlaceholder = placeholders.get(currentIndex);
