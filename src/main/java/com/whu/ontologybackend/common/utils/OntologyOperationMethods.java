@@ -398,86 +398,8 @@ public class OntologyOperationMethods {
         if(placeholders.size() == 3){
             System.out.println("Pause and debug.");
         }
+        // TODO: Process the one result in the most inner dynamic FOR loop
         dynamicFor2CQGeneration(placeholders, cList, opList, dtList, iList, new ArrayList<>(), SPARQL, 0);
-        // a bad implementation, out of memory. I should use disk storage instead.
-//        Map<String, String> onecase = new HashMap<>();
-//        List<List<Integer>> fullP = new ArrayList<>();
-//
-//        for(int index = 0; index < placeholders.size(); index++){
-//            String placeholder = placeholders.get(index);
-//            if(placeholder.contains("c")){
-//                for(int i = 0; i < cList.size(); i++){
-//                    if(index == 0){
-//                        List<Integer> newP = new ArrayList<>();
-//                        newP.add(i);
-//                        fullP.add(newP);
-//                    } else {
-//                        for(int j = 0; j < fullP.size(); j++){
-//                            List<Integer> previousP = fullP.get(j);
-//                            for(int k = 0; k < cList.size(); k++){
-//                                List<Integer> newP2 = previousP;
-//                                newP2.add(k);
-//                                fullP.add(newP2);
-//                            }
-//                        }
-//                    }
-//                }
-//            } else if (placeholder.contains("op")) {
-//                for(int i = 0; i < opList.size(); i++){
-//                    if(index == 0){
-//                        List<Integer> newP = new ArrayList<>();
-//                        newP.add(i);
-//                        fullP.add(newP);
-//                    } else {
-//                        for(int j = 0; j < fullP.size(); j++){
-//                            List<Integer> previousP = fullP.get(j);
-//                            for(int k = 0; k < opList.size(); k++){
-//                                List<Integer> newP2 = previousP;
-//                                newP2.add(k);
-//                                fullP.add(newP2);
-//                            }
-//                        }
-//                    }
-//                }
-//            } else if (placeholder.contains("dt")){
-//                for(int i = 0; i < dtList.size(); i++){
-//                    if(index == 0){
-//                        List<Integer> newP = new ArrayList<>();
-//                        newP.add(i);
-//                        fullP.add(newP);
-//                    } else {
-//                        for(int j = 0; j < fullP.size(); j++){
-//                            List<Integer> previousP = fullP.get(j);
-//                            for(int k = 0; k < dtList.size(); k++){
-//                                List<Integer> newP2 = previousP;
-//                                newP2.add(k);
-//                                fullP.add(newP2);
-//                            }
-//                        }
-//                    }
-//                }
-//            } else if (placeholder.contains("i")) {
-//                for(int i = 0; i < iList.size(); i++){
-//                    if(index == 0){
-//                        List<Integer> newP = new ArrayList<>();
-//                        newP.add(i);
-//                        fullP.add(newP);
-//                    } else {
-//                        for(int j = 0; j < fullP.size(); j++){
-//                            List<Integer> previousP = fullP.get(j);
-//                            for(int k = 0; k < iList.size(); k++){
-//                                List<Integer> newP2 = previousP;
-//                                newP2.add(k);
-//                                fullP.add(newP2);
-//                            }
-//                        }
-//                    }
-//                }
-//            } else {
-//                System.out.println("Unknown placeholder.");
-//            }
-//        }
-//        System.out.println(fullP);
     }
 
     private static void dynamicFor2CQGeneration(List<String> placeholders, List<String> cList, List<String> opList, List<String> dtList, List<String> iList, List<String> oneResult, String SPARQL, int currentIndex){
@@ -499,7 +421,6 @@ public class OntologyOperationMethods {
         String currentPlaceholder = placeholders.get(currentIndex);
         if(currentPlaceholder.contains("c")){
             for(int i = 0; i < cList.size(); i++){
-
 //                if(i == cList.size() - 1 && currentIndex + 1 == placeholders.size()){
 //                    // reach the last one
 //                    reachLast = true;
