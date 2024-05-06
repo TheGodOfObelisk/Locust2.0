@@ -1,6 +1,9 @@
 package com.whu.ontologybackend.controller;
 
+import org.apache.jena.fuseki.main.FusekiServer;
 import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.query.Dataset;
+import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
@@ -40,5 +43,15 @@ public class JenaTestController {
             e.printStackTrace();
         }
         return "Error! Fail to generate example ontology message!";
+    }
+
+    @RequestMapping("fusekiTest")
+    public String JenaFuseki(){
+        Dataset dataset = DatasetFactory.createTxnMem();
+        FusekiServer server = FusekiServer.create().add("/dataset", dataset).build();
+        server.start();
+
+//        server.stop();
+        return "fuseki test ends.";
     }
 }

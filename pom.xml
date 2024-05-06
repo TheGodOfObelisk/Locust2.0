@@ -47,6 +47,11 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-fuseki-main</artifactId>
+            <version>5.0.0</version>
+        </dependency>
 <!--        &lt;!&ndash; mysql driver&ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>mysql</groupId>-->
