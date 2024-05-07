@@ -1,6 +1,7 @@
 package com.whu.ontologybackend.controller;
 
 import org.apache.jena.fuseki.main.FusekiServer;
+import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.DatasetFactory;
@@ -14,6 +15,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.StringWriter;
 
 @RestController
@@ -47,9 +51,19 @@ public class JenaTestController {
 
     @RequestMapping("fusekiTest")
     public String JenaFuseki(){
-        Dataset dataset = DatasetFactory.createTxnMem();
-        FusekiServer server = FusekiServer.create().add("/dataset", dataset).build();
-        server.start();
+        File ontologyFile = new File("D:\\cybersecurityOntologies\\CAPEC.owl");
+        try{
+            InputStream inputStream = new FileInputStream(ontologyFile);
+            OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+            ontModel.read(inputStream, "utf-8");
+            Dataset dataset = DatasetFactory.create(ontModel);
+            FusekiServer server = FusekiServer.create().add("/dataset", dataset).build();
+            server.start();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+//        Dataset dataset = DatasetFactory.createTxnMem();
+
 
 //        server.stop();
         return "fuseki test ends.";
