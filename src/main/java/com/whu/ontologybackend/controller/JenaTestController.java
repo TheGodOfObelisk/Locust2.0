@@ -66,6 +66,7 @@ public class JenaTestController {
             FusekiServer server = FusekiServer.create().add("/dataset", dataset).build();
             server.start();
             // refer to https://hydrargillite4.rssing.com/chan-3685425/all_p13.html
+            // example query string from protege
             String queryString =
                     "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n " +
                     "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
