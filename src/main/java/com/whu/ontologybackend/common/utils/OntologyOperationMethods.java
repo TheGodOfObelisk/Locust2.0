@@ -416,6 +416,7 @@ public class OntologyOperationMethods {
             }
             // TODO: process the final one result, one by one
             // ...
+
             return;
         }
         String currentPlaceholder = placeholders.get(currentIndex);

@@ -58,12 +58,21 @@ public class JenaTestController {
         try{
             InputStream inputStream = new FileInputStream(ontologyFile);
             FileManager.get().addLocatorClassLoader(Main.class.getClassLoader());
-            Model model = FileManager.get().loadModel("D:\\ontologies\\killchain.owl");
+//            Model model = FileManager.get().loadModel("D:\\ontologies\\killchain.owl");
             OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
             ontModel.read(inputStream, "utf-8");
-//            Dataset dataset = DatasetFactory.create(ontModel);
-            Dataset dataset = DatasetFactory.createTxnMem();
-            FusekiServer server = FusekiServer.create().add("/dataset", dataset).build();
+            Dataset dataset = DatasetFactory.create(ontModel);
+//            Dataset dataset = DatasetFactory.createTxnMem();
+//            FusekiServer server = FusekiServer.create().add("/dataset", dataset).build();
+            // test: more than one ontology. just test, file path should store in a variable
+//            Model model1 = FileManager.get().loadModel("D:\\ontologies\\MALOnt.owl");
+//            OntModel ontModel1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+            InputStream inputStream1 = new FileInputStream(new File("D:\\ontologies\\MALOnt.owl"));
+            // It is okay, just use one ontModel object
+            // the SPARQL query is executed on the modular ontology :)
+            ontModel.read(inputStream1, "utf-8");
+            Dataset dataset1 = DatasetFactory.create(ontModel);
+            FusekiServer server = FusekiServer.create().add("/dataset", dataset).add("/dataset1", dataset1).build();
             server.start();
             // refer to https://hydrargillite4.rssing.com/chan-3685425/all_p13.html
             // example query string from protege
@@ -75,10 +84,16 @@ public class JenaTestController {
                     "SELECT ?subject ?object \n" +
                     "\tWHERE { ?subject rdfs:subClassOf ?object }";
             Query query = QueryFactory.create(queryString);
-            QueryExecution queryExecution = QueryExecutionFactory.create(query, model);
+            QueryExecution queryExecution = QueryExecutionFactory.create(query, ontModel);
 //            QueryExecution queryExecution = QueryExecution.create("SELECT * { ?s  ?o}", dataset);
             ResultSet rs = queryExecution.execSelect();
             ResultSetFormatter.out(rs);
+
+            // test query on the other ontology
+            QueryExecution queryExecution1 = QueryExecutionFactory.create(query, ontModel);
+//            QueryExecution queryExecution = QueryExecution.create("SELECT * { ?s  ?o}", dataset);
+            ResultSet rs1 = queryExecution1.execSelect();
+            ResultSetFormatter.out(rs1);
 
             System.out.println("SPARQL query ends. Stop the fuseki server.");
             queryExecution.close();
@@ -86,10 +101,6 @@ public class JenaTestController {
         } catch (Exception e){
             e.printStackTrace();
         }
-
-
-
-//        server.stop();
         return "fuseki test ends.";
     }
 }
