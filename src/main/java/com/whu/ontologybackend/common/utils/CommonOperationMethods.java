@@ -131,4 +131,21 @@ public class CommonOperationMethods {
         }
         return fileList;
     }
+
+    public static List<File> fetchOntologiesInDir(File path){
+        List<File> fileList = new ArrayList<>();
+        if(path.isFile()){
+            fileList.add(path);
+        } else if(path.isDirectory()){
+            File[] files = path.listFiles();
+            if(files != null){
+                for(File file: files){
+                    if(file.getName().contains(".owl")){
+                        fileList.add(file);
+                    }
+                }
+            }
+        }
+        return fileList;
+    }
 }

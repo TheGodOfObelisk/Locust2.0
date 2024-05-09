@@ -7,13 +7,18 @@ import com.whu.ontologybackend.common.unstructured.TripleRecord;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.jena.fuseki.main.FusekiServer;
+import org.apache.jena.iri.impl.Main;
 import org.apache.jena.ontology.*;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.util.FileManager;
 import org.apache.jena.util.iterator.ExtendedIterator;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.*;
 import java.math.BigInteger;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -1337,4 +1342,45 @@ public class OntologyOperationMethods {
         return false;
     }
 
+    public static void initializeFusekiServer(){
+        String ontologyPathStr = "D:\\cybersecurityOntologies";
+        File ontologyPath = new File(ontologyPathStr);
+        List<File> ontologies = CommonOperationMethods.fetchOntologiesInDir(ontologyPath);
+        OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+        for(File ontology: ontologies){
+            System.out.println("ontology name: " + ontology.getName());
+            try{
+                InputStream inputStream = new FileInputStream(ontology);
+                FileManager.get().addLocatorClassLoader(Main.class.getClassLoader());
+                ontModel.read(inputStream, "utf-8");
+                inputStream.close();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        // read all ontologies
+        Dataset dataset = DatasetFactory.create(ontModel);
+        GlobalVariables.fusekiServer = FusekiServer.create().add("/dataset", dataset).build();
+        GlobalVariables.fusekiServer.start();
+
+        // test code
+//        String queryString =
+//                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n " +
+//                        "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
+//                        "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n " +
+//                        "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n " +
+//                        "SELECT ?subject ?object \n" +
+//                        "\tWHERE { ?subject rdfs:subClassOf ?object }";
+//        Query query = QueryFactory.create(queryString);
+//        QueryExecution queryExecution = QueryExecutionFactory.create(query, ontModel);
+//        ResultSet rs = queryExecution.execSelect();
+//        ResultSetFormatter.out(rs);
+//        GlobalVariables.fusekiServer.stop();
+    }
+
+    public static void terminateFusekiServer(){
+        if(GlobalVariables.fusekiServer != null){
+            GlobalVariables.fusekiServer.stop();
+        }
+    }
 }

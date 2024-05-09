@@ -210,6 +210,9 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
     // TODO: Postpone it until the Term Typing Task has been completed
     @Override
     public String materializeCQs(String filePrefix){
+        // initialize fuseki server first
+        OntologyOperationMethods.initializeFusekiServer();
+
         // materialize when thesaurus is stable
         // materialize CQs in BigCQ using local thesaurus
         // & CQs from other resources
@@ -235,7 +238,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 //        if(!OntologyOperationMethods.checkCQTandSPARQLT(filePrefix)){
 //            return "db hasn't been initialized.";
 //        };
-
+        OntologyOperationMethods.terminateFusekiServer();
         return "materializing CQs";
     }
 
