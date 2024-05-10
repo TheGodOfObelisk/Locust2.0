@@ -421,7 +421,16 @@ public class OntologyOperationMethods {
             }
             // TODO: process the final one result, one by one
             // ...
-
+            String MaterializedSPARQL = SPARQL;
+            for(int i = 0; i < placeholders.size(); i++){
+                MaterializedSPARQL = MaterializedSPARQL.replace(placeholders.get(i), oneResult.get(i));
+            }
+            System.out.println("Materialized SPARQL: " + MaterializedSPARQL);
+            if(OntologyOperationMethods.executeSPARQLInFusekiServer(MaterializedSPARQL)){
+                System.out.println("Competency Question fits. Succeeded to execute the corresponding SPARQL-OWL");
+            } else {
+                System.out.println("Failed to execute SPARQL-OWL.");
+            }
             return;
         }
         String currentPlaceholder = placeholders.get(currentIndex);
@@ -1376,6 +1385,28 @@ public class OntologyOperationMethods {
 //        ResultSet rs = queryExecution.execSelect();
 //        ResultSetFormatter.out(rs);
 //        GlobalVariables.fusekiServer.stop();
+    }
+
+    // Succeeded: True
+    // Failed: False
+    public static boolean executeSPARQLInFusekiServer(String materializedSPARQL){
+        try{
+            String queryStringPrefix =
+                    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n " +
+                            "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
+                            "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n " +
+                            "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n " +
+                            "SELECT ?subject ?object \n";
+            String queryString = queryStringPrefix + "\t" + materializedSPARQL;
+            Query query = QueryFactory.create(queryString);
+            QueryExecution queryExecution = QueryExecutionFactory.create(query);
+            ResultSet rs = queryExecution.execSelect();
+            ResultSetFormatter.out(rs);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static void terminateFusekiServer(){
