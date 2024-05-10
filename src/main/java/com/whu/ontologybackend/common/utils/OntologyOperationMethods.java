@@ -423,10 +423,11 @@ public class OntologyOperationMethods {
             // ...
             String MaterializedSPARQL = SPARQL;
             for(int i = 0; i < placeholders.size(); i++){
-                MaterializedSPARQL = MaterializedSPARQL.replace(placeholders.get(i), oneResult.get(i));
+                MaterializedSPARQL = MaterializedSPARQL.replace("<" + placeholders.get(i) + ">", "\"" + oneResult.get(i) + "\"");
             }
             System.out.println("Materialized SPARQL: " + MaterializedSPARQL);
             if(OntologyOperationMethods.executeSPARQLInFusekiServer(MaterializedSPARQL)){
+                // SPARQL-OWL cannot be executed in fuseki
                 System.out.println("Competency Question fits. Succeeded to execute the corresponding SPARQL-OWL");
             } else {
                 System.out.println("Failed to execute SPARQL-OWL.");
@@ -1355,20 +1356,23 @@ public class OntologyOperationMethods {
         String ontologyPathStr = "D:\\cybersecurityOntologies";
         File ontologyPath = new File(ontologyPathStr);
         List<File> ontologies = CommonOperationMethods.fetchOntologiesInDir(ontologyPath);
-        OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+        if(GlobalVariables.ontModel == null){
+            GlobalVariables.ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+        }
+//        OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
         for(File ontology: ontologies){
             System.out.println("ontology name: " + ontology.getName());
             try{
                 InputStream inputStream = new FileInputStream(ontology);
                 FileManager.get().addLocatorClassLoader(Main.class.getClassLoader());
-                ontModel.read(inputStream, "utf-8");
+                GlobalVariables.ontModel.read(inputStream, "utf-8");
                 inputStream.close();
             } catch (Exception e){
                 e.printStackTrace();
             }
         }
         // read all ontologies
-        Dataset dataset = DatasetFactory.create(ontModel);
+        Dataset dataset = DatasetFactory.create(GlobalVariables.ontModel);
         GlobalVariables.fusekiServer = FusekiServer.create().add("/dataset", dataset).build();
         GlobalVariables.fusekiServer.start();
 
@@ -1395,16 +1399,30 @@ public class OntologyOperationMethods {
                     "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n " +
                             "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
                             "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n " +
-                            "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n " +
-                            "SELECT ?subject ?object \n";
+                            "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n ";
+//            String queryStringPrefix =
+//                            "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n";
             String queryString = queryStringPrefix + "\t" + materializedSPARQL;
             Query query = QueryFactory.create(queryString);
-            QueryExecution queryExecution = QueryExecutionFactory.create(query);
+            QueryExecution queryExecution = QueryExecutionFactory.create(query, GlobalVariables.ontModel);
+            if(materializedSPARQL.contains("ask") || materializedSPARQL.contains("ASK")){
+                // no result set from ask query
+                // if any exception occurs, it will return false
+                queryExecution.execAsk();
+                return true;
+            }
             ResultSet rs = queryExecution.execSelect();
-            ResultSetFormatter.out(rs);
+            System.out.println(rs.getRowNumber() + " row(s) returned.");
+            if(rs.getRowNumber() != 0){
+                System.out.println("The result of SELECT SPARQL Query is: \n");
+                ResultSetFormatter.out(rs);
+            } else {
+                System.out.println("Query succeeded but no row returned.");
+            }
             return true;
         } catch (Exception e){
             e.printStackTrace();
+            System.out.println("The SPARQL query with error is: \n" + materializedSPARQL);
             return false;
         }
     }
