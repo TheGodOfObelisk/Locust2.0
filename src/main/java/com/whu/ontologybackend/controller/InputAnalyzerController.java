@@ -32,9 +32,9 @@ public class InputAnalyzerController {
         // handle two sources of glossaries, integrate them into local thesaurus
         // in the release version, the file path should be conveyed as a parameter
         // test 1
-//        File glossaryFile = new File(resourcePrefix + "Thesaurus\\globalknowledge-cybersecurity.json");
+        File glossaryFile = new File(resourcePrefix + "Thesaurus\\globalknowledge-cybersecurity.json");
         // test 2
-        File glossaryFile = new File(resourcePrefix + "Thesaurus\\NICCS_3.json");
+//        File glossaryFile = new File(resourcePrefix + "Thesaurus\\NICCS_3.json");
         return inputAnalyzeService.analyzeInputGlossary(glossaryFile);
     }
 
@@ -114,9 +114,9 @@ public class InputAnalyzerController {
 
     @RequestMapping("postOntology")
     public String integrateOntology(){
-//        File ontologyFile = new File(resourcePrefix + "MALOnt.owl");
+        File ontologyFile = new File(resourcePrefix + "MALOnt.owl");
 //        File ontologyFile = new File(resourcePrefix + "killchain.owl");
-        File ontologyFile = new File(resourcePrefix + "uco_1_5_rdf.owl");
+//        File ontologyFile = new File(resourcePrefix + "uco_1_5_rdf.owl");
         return inputAnalyzeService.analyzeExistingOntologies(ontologyFile);
         // move specific process away from controllers
     } // process existing ontologies

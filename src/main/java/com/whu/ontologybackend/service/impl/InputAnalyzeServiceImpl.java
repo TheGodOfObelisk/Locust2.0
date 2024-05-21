@@ -47,7 +47,7 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 //            OntClass anonClass = m.createClass();
             OntologyOperationMethods.outputOntInfo(m);
             // the 2nd and 3rd parameters are user inputs
-            OntologyOperationMethods.integrateExistingOntology(m, "Malware Ontology", "0000001");
+            OntologyOperationMethods.integrateExistingOntology(m, ontologyFile.getName().replace(".owl", ""), "0000001");
 
 //            Methods.ontMetadataProperties(m);
             // synchronize before an input process's ending
