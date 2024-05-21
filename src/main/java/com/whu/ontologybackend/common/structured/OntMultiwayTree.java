@@ -205,6 +205,9 @@ public class OntMultiwayTree implements Serializable {
     // parse class using reflection and store exploitable information into the multi-way tree
     public void updateTree(String className) throws ReflectiveOperationException, IOException {
         // split className into a string array
+        if(className == null){
+            return;
+        }
         String[] classPath = className.split("\\.");
         // combine "com.whu.ontology" to "thing"
         ArrayList<String> combinedClassPath = new ArrayList<String>();
@@ -509,6 +512,9 @@ public class OntMultiwayTree implements Serializable {
                 // data type property
                 // 1: extract data type and data name, add to the tree
                 // 2: fill in the relationship between properties (handle it later, traverse the whole tree again)
+                if(presentOntProperty.getRange() == null){
+                    continue;
+                }
                 String dataPropertyRange = presentOntProperty.getRange().getLocalName();
                 System.out.println("propertyName: " + propertyName);
                 System.out.println("dataPropertyRange: " + dataPropertyRange);

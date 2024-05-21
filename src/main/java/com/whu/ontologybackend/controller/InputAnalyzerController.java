@@ -114,7 +114,9 @@ public class InputAnalyzerController {
 
     @RequestMapping("postOntology")
     public String integrateOntology(){
-        File ontologyFile = new File(resourcePrefix + "MALOnt.owl");
+//        File ontologyFile = new File(resourcePrefix + "MALOnt.owl");
+//        File ontologyFile = new File(resourcePrefix + "killchain.owl");
+        File ontologyFile = new File(resourcePrefix + "uco_1_5_rdf.owl");
         return inputAnalyzeService.analyzeExistingOntologies(ontologyFile);
         // move specific process away from controllers
     } // process existing ontologies
