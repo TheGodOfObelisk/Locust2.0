@@ -1361,7 +1361,7 @@ public class OntologyOperationMethods {
         }
 //        OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
         for(File ontology: ontologies){
-            System.out.println("ontology name: " + ontology.getName());
+            System.out.println("Fuseki server load ontology: " + ontology.getName());
             try{
                 InputStream inputStream = new FileInputStream(ontology);
                 FileManager.get().addLocatorClassLoader(Main.class.getClassLoader());
