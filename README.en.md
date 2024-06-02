@@ -1,22 +1,25 @@
 # Locust2.0
 
+#### Title
+Towards a requirement-driven approach for building cybersecurity ontologies
+
+#### Authors
+Yixuan Wang, Bo Zhao, Xiaofu Song, Zhonghao Sun
+
 #### Description
 A new version Locust tool for ontology generation on cybersecurity. It implements ontologies supporting competency questions as input (can answer competency questions in SPARQL).
 
 #### Software Architecture
 Software architecture description
 
+Supportive material of the manuscript.
+
 #### Installation
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Instructions
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  use maven to configure the dependencies
+2.  use the "myontology.sql" script to create the database schema (MySQL)
+3.  use windows OS, temporarily. some absolute path should be replaced with relative path
+4. use restClient tool to test the RESTful APIs, especially in the inputAnalyzeController class
 
 #### Contribution
 
