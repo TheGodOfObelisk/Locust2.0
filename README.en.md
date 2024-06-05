@@ -1,4 +1,4 @@
-# Locust2.0
+# Locust2.0 (a informal name)
 
 #### Title
 Towards a requirement-driven approach for building cybersecurity ontologies
@@ -21,7 +21,7 @@ Feature: local thesaurus and multiway forest for modular ontologies
 1.  use maven to configure the dependencies
 2.  use the "myontology.sql" script to create the database schema (MySQL)
 3.  use windows OS, temporarily. some absolute path should be replaced with relative path
-4. use restClient tool to test the RESTful APIs, especially in the inputAnalyzeController class
+4.  use restClient tool to test the RESTful APIs, especially in the inputAnalyzeController class
 
 #### Contribution
 
