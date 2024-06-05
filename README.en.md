@@ -14,6 +14,8 @@ Software architecture description
 
 Supportive material of the manuscript.
 
+Feature: local thesaurus and multiway forest for modular ontologies
+
 #### Installation
 
 1.  use maven to configure the dependencies
