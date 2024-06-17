@@ -23,12 +23,9 @@ Feature: local thesaurus and multiway forest for modular ontologies
 3.  use windows OS, temporarily. some absolute path should be replaced with relative path
 4.  use restClient tool to test the RESTful APIs, especially in the inputAnalyzeController class
 
-#### Contribution
+#### Further Plan
 
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+1.  Integrate stardog database
 
 
 #### Gitee Feature
