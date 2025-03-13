@@ -389,4 +389,106 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
         return "Ontology forest enrichment completed.";
     }
+
+    // extended functions
+    @Override
+    public String analyzeDatabaseSchema(String dbUrl, String username, String password){
+        // Step 1: connect to the database
+        // Step 2: get the schema of the database
+        // Step 3: parse the schema and extract the information
+        // Step 4: store the information into the ontology forest
+        // Step 5: update the ontology forest
+        return "Analyzing database schema";
+
+    }
+
+    @Override
+    public String analyzeInputYAML(File yamlFile){
+        // Step 1: parse the yaml file
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing YAML file";
+    }
+
+    @Override
+    public String analyzeInputRDF(File rdfFile){
+        // Step 1: parse the rdf file
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing RDF file";
+    }
+
+    @Override
+    public String analyzeInputPDF(File pdfFile){
+        // Step 1: parse the pdf file
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing PDF file";
+    }
+    
+    @Override
+    public String analyzeWebContent(String url){
+        // Step 1: parse the web content
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing web content";
+    }
+    
+    @Override
+    public String analyzeWikiContent(String wikiUrl){
+        // Step 1: parse the wiki content
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing wiki content";
+    }
+    
+    @Override
+    public String analyzeCVEData(){
+        // Step 1: parse the cve data
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing CVE data";
+    }
+    
+    @Override
+    public String analyzeNVDData(){
+        // Step 1: parse the nvd data
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing NVD data";
+    }
+    
+    @Override
+    public String analyzeCWEData(){
+        // Step 1: parse the cwe data
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing CWE data";
+    }
+    
+    @Override
+    public String analyzeSwaggerDoc(String swaggerUrl){
+        // Step 1: parse the swagger doc
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing Swagger doc";
+    }
+    
+    @Override
+    public String analyzeGraphQLSchema(File graphQLFile){
+        // Step 1: parse the graphql schema
+        // Step 2: extract the information
+        // Step 3: store the information into the ontology forest
+        // Step 4: update the ontology forest
+        return "Analyzing GraphQL schema";
+    }
 }

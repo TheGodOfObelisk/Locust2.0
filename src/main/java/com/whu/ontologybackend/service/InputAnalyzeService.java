@@ -32,4 +32,28 @@ public interface InputAnalyzeService {
     String materializeCQs(String filePrefix);
 
     String enrichOntologyForest();
+
+    // extended functions
+    String analyzeDatabaseSchema(String dbUrl, String username, String password);
+
+    String analyzeInputYAML(File yamlFile);
+
+    String analyzeInputRDF(File rdfFile);  
+
+    String analyzeInputPDF(File pdfFile);
+
+    String analyzeWebContent(String url);
+
+    String analyzeWikiContent(String wikiUrl);
+
+    String analyzeCVEData();
+
+    String analyzeNVDData();
+
+    String analyzeCWEData();
+
+    String analyzeSwaggerDoc(String swaggerUrl);
+
+    String analyzeGraphQLSchema(File graphQLFile);
+    
 }

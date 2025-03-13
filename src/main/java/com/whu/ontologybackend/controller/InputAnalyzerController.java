@@ -141,4 +141,70 @@ public class InputAnalyzerController {
 
         return inputAnalyzeService.enrichOntologyForest();
     }
+
+    @RequestMapping("postDatabase")
+    public String integrateDatabase(@RequestParam String dbUrl, @RequestParam String username, @RequestParam String password) {
+        // 处理关系型数据库模式
+        return inputAnalyzeService.analyzeDatabaseSchema(dbUrl, username, password);
+    }
+
+    @RequestMapping("postYAML")
+    public String integrateYAML(@RequestParam("file") File file) {
+        // 处理YAML格式的配置文件或数据
+        return inputAnalyzeService.analyzeInputYAML(file);
+    }
+
+    @RequestMapping("postRDF")
+    public String integrateRDF(@RequestParam("file") File file) {
+        // 处理RDF/RDFS格式的数据
+        return inputAnalyzeService.analyzeInputRDF(file);
+    }
+
+    @RequestMapping("postPDF")
+    public String integratePDF(@RequestParam("file") File file) {
+        // 处理PDF文档中的领域知识
+        return inputAnalyzeService.analyzeInputPDF(file);
+    }
+
+    @RequestMapping("postWebPage")
+    public String integrateWebPage(@RequestParam String url) {
+        // 处理网页内容
+        return inputAnalyzeService.analyzeWebContent(url);
+    }
+
+    @RequestMapping("postWiki")
+    public String integrateWikiContent(@RequestParam String wikiUrl) {
+        // 处理维基百科或其他wiki平台的结构化内容
+        return inputAnalyzeService.analyzeWikiContent(wikiUrl);
+    }
+
+    @RequestMapping("postCVE")
+    public String integrateCVE() {
+        // 处理CVE漏洞数据
+        return inputAnalyzeService.analyzeCVEData();
+    }
+
+    @RequestMapping("postNVD")
+    public String integrateNVD() {
+        // 处理NVD数据库信息
+        return inputAnalyzeService.analyzeNVDData();
+    }
+
+    @RequestMapping("postCWE")
+    public String integrateCWE() {
+        // 处理CWE弱点数据
+        return inputAnalyzeService.analyzeCWEData();
+    }
+
+    @RequestMapping("postSwagger")
+    public String integrateSwagger(@RequestParam String swaggerUrl) {
+        // 处理Swagger/OpenAPI文档
+        return inputAnalyzeService.analyzeSwaggerDoc(swaggerUrl);
+    }
+
+    @RequestMapping("postGraphQL")
+    public String integrateGraphQLSchema(@RequestParam("file") MultipartFile file) {
+        // 处理GraphQL模式定义
+        return inputAnalyzeService.analyzeGraphQLSchema(file);
+    }
 }
