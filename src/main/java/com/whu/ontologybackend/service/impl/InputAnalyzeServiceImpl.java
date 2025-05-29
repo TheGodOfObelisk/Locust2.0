@@ -389,4 +389,11 @@ public class InputAnalyzeServiceImpl implements InputAnalyzeService {
 
         return "Ontology forest enrichment completed.";
     }
+
+    @Override
+    public String LLMEnhancement(){
+        // fill prompt templates to confirm the terms in local thesaurus
+        // TODO: use the results to refresh term labels
+        return "LLM enhancement completed.";
+    }
 }

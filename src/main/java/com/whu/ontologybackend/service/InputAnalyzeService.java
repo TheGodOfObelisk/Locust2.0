@@ -32,4 +32,6 @@ public interface InputAnalyzeService {
     String materializeCQs(String filePrefix);
 
     String enrichOntologyForest();
+
+    String LLMEnhancement();
 }

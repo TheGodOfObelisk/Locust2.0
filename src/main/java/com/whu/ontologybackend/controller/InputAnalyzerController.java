@@ -141,4 +141,9 @@ public class InputAnalyzerController {
 
         return inputAnalyzeService.enrichOntologyForest();
     }
+
+    @RequestMapping("LLMEnhancement")
+    public String LLMEnhancement(){
+        return inputAnalyzeService.LLMEnhancement();
+    }
 }
