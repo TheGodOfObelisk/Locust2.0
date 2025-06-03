@@ -1440,7 +1440,7 @@ public class OntologyOperationMethods {
 
     public static void enhancePrompt(){
         String promptTemplate = """
-                Assume that you are an expert of cybersecurity, please answer the following question with YES or NO.
+                Assume that you are an expert of cybersecurity, please answer the following question with YES or NO. 
                 """;
         List<String> prompts = generatePrompts();
         for(String prompt: prompts){
