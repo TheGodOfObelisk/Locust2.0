@@ -1432,4 +1432,24 @@ public class OntologyOperationMethods {
             GlobalVariables.fusekiServer.stop();
         }
     }
+
+    public static List<String> generatePrompts(){
+        List<String> promptList = new ArrayList<>();
+        return promptList;
+    }
+
+    public static void enhancePrompt(){
+        String promptTemplate = """
+                Assume that you are an expert of cybersecurity, please answer the following question with YES or NO.
+                """;
+        List<String> prompts = generatePrompts();
+        for(String prompt: prompts){
+            executePromptAndUpdateOntologyForest(promptTemplate + prompt);
+        }
+    }
+
+    private static void executePromptAndUpdateOntologyForest(String finalPrompt){
+        // ask prompt to LLMs and update ontology forest according to the result
+
+    }
 }
