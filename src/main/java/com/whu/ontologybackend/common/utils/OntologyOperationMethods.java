@@ -1450,6 +1450,10 @@ public class OntologyOperationMethods {
 
     private static void executePromptAndUpdateOntologyForest(String finalPrompt){
         // ask prompt to LLMs and update ontology forest according to the result
-
+        // evaluation workflow:
+        // 1. go through the previous steps to construct the initial forest
+        // 2. use items in the local thesaurus to initialize prompt sentences
+        // 3. organize the prompts and their answers to an output file
+        // 4. recognize the output file and determine the performance of each LLM
     }
 }
