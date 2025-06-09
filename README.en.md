@@ -3,9 +3,6 @@
 #### Title
 Towards a requirement-driven approach for building cybersecurity ontologies
 
-#### Authors
-Yixuan Wang, Bo Zhao, Xiaofu Song, Zhonghao Sun
-
 #### Description
 A new version Locust tool for ontology generation on cybersecurity. It implements ontologies supporting competency questions as input (can answer competency questions in SPARQL).
 
